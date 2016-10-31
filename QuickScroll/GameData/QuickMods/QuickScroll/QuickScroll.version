@@ -1,0 +1,27 @@
+{
+	"NAME"				: "QuickScroll",
+	"URL"				: "https://raw.githubusercontent.com/malahx/QuickScroll/master/QuickScroll.version",
+	"CHANGE_LOG_URL"	: "https://raw.githubusercontent.com/malahx/QuickScroll/master/README.md", 
+	"DOWNLOAD"			: "https://github.com/malahx/QuickScroll/releases",
+	"VERSION": {
+		"MAJOR"			: 2,
+		"MINOR"			: 0,
+		"PATCH"			: 0,
+		"BUILD"			: 0
+	},
+    "KSP_VERSION": {
+        "MAJOR"			: 1,
+        "MINOR"			: 1,
+        "PATCH"			: 0
+    },
+    "KSP_VERSION_MIN": {
+        "MAJOR"			: 1,
+        "MINOR"			: 1,
+        "PATCH"			: 0
+    },
+    "KSP_VERSION_MAX": {
+        "MAJOR"			: 1,
+        "MINOR"			: 1,
+        "PATCH"			: 99
+    }
+}
