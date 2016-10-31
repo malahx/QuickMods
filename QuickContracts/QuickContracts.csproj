@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C939085F-8CBB-4286-A270-F82C7E33507C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>QuickContracts</RootNamespace>
+    <AssemblyName>QuickContracts</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <Description>#### QuickContracts
+#### A plugin for Kerbal Space Program
+#### Copyright 2016 Malah</Description>
+    <ReleaseVersion>1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="../install.sh QuickContracts" />
+        <Command type="AfterClean" command="../clean.sh QuickContracts" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QC.cs" />
+    <Compile Include="QC_Settings.cs" />
+    <Compile Include="QC_Contracts.cs" />
+    <Compile Include="QC_Key.cs" />
+    <Compile Include="QC_GUI.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="COPYING" />
+    <None Include="QuickContracts.version" />
+    <None Include="README.md" />
+    <None Include="GameData\QuickMods\QuickContracts\COPYING" />
+    <None Include="GameData\QuickMods\QuickContracts\Plugins\QuickContracts.dll" />
+    <None Include="GameData\QuickMods\QuickContracts\QuickContracts.version" />
+    <None Include="GameData\QuickMods\QuickContracts\README.md" />
+    <None Include="GameData\QuickMods\QuickContracts\Textures\Settings.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameData\" />
+    <Folder Include="GameData\QuickMods\" />
+    <Folder Include="GameData\QuickMods\QuickContracts\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

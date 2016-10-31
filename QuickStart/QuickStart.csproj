@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7F8DA55F-B033-42A7-A719-C825C354CD83}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>QuickStart</RootNamespace>
+    <AssemblyName>QuickStart</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ReleaseVersion>1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="../install.sh QuickStart" />
+        <Command type="AfterClean" command="../clean.sh QuickStart" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QS.cs" />
+    <Compile Include="QS_Settings.cs" />
+    <Compile Include="QS_MainMenu.cs" />
+    <Compile Include="QS_Loading.cs" />
+    <Compile Include="QS_SaveGame.cs" />
+    <Compile Include="QS_SpaceCenter.cs" />
+    <Compile Include="QS_Persistent.cs" />
+    <Compile Include="QS_Flight.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="COPYING" />
+    <None Include="QuickStart.version" />
+    <None Include="README.md" />
+    <None Include="GameData\QuickMods\QuickStart\COPYING" />
+    <None Include="GameData\QuickMods\QuickStart\Plugins\QuickStart.dll" />
+    <None Include="GameData\QuickMods\QuickStart\QuickStart.version" />
+    <None Include="GameData\QuickMods\QuickStart\README.md" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameData\" />
+    <Folder Include="GameData\QuickMods\" />
+    <Folder Include="GameData\QuickMods\QuickStart\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

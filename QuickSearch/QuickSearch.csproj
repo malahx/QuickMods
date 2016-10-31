@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{883EA339-278B-4DDD-8CED-58BD9FA812D1}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>QuickSearch</RootNamespace>
+    <AssemblyName>QuickSearch</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <Description>#### QuickSearch
+#### A plugin for Kerbal Space Program
+#### Copyright 2016 Malah</Description>
+    <ReleaseVersion>1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="./install.sh" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="../install.sh QuickSearch" />
+        <Command type="AfterClean" command="../clean.sh QuickSearch" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QS_Settings.cs" />
+    <Compile Include="QS_Search.cs" />
+    <Compile Include="QS_RnD.cs" />
+    <Compile Include="QS.cs" />
+    <Compile Include="QS_Editor.cs" />
+    <Compile Include="ToolbarWrapper.cs" />
+    <Compile Include="QS_ToolbarStock.cs" />
+    <Compile Include="QS_ToolbarBlizzy.cs" />
+    <Compile Include="QS_GUI.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="README.md" />
+    <None Include="QuickSearch.version" />
+    <None Include="COPYING" />
+    <None Include="icon.xcf" />
+    <None Include="iconQS.xcf" />
+    <None Include="GameData\QuickMods\QuickSearch\COPYING" />
+    <None Include="GameData\QuickMods\QuickSearch\Plugins\QuickSearch.dll" />
+    <None Include="GameData\QuickMods\QuickSearch\QuickSearch.version" />
+    <None Include="GameData\QuickMods\QuickSearch\README.md" />
+    <None Include="GameData\QuickMods\QuickSearch\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickSearch\Textures\delete.dds" />
+    <None Include="GameData\QuickMods\QuickSearch\Textures\StockToolBar.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameData\QuickMods\" />
+    <Folder Include="GameData\QuickMods\QuickSearch\" />
+  </ItemGroup>
+</Project>

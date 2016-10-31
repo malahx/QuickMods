@@ -1,5 +1,5 @@
-﻿#### QuickMods
-#### A plugin collection for Kerbal Space Program
+﻿#### QuickCursorHider
+#### A plugin for Kerbal Space Program
 #### Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #### What is it?
 
-QuickMods are very small plugins which add a small feature.
-These mods support SpaceDock, KSP-AVC and Toolbar mod.
+QuickCursorHider is a plugin which hide the cursor when you push on F2.
+If the UI is hidden, you can click to see your cursor.
 
 #### How to install it?
 
@@ -31,22 +31,31 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 
 #### How to uninstall it?
 
-Delete the QuickMods folder in your KSP/GameData folder.
+Delete the QuickMods/QuickCursorHider folder in your KSP/GameData folder.
+
+#### Changelog
+
+v1.03 - 2016.10.30
+* New: Changed the directory to GameData/QuickMods/QuickCursorHider
+* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+
+v1.02 - 2016.10.15
+* Compiled against KSP 1.2.0.1586
+
+v1.01 - 2016.09.14
+* Compiled against KSP 1.2.0.1473
+
+v1.00 - 2016.06.23
+* First release
 
 #### Thanks!
 
-* to all user who have made a request/support for these mods,
-* to blizzy for his Toolbar mod,
-* to cybutek for his KSP-AVC mod,
-* to Matthieu James for the Faenza icon theme,
+* to DuoDex to have requested this mod,
 * to all other mod developers which make this game really huge,
 * and to Squad for this awesome game.
 
 #### Links
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
-* http://spacedock.info/profile/malah
+* http://spacedock.info/mod/783/QuickCursorHider
 * https://github.com/malahx/QuickMods
-* KSP-AVC: http://forum.kerbalspaceprogram.com/index.php?/topic/72169-1
-* Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
-* Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

@@ -1,5 +1,5 @@
-﻿#### QuickMods
-#### A plugin collection for Kerbal Space Program
+﻿#### QuickSAS
+#### A plugin for Kerbal Space Program
 #### Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -18,8 +18,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #### What is it?
 
-QuickMods are very small plugins which add a small feature.
-These mods support SpaceDock, KSP-AVC and Toolbar mod.
+QuickSAS is a plugin which adds the possibility to have keyboard's shortcuts for the SAS functions.
+
+Keyboard's shortcuts:
+
+* Stability Assist: Keypad 5,
+* Prograde: Keypad 8,
+* Retrograde: Keypad 2,
+* Normal: Keypad 9,
+* Anti-Normal: Keypad 3,
+* Radial: Keypad 6,
+* Anti-Radial: Keypad 4,
+* Target: Keypad 7,
+* Anti-Target: Keypad 1,
+* Maneuver: Keypad 0,
+* WarpToNode: Keypad Enter.
 
 #### How to install it?
 
@@ -31,13 +44,27 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 
 #### How to uninstall it?
 
-Delete the QuickMods folder in your KSP/GameData folder.
+Delete the QuickMods/QuickSAS folder in your KSP/GameData folder.
+
+#### Changelog
+
+v1.02 - 2016.10.30
+* New: Changed the directory to GameData/QuickMods/QuickSAS
+* Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
+* Fix: Deleted useless config load,
+* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+
+v1.01 - 2016.10.15
+* Fix: Corrected the stocktoolbar,
+* Compiled against KSP 1.2.0.1586
+
+v1.00 - 2016.09.24
+* First release
 
 #### Thanks!
 
-* to all user who have made a request/support for these mods,
+* to Chuck Bibice to have requested this mod,
 * to blizzy for his Toolbar mod,
-* to cybutek for his KSP-AVC mod,
 * to Matthieu James for the Faenza icon theme,
 * to all other mod developers which make this game really huge,
 * and to Squad for this awesome game.
@@ -45,8 +72,7 @@ Delete the QuickMods folder in your KSP/GameData folder.
 #### Links
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
-* http://spacedock.info/profile/malah
 * https://github.com/malahx/QuickMods
-* KSP-AVC: http://forum.kerbalspaceprogram.com/index.php?/topic/72169-1
+* http://spacedock.info/mod/999/QuickSAS
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

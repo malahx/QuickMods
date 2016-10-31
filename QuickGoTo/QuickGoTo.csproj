@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{0FDC1965-81EB-42C5-9123-BDFFF6D54D53}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>QuickGoTo</RootNamespace>
+    <AssemblyName>QuickGoTo</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="../install.sh QuickGoTo" />
+        <Command type="AfterClean" command="../clean.sh QuickGoTo" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QG_GoTo.cs" />
+    <Compile Include="QG_GUI.cs" />
+    <Compile Include="QG.cs" />
+    <Compile Include="QG_Settings.cs" />
+    <Compile Include="ToolbarWrapper.cs" />
+    <Compile Include="QG_Data.cs" />
+    <Compile Include="QG_ToolbarBlizzy.cs" />
+    <Compile Include="QG_ToolbarStock.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="COPYING" />
+    <None Include="QuickGoTo.version" />
+    <None Include="README.md" />
+    <None Include="BlizzyToolBar.xcf" />
+    <None Include="StockToolBar.xcf" />
+    <None Include="GameData\QuickMods\QuickGoTo\COPYING" />
+    <None Include="GameData\QuickMods\QuickGoTo\Plugins\QuickGoTo.dll" />
+    <None Include="GameData\QuickMods\QuickGoTo\QuickGoTo.version" />
+    <None Include="GameData\QuickMods\QuickGoTo\README.md" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyAdmi.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyAstr.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyConf.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyLves.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyMain.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyMI.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRc.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRnD.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRv.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRvED.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRvSC.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzySC.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzySett.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzySPH.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyTS.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyVAB.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockAdmi.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockAstr.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockConf.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockLves.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockMain.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockMI.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRc.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRnD.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRv.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRvED.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRvSC.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockSC.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockSett.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockSPH.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockTS.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockVAB.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameData\" />
+    <Folder Include="GameData\QuickMods\" />
+    <Folder Include="GameData\QuickMods\QuickGoTo\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{CF983F74-7B18-4EA3-8AA1-6F96FE19AA5D}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>QuickRevert</RootNamespace>
+    <AssemblyName>QuickRevert</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin</OutputPath>
+    <DefineConstants>DEBUG;KEEP;COST;GUI;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="./install.sh" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="../install.sh QuickRevert" />
+        <Command type="AfterClean" command="../clean.sh QuickRevert" />
+      </CustomCommands>
+    </CustomCommands>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>KEEP;COST;GUI;</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QR.cs" />
+    <Compile Include="QR_Flight.cs" />
+    <Compile Include="QR_FlightData.cs" />
+    <Compile Include="QR_Settings.cs" />
+    <Compile Include="QR_GUI.cs" />
+    <Compile Include="ToolbarWrapper.cs" />
+    <Compile Include="QR_ToolbarBlizzy.cs" />
+    <Compile Include="QR_ToolbarStock.cs" />
+    <Compile Include="QR_DataReset.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="COPYING" />
+    <None Include="QuickRevert.version" />
+    <None Include="README.md" />
+    <None Include="Revert.xcf" />
+    <None Include="GameData\QuickMods\QuickRevert\COPYING" />
+    <None Include="GameData\QuickMods\QuickRevert\Plugins\QuickRevert.dll" />
+    <None Include="GameData\QuickMods\QuickRevert\QuickRevert.version" />
+    <None Include="GameData\QuickMods\QuickRevert\README.md" />
+    <None Include="GameData\QuickMods\QuickRevert\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickRevert\Textures\StockToolBar.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameData\QuickMods\" />
+    <Folder Include="GameData\QuickMods\QuickRevert\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{7DDF2096-48AE-4E47-B690-D3EE29AFC86B}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>QuickBrake</RootNamespace>
+    <AssemblyName>QuickBrake</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="../install.sh QuickBrake" />
+        <Command type="AfterClean" command="../clean.sh QuickBrake" />
+      </CustomCommands>
+    </CustomCommands>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>GUI;</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QB.cs" />
+    <Compile Include="QB_Settings.cs" />
+    <Compile Include="QB_GUI.cs" />
+    <Compile Include="QB_ToolbarBlizzy.cs" />
+    <Compile Include="QB_ToolbarStock.cs" />
+    <Compile Include="ToolbarWrapper.cs" />
+    <Compile Include="QB_Brake.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <None Include="COPYING" />
+    <None Include="QuickBrake.version" />
+    <None Include="README.md" />
+    <None Include="GameData\QuickMods\QuickBrake\COPYING" />
+    <None Include="GameData\QuickMods\QuickBrake\Plugins\QuickBrake.dll" />
+    <None Include="GameData\QuickMods\QuickBrake\QuickBrake.version" />
+    <None Include="GameData\QuickMods\QuickBrake\README.md" />
+    <None Include="GameData\QuickMods\QuickBrake\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickBrake\Textures\StockToolBar.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="GameData\" />
+    <Folder Include="GameData\QuickMods\" />
+    <Folder Include="GameData\QuickMods\QuickBrake\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>

@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Default</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ItemType>GenericProject</ItemType>
+    <ProjectGuid>{732E642A-6428-4A48-BCE8-A65E3BA8181C}</ProjectGuid>
+    <ReleaseVersion>1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Default|AnyCPU' ">
+    <OutputPath>.\</OutputPath>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Include="GameData\QuickMods\QuickBrake\COPYING" />
+    <None Include="GameData\QuickMods\QuickBrake\QuickBrake.version" />
+    <None Include="GameData\QuickMods\QuickBrake\README.md" />
+    <None Include="GameData\QuickMods\QuickBrake\Plugins\QuickBrake.dll" />
+    <None Include="GameData\QuickMods\QuickBrake\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickBrake\Textures\StockToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickContracts\COPYING" />
+    <None Include="GameData\QuickMods\QuickContracts\QuickContracts.version" />
+    <None Include="GameData\QuickMods\QuickContracts\README.md" />
+    <None Include="GameData\QuickMods\QuickContracts\Plugins\QuickContracts.dll" />
+    <None Include="GameData\QuickMods\QuickContracts\Textures\Settings.dds" />
+    <None Include="GameData\QuickMods\QuickCursorHider\COPYING" />
+    <None Include="GameData\QuickMods\QuickCursorHider\QuickCursorHider.version" />
+    <None Include="GameData\QuickMods\QuickCursorHider\README.md" />
+    <None Include="GameData\QuickMods\QuickCursorHider\Plugins\QuickCursorHider.dll" />
+    <None Include="GameData\QuickMods\QuickEngineer\COPYING" />
+    <None Include="GameData\QuickMods\QuickEngineer\QuickEngineer.version" />
+    <None Include="GameData\QuickMods\QuickEngineer\README.md" />
+    <None Include="GameData\QuickMods\QuickEngineer\Plugins\QuickEngineer.dll" />
+    <None Include="GameData\QuickMods\QuickEngineer\Plugins\VesselSimulator-QE.dll" />
+    <None Include="GameData\QuickMods\QuickExit\COPYING" />
+    <None Include="GameData\QuickMods\QuickExit\QuickExit.version" />
+    <None Include="GameData\QuickMods\QuickExit\README.md" />
+    <None Include="GameData\QuickMods\QuickExit\Plugins\QuickExit.dll" />
+    <None Include="GameData\QuickMods\QuickExit\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickExit\Textures\StockToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickFineControl\COPYING" />
+    <None Include="GameData\QuickMods\QuickFineControl\QuickFineControl.version" />
+    <None Include="GameData\QuickMods\QuickFineControl\README.md" />
+    <None Include="GameData\QuickMods\QuickFineControl\Plugins\QuickFineControl.dll" />
+    <None Include="GameData\QuickMods\QuickGoTo\COPYING" />
+    <None Include="GameData\QuickMods\QuickGoTo\QuickGoTo.version" />
+    <None Include="GameData\QuickMods\QuickGoTo\README.md" />
+    <None Include="GameData\QuickMods\QuickGoTo\Plugins\QuickGoTo.dll" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyAdmi.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyAstr.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyConf.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyLves.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyMI.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyMain.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRc.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRnD.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRv.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRvED.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyRvSC.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzySC.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzySPH.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzySett.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyTS.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\BlizzyVAB.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockAdmi.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockAstr.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockConf.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockLves.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockMI.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockMain.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRc.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRnD.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRv.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRvED.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockRvSC.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockSC.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockSPH.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockSett.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockTS.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickGoTo\Textures\StockVAB.dds" />
+    <None Include="GameData\QuickMods\QuickHide\COPYING" />
+    <None Include="GameData\QuickMods\QuickHide\QuickHide.version" />
+    <None Include="GameData\QuickMods\QuickHide\README.md" />
+    <None Include="GameData\QuickMods\QuickHide\Plugins\QuickHide.dll" />
+    <None Include="GameData\QuickMods\QuickHide\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickHide\Textures\BlizzyToolBar_Hide.dds" />
+    <None Include="GameData\QuickMods\QuickHide\Textures\BlizzyToolBar_Show.dds" />
+    <None Include="GameData\QuickMods\QuickHide\Textures\StockToolBar_Hide.dds" />
+    <None Include="GameData\QuickMods\QuickHide\Textures\StockToolBar_Show.dds" />
+    <None Include="GameData\QuickMods\QuickIVA\COPYING" />
+    <None Include="GameData\QuickMods\QuickIVA\QuickIVA.version" />
+    <None Include="GameData\QuickMods\QuickIVA\README.md" />
+    <None Include="GameData\QuickMods\QuickIVA\Plugins\QuickIVA.dll" />
+    <None Include="GameData\QuickMods\QuickIVA\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickIVA\Textures\StockToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickMute\COPYING" />
+    <None Include="GameData\QuickMods\QuickMute\QuickMute.version" />
+    <None Include="GameData\QuickMods\QuickMute\README.md" />
+    <None Include="GameData\QuickMods\QuickMute\Plugins\QuickMute.dll" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_mute.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_sound.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_mute.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_sound.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_mute.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_sound.dds" />
+    <None Include="GameData\QuickMods\QuickRevert\COPYING" />
+    <None Include="GameData\QuickMods\QuickRevert\QuickRevert.version" />
+    <None Include="GameData\QuickMods\QuickRevert\README.md" />
+    <None Include="GameData\QuickMods\QuickRevert\Plugins\QuickRevert.dll" />
+    <None Include="GameData\QuickMods\QuickRevert\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickRevert\Textures\StockToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickSAS\COPYING" />
+    <None Include="GameData\QuickMods\QuickSAS\QuickSAS.version" />
+    <None Include="GameData\QuickMods\QuickSAS\README.md" />
+    <None Include="GameData\QuickMods\QuickSAS\Plugins\QuickSAS.dll" />
+    <None Include="GameData\QuickMods\QuickSAS\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickSAS\Textures\StockToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickScroll\COPYING" />
+    <None Include="GameData\QuickMods\QuickScroll\QuickScroll.version" />
+    <None Include="GameData\QuickMods\QuickScroll\README.md" />
+    <None Include="GameData\QuickMods\QuickScroll\Plugins\QuickScroll.dll" />
+    <None Include="GameData\QuickMods\QuickScroll\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickScroll\Textures\StockToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickSearch\COPYING" />
+    <None Include="GameData\QuickMods\QuickSearch\QuickSearch.version" />
+    <None Include="GameData\QuickMods\QuickSearch\README.md" />
+    <None Include="GameData\QuickMods\QuickSearch\Plugins\QuickSearch.dll" />
+    <None Include="GameData\QuickMods\QuickSearch\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickSearch\Textures\StockToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickSearch\Textures\delete.dds" />
+    <None Include="GameData\QuickMods\QuickStart\COPYING" />
+    <None Include="GameData\QuickMods\QuickStart\QuickStart.version" />
+    <None Include="GameData\QuickMods\QuickStart\README.md" />
+    <None Include="GameData\QuickMods\QuickStart\Plugins\QuickStart.dll" />
+  </ItemGroup>
+</Project>

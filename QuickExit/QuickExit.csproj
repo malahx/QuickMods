@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{53F47534-1537-4369-94EF-79311FA08A9F}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>QuickExit</RootNamespace>
+    <AssemblyName>QuickExit</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="./install.sh" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>full</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="../install.sh QuickExit" />
+        <Command type="AfterClean" command="../clean.sh QuickExit" />
+      </CustomCommands>
+    </CustomCommands>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>GUI;</DefineConstants>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ToolbarWrapper.cs" />
+    <Compile Include="QE.cs" />
+    <Compile Include="QE_Exit.cs" />
+    <Compile Include="QE_GUI.cs" />
+    <Compile Include="QE_Settings.cs" />
+    <Compile Include="QE_ToolbarBlizzy.cs" />
+    <Compile Include="QE_ToolbarStock.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="GameData\" />
+    <Folder Include="GameData\QuickMods\" />
+    <Folder Include="GameData\QuickMods\QuickExit\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="COPYING" />
+    <None Include="README.md" />
+    <None Include="QuickExit.version" />
+    <None Include="Exit.xcf" />
+    <None Include="GameData\QuickMods\QuickExit\COPYING" />
+    <None Include="GameData\QuickMods\QuickExit\Plugins\QuickExit.dll" />
+    <None Include="GameData\QuickMods\QuickExit\QuickExit.version" />
+    <None Include="GameData\QuickMods\QuickExit\README.md" />
+    <None Include="GameData\QuickMods\QuickExit\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickExit\Textures\StockToolBar.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
