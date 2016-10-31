@@ -29,7 +29,7 @@ namespace QuickSearch {
 
 		public bool Ready = false;
 
-		string DeleteTexturePath = "QuickSearch/Textures/delete";
+		string DeleteTexturePath = relativePath + "/Textures/delete";
 		Texture2D DeleteTexture;
 
 		Rect RectRDSearch {
