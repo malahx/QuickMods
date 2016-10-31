@@ -65,15 +65,15 @@ namespace QuickStart {
 					                 ContractSystem.MandatoryTypes != null &&
 					                 ContractSystem.ContractTypes != null &&
 					                 ContractSystem.PredicateTypes != null &&
-				        ContractSystem.ParameterTypes != null;
+				        			 ContractSystem.ParameterTypes != null;
 			}
 		}
 
 		bool strategyAreInited {
 			get {
 				return StrategySystem.Instance != null && 
-					                 (StrategySystem.StrategyEffectTypes != null && 
-				        StrategySystem.StrategyTypes != null);
+					                 StrategySystem.StrategyEffectTypes != null && 
+					                 StrategySystem.StrategyTypes != null;
 			}
 		}
 
@@ -83,12 +83,9 @@ namespace QuickStart {
 			}
 			if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER) {
 				var date = DateTime.Now;
-				while ((!contractsAreInited || !strategyAreInited) && DateTime.Now.Second - date.Second > 5) {
+				while ((!contractsAreInited || !strategyAreInited) && DateTime.Now.Second - date.Second < 5) {
 					yield return 0;
 				}
-				QuickStart.Warning ("contractsAreInited " + contractsAreInited);
-				QuickStart.Warning ("strategyAreInited " + strategyAreInited);
-				QuickStart.Warning ((DateTime.Now.Second - date.Second).ToString(), "QSpaceCenter");
 			}
 			yield return new WaitForSecondsRealtime (QSettings.Instance.WaitLoading);
 			yield return new WaitForEndOfFrame ();
