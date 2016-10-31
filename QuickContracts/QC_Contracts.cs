@@ -28,7 +28,7 @@ namespace QuickContracts {
 		float declineCost = 0;
 		float declineContracts = 0;
 
-		void OnDeclined(Contracts.Contract contract) {
+		void OnDeclined(Contract contract) {
 			if (MissionControl.Instance == null) {
 				return;
 			}
