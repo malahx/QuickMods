@@ -107,7 +107,17 @@ namespace QuickContracts {
 		}
 
 		void Update() {
-			if (MissionControl.Instance == null || SetKey != Key.None) {
+			if (MissionControl.Instance == null) {
+				return;
+			}
+			if (SetKey != Key.None) {
+				if (Event.current.isKey) {
+					KeyCode _key = Event.current.keyCode;
+					if (_key != KeyCode.None) {
+						SetCurrentKey (SetKey, _key);
+						SetKey = Key.None;
+					}
+				}
 				return;
 			}
 			if (Input.GetKeyDown (QSettings.Instance.KeyAcceptSelectedContract)) {

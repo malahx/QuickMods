@@ -117,16 +117,13 @@ namespace QuickContracts {
 			if (GUILayout.Button ("Clear Assignment", GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, KeyCode.None);
 				SetKey = Key.None;
-				windowSettings = true;
 			}
 			if (GUILayout.Button ("Default Assignment", GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, DefaultKey (SetKey));
 				SetKey = Key.None;
-				windowSettings = true;
 			}
 			if (GUILayout.Button ("Cancel Assignment", GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetKey = Key.None;
-				windowSettings = true;
 			}
 			GUILayout.EndHorizontal ();
 			GUILayout.Space (5);
@@ -139,7 +136,6 @@ namespace QuickContracts {
 			GUILayout.FlexibleSpace();
 			if (GUILayout.Button ("Set", GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
 				SetKey = key;
-				windowSettings = false;
 			}
 			GUILayout.EndHorizontal ();
 			GUILayout.Space (5);
