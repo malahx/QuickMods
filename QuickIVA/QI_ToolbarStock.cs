@@ -36,7 +36,7 @@ namespace QuickIVA {
 		}
 		
 		ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER;
-		static string TexturePath = MOD + "/Textures/StockToolBar";
+		static string TexturePath = relativePath + "/Textures/StockToolBar";
 
 		void OnClick() { 
 			QGUI.Settings ();
