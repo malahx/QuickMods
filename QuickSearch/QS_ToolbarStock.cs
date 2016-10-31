@@ -20,8 +20,8 @@ using KSP.UI.Screens;
 using UnityEngine;
 
 namespace QuickSearch {
-	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
-	public class QStockToolbar : QuickSearch {
+	
+	public partial class QStockToolbar {
 
 		public static bool Enabled {
 			get {
@@ -76,30 +76,39 @@ namespace QuickSearch {
 			GameEvents.onGUIApplicationLauncherReady.Add (AppLauncherReady);
 			GameEvents.onGUIApplicationLauncherDestroyed.Add (AppLauncherDestroyed);
 			GameEvents.onLevelWasLoadedGUIReady.Add (AppLauncherDestroyed);
+			Log ("Awake", "QStockToolbar");
 		}
-			
+
+		protected override void Start() { 
+			Log ("Start", "QStockToolbar");
+		}
+		protected override void OnGUI() { }
+
 		void AppLauncherReady() {
 			if (!Enabled) {
 				return;
 			}
 			Init ();
+			Log ("AppLauncherReady", "QStockToolbar");
 		}
 
 		void AppLauncherDestroyed(GameScenes gameScene) {
 			if (CanUseIt) {
 				return;
 			}
-			Destroy ();
+			AppLauncherDestroyed ();
 		}
 		
 		void AppLauncherDestroyed() {
 			Destroy ();
+			Log ("AppLauncherDestroyed", "QStockToolbar");
 		}
 
 		protected override void OnDestroy() {
 			GameEvents.onGUIApplicationLauncherReady.Remove (AppLauncherReady);
 			GameEvents.onGUIApplicationLauncherDestroyed.Remove (AppLauncherDestroyed);
 			GameEvents.onLevelWasLoadedGUIReady.Remove (AppLauncherDestroyed);
+			Log ("OnDestroy", "QStockToolbar");
 		}
 
 		void Init() {
@@ -109,6 +118,7 @@ namespace QuickSearch {
 			if (appLauncherButton == null) {
 				appLauncherButton = ApplicationLauncher.Instance.AddModApplication (OnClick, OnClick, null, null, null, null, AppScenes, GetTexture);
 			}
+			Log ("Init", "QStockToolbar");
 		}
 
 		void Destroy() {
@@ -116,6 +126,7 @@ namespace QuickSearch {
 				ApplicationLauncher.Instance.RemoveModApplication (appLauncherButton);
 				appLauncherButton = null;
 			}
+			Log ("Destroy", "QStockToolbar");
 		}
 
 		internal void Set(bool SetTrue, bool force = false) {
@@ -133,6 +144,7 @@ namespace QuickSearch {
 					}
 				}
 			}
+			Log ("Set: " + SetTrue + " force: " + force, "QStockToolbar");
 		}
 
 		internal void Reset() {
@@ -145,6 +157,7 @@ namespace QuickSearch {
 			if (Enabled) {
 				Init ();
 			}
+			Log ("Reset", "QStockToolbar");
 		}
 
 		internal static void ResetScenes() {

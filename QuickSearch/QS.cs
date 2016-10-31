@@ -27,9 +27,12 @@ namespace QuickSearch {
 	[KSPAddon(KSPAddon.Startup.EditorAny, false)]
 	public partial class QEditor : QuickSearch { }
 
+	[KSPAddon (KSPAddon.Startup.MainMenu, true)]
+	public partial class QStockToolbar : QuickSearch { }
+
 	public partial class QuickSearch : MonoBehaviour {
 
-		public readonly static string VERSION = Assembly.GetExecutingAssembly().GetName().Version.ToString();
+		public readonly static string VERSION = Assembly.GetExecutingAssembly ().GetName ().Version.Major + "." + Assembly.GetExecutingAssembly ().GetName ().Version.Minor + Assembly.GetExecutingAssembly ().GetName ().Version.Build;
 		public readonly static string MOD = Assembly.GetExecutingAssembly().GetName().Name;
 		public readonly static string PATH = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location) + "/..";
 		public static string relativePath {
@@ -44,17 +47,23 @@ namespace QuickSearch {
 
 		[KSPField(isPersistant = true)] static QBlizzyToolbar BlizzyToolbar;
 
-		protected static void Log(string String, string Title = null) {
+		protected static void Log (string String, string Title = null, bool force = false)
+		{
+			if (!force) {
+				if (!QSettings.Instance.Debug) {
+					return;
+				}
+			}
 			if (Title == null) {
 				Title = MOD;
 			} else {
 				Title = string.Format ("{0}({1})", MOD, Title);
 			}
-			if (QSettings.Instance.Debug) {
-				Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-			}
+			Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
 		}
-		protected static void Warning(string String, string Title = null) {
+
+		protected static void Warning (string String, string Title = null)
+		{
 			if (Title == null) {
 				Title = MOD;
 			} else {

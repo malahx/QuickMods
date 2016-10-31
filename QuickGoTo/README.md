@@ -53,12 +53,12 @@ Delete the QuickMods/QuickGoTo folder in your KSP/GameData folder.
 
 #### Changelog
 
-v1.24 - 2016.10.30
+v1.24-beta - 2016.10.30
 * New: Changed the directory to GameData/QuickMods/QuickGoTo
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * The default QuickMods repository is now: https://github.com/malahx/QuickMods
 
-v1.23 - 2016.10.15
+v1.23-beta - 2016.10.15
 * Fix: Corrected the crash to desktop with a goto from flight scene,
 * Fix: Corrected the goto from buildings,
 * Fix: Corrected the onhide/onshow of the applauncher,

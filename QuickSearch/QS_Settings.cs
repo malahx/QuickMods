@@ -31,11 +31,11 @@ namespace QuickSearch {
 			}
 		}
 
-		string FileConfig = PATH + "/Config.txt";
+		readonly string FileConfig = PATH + "/Config.txt";
 
 		[KSPField (isPersistant = true)] bool isLoaded = false;
 
-		[Persistent] internal bool Debug = false;
+		[Persistent] internal bool Debug = true;
 
 		[Persistent] internal bool StockToolBar = true;
 		[Persistent] internal bool BlizzyToolBar = true;
@@ -65,7 +65,7 @@ namespace QuickSearch {
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);
-			Log ("Settings Saved", "QSettings");
+			Log ("Settings Saved", "QSettings", true);
 		}
 		public void Load() {
 			if (File.Exists (FileConfig)) {
@@ -75,7 +75,7 @@ namespace QuickSearch {
 				} catch {
 					Save ();
 				}
-				Log ("Settings Loaded", "QSettings");
+				Log ("Settings Loaded", "QSettings", true);
 			} else {
 				Save ();
 			}
