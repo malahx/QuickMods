@@ -40,7 +40,7 @@ Delete the QuickMods/QuickContracts folder in your KSP/GameData folder.
 
 #### Changelog
 
-v1.12 - 2016.10.30
+v1.12 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickContracts
 * Fix: Corrected the set keys,
 * The default QuickMods repository is now: https://github.com/malahx/QuickMods

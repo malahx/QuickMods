@@ -43,7 +43,7 @@ Delete the QuickMods/QuickMute folder in your KSP/GameData folder.
 
 #### Changelog
 
-v1.12 - 2016.10.30
+v1.12 - 2016.10.31
 * New: Changed to GameData/QuickMods/QuickMute
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * The default QuickMods repository is now: https://github.com/malahx/QuickMods

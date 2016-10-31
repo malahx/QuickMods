@@ -57,7 +57,7 @@ Delete the QuickMods/QuickSearch folder in your KSP/GameData folder.
 
 #### Changelog
 
-v3.06 - 2016.10.30
+v3.06 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickSearch
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * Fix: Corrected the stocktoolbar button,

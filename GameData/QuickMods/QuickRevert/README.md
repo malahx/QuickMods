@@ -47,7 +47,7 @@ Delete the QuickMods/QuickRevert folder in your KSP/GameData folder.
 
 #### Changelog
 
-v3.02 - 2016.10.30
+v3.02 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickRevert
 * Fix: Corrected the stocktoolbar button scenes,
 * Fix: Corrected the toolbar button init/destroy,

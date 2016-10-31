@@ -43,7 +43,7 @@ Delete the QuickMods/QuickExit folder in your KSP/GameData folder.
 
 #### Changelog
 
-v2.04 - 2016.10.30
+v2.04 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickExit
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * The default QuickMods repository is now: https://github.com/malahx/QuickMods

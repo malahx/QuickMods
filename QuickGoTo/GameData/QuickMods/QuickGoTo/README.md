@@ -53,7 +53,7 @@ Delete the QuickMods/QuickGoTo folder in your KSP/GameData folder.
 
 #### Changelog
 
-v1.24-beta - 2016.10.30
+v1.24-beta - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickGoTo
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * The default QuickMods repository is now: https://github.com/malahx/QuickMods

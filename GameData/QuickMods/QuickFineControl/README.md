@@ -34,7 +34,7 @@ Delete the QuickMods/QuickFineControl folder in your KSP/GameData folder.
 
 #### Changelog
 
-v1.03 - 2016.10.30
+v1.03 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickFineControl
 * The default QuickMods repository is now: https://github.com/malahx/QuickMods
 
