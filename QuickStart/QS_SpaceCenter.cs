@@ -15,7 +15,9 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
-
+using Contracts;
+using Strategies;
+using System;
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -57,11 +59,37 @@ namespace QuickStart {
 			QuickStart.Log ("Start", "QSpaceCenter");
 		}
 
+		bool contractsAreInited {
+			get {
+				return ContractSystem.Instance != null && 
+					                 ContractSystem.MandatoryTypes != null &&
+					                 ContractSystem.ContractTypes != null &&
+					                 ContractSystem.PredicateTypes != null &&
+				        ContractSystem.ParameterTypes != null;
+			}
+		}
+
+		bool strategyAreInited {
+			get {
+				return StrategySystem.Instance != null && 
+					                 (StrategySystem.StrategyEffectTypes != null && 
+				        StrategySystem.StrategyTypes != null);
+			}
+		}
+
 		IEnumerator QStart() {
 			while (!Ready || !QuickStart_Persistent.Ready) {
 				yield return 0;
 			}
-			yield return new WaitForEndOfFrame ();
+			if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER) {
+				var date = DateTime.Now;
+				while ((!contractsAreInited || !strategyAreInited) && DateTime.Now.Second - date.Second > 5) {
+					yield return 0;
+				}
+				QuickStart.Warning ("contractsAreInited " + contractsAreInited);
+				QuickStart.Warning ("strategyAreInited " + strategyAreInited);
+				QuickStart.Warning ((DateTime.Now.Second - date.Second).ToString(), "QSpaceCenter");
+			}
 			yield return new WaitForSecondsRealtime (QSettings.Instance.WaitLoading);
 			yield return new WaitForEndOfFrame ();
 			QuickStart.Log ("SpaceCenter Loaded", "QSpaceCenter");

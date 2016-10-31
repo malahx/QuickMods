@@ -36,6 +36,8 @@ Delete the QuickMods/QuickStart folder in your KSP/GameData folder.
 
 v2.05 - 2016.10.30
 * New: Changed the directory to GameData/QuickMods/QuickStart
+* Fix: Corrected the SPH checkbox (thanks MK3424),
+* Fix: Corrected the contracts deletion,
 * The default QuickMods repository is now: https://github.com/malahx/QuickMods
 
 v2.04 - 2016.10.14
