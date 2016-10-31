@@ -35,8 +35,8 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="../install.sh QuickHide" />
-        <Command type="AfterClean" command="../clean.sh QuickHide" />
+        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
+        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
       </CustomCommands>
     </CustomCommands>
     <DebugSymbols>true</DebugSymbols>

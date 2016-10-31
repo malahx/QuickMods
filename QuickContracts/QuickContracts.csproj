@@ -31,8 +31,8 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="../install.sh QuickContracts" />
-        <Command type="AfterClean" command="../clean.sh QuickContracts" />
+        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
+        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>

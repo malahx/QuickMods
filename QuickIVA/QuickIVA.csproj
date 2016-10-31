@@ -31,8 +31,8 @@
     <CustomCommands>
       <CustomCommands>
         <Command type="BeforeExecute" command="" />
-        <Command type="AfterBuild" command="../install.sh QuickIVA" />
-        <Command type="AfterClean" command="../clean.sh QuickIVA" />
+        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
+        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
