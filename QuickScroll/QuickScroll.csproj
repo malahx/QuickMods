@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{9BFAEF28-2599-4BD6-8B03-C32300F49EA2}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <RootNamespace>QuickScroll</RootNamespace>
+    <AssemblyName>QuickScroll</AssemblyName>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ReleaseVersion>1</ReleaseVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;GUI;SHORTCUT;SCROLL;</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="./install.sh" />
+      </CustomCommands>
+    </CustomCommands>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="../install.sh QuickScroll" />
+        <Command type="AfterClean" command="../clean.sh QuickScroll" />
+      </CustomCommands>
+    </CustomCommands>
+    <DebugSymbols>true</DebugSymbols>
+    <DefineConstants>GUI;SHORTCUT;SCROLL;</DefineConstants>
+    <DebugType>pdbonly</DebugType>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="QS.cs" />
+    <Compile Include="QS_Category.cs" />
+    <Compile Include="QS_Settings.cs" />
+    <Compile Include="ToolbarWrapper.cs" />
+    <Compile Include="QS_GUI.cs" />
+    <Compile Include="QS_ShortCuts.cs" />
+    <Compile Include="QS_Key.cs" />
+    <Compile Include="QS_ToolbarBlizzy.cs" />
+    <Compile Include="QS_ToolbarStock.cs" />
+    <Compile Include="QS_Scroll.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Folder Include="GameData\" />
+    <Folder Include="GameData\QuickMods\" />
+    <Folder Include="GameData\QuickMods\QuickScroll\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="COPYING" />
+    <None Include="QuickScroll.version" />
+    <None Include="README.md" />
+    <None Include="Scroll.xcf" />
+    <None Include="install.sh" />
+    <None Include="GameData\QuickMods\QuickScroll\COPYING" />
+    <None Include="GameData\QuickMods\QuickScroll\Plugins\QuickScroll.dll" />
+    <None Include="GameData\QuickMods\QuickScroll\QuickScroll.version" />
+    <None Include="GameData\QuickMods\QuickScroll\README.md" />
+    <None Include="GameData\QuickMods\QuickScroll\Textures\BlizzyToolBar.dds" />
+    <None Include="GameData\QuickMods\QuickScroll\Textures\StockToolBar.dds" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\lib\1.1.0.1174\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\lib\1.1.0.1174\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\lib\1.1.0.1174\System.dll</HintPath>
+    </Reference>
+    <Reference Include="KSPUtil">
+      <HintPath>..\lib\1.1.0.1174\KSPUtil.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp-firstpass">
+      <HintPath>..\lib\1.1.0.1174\Assembly-CSharp-firstpass.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\lib\1.1.0.1174\Assembly-CSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+</Project>
