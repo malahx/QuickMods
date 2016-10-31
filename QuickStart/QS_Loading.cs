@@ -114,7 +114,7 @@ namespace QuickStart {
 					}
 					GUILayout.FlexibleSpace ();
 					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, "Space Plane Hangar", GUILayout.Width (250))) {
-						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility == (int)EditorFacility.SPH) {
+						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.SPH) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
 							QSettings.Instance.editorFacility = (int)EditorFacility.SPH;
 						}
