@@ -34,6 +34,9 @@ Delete the QuickMods/QuickBrake folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.22 - 2016.11.02
+* Compiled against KSP 1.2.1.1604
+
 v1.21 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickBrake
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,

@@ -49,6 +49,9 @@ Delete the QuickMods/QuickIVA folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.17 - 2016.11.02
+* Compiled against KSP 1.2.1.1604
+
 v1.16 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickIVA
 * Fix: Corrected the stocktoolbar button scenes,

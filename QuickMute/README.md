@@ -43,6 +43,9 @@ Delete the QuickMods/QuickMute folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.13 - 2016.11.02
+* Compiled against KSP 1.2.1.1604
+
 v1.12 - 2016.10.31
 * New: Changed to GameData/QuickMods/QuickMute
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
