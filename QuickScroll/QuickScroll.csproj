@@ -23,7 +23,10 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="./install.sh" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>./install.sh</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -35,8 +38,14 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="../install.sh QuickScroll" />
-        <Command type="AfterClean" command="../clean.sh QuickScroll" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>../install.sh QuickScroll</command>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>../clean.sh QuickScroll</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
     <DebugSymbols>true</DebugSymbols>
