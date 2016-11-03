@@ -40,6 +40,9 @@ Delete the QuickMods/QuickContracts folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.14 - 2016.11.03
+* Fix: Corrected directories for windows (thanks RealKolago).
+
 v1.13 - 2016.11.02
 * Compiled against KSP 1.2.1.1604
 

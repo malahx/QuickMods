@@ -38,16 +38,8 @@ namespace QuickRevert {
 
 		public readonly static string VERSION = Assembly.GetExecutingAssembly ().GetName ().Version.Major + "." + Assembly.GetExecutingAssembly ().GetName ().Version.Minor + Assembly.GetExecutingAssembly ().GetName ().Version.Build;
 		public readonly static string MOD = Assembly.GetExecutingAssembly ().GetName ().Name;
-		public readonly static string PATH = Path.GetDirectoryName (Assembly.GetExecutingAssembly ().Location) + "/..";
-		public static string relativePath {
-			get {
-				string gData = "/GameData/";
-				string plugins = "/Plugins/";
-				int gDataIndex = PATH.LastIndexOf (gData, System.StringComparison.Ordinal) + gData.Length;
-				int pluginsIndex = PATH.LastIndexOf (plugins, System.StringComparison.Ordinal);
-				return PATH.Substring (gDataIndex, pluginsIndex - gDataIndex);
-			}
-		}
+		public readonly static string relativePath = "QuickMods/" + MOD;
+		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
 
 		internal static void Log(string String, string Title = null, bool force = false) {
 			if (!force) {

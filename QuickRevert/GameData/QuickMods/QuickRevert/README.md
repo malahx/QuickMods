@@ -47,6 +47,9 @@ Delete the QuickMods/QuickRevert folder in your KSP/GameData folder.
 
 #### Changelog
 
+v3.04 - 2016.11.03
+* Fix: Corrected directories for windows (thanks RealKolago).
+
 v3.03 - 2016.11.02
 * Compiled against KSP 1.2.1.1604
 

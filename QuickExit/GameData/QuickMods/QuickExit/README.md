@@ -43,6 +43,9 @@ Delete the QuickMods/QuickExit folder in your KSP/GameData folder.
 
 #### Changelog
 
+v2.06 - 2016.11.03
+* Fix: Corrected directories for windows (thanks RealKolago).
+
 v2.05 - 2016.11.02
 * Compiled against KSP 1.2.1.1604
 

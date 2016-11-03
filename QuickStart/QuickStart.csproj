@@ -30,14 +30,8 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command>
-          <type>AfterBuild</type>
-          <command>../install.sh ${ProjectName}</command>
-        </Command>
-        <Command>
-          <type>AfterClean</type>
-          <command>../clean.sh ${ProjectName}</command>
-        </Command>
+        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
+        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
