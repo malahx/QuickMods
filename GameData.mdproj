@@ -133,5 +133,6 @@
     <None Include="GameData\QuickMods\QuickStart\QuickStart.version" />
     <None Include="GameData\QuickMods\QuickStart\README.md" />
     <None Include="GameData\QuickMods\QuickStart\Plugins\QuickStart.dll" />
+    <None Include="GameData\QuickMods\QuickContracts\Lang.cfg" />
   </ItemGroup>
 </Project>
