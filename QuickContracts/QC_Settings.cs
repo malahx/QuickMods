@@ -42,6 +42,7 @@ namespace QuickContracts {
 		[Persistent] internal KeyCode KeyDeclineAllTest;
 		[Persistent] internal KeyCode KeyAcceptSelectedContract;
 		[Persistent] internal bool EnableMessage = true;
+		[Persistent] internal string Lang = "EN";
 
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());

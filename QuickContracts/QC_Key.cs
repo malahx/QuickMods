@@ -49,13 +49,13 @@ namespace QuickContracts {
 		string GetText(Key key) {
 			switch (key) {
 			case Key.DeclineSelectedContract:
-				return "Decline Selected Contract";
+					return QLang.translate ("Decline Selected Contract");
 			case Key.DeclineAllContracts:
-				return "Decline All Contracts";
+					return QLang.translate ("Decline All Contracts");
 			case Key.DeclineAllTest:
-				return "Decline All Test";
+					return QLang.translate ("Decline All Test");
 			case Key.AcceptSelectedContract:
-				return "Accept Selected Contract";
+					return QLang.translate ("Accept Selected Contract");
 			}
 			return string.Empty;
 		}
@@ -110,23 +110,21 @@ namespace QuickContracts {
 		void DrawSetKey(int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label (string.Format ("Press a key to select the <color=#FFFFFF><b>{0}</b></color>", GetText (SetKey)));
+			GUILayout.Label (string.Format (QLang.translate("Press a key to select the") + " <color=#FFFFFF><b>{0}</b></color>", GetText (SetKey)));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
-			if (GUILayout.Button ("Clear Assignment", GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (QLang.translate ("Clear Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, KeyCode.None);
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button ("Default Assignment", GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (QLang.translate ("Default Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, DefaultKey (SetKey));
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button ("Cancel Assignment", GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (QLang.translate ("Cancel Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetKey = Key.None;
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.EndVertical ();
 		}
 
@@ -134,11 +132,10 @@ namespace QuickContracts {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label (string.Format ("{0}: <color=#FFFFFF><b>{1}</b></color>", GetText (key), CurrentKey (key)), GUILayout.Width (250));
 			GUILayout.FlexibleSpace();
-			if (GUILayout.Button ("Set", GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
+			if (GUILayout.Button (QLang.translate ("Set"), GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
 				SetKey = key;
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 		}
 	}
 }

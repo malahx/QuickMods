@@ -41,7 +41,7 @@ namespace QuickContracts {
 			QSettings.Instance.Save ();
 			if (declineCost > 0 && declineContracts > 0 & MessageSystem.Ready) {
 				if (QSettings.Instance.EnableMessage) {
-					string _string = string.Format ("You have declined <b><color=#FF0000>{0}</color></b> contract(s).\nIt has cost you <color=#E0D503>¡<b>{1}</b></color>", declineContracts, declineCost);
+					string _string = string.Format (QLang.translate ("You have declined") + " <b><color=#FF0000>{0}</color></b> {2}\n{3} <color=#E0D503>¡<b>{1}</b></color>", declineContracts, declineCost, QLang.translate ("contract(s)."), QLang.translate ("It has cost you"));
 					MessageSystem.Instance.AddMessage (new MessageSystem.Message (MOD, _string, MessageSystemButton.MessageButtonColor.ORANGE, MessageSystemButton.ButtonIcons.ALERT));
 					Log ("Message send.", "QGUI");
 				}

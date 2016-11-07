@@ -40,6 +40,10 @@ Delete the QuickMods/QuickContracts folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.20 - 2016.11.06
+* New: Added support of the LanguagePatches,
+* I've translated it to french, if you want more, you can translate and PR ;)
+
 v1.14 - 2016.11.03
 * Fix: Corrected directories for windows (thanks RealKolago).
 

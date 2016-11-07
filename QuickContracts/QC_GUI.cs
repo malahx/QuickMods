@@ -63,7 +63,7 @@ namespace QuickContracts {
 		protected override void Start() {
 			rectSetKey = new Rect ((Screen.width - 300) / 2, (Screen.height - 100) / 2, 300, 100);
 			rectButton = new Rect (Screen.width - 150, 0, 40, 40);
-			rectSettings = new Rect ((Screen.width - 300) / 2, (Screen.height - 300) / 2, 300, 300);
+			rectSettings = new Rect ((Screen.width - 400) / 2, (Screen.height - 300) / 2, 400, 300);
 			VerifyKey ();
 			GameEvents.onGUIMissionControlDespawn.Add (OnGUIMissionControlDespawn);
 			GameEvents.Contract.onDeclined.Add (OnDeclined);
@@ -140,7 +140,7 @@ namespace QuickContracts {
 			}
 			GUI.skin = HighLogic.Skin;
 			if (SetKey != Key.None) {
-				rectSetKey = GUILayout.Window (1545146, rectSetKey, DrawSetKey, string.Format ("Set Key: {0}", GetText (SetKey)), GUILayout.ExpandHeight (true));
+				rectSetKey = GUILayout.Window (1545146, rectSetKey, DrawSetKey, string.Format (QLang.translate("Set Key:") + " {0}", GetText (SetKey)), GUILayout.ExpandHeight (true));
 				return;
 			}
 			if (windowSettings) {
@@ -157,27 +157,26 @@ namespace QuickContracts {
 		void DrawSettings(int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Shortcuts", GUILayout.Height (30));
+			GUILayout.Box (QLang.translate ("Shortcuts"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			DrawConfigKey (Key.AcceptSelectedContract);
 			DrawConfigKey (Key.DeclineSelectedContract);
 			DrawConfigKey (Key.DeclineAllContracts);
 			DrawConfigKey (Key.DeclineAllTest);
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Options", GUILayout.Height (30));
+			GUILayout.Box (QLang.translate ("Options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.EnableMessage = GUILayout.Toggle (QSettings.Instance.EnableMessage, "Enable message for declined contracts", GUILayout.Width (200));
+			QSettings.Instance.EnableMessage = GUILayout.Toggle (QSettings.Instance.EnableMessage, QLang.translate ("Enable message for declined contracts"), GUILayout.Width (250));
 			GUILayout.EndHorizontal ();
+			QLang.DrawLang ();
+			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button ("Close")) {
+			if (GUILayout.Button (QLang.translate ("Close"))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.EndVertical ();
 		}
 	}

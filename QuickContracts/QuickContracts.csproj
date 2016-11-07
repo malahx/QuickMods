@@ -43,6 +43,8 @@
     <Compile Include="QC_Contracts.cs" />
     <Compile Include="QC_Key.cs" />
     <Compile Include="QC_GUI.cs" />
+    <Compile Include="LanguageAPI.cs" />
+    <Compile Include="QC_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -54,6 +56,8 @@
     <None Include="GameData\QuickMods\QuickContracts\QuickContracts.version" />
     <None Include="GameData\QuickMods\QuickContracts\README.md" />
     <None Include="GameData\QuickMods\QuickContracts\Textures\Settings.dds" />
+    <None Include="Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickContracts\Lang.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\" />
