@@ -24,7 +24,7 @@ namespace QuickRevert {
 
 		public bool hasLoaded = false;
 
-		static string FileFlightState = KSPUtil.ApplicationRootPath + "GameData/" + MOD + "/PluginData/{0}-flightstate.txt";
+		static string FileFlightState = PATH + "/PluginData/{0}-flightstate.txt";
 
 		static string PathFlightState {
 			get {
