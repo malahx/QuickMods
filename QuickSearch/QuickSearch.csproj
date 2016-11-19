@@ -53,6 +53,8 @@
     <Compile Include="QS_ToolbarStock.cs" />
     <Compile Include="QS_ToolbarBlizzy.cs" />
     <Compile Include="QS_GUI.cs" />
+    <Compile Include="LanguageAPI.cs" />
+    <Compile Include="QS_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -68,6 +70,7 @@
     <None Include="GameData\QuickMods\QuickSearch\Textures\BlizzyToolBar.dds" />
     <None Include="GameData\QuickMods\QuickSearch\Textures\delete.dds" />
     <None Include="GameData\QuickMods\QuickSearch\Textures\StockToolBar.dds" />
+    <None Include="Lang.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">
