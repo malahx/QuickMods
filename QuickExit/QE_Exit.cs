@@ -153,24 +153,24 @@ namespace QuickExit {
 				if (CanSavegame) {
 					if (GamePersistence.SaveGame ("persistent", HighLogic.SaveFolder, SaveMode.OVERWRITE) != string.Empty) {
 						saveDone = true;
-						ScreenMessages.PostScreenMessage (string.Format ("[{0}] Game saved.", MOD), 5);
+						ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}.", MOD, QLang.translate ("Game saved")), 5);
 						Log ("Game saved.", "QExit");
 					} else {
 						count = 10;
 						Log ("Can't save game.", "QExit");
-						ScreenMessages.PostScreenMessage (string.Format ("[{0}] Can't save game.", MOD), 10);
+						ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}.", MOD, QLang.translate ("Can't save game")), 10);
 					}
 					if (HighLogic.LoadedSceneIsEditor) {
 						ShipConstruction.SaveShip (shipFilename);
 						Log ("Ship saved.", "QExit");
-						ScreenMessages.PostScreenMessage (string.Format ("[{0}] Ship saved.", MOD), 5);
+						ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}.", MOD, QLang.translate ("Ship saved")), 5);
 					}
 				} else {
 					count = 10;
 					ClearToSaveStatus clearToSaveStatus = FlightGlobals.ClearToSave ();
 					string _status = FlightGlobals.GetNotClearToSaveStatusReason (clearToSaveStatus, string.Empty);
 					Log ("Can't game saved: " + _status, "QExit");
-					ScreenMessages.PostScreenMessage (string.Format ("[{0}] Can't save game: {1}", MOD, _status.ToString ()), 10);
+					ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}: {2}", MOD, QLang.translate ("Can't save game"), _status.ToString ()), 10);
 				}
 			}
 			while (count >= 0) {

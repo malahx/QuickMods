@@ -43,14 +43,14 @@ namespace QuickExit {
 			get {
 				string _text = string.Empty;
 				if (count > 0) {
-					_text = string.Format ("Exit in {0}s{1}Push on {2} to abort the operation.", count, Environment.NewLine, QSettings.Instance.Key);
+					_text = string.Format (QLang.translate ("Exit in {0}s{1}Push on {2} to abort the operation."), count, Environment.NewLine, QSettings.Instance.Key);
 					if (needToSavegame) {
 						if (!saveDone) {
-							_text += string.Format ("{0}{1} can't savegame, are you sure you want to exit?", Environment.NewLine, MOD);
+							_text += string.Format ("{0}{1} {2}", Environment.NewLine, MOD, QLang.translate ("can't savegame, are you sure you want to exit?"));
 						}
 					}
 				} else {
-					_text = "Exiting, bye ...";
+					_text = QLang.translate ("Exiting, bye ...");
 				}
 				return _text;
 			}
@@ -117,12 +117,12 @@ namespace QuickExit {
 
 		public void Dialog() {
 			if (QStockToolbar.Instance != null) QStockToolbar.Instance.Set (false);
-			string _count = (QSettings.Instance.CountDown ? "in 5s" : ((needToSavegame && !CanSavegame) ? "in 10s" : "now"));
+			string _count = (QSettings.Instance.CountDown ? QLang.translate ("in") + " 5s" : ((needToSavegame && !CanSavegame) ? QLang.translate ("in") + " 10s" : QLang.translate ("now")));
 			PopupDialog.SpawnPopupDialog (new Vector2 (0.5f, 0.5f), new Vector2 (0.5f, 0.5f), 
-				new MultiOptionDialog ("Are you sure you want to exit KSP?", MOD, HighLogic.UISkin, new DialogGUIBase[] {
-					new DialogGUIButton ("Oh noooo!", () => HideSettings ()),
-					new DialogGUIButton ("Configurations!", () => ShowSettings ()),
-					new DialogGUIButton (string.Format ("Exit, {0}! ({1} + {2})", _count, GameSettings.MODIFIER_KEY.primary.ToString (), QSettings.Instance.Key), () => TryExit (true))
+			    new MultiOptionDialog (QLang.translate ("Are you sure you want to exit KSP?"), MOD, HighLogic.UISkin, new DialogGUIBase[] {
+				new DialogGUIButton (QLang.translate ("Oh noooo!"), () => HideSettings ()),
+				new DialogGUIButton (QLang.translate ("Settings"), () => ShowSettings ()),
+				new DialogGUIButton (string.Format ("{0}, {1}! ({2} + {3})", QLang.translate ("Exit"), _count, GameSettings.MODIFIER_KEY.primary.ToString (), QSettings.Instance.Key), () => TryExit (true))
 				}), 
 				true, HighLogic.UISkin);
 			Log ("Dialog", "QExit");
@@ -131,7 +131,7 @@ namespace QuickExit {
 		void OnGUI() {
 			if (WindowSettings) {
 				GUI.skin = HighLogic.Skin;
-				RectSettings = GUILayout.Window (1248597845, RectSettings, DrawSettings, MOD + VERSION, GUILayout.ExpandWidth(true), GUILayout.ExpandHeight(true));
+				RectSettings = GUILayout.Window (1248597845, RectSettings, DrawSettings, MOD + " " + VERSION);
 			} 
 			if (IsTryExit) {
 				GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), labelStyle);
@@ -143,54 +143,47 @@ namespace QuickExit {
 		void DrawSettings(int id) {
 			GUILayout.BeginVertical();
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, "Use the Stock ToolBar", GUILayout.Width(210));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width(400));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 			if (QSettings.Instance.StockToolBar) {
 				GUILayout.BeginHorizontal ();
 				GUILayout.Space (30);
-				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, "Put QuickExit in Stock", GUILayout.Width (180));
+				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, QLang.translate ("Put QuickExit in Stock"), GUILayout.Width (370));
 				GUILayout.EndHorizontal ();
-				GUILayout.Space (5);
 			}
 			if (QBlizzyToolbar.isAvailable) {
 				GUILayout.BeginHorizontal();
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, "Use the Blizzy ToolBar", GUILayout.Width(210));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width(400));
 				GUILayout.EndHorizontal();
-				GUILayout.Space(5);
 			}
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.AutomaticSave = GUILayout.Toggle (QSettings.Instance.AutomaticSave, "Automatic save before exit", GUILayout.Width(210));
+			QSettings.Instance.AutomaticSave = GUILayout.Toggle (QSettings.Instance.AutomaticSave, QLang.translate ("Automatic save before exit"), GUILayout.Width(400));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.CountDown = GUILayout.Toggle (QSettings.Instance.CountDown, "Count Down", GUILayout.Width(210));
+			QSettings.Instance.CountDown = GUILayout.Toggle (QSettings.Instance.CountDown, QLang.translate ("Count Down"), GUILayout.Width(400));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 			GUILayout.BeginHorizontal();
-			GUILayout.Label ("Key to exit: ", GUILayout.ExpandWidth(true));
-			GUILayout.Space(5);
+			GUILayout.Label (QLang.translate ("Key to exit") + ": ", GUILayout.ExpandWidth(true));
 			QSettings.Instance.Key = GUILayout.TextField (QSettings.Instance.Key, GUILayout.Width (100));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
+			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
-			GUILayout.BeginHorizontal();
-			if (GUILayout.Button ("Exit", GUILayout.Width(40), GUILayout.Height(30))) {
+			GUILayout.BeginHorizontal ();
+			GUILayout.FlexibleSpace ();
+			if (GUILayout.Button (QLang.translate ("Exit"), GUILayout.Height(30))) {
 				Settings();
 				TryExit ();
 			}
-			GUILayout.Space(5);
-			if (GUILayout.Button ("Close", GUILayout.ExpandWidth(true) ,GUILayout.Height(30))) {
+			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height(30))) {
 				try {
 					Input.GetKey(QSettings.Instance.Key);
 				} catch {
-					QuickExit.Log ("Wrong key: " + QSettings.Instance.Key);
+					Log ("Wrong key: " + QSettings.Instance.Key);
 					QSettings.Instance.Key = "f7";
 				}
 				Settings ();
 			}
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 			GUILayout.EndVertical();
 		}
 	}
