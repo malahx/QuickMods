@@ -60,13 +60,13 @@ namespace QuickHide {
 			if (Button == null) {
 				Button = ToolbarManager.Instance.add (QuickHide.MOD, QuickHide.MOD);
 				Button.TexturePath = TexturePath;
-				Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": Show" : QuickHide.MOD + ": Hide");
+				Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": " + QLang.translate ("Show") : QuickHide.MOD + ": " + QLang.translate ("Hide"));
 				Button.OnClick += (e) => OnClick ();
 			}
 			if (ButtonConf == null) {
 				ButtonConf = ToolbarManager.Instance.add (QuickHide.MOD + "Conf", QuickHide.MOD + "Conf");
 				ButtonConf.TexturePath = TexturePathConf;
-				ButtonConf.ToolTip = QuickHide.MOD + ": Settings";
+				ButtonConf.ToolTip = QuickHide.MOD + ": " + QLang.translate ("Settings");
 				ButtonConf.OnClick += (e) => QHide.Instance.Settings ();
 			}
 		}
@@ -97,7 +97,7 @@ namespace QuickHide {
 		internal void Refresh() {
 			if (isActive) {
 				Button.TexturePath = TexturePath;
-				Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": Show" : QuickHide.MOD + ": Hide");
+				Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": " + QLang.translate ("Show") : QuickHide.MOD + ": " + QLang.translate ("Hide"));
 			}
 		}
 	}

@@ -157,50 +157,46 @@ namespace QuickHide {
 			GUILayout.BeginVertical ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Options", GUILayout.Height (30));
+			GUILayout.Box (QLang.translate ("Options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, "Use the Stock ToolBar", GUILayout.Width (300));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (400));
+			GUILayout.FlexibleSpace ();
 			if (QSettings.Instance.StockToolBar) {
-				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, "Put QuickHide in Stock", GUILayout.Width (300));
+				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, QLang.translate ("Put QuickHide in Stock"), GUILayout.Width (400));
 			}
-			else {
-				GUILayout.Space (300);
-			}
+			GUILayout.FlexibleSpace ();
 			if (QBlizzyToolbar.isAvailable) {
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, "Use the Blizzy ToolBar", GUILayout.Width (300));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.HideAppLauncher = GUILayout.Toggle (QSettings.Instance.HideAppLauncher, "Enable AutoHide on mouse hovering out the Stock ToolBar", GUILayout.Width (450));
-			QSettings.Instance.HideStage = GUILayout.Toggle (QSettings.Instance.HideStage, "Enable AutoHide on mouse hovering out the stages", GUILayout.Width (400));
+			QSettings.Instance.HideAppLauncher = GUILayout.Toggle (QSettings.Instance.HideAppLauncher, QLang.translate ("Auto-Hide on mouse hovering out the Stock Toolbar"), GUILayout.Width (450));
+			GUILayout.FlexibleSpace ();
+			QSettings.Instance.HideStage = GUILayout.Toggle (QSettings.Instance.HideStage, QLang.translate ("Auto-Hide on mouse hovering out the stages"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			if (QSettings.Instance.HideAppLauncher) {
 				GUILayout.BeginHorizontal ();
-				GUILayout.Label ("Time to keep the Stock ToolBar after a mouse hovering out (in seconds):", GUILayout.Width (490));
+				GUILayout.Label (QLang.translate ("Time to keep the Stock ToolBar after a mouse hovering out in seconds:"), GUILayout.Width (490));
 				QSettings.Instance.TimeToKeep = int.Parse(GUILayout.TextField (QSettings.Instance.TimeToKeep.ToString(), GUILayout.Width (100)));
 				GUILayout.EndHorizontal ();
-				GUILayout.Space (5);
 			}
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Mods", GUILayout.Height (30));
+			GUILayout.Box (QLang.translate ("Mods"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (880), GUILayout.Height (300));
 			DrawAppLauncherButtons ();
 			GUILayout.EndScrollView ();
-			GUILayout.Space (5);
+			QLang.DrawLang ();
+			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
-			if (GUILayout.Button ("Close", GUILayout.Height (30))) {
+			GUILayout.FlexibleSpace ();
+			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height (30))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.EndVertical();
 		}
 	}

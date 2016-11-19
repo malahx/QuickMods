@@ -51,6 +51,8 @@
     <Compile Include="QH_ToolbarBlizzy.cs" />
     <Compile Include="QH_ToolbarStock.cs" />
     <Compile Include="QH_Mods.cs" />
+    <Compile Include="LanguageAPI.cs" />
+    <Compile Include="QH_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -67,6 +69,8 @@
     <None Include="GameData\QuickMods\QuickHide\Textures\BlizzyToolBar_Show.dds" />
     <None Include="GameData\QuickMods\QuickHide\Textures\StockToolBar_Hide.dds" />
     <None Include="GameData\QuickMods\QuickHide\Textures\StockToolBar_Show.dds" />
+    <None Include="Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickHide\Lang.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\QuickMods\" />
