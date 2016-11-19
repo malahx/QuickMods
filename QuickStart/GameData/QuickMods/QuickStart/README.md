@@ -34,6 +34,13 @@ Delete the QuickMods/QuickStart folder in your KSP/GameData folder.
 
 #### Changelog
 
+v2.10 - 2016.11.19
+* New: Added a setting panel,
+* New: Added a screen message waiting load,
+* New: Added an default waiting of 5 seconds when EVE is used,
+* New: Added support of the LanguagePatches,
+* I've translated it to french, if you want more, you can translate and PR ;)
+
 v2.07 - 2016.11.03
 * Fix: Corrected directories for windows (thanks RealKolago).
 

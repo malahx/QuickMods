@@ -108,5 +108,14 @@ namespace QuickStart {
 		void OnDestroy() {
 			QuickStart.Log ("OnDestroy", "QMainMenu");
 		}
+
+		void OnGUI() {
+			if (HighLogic.LoadedScene != GameScenes.MAINMENU) {
+				return;
+			}
+			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QLoading.labelStyle);
+			GUILayout.Label (QuickStart.MOD + "...", QLoading.labelStyle);
+			GUILayout.EndArea ();
+		}
 	}
 }

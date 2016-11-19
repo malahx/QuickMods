@@ -146,5 +146,14 @@ namespace QuickStart {
 			QLoading.Ended = true;
 			Destroy (this);
 		}
+
+		void OnGUI() {
+			if (HighLogic.LoadedScene != GameScenes.SPACECENTER || QLoading.Ended) {
+				return;
+			}
+			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QLoading.labelStyle);
+			GUILayout.Label (QuickStart.MOD + "...", QLoading.labelStyle);
+			GUILayout.EndArea ();
+		}
 	}
 }
