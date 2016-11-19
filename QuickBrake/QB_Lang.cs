@@ -1,5 +1,5 @@
 ﻿/* 
-QuickContracts
+QuickBrake
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using LanguagePatches;
 using UnityEngine;
 
-namespace QuickContracts {
-	public class QLang : QuickContracts {
+namespace QuickBrake {
+	public class QLang : QuickBrake {
 
 		static readonly string[] langs = {
 			"EN",

@@ -49,6 +49,8 @@ namespace QuickBrake {
 		[Persistent] internal bool StockToolBar = true;
 		[Persistent] internal bool BlizzyToolBar = true;
 
+		[Persistent] internal string Lang = "EN";
+
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);

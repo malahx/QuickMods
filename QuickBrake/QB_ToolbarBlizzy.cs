@@ -52,7 +52,7 @@ namespace QuickBrake
 			}
 			Button = ToolbarManager.Instance.add (QuickBrake.MOD, QuickBrake.MOD);
 			Button.TexturePath = TexturePath;
-			Button.ToolTip = QuickBrake.MOD + ": Settings";
+			Button.ToolTip = QuickBrake.MOD + ": " + QLang.translate("Settings");
 			Button.OnClick += (e) => OnClick ();
 			Button.Visibility = new GameScenesVisibility (QBlizzyToolbar.AppScenes);
 		}

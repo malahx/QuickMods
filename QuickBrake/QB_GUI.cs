@@ -120,65 +120,56 @@ namespace QuickBrake {
 		private void DrawSettings (int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Toolbars", GUILayout.Height (30));
+			GUILayout.Box (QLang.translate ("Toolbars"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, "Use the Stock Toolbar", GUILayout.Width (300));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			if (QBlizzyToolbar.isAvailable) {
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, "Use the Blizzy Toolbar", GUILayout.Width (300));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
-				GUILayout.Space (5);
 			}
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Options", GUILayout.Height (30));
+			GUILayout.Box (QLang.translate ("Options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.AlwaysBrakeLandedVessel = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedVessel, "Enable Brake Landed Vessel at Start", GUILayout.Width (300));
+			QSettings.Instance.AlwaysBrakeLandedVessel = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedVessel, QLang.translate ("Enable Brake Landed Vessel at Start"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
+			if (!QSettings.Instance.AlwaysBrakeLandedVessel) {
+				GUILayout.BeginHorizontal ();
+				QSettings.Instance.AlwaysBrakeLandedPlane = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedPlane, QLang.translate ("Enable Brake Landed Plane at Start"), GUILayout.Width (400));
+				GUILayout.EndHorizontal ();
+				GUILayout.BeginHorizontal ();
+				QSettings.Instance.AlwaysBrakeLandedRover = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedRover, QLang.translate ("Enable Brake Landed Rover at Start"), GUILayout.Width (400));
+				GUILayout.EndHorizontal ();
+				GUILayout.BeginHorizontal ();
+				QSettings.Instance.AlwaysBrakeLandedBase = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedBase, QLang.translate ("Enable Brake Landed Base at Start"), GUILayout.Width (400));
+				GUILayout.EndHorizontal ();
+				GUILayout.BeginHorizontal ();
+				QSettings.Instance.AlwaysBrakeLandedLander = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedLander, QLang.translate ("Enable Brake Landed Lander at Start"), GUILayout.Width (400));
+				GUILayout.EndHorizontal ();
+				GUILayout.BeginHorizontal ();
+				QSettings.Instance.EnableBrakeAtLaunchPad = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtLaunchPad, QLang.translate ("Enable Brake at LaunchPad"), GUILayout.Width (400));
+				GUILayout.EndHorizontal ();
+				GUILayout.BeginHorizontal ();
+				QSettings.Instance.EnableBrakeAtRunway = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtRunway, QLang.translate ("Enable Brake at Runway"), GUILayout.Width (400));
+				GUILayout.EndHorizontal ();
+			}
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.AlwaysBrakeLandedPlane = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedPlane, "Enable Brake Landed Plane at Start", GUILayout.Width (300));
+			QSettings.Instance.EnableBrakeAtControlLost = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtControlLost, QLang.translate ("Enable Brake at Control Lost"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.AlwaysBrakeLandedRover = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedRover, "Enable Brake Landed Rover at Start", GUILayout.Width (300));
+			QSettings.Instance.EnableUnBrakeAtLaunch = GUILayout.Toggle (QSettings.Instance.EnableUnBrakeAtLaunch, QLang.translate ("Enable UnBrake at Launch"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
+			QLang.DrawLang ();
+			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.AlwaysBrakeLandedBase = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedBase, "Enable Brake Landed Base at Start", GUILayout.Width (300));
-			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.AlwaysBrakeLandedLander = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedLander, "Enable Brake Landed Lander at Start", GUILayout.Width (300));
-			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.EnableBrakeAtLaunchPad = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtLaunchPad, "Enable Brake at LaunchPad", GUILayout.Width (300));
-			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.EnableBrakeAtRunway = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtRunway, "Enable Brake at Runway", GUILayout.Width (300));
-			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.EnableBrakeAtControlLost = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtControlLost, "Enable Brake at Control Lost", GUILayout.Width (300));
-			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.EnableUnBrakeAtLaunch = GUILayout.Toggle (QSettings.Instance.EnableUnBrakeAtLaunch, "Enable UnBrake at Launch", GUILayout.Width (300));
-			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
-			GUILayout.BeginHorizontal ();
-			if (GUILayout.Button ("Close", GUILayout.Height (30))) {
+			GUILayout.FlexibleSpace ();
+			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height (30))) {
 				HideSettings ();
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.EndVertical ();
 		}
 	}
