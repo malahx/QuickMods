@@ -134,5 +134,15 @@
     <None Include="GameData\QuickMods\QuickStart\README.md" />
     <None Include="GameData\QuickMods\QuickStart\Plugins\QuickStart.dll" />
     <None Include="GameData\QuickMods\QuickContracts\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickBrake\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickExit\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickGoTo\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickHide\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickIVA\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickMute\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickRevert\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickSAS\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickSearch\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickStart\Lang.cfg" />
   </ItemGroup>
 </Project>
