@@ -1,5 +1,5 @@
 ﻿/* 
-QuickExit
+QuickGoTo
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using LanguagePatches;
 using UnityEngine;
 
-namespace QuickExit {
-	public class QLang : QuickExit {
+namespace QuickGoTo {
+	public class QLang : QuickGoTo {
 
 		static readonly string[] langs = {
 			"EN",

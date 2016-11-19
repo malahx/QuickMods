@@ -43,6 +43,8 @@
     <Compile Include="QG_Data.cs" />
     <Compile Include="QG_ToolbarBlizzy.cs" />
     <Compile Include="QG_ToolbarStock.cs" />
+    <Compile Include="LanguageAPI.cs" />
+    <Compile Include="QG_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -89,6 +91,8 @@
     <None Include="GameData\QuickMods\QuickGoTo\Textures\StockToolBar.dds" />
     <None Include="GameData\QuickMods\QuickGoTo\Textures\StockTS.dds" />
     <None Include="GameData\QuickMods\QuickGoTo\Textures\StockVAB.dds" />
+    <None Include="Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickGoTo\Lang.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\" />

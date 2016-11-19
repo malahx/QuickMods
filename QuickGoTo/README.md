@@ -53,6 +53,11 @@ Delete the QuickMods/QuickGoTo folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.30 - 2016.11.19
+* New: Added support of the LanguagePatches,
+* I've translated it to french, if you want more, you can translate and PR ;)
+* Fix: Deleted access of the Unity skin (will be re-added later).
+
 v1.26-beta - 2016.11.03
 * Fix: Corrected directories for windows (thanks RealKolago).
 

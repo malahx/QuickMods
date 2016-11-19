@@ -328,7 +328,8 @@ namespace QuickGoTo {
 
 		internal void RefreshStyle(bool force = false) {
 			if (force) {
-				guiSkin = (QSettings.Instance.KSPSkin ? HighLogic.Skin : null);
+				//guiSkin = (QSettings.Instance.KSPSkin ? HighLogic.Skin : null);
+				guiSkin = HighLogic.Skin;
 			}
 			if (GoToWindowStyle == null || force) {
 				GoToWindowStyle = new GUIStyle (guiSkin.window);
@@ -460,105 +461,94 @@ namespace QuickGoTo {
 			GUILayout.BeginVertical();
 
 			GUILayout.BeginHorizontal();
-			GUILayout.Box("Options",GUILayout.Height(30));
+			GUILayout.Box(QLang.translate ("Options"),GUILayout.Height(30));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, "Use the Stock ToolBar", GUILayout.Width (300));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (300));
 			if (QSettings.Instance.StockToolBar) {
-				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, "Put QuickGoTo in Stock", GUILayout.Width (300));
+				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, QLang.translate ("Put QuickGoTo in Stock"), GUILayout.Width (300));
 			} else {
 				GUILayout.Space (300);
 			}
 			if (QBlizzyToolbar.isAvailable) {
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, "Use the Blizzy ToolBar", GUILayout.Width (300));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 
 			GUILayout.BeginHorizontal (); 
-			QSettings.Instance.EnableBatButton = GUILayout.Toggle (QSettings.Instance.EnableBatButton, "Enable button in the batiments", GUILayout.Width (300));
-			bool _bool = GUILayout.Toggle (QSettings.Instance.ImageOnly, "Panel with only the icons", GUILayout.Width (300));
+			QSettings.Instance.EnableBatButton = GUILayout.Toggle (QSettings.Instance.EnableBatButton, QLang.translate ("Enable button in the batiments"), GUILayout.Width (300));
+			bool _bool = GUILayout.Toggle (QSettings.Instance.ImageOnly, QLang.translate ("Panel with only the icons"), GUILayout.Width (300));
 			if (_bool != QSettings.Instance.ImageOnly) {
 				QSettings.Instance.ImageOnly = _bool;
 				RectGoTo = new Rect (); 
 			}
 			if (QSettings.Instance.StockToolBar && !QSettings.Instance.ImageOnly) {
-				_bool = GUILayout.Toggle (QSettings.Instance.CenterText, "Center the buttons", GUILayout.Width (300));
+				_bool = GUILayout.Toggle (QSettings.Instance.CenterText, QLang.translate ("Center the buttons"), GUILayout.Width (300));
 				if (_bool != QSettings.Instance.CenterText) {
 					QSettings.Instance.CenterText = _bool;
 					RectGoTo = new Rect ();
 				}
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 
 			GUILayout.BeginHorizontal ();
 			if (QSettings.Instance.StockToolBar) {
-				QSettings.Instance.StockToolBar_OnHover = GUILayout.Toggle (QSettings.Instance.StockToolBar_OnHover, "Show QuickGoTo on hovering", GUILayout.Width (300));
+				QSettings.Instance.StockToolBar_OnHover = GUILayout.Toggle (QSettings.Instance.StockToolBar_OnHover, QLang.translate ("Show buttons on hovering"), GUILayout.Width (300));
 				if (QSettings.Instance.StockToolBar_OnHover) {
-					QSettings.Instance.LockHover = GUILayout.Toggle (QSettings.Instance.LockHover, "Lock buttons on hover", GUILayout.Width (300));
+					QSettings.Instance.LockHover = GUILayout.Toggle (QSettings.Instance.LockHover, QLang.translate ("Lock buttons on hover"), GUILayout.Width (300));
 				} else {
 					GUILayout.Space (300);
 				}
 			}
-			QSettings.Instance.KSPSkin = GUILayout.Toggle (QSettings.Instance.KSPSkin, "Use the KSP skin", GUILayout.Width (300));
+			//QSettings.Instance.KSPSkin = GUILayout.Toggle (QSettings.Instance.KSPSkin, QLang.translate ("Use the KSP skin"), GUILayout.Width (300));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 
 			GUILayout.BeginHorizontal();
-			GUILayout.Box("Enable/Disable",GUILayout.Height(30));
+			GUILayout.Box(QLang.translate ("Enable/Disable"),GUILayout.Height(30));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 
 			GUILayout.BeginHorizontal();
 			QSettings.Instance.EnableGoToMainMenu = GUILayout.Toggle (QSettings.Instance.EnableGoToMainMenu, GetText(GoTo.MainMenu), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToSettings = GUILayout.Toggle (QSettings.Instance.EnableGoToSettings, GetText(GoTo.Settings), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToSpaceCenter = GUILayout.Toggle (QSettings.Instance.EnableGoToSpaceCenter, GetText(GoTo.SpaceCenter), GUILayout.Width (300));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 
 			GUILayout.BeginHorizontal();
 			QSettings.Instance.EnableGoToVAB = GUILayout.Toggle (QSettings.Instance.EnableGoToVAB, GetText(GoTo.VAB), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToSPH = GUILayout.Toggle (QSettings.Instance.EnableGoToSPH, GetText(GoTo.SPH), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToTrackingStation = GUILayout.Toggle (QSettings.Instance.EnableGoToTrackingStation, GetText(GoTo.TrackingStation), GUILayout.Width (300));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 
 			GUILayout.BeginHorizontal();
 			QSettings.Instance.EnableGoToMissionControl = GUILayout.Toggle (QSettings.Instance.EnableGoToMissionControl, GetText(GoTo.MissionControl), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToAdministration = GUILayout.Toggle (QSettings.Instance.EnableGoToAdministration, GetText(GoTo.Administration), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToRnD = GUILayout.Toggle (QSettings.Instance.EnableGoToRnD, GetText(GoTo.RnD), GUILayout.Width (300));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
-
 
 			GUILayout.BeginHorizontal();
 			QSettings.Instance.EnableGoToAstronautComplex = GUILayout.Toggle (QSettings.Instance.EnableGoToAstronautComplex, GetText(GoTo.AstronautComplex), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToLastVessel = GUILayout.Toggle (QSettings.Instance.EnableGoToLastVessel, GetText (GoTo.LastVessel, true), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToRecover = GUILayout.Toggle (QSettings.Instance.EnableGoToRecover, GetText(GoTo.Recover), GUILayout.Width (300));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 
 			GUILayout.BeginHorizontal();
 			QSettings.Instance.EnableGoToRevert = GUILayout.Toggle (QSettings.Instance.EnableGoToRevert, GetText(GoTo.Revert), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToRevertToEditor = GUILayout.Toggle (QSettings.Instance.EnableGoToRevertToEditor, GetText(GoTo.RevertToEditor), GUILayout.Width (300));
 			QSettings.Instance.EnableGoToRevertToSpaceCenter = GUILayout.Toggle (QSettings.Instance.EnableGoToRevertToSpaceCenter, GetText(GoTo.RevertToSpaceCenter), GUILayout.Width (300));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.EnableSettings = GUILayout.Toggle (QSettings.Instance.EnableSettings, GetText(GoTo.Configurations) + " (if disabled, it will be displayed only on the Space Center)", GUILayout.Width (900));
+			QSettings.Instance.EnableSettings = GUILayout.Toggle (QSettings.Instance.EnableSettings, GetText(GoTo.Configurations) + " (" + QLang.translate ("if disabled, it will be displayed only on the Space Center") + ")", GUILayout.Width (900));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
-
+			QLang.DrawLang ();
+			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
-			if (GUILayout.Button ("Close & Save", GUILayout.Height(20))) {
+			GUILayout.FlexibleSpace ();
+			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height(20))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			GUILayout.EndVertical();
 		}
 

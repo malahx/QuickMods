@@ -59,7 +59,7 @@ namespace QuickGoTo {
 		[Persistent] public bool StockToolBar_OnHover = true;
 		[Persistent] public bool EnableBatButton = true;
 
-		[Persistent] public bool KSPSkin = true;
+		//[Persistent] public bool KSPSkin = true;
 		[Persistent] public bool ImageOnly = true;
 		[Persistent] public bool LockHover = false;
 		[Persistent] public bool CenterText = false;
@@ -70,6 +70,8 @@ namespace QuickGoTo {
 		[Persistent] public bool EnableQuickHide = false;
 		[Persistent] public bool EnableQuickMute = false;
 		[Persistent] public bool EnableQuickIVA = false;
+
+		[Persistent] internal string Lang = "EN";
 
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());

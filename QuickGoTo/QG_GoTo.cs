@@ -49,38 +49,38 @@ namespace QuickGoTo {
 		public string GetText(GoTo goTo, bool force = false) {
 			switch (goTo) {
 			case GoTo.TrackingStation:
-				return "Go to the Tracking Station";
+				return QLang.translate ("Go to the Tracking Station");
 			case GoTo.SpaceCenter:
-				return "Go to the Space Center";
+				return QLang.translate ("Go to the Space Center");
 			case GoTo.MissionControl:
-				return "Go to the Mission Control";
+				return QLang.translate ("Go to the Mission Control");
 			case GoTo.Administration:
-				return "Go to the Administration";
+				return QLang.translate ("Go to the Administration");
 			case GoTo.RnD:
-				return "Go to the Research and Dev.";
+				return QLang.translate ("Go to the Research and Dev.");
 			case GoTo.AstronautComplex:
-				return "Go to the Astronaut Complex";
+				return QLang.translate ("Go to the Astronaut Complex");
 			case GoTo.VAB:
-				return "Go to the Vehicle Assembly";
+				return QLang.translate ("Go to the Vehicle Assembly");
 			case GoTo.SPH:
-				return "Go to the Space Plane Hangar";
+				return QLang.translate ("Go to the Space Plane Hangar");
 			case GoTo.LastVessel:
 				QData _lastVessel = LastVesselLastIndex ();
-				return string.Format ("Go to the {0}", (_lastVessel != null && !force ? "vessel: " + _lastVessel.protoVessel.vesselName : "last Vessel"));
+				return string.Format ("{0} {1}", QLang.translate ("Go to the"), (_lastVessel != null && !force ? QLang.translate ("vessel") + ": " + _lastVessel.protoVessel.vesselName : QLang.translate ("last Vessel")));
 			case GoTo.Recover:
-				return "Recover";
+				return QLang.translate ("Recover");
 			case GoTo.Revert:
-				return "Revert to Launch";
+				return QLang.translate ("Revert to Launch");
 			case GoTo.RevertToEditor:
-				return "Revert to Editor";
+				return QLang.translate ("Revert to Editor");
 			case GoTo.RevertToSpaceCenter:
-				return "Revert to SpaceCenter";
+				return QLang.translate ("Revert to SpaceCenter");
 			case GoTo.MainMenu:
-				return "Go to The Main Menu";
+				return QLang.translate ("Go to The Main Menu");
 			case GoTo.Settings:
-				return "Go to the Settings";
+				return QLang.translate ("Go to the Settings");
 			case GoTo.Configurations:
-				return "QuickGoTo: Settings";
+				return string.Format("{0}: {1}", MOD, QLang.translate ("Settings"));
 			}
 			return string.Empty;
 		}
@@ -433,6 +433,11 @@ namespace QuickGoTo {
 			Log ("Last Vessel has keep " + LastVessels.Count + " vessels", "QGoTo");
 		}
 
+		void screenMSG(GoTo scene) {
+			Warning ("You can't " + GetText (scene), "QGoTo");
+			ScreenMessages.PostScreenMessage (QLang.translate ("You can't") + " " + GetText (scene), 10, ScreenMessageStyle.UPPER_RIGHT);			
+		}
+
 		public void mainMenu() {
 			SavedGoTo = GoTo.None;
 			if (CanMainMenu) {
@@ -442,8 +447,7 @@ namespace QuickGoTo {
 				StartCoroutine (loadScene (GameScenes.MAINMENU));
 				return;
 			}
-			Warning ("You can't " + GetText(GoTo.MainMenu), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.MainMenu), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.MainMenu);
 		}
 
 		public void settings() {
@@ -455,8 +459,7 @@ namespace QuickGoTo {
 				StartCoroutine (loadScene (GameScenes.SETTINGS));
 				return;
 			}
-			Warning ("You can't " + GetText(GoTo.Settings), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.Settings), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.Settings);
 		}
 
 		public void trackingStation() {
@@ -470,8 +473,7 @@ namespace QuickGoTo {
 				StartCoroutine (loadScene (GameScenes.TRACKSTATION));
 				return;
 			}
-			Warning ("You can't " + GetText(GoTo.TrackingStation), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.TrackingStation), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.TrackingStation);
 		}
 
 		void gotoSpaceCenter(GameBackup gameBackup = null) {
@@ -491,8 +493,7 @@ namespace QuickGoTo {
 				Log (GetText (GoTo.SpaceCenter));
 				return;
 			}
-			Warning ("You can't " + GetText(GoTo.SpaceCenter), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.SpaceCenter), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.SpaceCenter);
 		}
 
 		void ClearSpaceCenter() {
@@ -541,8 +542,7 @@ namespace QuickGoTo {
 					}
 				}
 			}
-			Warning ("You can't " + GetText(GoTo.MissionControl), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.MissionControl), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.MissionControl);
 		}
 
 		public void administration() {
@@ -563,8 +563,7 @@ namespace QuickGoTo {
 					}
 				}
 			}
-			Warning ("You can't " + GetText(GoTo.Administration), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.Administration), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.Administration);
 		}
 
 		public void RnD() {
@@ -585,8 +584,7 @@ namespace QuickGoTo {
 					}
 				}
 			}
-			Warning ("You can't " + GetText(GoTo.RnD), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.RnD), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.RnD);
 		}
 
 		public void astronautComplex() {
@@ -605,8 +603,7 @@ namespace QuickGoTo {
 					return;
 				}
 			}
-			Warning ("You can't " + GetText(GoTo.AstronautComplex), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.AstronautComplex), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.AstronautComplex);
 		}
 
 		void gotoVAB() {
@@ -622,8 +619,7 @@ namespace QuickGoTo {
 				Log (GetText (GoTo.VAB));
 				return;
 			}
-			Warning ("You can't " + GetText(GoTo.VAB), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.VAB), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.VAB);
 		}
 
 		void gotoSPH() {
@@ -639,8 +635,7 @@ namespace QuickGoTo {
 				Log (GetText (GoTo.SPH));
 				return;
 			}
-			Warning ("You can't " + GetText(GoTo.SPH), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.SPH), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.SPH);
 		}
 
 		public void Recover() {
@@ -651,8 +646,7 @@ namespace QuickGoTo {
 				Log (GetText (GoTo.Recover));
 				return;
 			}
-			Warning ("You can't " + GetText(GoTo.Recover), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.Recover), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.Recover);
 		}
 
 		public void Revert() {
@@ -663,8 +657,7 @@ namespace QuickGoTo {
 				Log (GetText (GoTo.Revert));
 				return;
 			}
-			Warning ("You can't " + GetText (GoTo.Revert), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText (GoTo.Revert), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.Revert);
 		}
 
 		public void RevertToEditor() {
@@ -675,8 +668,7 @@ namespace QuickGoTo {
 				Log (GetText (GoTo.RevertToEditor));
 				return;
 			}
-			Warning ("You can't " + GetText (GoTo.RevertToEditor), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText (GoTo.RevertToEditor), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.RevertToEditor);
 		}
 
 		public void RevertToSpaceCenter() {
@@ -686,8 +678,7 @@ namespace QuickGoTo {
 				Log (GetText (GoTo.RevertToSpaceCenter));
 				return;
 			}
-			Warning ("You can't " + GetText (GoTo.RevertToSpaceCenter), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText (GoTo.RevertToSpaceCenter), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.RevertToSpaceCenter);
 		}
 
 		public void LastVessel() {
@@ -709,8 +700,7 @@ namespace QuickGoTo {
 					}
 				}
 			}
-			Warning ("You can't " + GetText(GoTo.LastVessel), "QGoTo");
-			ScreenMessages.PostScreenMessage ("You can't " + GetText(GoTo.LastVessel), 10, ScreenMessageStyle.UPPER_RIGHT);
+			screenMSG (GoTo.LastVessel);
 		}
 	}
 }
