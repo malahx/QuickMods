@@ -1,5 +1,5 @@
 ﻿/* 
-QuickIVA
+QuickSearch
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using LanguagePatches;
 using UnityEngine;
 
-namespace QuickIVA {
-	public class QLang : QuickIVA {
+namespace QuickSearch {
+	public class QLang : QuickSearch {
 
 		static readonly string[] langs = {
 			"EN",

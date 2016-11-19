@@ -25,7 +25,7 @@ namespace QuickSearch {
 
 		protected GUIStyle TextField;
 		bool WindowSettings = false;
-		Rect rectSettings = new Rect (0, 0, 615, 0);
+		Rect rectSettings = new Rect (0, 0, 0, 0);
 		Rect RectSettings {
 			get {
 				Rect _rect = rectSettings;
@@ -120,7 +120,7 @@ namespace QuickSearch {
 			if (!WindowSettings) {
 				return;
 			}
-			RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
+			RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
 		}
 
 		// Panneau de configuration
@@ -128,137 +128,105 @@ namespace QuickSearch {
 			GUILayout.BeginVertical ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Options", GUILayout.Height (30));
+			GUILayout.Box (QLang.translate("Options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, "Use the Stock ToolBar", GUILayout.Width (275));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (400));
 			GUILayout.FlexibleSpace ();
 			if (QBlizzyToolbar.isAvailable) {
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, "Use the Blizzy ToolBar", GUILayout.Width (225));
-			} else {
-				GUILayout.Space (225);
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
 			}
-			GUILayout.FlexibleSpace ();
-			QSettings.Instance.Debug = GUILayout.Toggle (QSettings.Instance.Debug, "Enable Debug", GUILayout.Width (225));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
-
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.EditorSearch = GUILayout.Toggle (QSettings.Instance.EditorSearch, "Enable editor search" + (HighLogic.LoadedSceneIsEditor ? "(switch scene needed)" : string.Empty), GUILayout.Width (455));
+			QSettings.Instance.EditorSearch = GUILayout.Toggle (QSettings.Instance.EditorSearch, QLang.translate ("Replace editor search - reload needed"), GUILayout.Width (400));
 			GUILayout.FlexibleSpace ();
-			QSettings.Instance.RnDSearch = GUILayout.Toggle (QSettings.Instance.RnDSearch, "Enable RnD search", GUILayout.Width (225));
+			QSettings.Instance.RnDSearch = GUILayout.Toggle (QSettings.Instance.RnDSearch, QLang.translate ("Enable RnD search"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 
 			if (QSettings.Instance.EditorSearch || QSettings.Instance.RnDSearch) {
 
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.enableSearchExtension = GUILayout.Toggle (QSettings.Instance.enableSearchExtension, "Enable the extended search", GUILayout.Width (225));
+				QSettings.Instance.enableSearchExtension = GUILayout.Toggle (QSettings.Instance.enableSearchExtension, QLang.translate ("Enable the extended search"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
-				GUILayout.Space (5);
 
 				if (QSettings.Instance.enableSearchExtension) {
 
 					GUILayout.BeginHorizontal ();
-					GUILayout.Box ("Search Shortcut", GUILayout.Height (30));
+					GUILayout.Box (QLang.translate ("Search Shortcut"), GUILayout.Height (30));
 					GUILayout.EndHorizontal ();
-					GUILayout.Space (5);
 
 					GUILayout.BeginHorizontal ();
-					GUILayout.Label ("NOT: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("NOT:"), GUILayout.Width (100));
 					QSettings.Instance.searchNOT = cleanString (GUILayout.TextField (QSettings.Instance.searchNOT, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("AND: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("AND:"), GUILayout.Width (100));
 					QSettings.Instance.searchAND = cleanString (GUILayout.TextField (QSettings.Instance.searchAND, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("OR: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("OR:"), GUILayout.Width (100));
 					QSettings.Instance.searchOR = cleanString (GUILayout.TextField (QSettings.Instance.searchOR, TextField, GUILayout.Width (75)));
 					GUILayout.EndHorizontal ();
-					GUILayout.Space (5);
 
 					GUILayout.BeginHorizontal ();
-					GUILayout.Label ("Word begin: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Word begin:"), GUILayout.Width (100));
 					QSettings.Instance.searchBegin = cleanString (GUILayout.TextField (QSettings.Instance.searchBegin, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("Word end: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Word end:"), GUILayout.Width (100));
 					QSettings.Instance.searchEnd = cleanString (GUILayout.TextField (QSettings.Instance.searchEnd, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("Word: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Word:"), GUILayout.Width (100));
 					QSettings.Instance.searchWord = cleanString (GUILayout.TextField (QSettings.Instance.searchWord, TextField, GUILayout.Width (75)));
 					GUILayout.EndHorizontal ();
-					GUILayout.Space (5);
 
 					GUILayout.BeginHorizontal ();
-					GUILayout.Label ("Name: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Name:"), GUILayout.Width (100));
 					QSettings.Instance.searchName = cleanString (GUILayout.TextField (QSettings.Instance.searchName, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("Title: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Title:"), GUILayout.Width (100));
 					QSettings.Instance.searchTitle = cleanString (GUILayout.TextField (QSettings.Instance.searchTitle, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("Description: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Description:"), GUILayout.Width (100));
 					QSettings.Instance.searchDescription = cleanString (GUILayout.TextField (QSettings.Instance.searchDescription, TextField, GUILayout.Width (75)));
 					GUILayout.EndHorizontal ();
-					GUILayout.Space (5);
 
 					GUILayout.BeginHorizontal ();
-					GUILayout.Label ("Author: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Author:"), GUILayout.Width (100));
 					QSettings.Instance.searchAuthor = cleanString (GUILayout.TextField (QSettings.Instance.searchAuthor, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("Manufacturer: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Manufacturer:"), GUILayout.Width (100));
 					QSettings.Instance.searchManufacturer = cleanString (GUILayout.TextField (QSettings.Instance.searchManufacturer, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("Tag: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Tag:"), GUILayout.Width (100));
 					QSettings.Instance.searchTag = cleanString (GUILayout.TextField (QSettings.Instance.searchTag, TextField, GUILayout.Width (75)));
 					GUILayout.EndHorizontal ();
-					GUILayout.Space (5);
 
 					GUILayout.BeginHorizontal ();
-					GUILayout.Label ("Resources: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Resources:"), GUILayout.Width (100));
 					QSettings.Instance.searchResourceInfos = cleanString (GUILayout.TextField (QSettings.Instance.searchResourceInfos, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("Tech Required: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Tech Required:"), GUILayout.Width (100));
 					QSettings.Instance.searchTechRequired = cleanString (GUILayout.TextField (QSettings.Instance.searchTechRequired, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("Part size: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Part size:"), GUILayout.Width (100));
 					QSettings.Instance.searchPartSize = cleanString (GUILayout.TextField (QSettings.Instance.searchPartSize, TextField, GUILayout.Width (75)));
 					GUILayout.EndHorizontal ();
-					GUILayout.Space (5);
 
 					GUILayout.BeginHorizontal ();
-					GUILayout.Label ("Module: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Module:"), GUILayout.Width (100));
 					QSettings.Instance.searchModule = cleanString (GUILayout.TextField (QSettings.Instance.searchModule, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
-					GUILayout.Label ("Regex: ", GUILayout.Width (100));
-					GUILayout.Space (5);
+					GUILayout.Label (QLang.translate ("Regex:"), GUILayout.Width (100));
 					QSettings.Instance.searchRegex = cleanString (GUILayout.TextField (QSettings.Instance.searchRegex, TextField, GUILayout.Width (75)));
 					GUILayout.FlexibleSpace ();
 					GUILayout.Space (185);
 					GUILayout.EndHorizontal ();
-					GUILayout.Space (5);
 				}
 			}
+			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
-			GUILayout.BeginHorizontal();
+			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button ("Close", GUILayout.Width (100))) {
+			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Width (100))) {
 				HideSettings ();
 			}
 			GUILayout.EndHorizontal();
