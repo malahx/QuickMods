@@ -62,7 +62,6 @@ namespace QuickMute {
 		}
 
 		void Start() {
-		    //QSettings.Instance.Load ();
 			BlizzyToolbar.Start ();
 			if (Muted) {
 				Mute (true);
@@ -85,24 +84,6 @@ namespace QuickMute {
 			Mute (false);
 			GameSettings.SaveSettings ();
 			Log ("OnApplicationQuit", "QuickMute");
-		}
-
-		void Update() {
-			if (Input.GetKeyDown (QSettings.Instance.Key)) {
-				Mute ();
-			}
-		}
-
-		/* It can mute FXGroups audio, but cost a high CPU usage ...
-		private void LateUpdate() {
-			VerifyMute ();
-		}*/
-
-		void OnGUI() {
-			if (Draw) {
-				GUILayout.BeginArea (new Rect ((Screen.width - 96) / 2, (Screen.height - 96) / 2, 96, 96), Icon_Texture);
-				GUILayout.EndArea ();
-			}
 		}
 	}
 }

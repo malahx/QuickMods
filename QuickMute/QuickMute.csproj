@@ -41,6 +41,10 @@
     <Compile Include="QM_Mute.cs" />
     <Compile Include="QM_ToolbarBlizzy.cs" />
     <Compile Include="QM_ToolbarStock.cs" />
+    <Compile Include="QM_Key.cs" />
+    <Compile Include="QM_GUI.cs" />
+    <Compile Include="LanguageAPI.cs" />
+    <Compile Include="QM_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -58,6 +62,8 @@
     <None Include="GameData\QuickMods\QuickMute\Textures\Icon_sound.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_mute.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_sound.dds" />
+    <None Include="Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickMute\Lang.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\" />

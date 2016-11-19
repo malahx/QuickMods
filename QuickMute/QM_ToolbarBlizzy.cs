@@ -24,20 +24,23 @@ namespace QuickMute {
 				return QSettings.Instance.BlizzyToolBar;
 			}
 		}
-		private string TexturePathSound = QuickMute.relativePath + "/Textures/BlizzyToolBar_sound";
-		private string TexturePathMute = QuickMute.relativePath + "/Textures/BlizzyToolBar_mute";
 
-		private void OnClick() { 
+		string TexturePathSound = QuickMute.relativePath + "/Textures/BlizzyToolBar_sound";
+		string TexturePathMute = QuickMute.relativePath + "/Textures/BlizzyToolBar_mute";
+		string TexturePathConf = QuickMute.relativePath + "/Textures/BlizzyConf";
+
+		void OnClick() { 
 			QuickMute.Instance.Mute ();
 		}
 
-		private string TexturePath {
+		string TexturePath {
 			get {
 				return (QSettings.Instance.Muted ? TexturePathMute : TexturePathSound);
 			}
 		}
 
-		private IButton Button;
+		IButton Button;
+		IButton ButtonConf;
 
 		internal static bool isAvailable {
 			get {
@@ -46,21 +49,38 @@ namespace QuickMute {
 		}
 
 		internal void Start() {
-			if (!HighLogic.LoadedSceneIsGame || !isAvailable || !Enabled || Button != null) {
+			if (!HighLogic.LoadedSceneIsGame || !isAvailable || !Enabled) {
 				return;
 			}
-			Button = ToolbarManager.Instance.add (QuickMute.MOD, QuickMute.MOD);
-			Button.TexturePath = TexturePath;
-			Button.ToolTip = QuickMute.MOD;
-			Button.OnClick += (e) => OnClick ();
+			if (Button == null) {
+				Button = ToolbarManager.Instance.add (QuickMute.MOD, QuickMute.MOD);
+				Button.TexturePath = TexturePath;
+				Button.ToolTip = QuickMute.MOD;
+				Button.OnClick += (e) => OnClick ();
+			}
+
+			if (ButtonConf == null) {
+				ButtonConf = ToolbarManager.Instance.add (QuickMute.MOD + "Conf", QuickMute.MOD + "Conf");
+				ButtonConf.TexturePath = TexturePathConf;
+				ButtonConf.ToolTip = QuickMute.MOD + ": " + QLang.translate ("Settings");
+				ButtonConf.OnClick += (e) => QuickMute.Instance.Settings ();
+			}
 		}
 
 		internal void OnDestroy() {
-			if (!isAvailable || Button == null) {
+			if (!isAvailable) {
 				return;
 			}
-			Button.Destroy ();
-			Button = null;
+
+			if (Button != null) {
+				Button.Destroy ();
+				Button = null;
+			}
+
+			if (ButtonConf != null) {
+				ButtonConf.Destroy ();
+				ButtonConf = null;
+			}
 		}
 
 		internal void Refresh() {

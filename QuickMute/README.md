@@ -43,6 +43,11 @@ Delete the QuickMods/QuickMute folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.20 - 2016.11.19
+* New: Added a settings window (to access : right click on the stocktoolbar),
+* New: Added support of the LanguagePatches,
+* I've translated it to french, if you want more, you can translate and PR ;)
+
 v1.14 - 2016.11.03
 * Fix: Corrected directories for windows (thanks RealKolago).
 

@@ -104,6 +104,7 @@ namespace QuickMute {
 			}
 			if (appLauncherButton == null) {
 				appLauncherButton = ApplicationLauncher.Instance.AddModApplication (OnClick, OnClick, null, null, null, null, AppScenes, GetTexture);
+				appLauncherButton.onRightClick = delegate { QuickMute.Instance.Settings (); };
 			}
 		}
 

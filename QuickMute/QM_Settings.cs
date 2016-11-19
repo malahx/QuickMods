@@ -38,7 +38,7 @@ namespace QuickMute {
 
 		[Persistent] internal bool Debug = true;
 
-		[Persistent] internal string Key = "f6";
+		[Persistent] internal KeyCode KeyMute = QKey.DefaultKey (QKey.Key.Mute);
 		[Persistent] internal bool Muted = false;
 
 		[Persistent] internal bool StockToolBar = true;
@@ -49,6 +49,8 @@ namespace QuickMute {
 		[Persistent] internal float SHIP_VOLUME = 0;
 		[Persistent] internal float UI_VOLUME = 0;
 		[Persistent] internal float VOICE_VOLUME = 0;
+
+		[Persistent] internal string Lang = "EN";
 
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
