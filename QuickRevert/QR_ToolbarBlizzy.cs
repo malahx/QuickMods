@@ -47,7 +47,7 @@ namespace QuickRevert {
 			}
 			Button = ToolbarManager.Instance.add (QuickRevert.MOD, QuickRevert.MOD);
 			Button.TexturePath = TexturePath;
-			Button.ToolTip = QuickRevert.MOD + ": Settings";
+			Button.ToolTip = QuickRevert.MOD + ": " + QLang.translate ("Settings");
 			Button.OnClick += (e) => OnClick ();
 			Button.Visibility = new GameScenesVisibility(AppScenes);
 			QuickRevert.Log ("Init", "QBlizzyToolbar");

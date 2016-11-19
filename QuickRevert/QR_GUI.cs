@@ -27,10 +27,9 @@ namespace QuickRevert {
 		[KSPField(isPersistant = true)] private static QBlizzyToolbar BlizzyToolbar;
 
 		bool WindowSettings = false;
-		Rect rectSettings = new Rect();
+		Rect rectSettings = new Rect (0, 0, 0, 0);
 		Rect RectSettings {
 			get {
-				rectSettings.width = 515;
 				rectSettings.x = (Screen.width - rectSettings.width) / 2;
 				rectSettings.y = (Screen.height - rectSettings.height) / 2;
 				return rectSettings;
@@ -126,18 +125,16 @@ namespace QuickRevert {
 					GUILayout.BeginHorizontal();
 					GUILayout.Box("Revert Saved",GUILayout.Height(30));
 					GUILayout.EndHorizontal();
-					GUILayout.Space(5);
 					GUILayout.BeginHorizontal();
-					GUILayout.Label (string.Format("Revert of the last Vessel saved: <color=#FFFFFF><b>({0}){1}</b></color>", QFlight.data.pVessel.vesselType, QFlight.data.pVessel.vesselName), GUILayout.Width (400));
+					GUILayout.Label (string.Format("{0} <color=#FFFFFF><b>({1}){2}</b></color>", QLang.translate("Revert of the last Vessel saved:"), QFlight.data.pVessel.vesselType, QFlight.data.pVessel.vesselName), GUILayout.Width (400));
 					GUILayout.FlexibleSpace ();
-					if (GUILayout.Button ("Lose it")) {
+					if (GUILayout.Button (QLang.translate ("Lose it"))) {
 						QFlight.data.Reset ();
 					}
 					GUILayout.EndHorizontal();
-					GUILayout.Space(5);
 					GUILayout.BeginHorizontal ();
 					GUILayout.FlexibleSpace ();
-					if (GUILayout.Button ("Goto this vessel")) {
+					if (GUILayout.Button (QLang.translate("Goto this vessel"))) {
 						Settings ();
 						string _saveGame = GamePersistence.SaveGame ("persistent", HighLogic.SaveFolder, SaveMode.OVERWRITE);
 						FlightDriver.StartAndFocusVessel (_saveGame, QFlight.data.currentActiveVesselIdx);
@@ -147,9 +144,8 @@ namespace QuickRevert {
 					GUILayout.Space (5);
 					if (!QFlight.data.PreLaunchStateIsSaved) {
 						GUILayout.BeginHorizontal ();
-						GUILayout.Label ("<color=#FF0000><b>Only the revert to launch is saved!</b></color>", GUILayout.Width (500));
+						GUILayout.Label (string.Format ("<color=#FF0000><b>{0}</b></color>", QLang.translate ("Only the revert to launch is saved!")), GUILayout.Width (500));
 						GUILayout.EndHorizontal ();
-						GUILayout.Space (5);
 					}
 				}
 			}
@@ -157,26 +153,25 @@ namespace QuickRevert {
 			GUILayout.BeginHorizontal();
 			GUILayout.Box("Options",GUILayout.Height(30));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.EnableRevertLoss = GUILayout.Toggle (QSettings.Instance.EnableRevertLoss, "Enable the revert loss when you escape " + (Planetarium.fetch.Home.atmosphere ? "atmosphere" : "sphere of influence"), GUILayout.Width (250));
+			QSettings.Instance.EnableRevertLoss = GUILayout.Toggle (QSettings.Instance.EnableRevertLoss, string.Format ("{0} {1}", QLang.translate("Enable the revert loss when you escape"), QLang.translate (Planetarium.fetch.Home.atmosphere ? "atmosphere" : "sphere of influence")), GUILayout.Width (350));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, "Use the Stock ToolBar", GUILayout.Width (250));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate("Use the Stock Toolbar"), GUILayout.Width (350));
 			if (QBlizzyToolbar.isAvailable) {
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, "Use the Blizzy ToolBar", GUILayout.Width (250));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (350));
 			}
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
-			GUILayout.BeginHorizontal();
-			if (GUILayout.Button ("Close and Save",GUILayout.Height(30))) {
+			QLang.DrawLang ();
+			GUILayout.FlexibleSpace ();
+			GUILayout.BeginHorizontal ();
+			GUILayout.FlexibleSpace ();
+			if (GUILayout.Button (QLang.translate("Close"),GUILayout.Height(30))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal();
-			GUILayout.Space (5);
 			GUILayout.EndVertical();
 		}
 	}

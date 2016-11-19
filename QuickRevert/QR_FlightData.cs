@@ -305,7 +305,7 @@ namespace QuickRevert {
 			if (HighLogic.LoadedSceneIsGame && pVessel != null) {
 				string _vesselName = pVessel.vesselName;
 				Log ("You have lost the possibility to revert: " + _vesselName, "QFlightData");
-				ScreenMessages.PostScreenMessage (string.Format ("[{0}] You have lost the possibility to revert the last launch ({1}).", MOD, _vesselName), 10, ScreenMessageStyle.UPPER_CENTER);
+				ScreenMessages.PostScreenMessage (string.Format ("[{0}] " + QLang.translate("You have lost the possibility to revert the last launch") + " ({1})", MOD, _vesselName), 10, ScreenMessageStyle.UPPER_CENTER);
 			}
 			PostInitState = null;
 			PreLaunchState = null;

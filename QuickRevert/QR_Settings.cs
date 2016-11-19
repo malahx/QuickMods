@@ -42,6 +42,8 @@ namespace QuickRevert {
 		[Persistent] public bool EnableRevertLoss = false;
 		[Persistent] public bool EnableRevertKeep = true;
 
+		[Persistent] internal string Lang = "EN";
+
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);

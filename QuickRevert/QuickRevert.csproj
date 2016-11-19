@@ -51,6 +51,8 @@
     <Compile Include="QR_ToolbarBlizzy.cs" />
     <Compile Include="QR_ToolbarStock.cs" />
     <Compile Include="QR_DataReset.cs" />
+    <Compile Include="LanguageAPI.cs" />
+    <Compile Include="QR_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -64,6 +66,8 @@
     <None Include="GameData\QuickMods\QuickRevert\README.md" />
     <None Include="GameData\QuickMods\QuickRevert\Textures\BlizzyToolBar.dds" />
     <None Include="GameData\QuickMods\QuickRevert\Textures\StockToolBar.dds" />
+    <None Include="Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickRevert\Lang.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\QuickMods\" />
