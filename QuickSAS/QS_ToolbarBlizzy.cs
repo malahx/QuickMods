@@ -52,7 +52,7 @@ namespace QuickSAS
 			}
 			Button = ToolbarManager.Instance.add (QuickSAS.MOD, QuickSAS.MOD);
 			Button.TexturePath = TexturePath;
-			Button.ToolTip = QuickSAS.MOD + ": Settings";
+			Button.ToolTip = QuickSAS.MOD + ": " + QLang.translate ("Settings");
 			Button.OnClick += (e) => OnClick ();
 			Button.Visibility = new GameScenesVisibility (QBlizzyToolbar.AppScenes);
 		}

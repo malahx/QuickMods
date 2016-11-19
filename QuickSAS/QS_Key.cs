@@ -73,27 +73,27 @@ namespace QuickSAS {
 		internal static string GetText(Key key) {
 			switch (key) {
 				case Key.Current:
-					return "Stability Assist";
+					return QLang.translate ("Stability Assist");
 				case Key.Prograde:
-					return "Prograde";
+					return QLang.translate ("Prograde");
 				case Key.Retrograde:
-					return "Retrograde";
+					return QLang.translate ("Retrograde");
 				case Key.Normal:
-					return "Normal";
+					return QLang.translate ("Normal");
 				case Key.AntiNormal:
-					return "Anti-Normal";
+					return QLang.translate ("Anti-Normal");
 				case Key.RadialIn:
-					return "Radial";
+					return QLang.translate ("Radial");
 				case Key.RadialOut:
-					return "Anti-Radial";
+					return QLang.translate ("Anti-Radial");
 				case Key.TargetPrograde:
-					return "Target";
+					return QLang.translate ("Target");
 				case Key.TargetRetrograde:
-					return "Anti-Target";
+					return QLang.translate ("Anti-Target");
 				case Key.Maneuver:
-					return "Maneuver";
+					return QLang.translate ("Maneuver");
 				case Key.WarpToNode:
-					return "WarpToNode";
+					return QLang.translate ("WarpToNode");
 			}
 			return string.Empty;
 		}
@@ -216,19 +216,19 @@ namespace QuickSAS {
 		internal static void DrawSetKey(int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label (string.Format ("Press a key to select the <color=#FFFFFF><b>{0}</b></color>", GetText (SetKey)));
+			GUILayout.Label (string.Format ("{0} <color=#FFFFFF><b>{1}</b></color>", QLang.translate ("Press a key to select the"), GetText (SetKey)));
 			GUILayout.EndHorizontal ();
 			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
-			if (GUILayout.Button ("Clear Assignment", GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (QLang.translate ("Clear Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, KeyCode.None);
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button ("Default Assignment", GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (QLang.translate ("Default Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, DefaultKey (SetKey));
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button ("Cancel Assignment", GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (QLang.translate ("Cancel Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetKey = Key.None;
 			}
 			GUILayout.EndHorizontal ();
@@ -240,7 +240,7 @@ namespace QuickSAS {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label (string.Format ("{0}: <color=#FFFFFF><b>{1}</b></color>", GetText (key), CurrentKey (key)), GUILayout.Width (350));
 			GUILayout.FlexibleSpace();
-			if (GUILayout.Button ("Set", GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
+			if (GUILayout.Button (QLang.translate ("Set"), GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
 				SetKey = key;
 			}
 			GUILayout.EndHorizontal ();

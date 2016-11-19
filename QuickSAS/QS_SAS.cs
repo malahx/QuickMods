@@ -92,7 +92,7 @@ namespace QuickSAS {
 						_UT = _manNode.UT - (_estimatedBurnTime / 2) - 15;
 					}
 					if (Planetarium.GetUniversalTime () > _UT) {
-						ScreenMessages.PostScreenMessage (string.Format ("[{0}] No need to time warp!", MOD), 5, ScreenMessageStyle.UPPER_CENTER);
+						ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}", MOD, QLang.translate ("No need to time warp!")), 5, ScreenMessageStyle.UPPER_CENTER);
 						Log ("No need to time warp!", "QSAS");
 						return;
 					}
@@ -100,7 +100,7 @@ namespace QuickSAS {
 					Log (QKey.GetText (QKey.Key.WarpToNode), "QSAS");
 				}
 				else {
-					ScreenMessages.PostScreenMessage (string.Format ("[{0}] No maneuver node!", MOD), 5, ScreenMessageStyle.UPPER_CENTER);
+					ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}", MOD, QLang.translate ("No maneuver node!")), 5, ScreenMessageStyle.UPPER_CENTER);
 					Log ("No maneuver node!", "QSAS");
 				}
 			}

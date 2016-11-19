@@ -162,7 +162,7 @@ namespace QuickSAS {
 			}
 			GUI.skin = HighLogic.Skin;
 			if (QKey.SetKey != QKey.Key.None) {
-				RectSetKey = GUILayout.Window (1545156, RectSetKey, QKey.DrawSetKey, string.Format ("Set Key: {0}", QKey.GetText (QKey.SetKey)), GUILayout.ExpandHeight (true));
+				RectSetKey = GUILayout.Window (1545156, RectSetKey, QKey.DrawSetKey, string.Format ("{0} {1}", QLang.translate ("Set Key:"), QKey.GetText (QKey.SetKey)), GUILayout.ExpandHeight (true));
 				return;
 			}
 			RectSettings = GUILayout.Window (1545175, RectSettings, DrawSettings, MOD + " " + VERSION);
@@ -171,24 +171,24 @@ namespace QuickSAS {
 		void DrawSettings (int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Toolbars", GUILayout.Height (30));
+			GUILayout.Box (QLang.translate ("Toolbars"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, "Use the Stock Toolbar", GUILayout.Width (400));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
 			if (QBlizzyToolbar.isAvailable) {
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, "Use the Blizzy Toolbar", GUILayout.Width (400));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
 			}
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Options", GUILayout.Height (30));
+			GUILayout.Box (QLang.translate ("Options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-
-			QSettings.Instance.WarpToEnhanced = GUILayout.Toggle (QSettings.Instance.WarpToEnhanced, "Warp to the ½ of the burn time + 15 seconds", GUILayout.Width (400));
-
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box ("Keyboard shortcuts", GUILayout.Height (30));
+			QSettings.Instance.WarpToEnhanced = GUILayout.Toggle (QSettings.Instance.WarpToEnhanced, QLang.translate ("Warp to 15 seconds before the ½ of the burn time"), GUILayout.Width (400));
+			GUILayout.EndHorizontal ();
+			GUILayout.BeginHorizontal ();
+			GUILayout.Box (QLang.translate ("Keyboard shortcuts"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
 			QKey.DrawConfigKey (QKey.Key.Current);
 			QKey.DrawConfigKey (QKey.Key.Prograde);
@@ -201,9 +201,11 @@ namespace QuickSAS {
 			QKey.DrawConfigKey (QKey.Key.TargetRetrograde);
 			QKey.DrawConfigKey (QKey.Key.Maneuver);
 			QKey.DrawConfigKey (QKey.Key.WarpToNode);
+			QLang.DrawLang ();
+			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button ("Save & Close", GUILayout.Height (30))) {
+			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height (30))) {
 				HideSettings ();
 			}
 			GUILayout.EndHorizontal ();
