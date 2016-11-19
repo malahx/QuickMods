@@ -1,5 +1,5 @@
 ﻿/* 
-QuickHide
+QuickIVA
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using LanguagePatches;
 using UnityEngine;
 
-namespace QuickHide {
-	public class QLang : QuickHide {
+namespace QuickIVA {
+	public class QLang : QuickIVA {
 
 		static readonly string[] langs = {
 			"EN",

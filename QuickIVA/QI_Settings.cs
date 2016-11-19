@@ -37,17 +37,22 @@ namespace QuickIVA {
 		[KSPField (isPersistant = true)] bool isLoaded = false;
 
 		[Persistent] public bool Debug = true;
+
 		[Persistent] public bool Enabled = true;
 		[Persistent] public bool IVAatLaunch = false;
 		[Persistent] public bool AutoHideUI = true;
 		[Persistent] public bool DisableThirdPersonVessel = true;
 		[Persistent] public bool DisableMapView = false;
 		[Persistent] public bool DisableShowUIonIVA = true;
+
 		[Persistent] public bool StockToolBar = true;
 		[Persistent] public bool BlizzyToolBar = true;
+
 		[Persistent] public bool KeyEnabled = true;
 		[Persistent] public string KeyRecovery = "end";
 		[Persistent] public string KeyEVA = "home";
+
+		[Persistent] internal string Lang = "EN";
 
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());

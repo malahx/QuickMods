@@ -46,7 +46,7 @@ namespace QuickIVA {
 			}
 			Button = ToolbarManager.Instance.add (QuickIVA.MOD, QuickIVA.MOD);
 			Button.TexturePath = TexturePath;
-			Button.ToolTip = QuickIVA.MOD + ": Settings";
+			Button.ToolTip = QuickIVA.MOD + ": " + QLang.translate("Settings");
 			Button.OnClick += (e) => OnClick ();
 		 	Button.Visibility = new GameScenesVisibility(AppScenes);
 		}

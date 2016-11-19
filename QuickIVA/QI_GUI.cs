@@ -90,81 +90,67 @@ namespace QuickIVA {
 		internal void OnGUI() {
 			if (WindowSettings) {
 				GUI.skin = HighLogic.Skin;
-				RectSettings = GUILayout.Window (1584653, RectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight(true));
+				RectSettings = GUILayout.Window (1584653, RectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.ExpandHeight(true));
 			}
 		}
 
 		void DrawSettings(int id) {
-			int _rect = 145;
 			GUILayout.BeginVertical();
 			GUILayout.BeginHorizontal();
-			GUILayout.Box("General Options",GUILayout.Height(30));
+			GUILayout.Box(QLang.translate("General Options"),GUILayout.Height(30));
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, "Enable Automatic IVA", GUILayout.Width (275));
-			QSettings.Instance.KeyEnabled = GUILayout.Toggle (QSettings.Instance.KeyEnabled, "Enable Keyboard shortcuts", GUILayout.Width (225));
+			QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, QLang.translate ("Enable Automatic IVA"), GUILayout.Width (275));
+			QSettings.Instance.KeyEnabled = GUILayout.Toggle (QSettings.Instance.KeyEnabled, QLang.translate ("Enable Keyboard shortcuts"), GUILayout.Width (225));
 			GUILayout.EndHorizontal ();
-			GUILayout.Space (5);
 			if (QBlizzyToolbar.isAvailable) {
-				_rect += 39;
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, "Use the Stock ToolBar", GUILayout.Width (275));
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, "Use the Blizzy ToolBar", GUILayout.Width (225));
+				QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (275));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (225));
 				GUILayout.EndHorizontal ();
-				GUILayout.Space (5);
 			}
 			if (QSettings.Instance.Enabled) {
-				_rect += 140;
 				GUILayout.BeginHorizontal();
-				GUILayout.Box("IVA Options",GUILayout.Height(30));
+				GUILayout.Box(QLang.translate ("IVA Options"),GUILayout.Height(30));
 				GUILayout.EndHorizontal();
-				GUILayout.Space(5);
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.IVAatLaunch = GUILayout.Toggle (QSettings.Instance.IVAatLaunch, "IVA at Launch (if disabled, it will be IVA at the Loading)", GUILayout.Width (250));
+				QSettings.Instance.IVAatLaunch = GUILayout.Toggle (QSettings.Instance.IVAatLaunch, QLang.translate ("IVA at Launch, if disabled, it will be IVA at the Loading"), GUILayout.Width (250));
 				GUILayout.EndHorizontal ();
-				GUILayout.Space (5);
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.AutoHideUI = GUILayout.Toggle (QSettings.Instance.AutoHideUI, "Automatic Hide UI on IVA", GUILayout.Width (275));
+				QSettings.Instance.AutoHideUI = GUILayout.Toggle (QSettings.Instance.AutoHideUI, QLang.translate ("Automatic Hide UI on IVA"), GUILayout.Width (275));
 				if (QSettings.Instance.AutoHideUI) {
-					QSettings.Instance.DisableShowUIonIVA = GUILayout.Toggle (QSettings.Instance.DisableShowUIonIVA, "Disable UI on IVA", GUILayout.Width (225));
+					QSettings.Instance.DisableShowUIonIVA = GUILayout.Toggle (QSettings.Instance.DisableShowUIonIVA, QLang.translate ("Disable UI on IVA"), GUILayout.Width (225));
 				} else {
 					QSettings.Instance.DisableShowUIonIVA = false;
 				}
 				GUILayout.EndHorizontal ();
-				GUILayout.Space (5);
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.DisableThirdPersonVessel = GUILayout.Toggle (QSettings.Instance.DisableThirdPersonVessel, "Disable 3rd person view on vessel", GUILayout.Width (275));
+				QSettings.Instance.DisableThirdPersonVessel = GUILayout.Toggle (QSettings.Instance.DisableThirdPersonVessel, QLang.translate ("Disable 3rd person view on vessel"), GUILayout.Width (275));
 				if (QSettings.Instance.DisableThirdPersonVessel && QSettings.Instance.DisableShowUIonIVA) {
-					QSettings.Instance.DisableMapView = GUILayout.Toggle (QSettings.Instance.DisableMapView, "Disable MAP View shortcut", GUILayout.Width (225));
+					QSettings.Instance.DisableMapView = GUILayout.Toggle (QSettings.Instance.DisableMapView, QLang.translate ("Disable MAP View shortcut"), GUILayout.Width (225));
 				} else {
 					QSettings.Instance.DisableMapView = false;
 				}
 				GUILayout.EndHorizontal ();
-				GUILayout.Space (5);
 			}
 			if (QSettings.Instance.KeyEnabled) {
-				_rect += 101;
 				GUILayout.BeginHorizontal();
-				GUILayout.Box("Keyboard Shortcuts",GUILayout.Height(30));
+				GUILayout.Box(QLang.translate ("Keyboard Shortcuts"),GUILayout.Height(30));
 				GUILayout.EndHorizontal();
-				GUILayout.Space(5);
 				GUILayout.BeginHorizontal();
-				GUILayout.Label ("Key to recovery: ", GUILayout.ExpandWidth(true));
-				GUILayout.Space(5);
+				GUILayout.Label (QLang.translate ("Key to recovery:"), GUILayout.ExpandWidth(true));
 				QSettings.Instance.KeyRecovery = GUILayout.TextField (QSettings.Instance.KeyRecovery, GUILayout.Width (225));
 				GUILayout.EndHorizontal();
-				GUILayout.Space(5);
 				GUILayout.BeginHorizontal();
-				GUILayout.Label ("Key to EVA: ", GUILayout.ExpandWidth(true));
-				GUILayout.Space(5);
+				GUILayout.Label (QLang.translate ("Key to EVA:"), GUILayout.ExpandWidth(true));
 				QSettings.Instance.KeyEVA = GUILayout.TextField (QSettings.Instance.KeyEVA, GUILayout.Width (225));
 				GUILayout.EndHorizontal();
-				GUILayout.Space(5);
 			}
+			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
-			GUILayout.BeginHorizontal();
-			if (GUILayout.Button ("Close",GUILayout.Height(30))) {
+			GUILayout.BeginHorizontal ();
+			GUILayout.FlexibleSpace ();
+			if (GUILayout.Button (QLang.translate ("Close"),GUILayout.Height(30))) {
 				try {
 					Input.GetKey(QSettings.Instance.KeyRecovery);
 				} catch {
@@ -180,9 +166,7 @@ namespace QuickIVA {
 				Settings ();
 			}
 			GUILayout.EndHorizontal();
-			GUILayout.Space(5);
 			GUILayout.EndVertical();
-			RectSettings.height = _rect;
 		}
 	}
 }
