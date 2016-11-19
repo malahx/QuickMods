@@ -186,7 +186,7 @@ namespace QuickHide {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (QLang.translate ("Mods"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.Width (880), GUILayout.Height (300));
+			scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.ExpandWidth(true), GUILayout.Height (300));
 			DrawAppLauncherButtons ();
 			GUILayout.EndScrollView ();
 			QLang.DrawLang ();

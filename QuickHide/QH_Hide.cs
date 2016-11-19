@@ -240,20 +240,20 @@ namespace QuickHide {
 				GUILayout.Label (string.Format ("<b>{0}</b>", _qMods.ModName), GUILayout.Width (200));
 				bool _CanBePin = _qMods.CanBePin;
 				GUILayout.FlexibleSpace ();
-				_CanBePin = GUILayout.Toggle (_CanBePin, QLang.translate ("Can be pin for the AutoHide"), GUILayout.Width (225));
+				_CanBePin = GUILayout.Toggle (_CanBePin, QLang.translate ("Can be pin for the AutoHide"), GUILayout.Width (300));
 				if (_CanBePin != _qMods.CanBePin) {
 					_qMods.CanBePin = _CanBePin;
 				}
 				bool _CanBeHide = _qMods.CanBeHide;
 				GUILayout.FlexibleSpace ();
-				_CanBeHide = GUILayout.Toggle (_CanBeHide, QLang.translate ("Can be hidden"), GUILayout.Width (140));
+				_CanBeHide = GUILayout.Toggle (_CanBeHide, QLang.translate ("Can be hidden"), GUILayout.Width (200));
 				if (_CanBeHide != _qMods.CanBeHide) {
 					_qMods.CanBeHide = _CanBeHide;
 				}
 				if (_CanBeHide) {
 					bool _CanSetFalse = _qMods.CanSetFalse;
 					GUILayout.FlexibleSpace ();
-					_CanSetFalse = GUILayout.Toggle (_CanSetFalse, QLang.translate ("Set to False the button on hide"), GUILayout.Width (250));
+					_CanSetFalse = GUILayout.Toggle (_CanSetFalse, QLang.translate ("Set to False the button on hide"), GUILayout.Width (400));
 					if (_CanSetFalse != _qMods.CanSetFalse) {
 						_qMods.CanSetFalse = _CanSetFalse;
 					}
