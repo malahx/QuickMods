@@ -123,6 +123,7 @@ v0.10 - 2015.03.21
 * to Enceos and 5thHorseman to have requested this mod,
 * to theSpeare for his SceneJumper mod,
 * to blizzy for his Toolbar mod,
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to Matthieu James for the Faenza icon theme,
 * to all mods developers which make this game really huge,
 * to my friend Neimad who corrects my bad english ...
@@ -135,5 +136,6 @@ v0.10 - 2015.03.21
 * http://kerbal.curseforge.com/ksp-mods/230004-quickgoto
 * https://github.com/malahx/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * SceneJumper: http://forum.kerbalspaceprogram.com/threads/66116
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

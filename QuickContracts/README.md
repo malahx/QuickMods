@@ -109,6 +109,7 @@ v0.10 - 2015.01.27
 
 * to 5thHorseman and tal2410 to have requested this mod,
 * to malkuth for his Mission Controller 2 mod,
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to Matthieu James for the Faenza icon theme,
 * to all other mod developers which make this game really huge,
 * to my friend Neimad who corrects my bad english ...
@@ -120,6 +121,7 @@ v0.10 - 2015.01.27
 * http://spacedock.info/mod/104/QuickContracts
 * http://kerbal.curseforge.com/ksp-mods/227337-quickcontracts
 * https://github.com/malahx/QuickMods
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Mission Controller 2: http://forum.kerbalspaceprogram.com/threads/43645
 * Rejector: http://forum.kerbalspaceprogram.com/threads/108316
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

@@ -129,6 +129,7 @@ v1.00 - 2015.05.08
 #### Thanks!
 
 * to curiousepic and 5thHorseman to have requested this mod,
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to sirkut for his mod Magic Smoke Industries DevHelper,
 * to all other mod developers which make this game really huge,
 * to my friend Neimad who corrects my bad english ...
@@ -139,4 +140,5 @@ v1.00 - 2015.05.08
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/110/QuickStart
 * https://github.com/malahx/QuickMods
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Magic Smoke Industries DevHelper: http://forum.kerbalspaceprogram.com/threads/60880
