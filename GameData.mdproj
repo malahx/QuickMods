@@ -144,5 +144,6 @@
     <None Include="GameData\QuickMods\QuickSAS\Lang.cfg" />
     <None Include="GameData\QuickMods\QuickSearch\Lang.cfg" />
     <None Include="GameData\QuickMods\QuickStart\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickRevert\PluginData\empty" />
   </ItemGroup>
 </Project>

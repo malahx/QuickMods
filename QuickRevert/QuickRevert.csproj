@@ -68,6 +68,7 @@
     <None Include="GameData\QuickMods\QuickRevert\Textures\StockToolBar.dds" />
     <None Include="Lang.cfg" />
     <None Include="GameData\QuickMods\QuickRevert\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickRevert\PluginData\empty" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\QuickMods\" />
