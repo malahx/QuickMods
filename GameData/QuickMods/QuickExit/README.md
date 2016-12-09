@@ -43,6 +43,9 @@ Delete the QuickMods/QuickExit folder in your KSP/GameData folder.
 
 #### Changelog
 
+v2.11 - 2016.12.07
+* Compiled against KSP 1.2.2.1622
+
 v2.10 - 2016.11.19
 * New: Added support of the LanguagePatches,
 * I've translated it to french, if you want more, you can translate and PR ;)
@@ -114,6 +117,7 @@ v1.00 - 2014.11.16
 
 * to jafo38506 to have requested this mod,
 * to blizzy for his Toolbar mod,
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to Matthieu James for the Faenza icon theme,
 * to all other mod developers which make this game really huge,
 * to my friend Neimad who corrects my bad english ...
@@ -125,5 +129,6 @@ v1.00 - 2014.11.16
 * http://spacedock.info/mod/105/QuickExit
 * http://kerbal.curseforge.com/ksp-mods/225624-quickexit
 * https://github.com/malahx/QuickMods
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

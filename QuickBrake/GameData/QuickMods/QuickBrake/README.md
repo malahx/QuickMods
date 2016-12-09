@@ -34,6 +34,9 @@ Delete the QuickMods/QuickBrake folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.31 - 2016.12.07
+* Compiled against KSP 1.2.2.1622
+
 v1.30 - 2016.11.19
 * New: Added support of the LanguagePatches,
 * Fix: Disabled useless selection,
@@ -92,6 +95,7 @@ v1.00 - 2015.05.08
 
 * to UnanimousCoward to have requested this mod,
 * to blizzy for his Toolbar mod,
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to Matthieu James for the Faenza icon theme,
 * to all other mod developers which make this game really huge,
 * to my friend Neimad who corrects my bad english ...
@@ -103,4 +107,5 @@ v1.00 - 2015.05.08
 * http://spacedock.info/mod/103/QuickBrake
 * https://github.com/malahx/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

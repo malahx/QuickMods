@@ -34,6 +34,9 @@ Delete the QuickMods/QuickBrake folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.31 - 2016.12.09
+* Compiled against KSP 1.2.2.1622
+
 v1.30 - 2016.11.19
 * New: Added support of the LanguagePatches,
 * Fix: Disabled useless selection,

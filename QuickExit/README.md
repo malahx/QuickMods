@@ -43,6 +43,9 @@ Delete the QuickMods/QuickExit folder in your KSP/GameData folder.
 
 #### Changelog
 
+v2.11 - 2016.12.09
+* Compiled against KSP 1.2.2.1622
+
 v2.10 - 2016.11.19
 * New: Added support of the LanguagePatches,
 * I've translated it to french, if you want more, you can translate and PR ;)

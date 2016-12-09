@@ -57,6 +57,9 @@ Delete the QuickMods/QuickSearch folder in your KSP/GameData folder.
 
 #### Changelog
 
+v3.11 - 2016.12.07
+* Compiled against KSP 1.2.2.1622
+
 v3.10 - 2016.11.19
 * New: Added support of the LanguagePatches,
 * I've translated it to french, if you want more, you can translate and PR ;)
@@ -160,6 +163,7 @@ v0.10 - 2015.01.02
 * to Magico13 for his Tree Toppler,
 * to BlackNecro for his awesome PartCatalog,
 * to Crzyrndm for his Filter Extensions,
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to blizzy for his Toolbar mod, 
 * to Banbury for his Part Search,
 * to MrHappyFace for his PartSearch,
@@ -175,6 +179,7 @@ v0.10 - 2015.01.02
 * http://spacedock.info/mod/101/QuickSearch
 * http://kerbal.curseforge.com/ksp-mods/226668-quicksearch
 * https://github.com/malahx/QuickMods
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Tree Toppler: http://forum.kerbalspaceprogram.com/index.php?/topic/97033-
 * PartCatalog: http://forum.kerbalspaceprogram.com/threads/35018
 * Filter Extensions: http://forum.kerbalspaceprogram.com/threads/104231

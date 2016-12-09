@@ -49,6 +49,9 @@ Delete the QuickMods/QuickIVA folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.21 - 2016.12.07
+* Compiled against KSP 1.2.2.1622
+
 v1.20 - 2016.11.19
 * New: Added support of the LanguagePatches,
 * I've translated it to french, if you want more, you can translate and PR ;)
@@ -117,6 +120,7 @@ v1.00 - 2015.02.07
 * to Alshain and monstah to have requested this mod,
 * to Mihara and MOARdv for the awesome mod RasterPropMonitor,
 * to Tabakhase for the mod Probe Control Room,
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to blizzy for his Toolbar mod,
 * to all mods developers which make this game really huge,
 * to my friend Neimad who corrects my bad english ...
@@ -129,5 +133,6 @@ v1.00 - 2015.02.07
 * http://kerbal.curseforge.com/ksp-mods/227809-quickiva
 * https://github.com/malahx/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * RasterPropMonitor: http://forum.kerbalspaceprogram.com/threads/117471
 * Probe Control Room: http://forum.kerbalspaceprogram.com/threads/67450
