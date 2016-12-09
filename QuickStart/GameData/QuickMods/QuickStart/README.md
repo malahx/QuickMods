@@ -34,7 +34,7 @@ Delete the QuickMods/QuickStart folder in your KSP/GameData folder.
 
 #### Changelog
 
-v2.11 - 2016.12.07
+v2.11 - 2016.12.09
 * Compiled against KSP 1.2.2.1622
 
 v2.10 - 2016.11.19

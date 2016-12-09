@@ -34,7 +34,7 @@ Delete the QuickMods/QuickFineControl folder in your KSP/GameData folder.
 
 #### Changelog
 
-v1.05 - 2016.12.07
+v1.05 - 2016.12.09
 * Compiled against KSP 1.2.2.1622
 
 v1.04 - 2016.11.02

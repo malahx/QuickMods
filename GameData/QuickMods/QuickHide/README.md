@@ -40,7 +40,7 @@ Delete the QuickMods/QuickHide folder in your KSP/GameData folder.
 
 #### Changelog
 
-v3.21 - 2016.12.07
+v3.21 - 2016.12.09
 * Compiled against KSP 1.2.2.1622
 
 v3.20 - 2016.11.19

@@ -43,7 +43,7 @@ Delete the QuickMods/QuickMute folder in your KSP/GameData folder.
 
 #### Changelog
 
-v1.21 - 2016.12.07
+v1.21 - 2016.12.09
 * Fix: Corrected the multi instancing,
 * Fix: Corrected the wrong sound level after a mute on VAB/SPH,
 * Compiled against KSP 1.2.2.1622

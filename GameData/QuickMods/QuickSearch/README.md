@@ -57,7 +57,7 @@ Delete the QuickMods/QuickSearch folder in your KSP/GameData folder.
 
 #### Changelog
 
-v3.11 - 2016.12.07
+v3.11 - 2016.12.09
 * Compiled against KSP 1.2.2.1622
 
 v3.10 - 2016.11.19
