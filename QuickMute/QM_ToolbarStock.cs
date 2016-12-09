@@ -20,8 +20,8 @@ using KSP.UI.Screens;
 using UnityEngine;
 
 namespace QuickMute {
-	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
-	public class QStockToolbar : MonoBehaviour {
+
+	public partial class QStockToolbar {
 
 		internal static bool Enabled {
 			get {
@@ -40,7 +40,7 @@ namespace QuickMute {
 		static string TexturePathMute = QuickMute.relativePath + "/Textures/StockToolBar_mute";
 
 		void OnClick() { 
-			QuickMute.Instance.Mute ();
+			QGUI.Instance.Mute ();
 		}
 
 		Texture2D GetTexture {
@@ -62,7 +62,7 @@ namespace QuickMute {
 			private set;
 		}
 
-		void Awake() {
+		protected override void Awake() {
 			if (Instance != null) {
 				Destroy (this);
 				return;
@@ -72,6 +72,7 @@ namespace QuickMute {
 			GameEvents.onGUIApplicationLauncherReady.Add (AppLauncherReady);
 			GameEvents.onGUIApplicationLauncherDestroyed.Add (AppLauncherDestroyed);
 			GameEvents.onLevelWasLoadedGUIReady.Add (AppLauncherDestroyed);
+			Log ("Awake", "QStockToolbar");
 		}
 			
 		void AppLauncherReady() {
@@ -92,10 +93,11 @@ namespace QuickMute {
 			Destroy ();
 		}
 
-		void OnDestroy() {
+		protected override void OnDestroy() {
 			GameEvents.onGUIApplicationLauncherReady.Remove (AppLauncherReady);
 			GameEvents.onGUIApplicationLauncherDestroyed.Remove (AppLauncherDestroyed);
 			GameEvents.onLevelWasLoadedGUIReady.Remove (AppLauncherDestroyed);
+			Log ("OnDestroy", "QStockToolbar");
 		}
 
 		void Init() {
@@ -104,8 +106,9 @@ namespace QuickMute {
 			}
 			if (appLauncherButton == null) {
 				appLauncherButton = ApplicationLauncher.Instance.AddModApplication (OnClick, OnClick, null, null, null, null, AppScenes, GetTexture);
-				appLauncherButton.onRightClick = delegate { QuickMute.Instance.Settings (); };
+				appLauncherButton.onRightClick = delegate { QGUI.Instance.Settings (); };
 			}
+			Log ("Init", "QStockToolbar");
 		}
 
 		void Destroy() {
@@ -113,6 +116,7 @@ namespace QuickMute {
 				ApplicationLauncher.Instance.RemoveModApplication (appLauncherButton);
 				appLauncherButton = null;
 			}
+			Log ("Destroy", "QStockToolbar");
 		}
 
 		internal void Set(bool SetTrue, bool force = false) {
@@ -130,6 +134,7 @@ namespace QuickMute {
 					}
 				}
 			}
+			Log ("Set", "QStockToolbar");
 		}
 
 		internal void Reset() {
@@ -142,6 +147,7 @@ namespace QuickMute {
 			if (Enabled) {
 				Init ();
 			}
+			Log ("Reset", "QStockToolbar");
 		}
 
 		internal void Refresh() {
@@ -154,6 +160,7 @@ namespace QuickMute {
 				}
 				appLauncherButton.SetTexture (GetTexture);
 			}
+			Log ("Refresh", "QStockToolbar");
 		}
 	}
 }

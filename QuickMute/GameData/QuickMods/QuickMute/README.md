@@ -43,6 +43,11 @@ Delete the QuickMods/QuickMute folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.21 - 2016.12.07
+* Fix: Corrected the multi instancing,
+* Fix: Corrected the wrong sound level after a mute on VAB/SPH,
+* Compiled against KSP 1.2.2.1622
+
 v1.20 - 2016.11.19
 * New: Added a settings window (to access : right click on the stocktoolbar),
 * New: Added support of the LanguagePatches,
@@ -117,6 +122,7 @@ v1.00 - 2015.01.18
 #### Thanks!
 
 * to BinaryBad to have requested this mod,
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to blizzy for his Toolbar mod,
 * to Matthieu James for the Faenza icon theme,
 * to all other mod developers which make this game really huge,
@@ -130,4 +136,5 @@ v1.00 - 2015.01.18
 * http://kerbal.curseforge.com/ksp-mods/227124-quickmute
 * https://github.com/malahx/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

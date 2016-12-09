@@ -30,7 +30,7 @@ namespace QuickMute {
 		string TexturePathConf = QuickMute.relativePath + "/Textures/BlizzyConf";
 
 		void OnClick() { 
-			QuickMute.Instance.Mute ();
+			QGUI.Instance.Mute ();
 		}
 
 		string TexturePath {
@@ -63,8 +63,9 @@ namespace QuickMute {
 				ButtonConf = ToolbarManager.Instance.add (QuickMute.MOD + "Conf", QuickMute.MOD + "Conf");
 				ButtonConf.TexturePath = TexturePathConf;
 				ButtonConf.ToolTip = QuickMute.MOD + ": " + QLang.translate ("Settings");
-				ButtonConf.OnClick += (e) => QuickMute.Instance.Settings ();
+				ButtonConf.OnClick += (e) => QGUI.Instance.Settings ();
 			}
+			QuickMute.Log ("Start", "QBlizzyToolbar");
 		}
 
 		internal void OnDestroy() {
@@ -81,6 +82,7 @@ namespace QuickMute {
 				ButtonConf.Destroy ();
 				ButtonConf = null;
 			}
+			QuickMute.Log ("OnDestroy", "QBlizzyToolbar");
 		}
 
 		internal void Refresh() {
@@ -88,6 +90,7 @@ namespace QuickMute {
 				return;
 			}
 			Button.TexturePath = TexturePath;
+			QuickMute.Log ("Refresh", "QBlizzyToolbar");
 		}
 
 		internal void Reset() {
@@ -96,6 +99,7 @@ namespace QuickMute {
 			} else {
 				OnDestroy ();
 			}
+			QuickMute.Log ("Reset", "QBlizzyToolbar");
 		}
 	}
 }

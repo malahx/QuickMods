@@ -16,90 +16,51 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
 
 namespace QuickMute {
-	public partial class QuickMute {
-	
-		string Icon_TexturePathSound = MOD + "/Textures/Icon_sound";
-		string Icon_TexturePathMute = MOD + "/Textures/Icon_mute";
+	public class QMute : QuickMute {
 
-		Coroutine wait;
-
-		//private Dictionary<string, float> audioVolume = new Dictionary<string, float>();
-
-		protected Texture2D Icon_Texture {
+		static Dictionary<string, float> audioVolume = new Dictionary<string, float> ();
+		static AudioSource[] audioSources;
+		static AudioSource[] AudioSources {
 			get {
-				return GameDatabase.Instance.GetTexture((Muted ? Icon_TexturePathMute : Icon_TexturePathSound), false);
+				if (audioSources == null) {
+					audioSources = (AudioSource[])Resources.FindObjectsOfTypeAll (typeof (AudioSource));
+				}
+				return audioSources;
 			}
 		}
 
-		protected bool Draw = false;
-
-		protected bool Muted {
-			get {
-				return QSettings.Instance.Muted;
-			}
-			set {
-				QSettings.Instance.Muted = value;
-			}
-		}
-
-		protected void VerifyMute() {
-			if (!Muted) {
+		internal static void Verify() {
+			if (!QSettings.Instance.Muted) {
 				return;
 			}
-			audioSourceMute ();
-			Log ("VerifyMute", "QuickMute");
+			refreshAudioSource ();
+			Log ("Verify", "QMute");
 		}
 
-		void audioSourceMute() {
-			AudioSource[] _audios = (AudioSource[])Resources.FindObjectsOfTypeAll (typeof(AudioSource));
+		internal static void refreshAudioSource() {
+			AudioSource[] _audios = AudioSources;
 			for (int _i = _audios.Length - 1; _i >= 0; --_i) {
 				AudioSource _audio = _audios[_i];
-				/*if (Muted) {
+				if (QSettings.Instance.Muted) {
 					audioVolume [_audio.name] = _audio.volume;
 					_audio.volume = 0;
 				} else {
 					if (audioVolume.ContainsKey (_audio.name)) {
 						_audio.volume = audioVolume [_audio.name];
 					}
-				}*/
-				_audio.mute = Muted;
+				}
 			}
-			Log ("audioSourceMute", "QuickMute");
+			Log ("refreshAudioSource", "QMute");
 		}
 
-		public void Mute() {
-			Mute (!Muted);
-			Draw = true;
-			if (wait != null) {
-				StopCoroutine (wait);
-			}
-			wait = StartCoroutine (Wait (5));
-			QSettings.Instance.Save ();
-			Log ("Mute()", "QuickMute");
-		}
-
-		IEnumerator Wait(int seconds) {
-			yield return new WaitForSeconds (seconds);
-			Draw = false;
-			wait = null;
-			Log ("Wait", "QuickMute");
-		}
-
-		public void Mute(bool mute) {
-			Muted = mute;
-			if (QuickMute.BlizzyToolbar != null) {
-				QuickMute.BlizzyToolbar.Refresh ();
-			}
-			if (QStockToolbar.Instance != null) {
-				QStockToolbar.Instance.Refresh ();
-			}
-			audioSourceMute ();
-			if (Muted) {
+		internal static void refresh(bool mute) {
+			refreshAudioSource ();
+			if (mute) {
 				SaveSettingsVolume ();
 				ResetSettingsVolume ();
 				MusicLogic.SetVolume (0);
@@ -108,20 +69,20 @@ namespace QuickMute {
 				ResetSavedVolume ();
 				MusicLogic.SetVolume (GameSettings.MUSIC_VOLUME);
 			}
-			Log ((Muted ? "Mute" : "Unmute"));
+			Log ("refresh: " + (QSettings.Instance.Muted ? "Mute" : "Unmute"), "QMute");
 		}
 
-		bool VolumeSettingsIsZero {
+		static bool VolumeSettingsIsZero {
 			get {
 				return GameSettings.AMBIENCE_VOLUME == 0 && GameSettings.MUSIC_VOLUME == 0 && GameSettings.SHIP_VOLUME == 0 && GameSettings.UI_VOLUME == 0 && GameSettings.VOICE_VOLUME == 0;
 			}
 		}
-		bool VolumeSavedIsZero {
+		static bool VolumeSavedIsZero {
 			get {
 				return QSettings.Instance.AMBIENCE_VOLUME == 0 && QSettings.Instance.MUSIC_VOLUME == 0 && QSettings.Instance.SHIP_VOLUME == 0 && QSettings.Instance.UI_VOLUME == 0 && QSettings.Instance.VOICE_VOLUME == 0;
 			}
 		}
-		void SaveSettingsVolume() {
+		static void SaveSettingsVolume() {
 			if (!VolumeSettingsIsZero) {
 				QSettings.Instance.AMBIENCE_VOLUME = GameSettings.AMBIENCE_VOLUME;
 				QSettings.Instance.MUSIC_VOLUME = GameSettings.MUSIC_VOLUME;
@@ -130,7 +91,7 @@ namespace QuickMute {
 				QSettings.Instance.VOICE_VOLUME = GameSettings.VOICE_VOLUME;
 			}
 		}
-		void LoadSavedVolume() {
+		static void LoadSavedVolume() {
 			if (!VolumeSavedIsZero) {
 				GameSettings.AMBIENCE_VOLUME = QSettings.Instance.AMBIENCE_VOLUME;
 				GameSettings.MUSIC_VOLUME = QSettings.Instance.MUSIC_VOLUME;
@@ -139,7 +100,7 @@ namespace QuickMute {
 				GameSettings.VOICE_VOLUME = QSettings.Instance.VOICE_VOLUME;
 			}
 		}
-		void ResetSavedVolume() {
+		static void ResetSavedVolume() {
 			if (!VolumeSettingsIsZero) {
 				QSettings.Instance.AMBIENCE_VOLUME = 0;
 				QSettings.Instance.MUSIC_VOLUME = 0;
@@ -148,7 +109,7 @@ namespace QuickMute {
 				QSettings.Instance.VOICE_VOLUME = 0;
 			}
 		}
-		void ResetSettingsVolume() {
+		static void ResetSettingsVolume() {
 			if (!VolumeSavedIsZero) {
 				GameSettings.AMBIENCE_VOLUME = 0;
 				GameSettings.MUSIC_VOLUME = 0;

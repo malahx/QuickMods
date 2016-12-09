@@ -16,12 +16,30 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using System.Collections;
 using UnityEngine;
 
 namespace QuickMute {
-	public partial class QuickMute {
+	public partial class QGUI {
+		
+		internal static QGUI Instance;
+
+		[KSPField (isPersistant = true)] internal static QBlizzyToolbar BlizzyToolbar;
 
 		internal bool WindowSettings = false;
+
+		internal bool Draw = false;
+
+		Coroutine wait;
+
+		string Icon_TexturePathSound = MOD + "/Textures/Icon_sound";
+		string Icon_TexturePathMute = MOD + "/Textures/Icon_mute";
+
+		Texture2D Icon_Texture {
+			get {
+				return GameDatabase.Instance.GetTexture ((QSettings.Instance.Muted ? Icon_TexturePathMute : Icon_TexturePathSound), false);
+			}
+		}
 
 		Rect rectSettings = new Rect();
 		Rect RectSettings {
@@ -45,6 +63,67 @@ namespace QuickMute {
 			set {
 				rectSetKey = value;
 			}
+		}
+
+		IEnumerator Wait(int seconds) {
+			yield return new WaitForSeconds (seconds);
+			QGUI.Instance.Draw = false;
+			wait = null;
+			Log ("Wait", "QGUI");
+		}
+
+		protected override void Awake() {
+			Instance = this;
+			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
+			GameEvents.onVesselGoOffRails.Add (OnVesselGoOffRails);
+			Log ("Awake", "QGUI");
+		}
+
+		protected override void Start() {
+			BlizzyToolbar.Start ();
+			if (QSettings.Instance.Muted) {
+				Mute (true);
+			}
+			Log ("Start", "QGUI");
+		}
+
+		protected override void OnDestroy() {
+			BlizzyToolbar.OnDestroy ();
+			GameEvents.onVesselGoOffRails.Remove (OnVesselGoOffRails);
+			Log ("OnDestroy", "QGUI");
+		}
+
+		void OnVesselGoOffRails(Vessel vessel) {
+			QMute.Verify ();
+			Log ("OnVesselGoOffRails", "QGUI");
+		}
+
+		public void Mute() {
+			Mute (!QSettings.Instance.Muted);
+		}
+
+		void Mute(bool mute) {
+			QSettings.Instance.Muted = mute;
+			if (BlizzyToolbar != null) {
+				BlizzyToolbar.Refresh ();
+			}
+			if (QStockToolbar.Instance != null) {
+				QStockToolbar.Instance.Refresh ();
+			}
+			QMute.refresh (mute);
+			Draw = true;
+			if (wait != null) {
+				StopCoroutine (wait);
+			}
+			wait = StartCoroutine (Wait (5));
+			QSettings.Instance.Save ();
+			Log ("Mute()", "QGUI");
+		}
+
+		void OnApplicationQuit() {
+			Mute (false);
+			GameSettings.SaveSettings ();
+			Log ("OnApplicationQuit", "QGUI");
 		}
 
 		void Lock(bool activate, ControlTypes Ctrl) {
@@ -77,7 +156,7 @@ namespace QuickMute {
 			if (InputLockManager.GetControlLock ("EditorLock" + MOD) != ControlTypes.None) {
 				InputLockManager.RemoveControlLock ("EditorLock" + MOD);
 			}
-			Log ("Lock " + activate, "QExit");
+			Log ("Lock " + activate, "QGUI");
 		}
 
 		public void Settings () {

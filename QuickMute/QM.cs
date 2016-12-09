@@ -19,13 +19,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Reflection;
 using UnityEngine;
 
+
 namespace QuickMute {
+	
+	[KSPAddon (KSPAddon.Startup.EveryScene, false)]
+	public partial class QGUI : QuickMute { }
 
-	[KSPAddon(KSPAddon.Startup.EveryScene, false)]
+	[KSPAddon (KSPAddon.Startup.MainMenu, true)]
+	public partial class QStockToolbar : QuickMute { }
+
 	public partial class QuickMute : MonoBehaviour {
-
-		internal static QuickMute Instance;
-		[KSPField(isPersistant = true)] internal static QBlizzyToolbar BlizzyToolbar;
 
 		public readonly static string VERSION = Assembly.GetExecutingAssembly ().GetName ().Version.Major + "." + Assembly.GetExecutingAssembly ().GetName ().Version.Minor + Assembly.GetExecutingAssembly ().GetName ().Version.Build;
 		public readonly static string MOD = Assembly.GetExecutingAssembly ().GetName ().Name;
@@ -40,50 +43,33 @@ namespace QuickMute {
 			}
 			if (Title == null) {
 				Title = MOD;
-			} else {
+			}
+			else {
 				Title = string.Format ("{0}({1})", MOD, Title);
 			}
 			Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
 		}
+
 		internal static void Warning(string String, string Title = null) {
 			if (Title == null) {
 				Title = MOD;
-			} else {
+			}
+			else {
 				Title = string.Format ("{0}({1})", MOD, Title);
 			}
 			Debug.LogWarning (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
 		}
 
-		void Awake() {
-			Instance = this;
-			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
-			GameEvents.onVesselGoOffRails.Add(OnVesselGoOffRails);
-			Log ("Awake", "QuickMute");
+		protected virtual void Awake() {
+			Log ("Awake");
 		}
 
-		void Start() {
-			BlizzyToolbar.Start ();
-			if (Muted) {
-				Mute (true);
-			}
-			Log ("Start", "QuickMute");
+		protected virtual void Start() {
+			Log ("Start");
 		}
 
-		void OnDestroy() {
-			BlizzyToolbar.OnDestroy ();
-			GameEvents.onVesselGoOffRails.Remove(OnVesselGoOffRails);
-			Log ("OnDestroy", "QuickMute");
-		}
-
-		void OnVesselGoOffRails(Vessel vessel) {
-			VerifyMute ();
-			Log ("OnVesselGoOffRails", "QuickMute");
-		}
-
-		void OnApplicationQuit() {
-			Mute (false);
-			GameSettings.SaveSettings ();
-			Log ("OnApplicationQuit", "QuickMute");
+		protected virtual void OnDestroy() {
+			Log ("OnDestroy");
 		}
 	}
 }

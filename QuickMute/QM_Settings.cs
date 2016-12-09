@@ -20,7 +20,7 @@ using System.IO;
 using UnityEngine;
 
 namespace QuickMute {
-	public class QSettings : MonoBehaviour {
+	public class QSettings : QuickMute {
 
 		[KSPField(isPersistant = true)] static readonly QSettings instance = new QSettings ();
 		public static QSettings Instance {
@@ -55,7 +55,7 @@ namespace QuickMute {
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);
-			QuickMute.Log ("Settings Saved", "QSettings",  true);
+			Log ("Settings Saved", "QSettings",  true);
 		}
 		public void Load() {
 			if (File.Exists (FileConfig)) {
@@ -65,7 +65,7 @@ namespace QuickMute {
 				} catch {
 					Save ();
 				}
-				QuickMute.Log ("Settings Loaded", "QSettings",  true);
+				Log ("Settings Loaded", "QSettings",  true);
 			} else {
 				Save ();
 			}
