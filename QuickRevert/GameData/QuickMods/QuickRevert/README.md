@@ -47,6 +47,11 @@ Delete the QuickMods/QuickRevert folder in your KSP/GameData folder.
 
 #### Changelog
 
+v3.11 - 2016.12.07
+* Fix: Re-added the forgotten PluginData folder,
+* Fix: Corrected length of the GUI text,
+* Compiled against KSP 1.2.2.1622
+
 v3.10 - 2016.11.19
 * New: Added support of the LanguagePatches,
 * I've translated it to french, if you want more, you can translate and PR ;)
@@ -129,6 +134,7 @@ v1.00 - 2014.10.01
 
 #### Thanks!
 
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to blizzy for his Toolbar mod,
 * to Matthieu James for the Faenza icon theme,
 * to all mods developers which make this game really huge,
@@ -142,4 +148,5 @@ v1.00 - 2014.10.01
 * http://kerbal.curseforge.com/ksp-mods/224621
 * https://github.com/malahx/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

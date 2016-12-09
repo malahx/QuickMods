@@ -155,7 +155,7 @@ namespace QuickRevert {
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.EnableRevertLoss = GUILayout.Toggle (QSettings.Instance.EnableRevertLoss, string.Format ("{0} {1}", QLang.translate("Enable the revert loss when you escape"), QLang.translate (Planetarium.fetch.Home.atmosphere ? "atmosphere" : "sphere of influence")), GUILayout.Width (350));
+			QSettings.Instance.EnableRevertLoss = GUILayout.Toggle (QSettings.Instance.EnableRevertLoss, string.Format ("{0} {1}", QLang.translate("Enable the revert loss when you escape"), QLang.translate (Planetarium.fetch.Home.atmosphere ? "atmosphere" : "sphere of influence")), GUILayout.Width (450));
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal ();
