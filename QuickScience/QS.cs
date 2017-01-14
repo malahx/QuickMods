@@ -1,5 +1,5 @@
 ﻿/* 
-QuickSAS
+QuickScience
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -18,25 +18,25 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Reflection;
 using UnityEngine;
 
-namespace QuickSAS {
+namespace QuickScience {
 
 	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
-	public partial class QGUI : QuickSAS {}
+	public partial class QGUI : QuickScience {}
 
 	[KSPAddon(KSPAddon.Startup.Flight, false)]
-	public partial class QSAS : QuickSAS {}
+	public partial class QScience : QuickScience {}
 		
 	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
-	public partial class QStockToolbar : QuickSAS {}
+	public partial class QStockToolbar : QuickScience {}
 
-	public partial class QuickSAS : MonoBehaviour {
+	public partial class QuickScience : MonoBehaviour {
 
 		public readonly static string VERSION = Assembly.GetExecutingAssembly ().GetName ().Version.Major + "." + Assembly.GetExecutingAssembly ().GetName ().Version.Minor + Assembly.GetExecutingAssembly ().GetName ().Version.Build;
 		public readonly static string MOD = Assembly.GetExecutingAssembly ().GetName ().Name;
 		public readonly static string relativePath = "QuickMods/" + MOD;
 		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
 
-		protected static void Log(string String, string Title = null, bool force = false) {
+		internal static void Log(string String, string Title = null, bool force = false) {
 			if (!force) {
 				if (!QSettings.Instance.Debug) {
 					return;

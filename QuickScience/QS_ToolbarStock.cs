@@ -1,5 +1,5 @@
 ﻿/* 
-QuickSAS
+QuickScience
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -20,10 +20,13 @@ using KSP.UI;
 using KSP.UI.Screens;
 using UnityEngine;
 
-namespace QuickSAS
+namespace QuickScience
 {
 	public partial class QStockToolbar
 	{
+
+		QBlizzyToolbar BlizzyToolbar;
+
 		internal static bool Enabled {
 			get {
 				return QSettings.Instance.StockToolBar;
@@ -32,14 +35,32 @@ namespace QuickSAS
 
 		static bool CanUseIt {
 			get {
-				return HighLogic.LoadedScene == GameScenes.SPACECENTER;
+				return HighLogic.LoadedScene == GameScenes.SPACECENTER || HighLogic.LoadedSceneIsFlight;
 			}
 		}
 
-		ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER;
-		static string TexturePath = relativePath + "/Textures/StockToolBar";
+		ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.MAPVIEW | ApplicationLauncher.AppScenes.FLIGHT;
 
-		void OnClick() { 
+		public static string TexturePathNoTest = relativePath + "/Textures/StockToolBarNoTest";
+		public static string TexturePathTest = relativePath + "/Textures/StockToolBarTest";
+		public static string TexturePathConf = relativePath + "/Textures/StockToolBarConf";
+
+		public static string TexturePath {
+			get {
+				return HighLogic.LoadedSceneIsFlight ? 
+					            QScience.Instance.Experiments.hasEmptyTest () ?
+								TexturePathTest :
+								TexturePathNoTest :
+					            TexturePathConf;
+			}
+		}
+
+		void OnClick() {
+			if (HighLogic.LoadedSceneIsFlight) {
+				QScience.Instance.TestAll ();
+				Set (false);
+				return;
+			}
 			QGUI.Instance.Settings ();
 		}
 
@@ -72,7 +93,17 @@ namespace QuickSAS
 			GameEvents.onGUIApplicationLauncherReady.Add (AppLauncherReady);
 			GameEvents.onGUIApplicationLauncherDestroyed.Add (AppLauncherDestroyed);
 			GameEvents.onLevelWasLoadedGUIReady.Add (AppLauncherDestroyed);
+			if (BlizzyToolbar == null) {
+				BlizzyToolbar = new QBlizzyToolbar ();
+			}
 			Log ("Awake", "QStockToolbar");
+		}
+
+		protected override void Start() {
+			if (BlizzyToolbar != null) {
+				BlizzyToolbar.Init ();
+			}
+			Log ("Start", "QStockToolbar");
 		}
 
 		void AppLauncherReady() {
@@ -100,6 +131,9 @@ namespace QuickSAS
 			GameEvents.onGUIApplicationLauncherReady.Remove (AppLauncherReady);
 			GameEvents.onGUIApplicationLauncherDestroyed.Remove (AppLauncherDestroyed);
 			GameEvents.onLevelWasLoadedGUIReady.Remove (AppLauncherDestroyed);
+			if (BlizzyToolbar != null) {
+				BlizzyToolbar.Destroy ();
+			}
 			Log ("OnDestroy", "QStockToolbar");
 		}
 
@@ -109,6 +143,7 @@ namespace QuickSAS
 			}
 			if (appLauncherButton == null) {
 				appLauncherButton = ApplicationLauncher.Instance.AddModApplication (OnClick, OnClick, null, null, null, null, AppScenes, GetTexture);
+				appLauncherButton.onRightClick = delegate { QScience.Instance.CollectAll (); };
 			}
 			Log ("Init", "QStockToolbar");
 		}
@@ -140,6 +175,9 @@ namespace QuickSAS
 		}
 
 		internal void Reset() {
+			if (BlizzyToolbar != null) {
+				BlizzyToolbar.Reset ();
+			}
 			if (appLauncherButton != null) {
 				Set (false);
 				if (!Enabled) {
@@ -150,6 +188,18 @@ namespace QuickSAS
 				Init ();
 			}
 			Log ("Reset", "QStockToolbar");
+		}
+
+		internal void Refresh() {
+			if (BlizzyToolbar != null) {
+				BlizzyToolbar.Refresh ();
+			}
+			if (!isAvailable) {
+				return;
+			}
+			appLauncherButton.SetTexture (GetTexture);
+			Set (false);
+			Log ("Refresh", "QStockToolbar");
 		}
 	}
 }

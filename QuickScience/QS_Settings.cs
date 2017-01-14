@@ -1,5 +1,5 @@
 ﻿/* 
-QuickSAS
+QuickScience
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.IO;
 using UnityEngine;
 
-namespace QuickSAS {
-	public class QSettings : QuickSAS {
+namespace QuickScience {
+	public class QSettings : QuickScience {
 
 		[KSPField(isPersistant = true)] static readonly QSettings instance = new QSettings ();
 		public static QSettings Instance {
@@ -37,22 +37,14 @@ namespace QuickSAS {
 
 		[Persistent] internal bool Debug = true;
 
-		[Persistent] internal KeyCode KeyCurrent = 			QKey.DefaultKey (QKey.Key.Current);
-		[Persistent] internal KeyCode KeyPrograde = 		QKey.DefaultKey (QKey.Key.Prograde);
-		[Persistent] internal KeyCode KeyRetrograde = 		QKey.DefaultKey (QKey.Key.Retrograde);
-		[Persistent] internal KeyCode KeyNormal = 			QKey.DefaultKey (QKey.Key.Normal);
-		[Persistent] internal KeyCode KeyAntiNormal = 		QKey.DefaultKey (QKey.Key.AntiNormal);
-		[Persistent] internal KeyCode KeyRadialIn = 		QKey.DefaultKey (QKey.Key.RadialIn);
-		[Persistent] internal KeyCode KeyRadialOut = 		QKey.DefaultKey (QKey.Key.RadialOut);
-		[Persistent] internal KeyCode KeyTargetPrograde = 	QKey.DefaultKey (QKey.Key.TargetPrograde);
-		[Persistent] internal KeyCode KeyTargetRetrograde = QKey.DefaultKey (QKey.Key.TargetRetrograde);
-		[Persistent] internal KeyCode KeyManeuver = 		QKey.DefaultKey (QKey.Key.Maneuver);
-		[Persistent] internal KeyCode KeyWarpToNode = 		QKey.DefaultKey (QKey.Key.WarpToNode);
-
-		[Persistent] internal bool WarpToEnhanced = false;
+		[Persistent] internal KeyCode KeyTestAll = 			QKey.DefaultKey (QKey.Key.TestAll);
+		[Persistent] internal KeyCode KeyCollectAll = 		QKey.DefaultKey (QKey.Key.CollectAll);
 
 		[Persistent] internal bool StockToolBar = true;
 		[Persistent] internal bool BlizzyToolBar = true;
+
+		[Persistent] internal bool StopTimeWarp = true;
+		[Persistent] internal bool NewSciencePoint = false;
 
 		[Persistent] internal string Lang = "EN";
 

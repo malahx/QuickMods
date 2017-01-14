@@ -1,5 +1,5 @@
 ﻿/* 
-QuickSAS
+QuickScience
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -16,52 +16,27 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using System;
+using System.Collections;
 using UnityEngine;
 
-namespace QuickSAS {
-	public class QKey : QuickSAS {
+namespace QuickScience {
+	public class QKey : QuickScience {
 	
 		internal static Key SetKey = Key.None;
 
 		internal enum Key {
 			None,
-			Current,
-			Prograde,
-			Retrograde,
-			Normal,
-			AntiNormal,
-			RadialIn,
-			RadialOut,
-			TargetPrograde,
-			TargetRetrograde,
-			Maneuver,
-			WarpToNode,
+			TestAll,
+			CollectAll
 		}					
 	
 		internal static KeyCode DefaultKey(Key key) {
 			switch (key) {
-				case Key.Current:
-					return KeyCode.Keypad5;
-				case Key.Prograde:
-					return KeyCode.Keypad8;
-				case Key.Retrograde:
-					return KeyCode.Keypad2;
-				case Key.Normal:
-					return KeyCode.Keypad9;
-				case Key.AntiNormal:
-					return KeyCode.Keypad3;
-				case Key.RadialIn:
-					return KeyCode.Keypad6;
-				case Key.RadialOut:
-					return KeyCode.Keypad4;
-				case Key.TargetPrograde:
-					return KeyCode.Keypad7;
-				case Key.TargetRetrograde:
-					return KeyCode.Keypad1;
-				case Key.Maneuver:
-					return KeyCode.Keypad0;
-				case Key.WarpToNode:
-					return KeyCode.KeypadEnter;
+				case Key.TestAll:
+					return KeyCode.None;
+				case Key.CollectAll:
+					return KeyCode.None;
 			}
 			return KeyCode.None;
 		}
@@ -72,80 +47,20 @@ namespace QuickSAS {
 
 		internal static string GetText(Key key) {
 			switch (key) {
-				case Key.Current:
-					return QLang.translate ("Stability Assist");
-				case Key.Prograde:
-					return QLang.translate ("Prograde");
-				case Key.Retrograde:
-					return QLang.translate ("Retrograde");
-				case Key.Normal:
-					return QLang.translate ("Normal");
-				case Key.AntiNormal:
-					return QLang.translate ("Anti-Normal");
-				case Key.RadialIn:
-					return QLang.translate ("Radial");
-				case Key.RadialOut:
-					return QLang.translate ("Anti-Radial");
-				case Key.TargetPrograde:
-					return QLang.translate ("Target");
-				case Key.TargetRetrograde:
-					return QLang.translate ("Anti-Target");
-				case Key.Maneuver:
-					return QLang.translate ("Maneuver");
-				case Key.WarpToNode:
-					return QLang.translate ("WarpToNode");
+				case Key.TestAll:
+					return QLang.translate ("Test All");
+				case Key.CollectAll:
+					return QLang.translate ("Collect All");
 			}
 			return string.Empty;
 		}
 
-		internal static VesselAutopilot.AutopilotMode GetAutoPilot(Key key) {
-			switch (key) {
-				case Key.Prograde:
-					return VesselAutopilot.AutopilotMode.Prograde;
-				case Key.Retrograde:
-					return VesselAutopilot.AutopilotMode.Retrograde;
-				case Key.Normal:
-					return VesselAutopilot.AutopilotMode.Normal;
-				case Key.AntiNormal:
-					return VesselAutopilot.AutopilotMode.Antinormal;
-				case Key.RadialIn:
-					return VesselAutopilot.AutopilotMode.RadialIn;
-				case Key.RadialOut:
-					return VesselAutopilot.AutopilotMode.RadialOut;
-				case Key.TargetPrograde:
-					return VesselAutopilot.AutopilotMode.Target;
-				case Key.TargetRetrograde:
-					return VesselAutopilot.AutopilotMode.AntiTarget;
-				case Key.Maneuver:
-					return VesselAutopilot.AutopilotMode.Maneuver;
-			}
-			return VesselAutopilot.AutopilotMode.StabilityAssist;
-		}
-
 		internal static KeyCode CurrentKey(Key key) {
 			switch (key) {
-				case Key.Current:
-					return QSettings.Instance.KeyCurrent;
-				case Key.Prograde:
-					return QSettings.Instance.KeyPrograde;
-				case Key.Retrograde:
-					return QSettings.Instance.KeyRetrograde;
-				case Key.Normal:
-					return QSettings.Instance.KeyNormal;
-				case Key.AntiNormal:
-					return QSettings.Instance.KeyAntiNormal;
-				case Key.RadialIn:
-					return QSettings.Instance.KeyRadialIn;
-				case Key.RadialOut:
-					return QSettings.Instance.KeyRadialOut;
-				case Key.TargetPrograde:
-					return QSettings.Instance.KeyTargetPrograde;
-				case Key.TargetRetrograde:
-					return QSettings.Instance.KeyTargetRetrograde;
-				case Key.Maneuver:
-					return QSettings.Instance.KeyManeuver;
-				case Key.WarpToNode:
-					return QSettings.Instance.KeyWarpToNode;
+				case Key.TestAll:
+					return QSettings.Instance.KeyTestAll;
+				case Key.CollectAll:
+					return QSettings.Instance.KeyCollectAll;
 			}
 			return KeyCode.None;
 		}
@@ -160,57 +75,37 @@ namespace QuickSAS {
 		}
 
 		internal static void VerifyKey() {
-			VerifyKey (Key.Current);
-			VerifyKey (Key.Prograde);
-			VerifyKey (Key.Retrograde);
-			VerifyKey (Key.Normal);
-			VerifyKey (Key.AntiNormal);
-			VerifyKey (Key.RadialIn);
-			VerifyKey (Key.RadialOut);
-			VerifyKey (Key.TargetPrograde);
-			VerifyKey (Key.TargetRetrograde);
-			VerifyKey (Key.Maneuver);
-			VerifyKey (Key.WarpToNode);
+			string[] _keys = Enum.GetNames (typeof (Key));
+			int _length = _keys.Length;
+			for (int _key = 1; _key < _length; _key++) {
+				Key _getKey = (Key)_key;
+				VerifyKey (_getKey);
+			}
 			Log ("VerifyKey", "QKey");
 		}
 
 		internal static void SetCurrentKey(Key key, KeyCode currentKey) {
 			switch (key) {
-				case Key.Current:
-					QSettings.Instance.KeyCurrent = currentKey;
+				case Key.TestAll:
+					QSettings.Instance.KeyTestAll = currentKey;
 					break;
-				case Key.Prograde:
-					QSettings.Instance.KeyPrograde = currentKey;
-					break;
-				case Key.Retrograde:
-					QSettings.Instance.KeyRetrograde = currentKey;
-					break;
-				case Key.Normal:
-					QSettings.Instance.KeyNormal = currentKey;
-					break;
-				case Key.AntiNormal:
-					QSettings.Instance.KeyAntiNormal = currentKey;
-					break;
-				case Key.RadialIn:
-					QSettings.Instance.KeyRadialIn = currentKey;
-					break;
-				case Key.RadialOut:
-					QSettings.Instance.KeyRadialOut = currentKey;
-					break;
-				case Key.TargetPrograde:
-					QSettings.Instance.KeyTargetPrograde = currentKey;
-					break;
-				case Key.TargetRetrograde:
-					QSettings.Instance.KeyTargetRetrograde = currentKey;
-					break;
-				case Key.Maneuver:
-					QSettings.Instance.KeyManeuver = currentKey;
-					break;
-				case Key.WarpToNode:
-					QSettings.Instance.KeyWarpToNode = currentKey;
+				case Key.CollectAll:
+					QSettings.Instance.KeyCollectAll = currentKey;
 					break;
 			}
 			Log (string.Format("SetCurrentKey({0}): {1}", GetText(key), currentKey), "QKey");
+		}
+
+		internal static void DrawKeys() {
+			GUILayout.BeginHorizontal ();
+			GUILayout.Box (QLang.translate ("Keyboard shortcuts"), GUILayout.Height (30));
+			GUILayout.EndHorizontal ();
+			string[] _keys = Enum.GetNames (typeof (Key));
+			int _length = _keys.Length;
+			for (int _key = 1; _key < _length; _key++) {
+				Key _getKey = (Key)_key;
+				DrawConfigKey (_getKey);
+			}
 		}
 
 		internal static void DrawSetKey(int id) {
@@ -236,7 +131,7 @@ namespace QuickSAS {
 			GUILayout.EndVertical ();
 		}
 
-		internal static void DrawConfigKey(Key key) {
+		static void DrawConfigKey(Key key) {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label (string.Format ("{0}: <color=#FFFFFF><b>{1}</b></color>", GetText (key), CurrentKey (key)), GUILayout.Width (350));
 			GUILayout.FlexibleSpace();

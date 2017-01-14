@@ -7,13 +7,14 @@
     <OutputType>Library</OutputType>
     <RootNamespace>QuickScience</RootNamespace>
     <AssemblyName>QuickScience</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <ReleaseVersion>1</ReleaseVersion>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\Debug</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -21,17 +22,52 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\Release</OutputPath>
+    <OutputPath>bin\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
+    <CustomCommands>
+      <CustomCommands>
+        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
+        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
+      </CustomCommands>
+    </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="LanguageAPI.cs" />
+    <Compile Include="QS.cs" />
+    <Compile Include="QS_GUI.cs" />
+    <Compile Include="QS_Key.cs" />
+    <Compile Include="QS_Lang.cs" />
+    <Compile Include="QS_Science.cs" />
+    <Compile Include="QS_Settings.cs" />
+    <Compile Include="QS_ToolbarStock.cs" />
+    <Compile Include="QS_ModuleUtil.cs" />
+    <Compile Include="QS_ToolbarBlizzy.cs" />
+    <Compile Include="ToolbarWrapper.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="MyClass.cs" />
-    <Compile Include="Properties\AssemblyInfo.cs" />
+    <None Include="COPYING" />
+    <None Include="Lang.cfg" />
+    <None Include="QuickScience.version" />
+    <None Include="README.md" />
+    <None Include="Blizzy.xcf" />
+    <None Include="Science.xcf" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -1,4 +1,4 @@
-﻿#### QuickSAS
+﻿#### QuickScience
 #### A plugin for Kerbal Space Program
 #### Copyright 2016 Malah
 
@@ -18,21 +18,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #### What is it?
 
-QuickSAS is a plugin which adds the possibility to have keyboard's shortcuts for the SAS functions.
+QuickScience is a plugin which adds the possibility to test and collect all science in one click
 
-Keyboard's shortcuts:
-
-* Stability Assist: Keypad 5,
-* Prograde: Keypad 8,
-* Retrograde: Keypad 2,
-* Normal: Keypad 9,
-* Anti-Normal: Keypad 3,
-* Radial: Keypad 6,
-* Anti-Radial: Keypad 4,
-* Target: Keypad 7,
-* Anti-Target: Keypad 1,
-* Maneuver: Keypad 0,
-* WarpToNode: Keypad Enter.
+In Flight:
+* Left click on the toolbar button: Test All,
+* Right click on the toolbar button: Collect All.
 
 #### How to install it?
 
@@ -44,36 +34,19 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 
 #### How to uninstall it?
 
-Delete the QuickMods/QuickSAS folder in your KSP/GameData folder.
+Delete the QuickMods/QuickScience folder in your KSP/GameData folder.
 
 #### Changelog
-
-v1.10 - 2016.11.19
-* New: Added support of the LanguagePatches,
-* I've translated it to french, if you want more, you can translate and PR ;)
-
-v1.04 - 2016.11.03
-* Fix: Corrected directories for windows (thanks RealKolago).
-
-v1.03 - 2016.11.02
-* Compiled against KSP 1.2.1.1604
-
-v1.02 - 2016.10.31
-* New: Changed the directory to GameData/QuickMods/QuickSAS
-* Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
-* Fix: Deleted useless config load,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
-
-v1.01 - 2016.10.15
-* Fix: Corrected the stocktoolbar,
-* Compiled against KSP 1.2.0.1586
 
 v1.00 - 2016.09.24
 * First release
 
 #### Thanks!
 
-* to Chuck Bibice to have requested this mod,
+* to WaveFunctionP for his mod ForScience,
+* to xEvilReeperx for his mod ScienceAlert,
+* to Derrey for his mod ExperimentTracker,
+* to simon56modder and Thomas P. for the Language Patches Project,
 * to blizzy for his Toolbar mod,
 * to Matthieu James for the Faenza icon theme,
 * to all other mod developers which make this game really huge,
@@ -83,6 +56,9 @@ v1.00 - 2016.09.24
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * https://github.com/malahx/QuickMods
-* http://spacedock.info/mod/999/QuickSAS
+* ForScience: http://forum.kerbalspaceprogram.com/index.php?/topic/107803-1
+* ScienceAlert: http://forum.kerbalspaceprogram.com/index.php?/topic/69538-1
+* ExperimentTracker: http://forum.kerbalspaceprogram.com/index.php?/topic/146984-1
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
+* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

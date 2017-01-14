@@ -1,5 +1,5 @@
 ﻿/* 
-QuickSAS
+QuickScience
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-namespace QuickSAS
+namespace QuickScience
 {
 	public class QBlizzyToolbar
 	{
@@ -27,12 +27,26 @@ namespace QuickSAS
 			}
 		}
 
-		string TexturePath = QuickSAS.relativePath + "/Textures/BlizzyToolBar";
+		string TexturePathCollect = QuickScience.relativePath + "/Textures/BlizzyToolBarCollect";
+		string TexturePathTest = QuickScience.relativePath + "/Textures/BlizzyToolBarTest";
+		string TexturePathNoTest = QuickScience.relativePath + "/Textures/BlizzyToolBarNoTest";
+		public string TexturePath {
+			get {
+				return HighLogic.LoadedScene == GameScenes.SPACECENTER || QScience.Instance.Experiments.hasEmptyTest () ?
+								TexturePathTest:
+								TexturePathNoTest;
+			}
+		}
 
 		IButton Button;
+		IButton ButtonCollect;
 
-		public static GameScenes[] AppScenes = {
-			GameScenes.SPACECENTER
+		public GameScenes[] AppScenes = {
+			GameScenes.SPACECENTER,
+			GameScenes.FLIGHT
+		};
+		public GameScenes[] AppScenesCollect = {
+			GameScenes.FLIGHT
 		};
 
 		internal static bool isAvailable {
@@ -42,36 +56,69 @@ namespace QuickSAS
 		}
 						
 		void OnClick () {
-			QGUI.Instance.Settings ();
+			if (HighLogic.LoadedSceneIsFlight) {
+				QScience.Instance.TestAll ();
+			}
+			else {
+				QGUI.Instance.Settings ();
+			}
 		}
 
-
-		internal void Start () {
-			if (!HighLogic.LoadedSceneIsGame || !QBlizzyToolbar.isAvailable || !Enabled || Button != null) {
-				return;
-			}
-			Button = ToolbarManager.Instance.add (QuickSAS.MOD, QuickSAS.MOD);
-			Button.TexturePath = TexturePath;
-			Button.ToolTip = QuickSAS.MOD + ": " + QLang.translate ("Settings");
-			Button.OnClick += (e) => OnClick ();
-			Button.Visibility = new GameScenesVisibility (QBlizzyToolbar.AppScenes);
+		void Collect() {
+			QScience.Instance.CollectAll ();
 		}
 
-		internal void OnDestroy () {
-			if (!QBlizzyToolbar.isAvailable || Button == null) {
+		internal void Init () {
+			if (!HighLogic.LoadedSceneIsGame || !QBlizzyToolbar.isAvailable || !Enabled) {
 				return;
 			}
-			Button.Destroy ();
-			Button = null;
+			if (Button == null) {
+				Button = ToolbarManager.Instance.add (QuickScience.MOD, QuickScience.MOD + "TestAll");
+				Button.TexturePath = TexturePath;
+				Button.ToolTip = QuickScience.MOD + ": " + QLang.translate (HighLogic.LoadedScene == GameScenes.SPACECENTER ? "Settings" : "Test All");
+				Button.OnClick += (e) => OnClick ();
+				Button.Visibility = new GameScenesVisibility (AppScenes);
+			}
+			if (ButtonCollect == null) {
+				ButtonCollect = ToolbarManager.Instance.add (QuickScience.MOD, QuickScience.MOD + "CollectAll");
+				ButtonCollect.TexturePath = TexturePathCollect;
+				ButtonCollect.ToolTip = QuickScience.MOD + ": " + QLang.translate ("Collect All");
+				ButtonCollect.OnClick += (e) => Collect ();
+				ButtonCollect.Visibility = new GameScenesVisibility (AppScenesCollect);
+			}
+			QuickScience.Log ("Init", "QBlizzyToolbar");
+		}
+
+		internal void Destroy () {
+			if (!QBlizzyToolbar.isAvailable) {
+				return;
+			}
+			if (Button != null) {
+				Button.Destroy ();
+				Button = null;
+			}
+			if (ButtonCollect != null) {
+				ButtonCollect.Destroy ();
+				ButtonCollect = null;
+			}
+			QuickScience.Log ("Destroy", "QBlizzyToolbar");
 		}
 
 		internal void Reset () {
 			if (Enabled) {
-				Start ();
+				Init ();
 			}
 			else {
-				OnDestroy ();
+				Destroy ();
 			}
+			QuickScience.Log ("Reset", "QBlizzyToolbar");
+		}
+
+		internal void Refresh() {
+			if (Button != null) {
+				Button.TexturePath = TexturePath;
+			}
+			QuickScience.Log ("Refresh", "QBlizzyToolbar");
 		}
 	}
 }

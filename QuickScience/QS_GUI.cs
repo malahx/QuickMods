@@ -1,5 +1,5 @@
 ﻿/* 
-QuickSAS
+QuickScience
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using UnityEngine;
 
-namespace QuickSAS {
+namespace QuickScience {
 	public partial class QGUI {
 		public static QGUI Instance {
 			get;
@@ -50,27 +50,21 @@ namespace QuickSAS {
 				rectSetKey = value;
 			}
 		} 
-
-		internal QBlizzyToolbar BlizzyToolbar;
-			
+					
 		protected override void Awake () {
 			if (!HighLogic.LoadedSceneIsGame || QGUI.Instance != null) {
 				Destroy (this);
 			}
 			Instance = this;
-			if (BlizzyToolbar == null) {
-				BlizzyToolbar = new QBlizzyToolbar ();
-			}
 			Log ("Awake", "QGUI");
 		}
 
 		protected override void Start () {
-			BlizzyToolbar.Start ();
+			QStockToolbar.Instance.Refresh ();
 			Log ("Start", "QGUI");
 		}
 
 		protected override void OnDestroy () {
-			BlizzyToolbar.OnDestroy ();
 			Log ("OnDestroy", "QGUI");
 		}
 
@@ -138,7 +132,6 @@ namespace QuickSAS {
 
 		void Save () {
 			QStockToolbar.Instance.Reset ();
-			BlizzyToolbar.Reset ();
 			QSettings.Instance.Save ();
 			Log ("Save", "QGUI");
 		}
@@ -175,32 +168,15 @@ namespace QuickSAS {
 			GUILayout.EndHorizontal ();
 			GUILayout.BeginHorizontal ();
 			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (400));
-			GUILayout.EndHorizontal ();
 			if (QBlizzyToolbar.isAvailable) {
-				GUILayout.BeginHorizontal ();
 				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
-				GUILayout.EndHorizontal ();
 			}
+			GUILayout.EndHorizontal ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (QLang.translate ("Options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.WarpToEnhanced = GUILayout.Toggle (QSettings.Instance.WarpToEnhanced, QLang.translate ("Warp to 15 seconds before the ½ of the burn time"), GUILayout.Width (400));
-			GUILayout.EndHorizontal ();
-			GUILayout.BeginHorizontal ();
-			GUILayout.Box (QLang.translate ("Keyboard shortcuts"), GUILayout.Height (30));
-			GUILayout.EndHorizontal ();
-			QKey.DrawConfigKey (QKey.Key.Current);
-			QKey.DrawConfigKey (QKey.Key.Prograde);
-			QKey.DrawConfigKey (QKey.Key.Retrograde);
-			QKey.DrawConfigKey (QKey.Key.Normal);
-			QKey.DrawConfigKey (QKey.Key.AntiNormal);
-			QKey.DrawConfigKey (QKey.Key.RadialIn);
-			QKey.DrawConfigKey (QKey.Key.RadialOut);
-			QKey.DrawConfigKey (QKey.Key.TargetPrograde);
-			QKey.DrawConfigKey (QKey.Key.TargetRetrograde);
-			QKey.DrawConfigKey (QKey.Key.Maneuver);
-			QKey.DrawConfigKey (QKey.Key.WarpToNode);
+			QSettings.Instance.StopTimeWarp = GUILayout.Toggle (QSettings.Instance.StopTimeWarp, QLang.translate ("New Experiment Stop TimeWarp"), GUILayout.Width (400));
+			QKey.DrawKeys ();
 			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();

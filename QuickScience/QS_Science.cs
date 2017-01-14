@@ -1,5 +1,5 @@
 ﻿/* 
-QuickSAS
+QuickScience
 Copyright 2016 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -16,17 +16,37 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using System;
 using System.Collections;
+using System.Collections.Generic;
 using UnityEngine;
 
-namespace QuickSAS {
+namespace QuickScience {
 
-	public partial class QSAS {
+	public partial class QScience {
 
-		public static QSAS Instance {
+		public static QScience Instance {
 			get;
 			private set;
+		}
+
+		List<ModuleScienceExperiment> experiments;
+		public List<ModuleScienceExperiment> Experiments {
+			get {
+				if (experiments == null) {
+					experiments = FlightGlobals.ActiveVessel.FindPartModulesImplementing<ModuleScienceExperiment> ();
+				}
+				return experiments;
+			}
+		}
+
+		List<ModuleScienceContainer> containers;
+		public List<ModuleScienceContainer> Containers {
+			get {
+				if (containers == null) {
+					containers = FlightGlobals.ActiveVessel.FindPartModulesImplementing<ModuleScienceContainer> ();
+				}
+				return containers;
+			}
 		}
 
 		protected override void Awake() {
@@ -34,76 +54,100 @@ namespace QuickSAS {
 				Destroy (this);
 			}
 			Instance = this;
-			Log ("Awake", "QSAS");
+			GameEvents.onVesselChange.Add (OnVesselChange);
+			Log ("Awake", "QScience");
 		}
 
 		protected override void Start() {
-			Log ("Start", "QSAS");
+			StartCoroutine (checkVesselDatas ());
+			Log ("Start", "QScience");
 		}
 
 		protected override void OnDestroy() {
-			Log ("OnDestroy", "QSAS");
+			GameEvents.onVesselChange.Remove (OnVesselChange);
+			Log ("OnDestroy", "QScience");
 		}
 
-		IEnumerator startSAS(VesselAutopilot.AutopilotMode autoPilot) {
-			if (TimeWarp.CurrentRate > 1 && TimeWarp.WarpMode == TimeWarp.Modes.HIGH) {
-				TimeWarp.fetch.CancelAutoWarp ();
-				TimeWarp.SetRate (0, false);
+		void OnVesselChange(Vessel vessel) {
+			if (!vessel.isActiveVessel) {
+				return;
 			}
-			while (TimeWarp.CurrentRate > 1 && TimeWarp.WarpMode == TimeWarp.Modes.HIGH) {
-				yield return 0;
+			experiments = null;
+			containers = null;
+			Refresh ();
+			Log ("OnVesselChange", "QScience");
+		}
+
+		IEnumerator checkVesselDatas() {
+			while (HighLogic.LoadedSceneIsFlight) {
+				yield return new WaitForFixedUpdate();
+				Vessel _vessel = FlightGlobals.ActiveVessel;
+				string _biome = _vessel.getBiome ();
+				ExperimentSituations _situation = ScienceUtil.GetExperimentSituation (_vessel);
+				if (QModuleUtil.lastBiome != _biome || QModuleUtil.lastSituation != _situation) {
+					Refresh ();
+					if (QSettings.Instance.StopTimeWarp && TimeWarp.CurrentRate > 1) {
+						TimeWarp.fetch.CancelAutoWarp ();
+						TimeWarp.SetRate (0, false);
+					}
+					QModuleUtil.lastBiome = _biome;
+					QModuleUtil.lastSituation = _situation;
+				}
+				Log ("_biome " + _biome, "QScience");
+				Log ("_situation " + _situation, "QScience");
 			}
-			yield return new WaitForFixedUpdate ();
-			Vessel _vessel = FlightGlobals.ActiveVessel;
-			if (!_vessel.Autopilot.SAS.dampingMode) {
-				_vessel.ActionGroups.SetGroup (KSPActionGroup.SAS, true);
-			}
-			yield return new WaitForFixedUpdate ();
-			_vessel.Autopilot.SetMode (autoPilot);
+			Log ("checkVesselDatas", "QScience");
 		}
 
 		void Update() {
 			if (!HighLogic.LoadedSceneIsFlight) {
 				return;
 			}
-			Vessel _vessel = FlightGlobals.ActiveVessel;
-			string[] _keys = Enum.GetNames (typeof (QKey.Key));
-			int _length = _keys.Length;
-			for (int _key = 1; _key < _length; _key++) {
-				QKey.Key _getKey = (QKey.Key)_key;
-				if (_getKey == QKey.Key.WarpToNode) {
+			if (QKey.isKeyDown (QKey.Key.TestAll)) {
+				TestAll ();
+			}
+			if (QKey.isKeyDown (QKey.Key.CollectAll)) {
+				CollectAll ();
+			}
+		}
+
+		public void TestAll() {
+			for (int _i = Experiments.Count - 1; _i >= 0; --_i) {
+				ModuleScienceExperiment _experiment = Experiments[_i];
+				if (!_experiment.IsTestable ()) {
 					continue;
 				}
-				if (QKey.isKeyDown (_getKey)) {
-					StartCoroutine (startSAS (QKey.GetAutoPilot (_getKey)));
-					ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}", MOD, QKey.GetText (_getKey)), 5, ScreenMessageStyle.UPPER_CENTER);
-					Log (QKey.GetText (_getKey), "QSAS");
+				_experiment.DeployExperiment ();
+			}
+			Refresh ();
+			Log ("TestAll", "QScience");
+		}
+
+		public void CollectAll() {
+			for (int _i = Experiments.Count - 1; _i >= 0; --_i) {
+				ModuleScienceExperiment _experiment = Experiments[_i];
+				if (_experiment.IsTestable ()) {
+					continue;
+				}
+				ScienceData[] _datas = _experiment.GetData ();
+				for (int _j = _datas.Length - 1; _j >= 0; --_j) {
+					ScienceData _data = _datas[_j];
+					for (int _k = Containers.Count - 1; _k >= 0; --_k) {
+						ModuleScienceContainer _container = Containers[_k];
+						if (!_container.HasData (_data)) {
+							_experiment.onCollectData (_container);
+							break;
+						}
+					}
 				}
 			}
-			if (QKey.isKeyDown (QKey.Key.WarpToNode)) {
-				if (_vessel.patchedConicSolver.maneuverNodes.Count != 0) {
-					double _UT;
-					ManeuverNode _manNode = _vessel.patchedConicSolver.maneuverNodes[0];
-					if (!QSettings.Instance.WarpToEnhanced) {
-						_UT = _manNode.UT - 60;
-					}
-					else {
-						double _estimatedBurnTime = _manNode.GetBurnVector (_vessel.orbit).magnitude / _vessel.specificAcceleration;
-						_UT = _manNode.UT - (_estimatedBurnTime / 2) - 15;
-					}
-					if (Planetarium.GetUniversalTime () > _UT) {
-						ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}", MOD, QLang.translate ("No need to time warp!")), 5, ScreenMessageStyle.UPPER_CENTER);
-						Log ("No need to time warp!", "QSAS");
-						return;
-					}
-					TimeWarp.fetch.WarpTo (_UT);
-					Log (QKey.GetText (QKey.Key.WarpToNode), "QSAS");
-				}
-				else {
-					ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}", MOD, QLang.translate ("No maneuver node!")), 5, ScreenMessageStyle.UPPER_CENTER);
-					Log ("No maneuver node!", "QSAS");
-				}
-			}
+			Refresh ();
+			Log ("CollectAll", "QScience");
+		}
+
+		void Refresh() {
+			QStockToolbar.Instance.Refresh ();
+			Log ("Refresh", "QScience");
 		}
 	}
 }
