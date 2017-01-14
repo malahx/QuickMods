@@ -32,7 +32,7 @@ namespace LanguagePatches
 
         static LanguageAPI()
         {
-            Type[] types = AppDomain.CurrentDomain.GetAssemblies().SelectMany(a => a.GetTypes()).ToArray();
+            Type[] types = AssemblyLoader.loadedAssemblies.SelectMany (a => a.assembly.GetTypes ()).ToArray ();
             Type languagePatches = types.FirstOrDefault(t => t.Name == "LanguagePatches");
             if (languagePatches != null)
             {

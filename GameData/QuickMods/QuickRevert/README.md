@@ -47,6 +47,9 @@ Delete the QuickMods/QuickRevert folder in your KSP/GameData folder.
 
 #### Changelog
 
+v3.12 - 2017.01.14
+* Fix: Corrected the error with LanguageAPI and unloaded plugins.
+
 v3.11 - 2016.12.09
 * Fix: Re-added the forgotten PluginData folder,
 * Fix: Corrected length of the GUI text,
