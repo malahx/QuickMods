@@ -1,6 +1,6 @@
 ﻿/* 
 QuickGoTo
-Copyright 2015 Malah
+Copyright 2017 Malah
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
