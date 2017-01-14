@@ -16,10 +16,13 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.UI;
+using KSP.UI.Screens;
 using KerbalEngineer.VesselSimulator;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace QuickEngineer {
 
@@ -69,7 +72,7 @@ namespace QuickEngineer {
 			}
 		}
 
-		private RUICascadingList.CascadingListItem VesselEngineer;
+		private UICascadingList.CascadingListItem VesselEngineer;
 
 		private int defaultHeightApp = 0;
 		private int DefaultHeightApp {
@@ -112,7 +115,7 @@ namespace QuickEngineer {
 				if (EditorIsActive) {
 					if (EngineerIsAvailable) {
 						if (EngineersReport.Instance.appLauncherButton != null) {
-							if (EngineersReport.Instance.appLauncherButton.State == RUIToggleButton.ButtonState.TRUE) {
+							if (EngineersReport.Instance.appLauncherButton.toggleButton.CurrentState == UIRadioButton.State.True) {
 								return true;
 							}
 							if (GAppFrame != null) {
@@ -135,10 +138,10 @@ namespace QuickEngineer {
 			}
 		}
 
-		private List<UIListItemContainer> CreateVesselEngineerBody(bool calculation = false) {
-			List<UIListItemContainer> _items = new List<UIListItemContainer> ();
-			UIListItemContainer _item;
-			if (calculation) {
+		private List<UIListItem> CreateVesselEngineerBody(bool calc = false) {
+			List<UIListItem> _items = new List<UIListItem> ();
+			UIListItem _item;
+			if (calc) {
 				_item = GCascadingList.CreateBody (textColor("Calculation..."), string.Empty);
 			} else {
 				List<QStage> _qStages = null;
@@ -175,31 +178,32 @@ namespace QuickEngineer {
 					_item = GCascadingList.CreateBody (textColor("Click here to config"), string.Empty);
 				}
 			}
-			_item.AddInputDelegate (new EZInputDelegate (SetConfig));
-			_items.Add (_item);
+			//Button[] componentsInChildren = GetComponentsInChildren<Button> ();
+			//_item.GetButtonElement ("sd");
+			//_items.Add (_item);
 			Log ("VesselEngineer body created", "QEditor");
 			return _items;
 		}
 
-		private UIListItemContainer CreateBodyStage(int stageIndex, QStage qStage) {
+		private UIListItem CreateBodyStage(int stageIndex, QStage qStage) {
 			if (QSettings.Instance.VesselEngineer_hideEmptyStages && (qStage.deltaV == 0 || qStage.maxThrustToWeight == 0)) {
 				return null;
 			}
-			UIListItemContainer _item = GCascadingList.CreateBody (textEditorStage (stageIndex, qStage.Body, qStage.Atmosphere), textEngineer (stageIndex, qStage), true);
-			_item.AddInputDelegate (new EZInputDelegate (SetConfig));
+			UIListItem _item = GCascadingList.CreateBody (textEditorStage (stageIndex, qStage.Body, qStage.Atmosphere), textEngineer (stageIndex, qStage));
+			//_item.AddInputDelegate (new EZInputDelegate (SetConfig));
 			Log ("Create body Stage: " + stageIndex, "QEditor");
 			return _item;
 		}
 
-		private UIListItemContainer CreateBodyStage(int stageIndex, Stage stage, CelestialBody body = null, bool atmosphere = false) {
+		private UIListItem CreateBodyStage(int stageIndex, Stage stage, CelestialBody body = null, bool atmosphere = false) {
 			if (QSettings.Instance.VesselEngineer_hideEmptyStages && (stage.deltaV == 0 || stage.maxThrustToWeight == 0)) {
 				return null;
 			}
 			if (body == null) {
 				body = QTools.Home;
 			}
-			UIListItemContainer _item = GCascadingList.CreateBody (textEditorStage (stageIndex, body, atmosphere), textEngineer (stageIndex, stage), true);
-			_item.AddInputDelegate (new EZInputDelegate (SetConfig));
+			UIListItem _item = GCascadingList.CreateBody (textEditorStage (stageIndex, body, atmosphere), textEngineer (stageIndex, stage));
+			//_item.AddInputDelegate (new EZInputDelegate (SetConfig));
 			Log ("Create body Stage: " + stageIndex, "QEditor");
 			return _item;
 		}
@@ -242,11 +246,11 @@ namespace QuickEngineer {
 			UpdateEngineer ("Vessel");
 		}
 
-		internal void UpdateEngineer(string title, bool calculation = false) {
-			BTButton button;
-			UIListItemContainer header = GCascadingList.CreateHeader (textTitle(title), out button, true);
-			UIListItemContainer footer = GCascadingList.CreateFooter ();
-			List<UIListItemContainer> bodies = CreateVesselEngineerBody (calculation);
+		internal void UpdateEngineer(string title, bool calc = false) {
+			Button button;
+			UIListItem header = GCascadingList.CreateHeader (textTitle(title), out button, true);
+			UIListItem footer = GCascadingList.CreateFooter ();
+			List<UIListItem> bodies = CreateVesselEngineerBody (calc);
 			if (VesselEngineer != null) {
 				VesselEngineer = GCascadingList.ruiList.UpdateCascadingItem (VesselEngineer, header, footer, bodies, button);
 			} else {
@@ -255,11 +259,11 @@ namespace QuickEngineer {
 			Log (title + "Engineer Updated", "QEditor");
 		}
 
-		private void SetConfig(ref POINTER_INFO ptr) {
+		/*private void SetConfig(ref POINTER_INFO ptr) {
 			if (ptr.evt == POINTER_INFO.INPUT_EVENT.PRESS) {
 				DisplayApp ();
 			}
-		}
+		}*/
 
 		private void DisplayApp () {
 			if (settingsIsLive) {
@@ -267,7 +271,6 @@ namespace QuickEngineer {
 				return;
 			}
 			Lock (true);
-			RenderingManager.AddToPostDrawQueue(3, new Callback(Draw));
 			settingsIsLive = true;
 			Log ("DisplayApp", "QEditor");
 		}
@@ -278,7 +281,6 @@ namespace QuickEngineer {
 				return;
 			}
 			Lock (false);
-			RenderingManager.RemoveFromPostDrawQueue(3, new Callback(Draw));
 			settingsIsLive = false;
 			notPinnedShipModified = true;
 			Log ("HideApp", "QEditor");
@@ -303,7 +305,7 @@ namespace QuickEngineer {
 		}
 
 
-		private void Draw() {
+		private void OnGUI() {
 			GUI.skin = skin;
 			if (atmDeltaVIsLive) {
 				AtmDeltaVRect = GUILayout.Window (4512346, AtmDeltaVRect, MainAtmDeltaV, "Atmospheric DeltaV");
@@ -521,7 +523,7 @@ namespace QuickEngineer {
 						OnEditorShipModified ();
 					}
 				}
-				if (EngineerIsAvailable) {
+				/*if (EngineerIsAvailable) {
 					if (GAppFrame != null) {
 						if (GAppFrame.minHeight != DefaultHeightApp + addHeightApp) {
 							GAppFrame.minHeight = DefaultHeightApp + addHeightApp;
@@ -531,7 +533,7 @@ namespace QuickEngineer {
 							Log ("GAppFrame Updated", "QEditor");
 						}
 					}
-				}
+				}*/
 			}
 		}
 			

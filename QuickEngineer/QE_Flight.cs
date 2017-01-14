@@ -60,7 +60,6 @@ namespace QuickEngineer {
 				Log ("App is already opened", "QFlight");
 				return;
 			}
-			RenderingManager.AddToPostDrawQueue(3, new Callback(DrawEngineer));
 			appIsLive = true;
 			Log ("DisplayApp", "QFlight");
 		}
@@ -70,7 +69,6 @@ namespace QuickEngineer {
 				Log ("App is already closed", "QFlight");
 				return;
 			}
-			RenderingManager.RemoveFromPostDrawQueue(3, new Callback(DrawEngineer));
 			appIsLive = false;
 			Log ("HideApp", "QFlight");
 		}
@@ -88,6 +86,9 @@ namespace QuickEngineer {
 		}
 
 		private void DrawEngineer() {
+			if (!appIsLive) {
+				return;
+			}
 			GUI.skin = skin;
 			FlightEngineerRect = GUILayout.Window(4512345, FlightEngineerRect, MainEngineer, string.Format ("{0} ({1})", MOD, VERSION), windowTitle);
 		}

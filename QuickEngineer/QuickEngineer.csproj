@@ -56,17 +56,6 @@
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <Reference Include="UnityEngine">
-      <HintPath>..\lib\1.0.5.1028\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>..\lib\1.0.5.1028\System.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\lib\1.0.5.1028\Assembly-CSharp.dll</HintPath>
-    </Reference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="COPYING" />
     <None Include="install.sh" />
     <None Include="QuickEngineer.version" />
@@ -80,13 +69,27 @@
     <None Include="GameData\QuickMods\QuickEngineer\README.md" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="VesselSimulator\VesselSimulator.csproj">
-      <Project>{04BB7DE1-6EBA-4633-9471-ABFF06DDFE5E}</Project>
-      <Name>VesselSimulator</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <Folder Include="GameData\QuickMods\" />
     <Folder Include="GameData\QuickMods\QuickEngineer\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="System">
+      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+    </Reference>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="VesselSimulator\QuickEngineer_VesselSimulator.csproj">
+      <Project>{04BB7DE1-6EBA-4633-9471-ABFF06DDFE5E}</Project>
+      <Name>QuickEngineer_VesselSimulator</Name>
+    </ProjectReference>
   </ItemGroup>
 </Project>

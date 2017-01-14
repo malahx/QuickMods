@@ -16,8 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using System;
-using System.Collections;
+using KSP.UI;
+using KSP.UI.Screens;
 using UnityEngine;
 
 namespace QuickEngineer {
@@ -85,7 +85,7 @@ namespace QuickEngineer {
 				if (QFlight.Instance == null || !isActive) {
 					return false;
 				}
-				return appLauncherButton.toggleButton.IsHovering || isHoverApp(QFlight.Instance.FlightEngineerRect);
+				return appLauncherButton.IsHovering || isHoverApp(QFlight.Instance.FlightEngineerRect);
 			}
 		}
 
@@ -107,7 +107,7 @@ namespace QuickEngineer {
 				if (appLauncherButton == null) {
 					return false;
 				}
-				return appLauncherButton.State == RUIToggleButton.ButtonState.TRUE;
+				return appLauncherButton.toggleButton.CurrentState == UIRadioButton.State.True;
 			}
 		}
 
@@ -116,7 +116,7 @@ namespace QuickEngineer {
 				if (appLauncherButton == null) {
 					return false;
 				}
-				return appLauncherButton.State == RUIToggleButton.ButtonState.FALSE;
+				return appLauncherButton.toggleButton.CurrentState == UIRadioButton.State.False;
 			}
 		}
 
@@ -125,16 +125,9 @@ namespace QuickEngineer {
 				if (appLauncherButton == null || !isAvailable) {
 					return new Rect ();
 				}
-				Camera _camera = UIManager.instance.uiCameras [0].camera;
-				Vector3 _pos = appLauncherButton.GetAnchor ();
-				Rect _rect = new Rect (0, 0, 40, 40);
-				if (ApplicationLauncher.Instance.IsPositionedAtTop) {
-					_rect.x = _camera.WorldToScreenPoint (_pos).x;
-				} else {
-					_rect.x = _camera.WorldToScreenPoint (_pos).x - 40;
-					_rect.y = Screen.height - 40;
-				}
-				return _rect;
+				Camera _camera = UIMainCamera.Camera;
+				Vector3 _pos = _camera.WorldToScreenPoint (appLauncherButton.GetAnchorUL ());
+				return new Rect (_pos.x, Screen.height - _pos.y, 41, 41);
 			}
 		}
 
@@ -234,10 +227,10 @@ namespace QuickEngineer {
 			}
 			if (appLauncherButton == null) {
 				if (ModApp) {
-					appLauncherButton = ApplicationLauncher.Instance.AddModApplication (new RUIToggleButton.OnTrue (this.OnTrue), new RUIToggleButton.OnFalse (this.OnFalse), new RUIToggleButton.OnHover (this.OnHover), new RUIToggleButton.OnHoverOut (this.OnHoverOut), new RUIToggleButton.OnEnable (this.OnEnable), new RUIToggleButton.OnDisable (this.OnDisable), AppScenes, GetTexture);
+					appLauncherButton = ApplicationLauncher.Instance.AddModApplication (this.OnTrue, this.OnFalse, this.OnHover, this.OnHoverOut, this.OnEnable, this.OnDisable, AppScenes, GetTexture);
 					ApplicationLauncher.Instance.EnableMutuallyExclusive (appLauncherButton);
 				} else {
-					appLauncherButton = ApplicationLauncher.Instance.AddApplication (new RUIToggleButton.OnTrue (this.OnTrue), new RUIToggleButton.OnFalse (this.OnFalse), new RUIToggleButton.OnHover (this.OnHover), new RUIToggleButton.OnHoverOut (this.OnHoverOut), new RUIToggleButton.OnEnable (this.OnEnable), new RUIToggleButton.OnDisable (this.OnDisable), GetTexture);
+					appLauncherButton = ApplicationLauncher.Instance.AddApplication (this.OnTrue, this.OnFalse, this.OnHover, this.OnHoverOut, this.OnEnable, this.OnDisable, GetTexture);
 					appLauncherButton.VisibleInScenes = AppScenes;
 				}
 				ApplicationLauncher.Instance.AddOnHideCallback (OnHide);
@@ -280,11 +273,11 @@ namespace QuickEngineer {
 			}
 			if (appLauncherButton != null) {
 				if (SetTrue) {
-					if (appLauncherButton.State == RUIToggleButton.ButtonState.FALSE) {
+					if (isFalse) {
 						appLauncherButton.SetTrue (force);
 					}
 				} else {
-					if (appLauncherButton.State == RUIToggleButton.ButtonState.TRUE) {
+					if (isTrue) {
 						appLauncherButton.SetFalse (force);
 					}
 				}

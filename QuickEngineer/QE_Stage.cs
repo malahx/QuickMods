@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.UI.Screens;
 using KerbalEngineer;
 using KerbalEngineer.Editor;
 using KerbalEngineer.VesselSimulator;
@@ -138,8 +139,7 @@ namespace QuickEngineer {
 
 		public static int stagesCount {
 			get {
-				// Staging.StageCount can return 1 when there's no stages.
-				return Staging.fetch.stages.Count;
+				return StageManager.StageCount;
 			}
 		}
 
