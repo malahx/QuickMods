@@ -97,7 +97,7 @@ namespace QuickBrake {
 			while (HighLogic.LoadedSceneIsFlight) {
 				yield return new WaitForSecondsRealtime (1);
 				Vessel _vessel = FlightGlobals.ActiveVessel;
-				if (_vessel.CurrentControlLevel != Vessel.ControlLevel.FULL) {
+				if (QSettings.Instance.EnableBrakeAtControlLost && _vessel.CurrentControlLevel != Vessel.ControlLevel.FULL) {
 					if (!hasBrake) {
 						_vessel.ActionGroups.SetGroup (KSPActionGroup.Brakes, true);
 						hasBrake = true;
