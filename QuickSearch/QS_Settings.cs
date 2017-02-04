@@ -44,6 +44,8 @@ namespace QuickSearch {
 		[Persistent] internal bool RnDSearch = true;
 		[Persistent] internal bool enableSearchExtension = true;
 
+		[Persistent] internal bool enableEnterToSearch = false;
+
 		[Persistent] internal string searchAND = 			"&";
 		[Persistent] internal string searchOR = 			"|";
 		[Persistent] internal string searchNOT = 			"!";

@@ -148,6 +148,8 @@ namespace QuickSearch {
 
 				GUILayout.BeginHorizontal ();
 				QSettings.Instance.enableSearchExtension = GUILayout.Toggle (QSettings.Instance.enableSearchExtension, QLang.translate ("Enable the extended search"), GUILayout.Width (400));
+				GUILayout.FlexibleSpace ();
+				QSettings.Instance.enableEnterToSearch = GUILayout.Toggle (QSettings.Instance.enableEnterToSearch, QLang.translate ("Enable type Enter to search"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
 
 				if (QSettings.Instance.enableSearchExtension) {

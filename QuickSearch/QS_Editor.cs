@@ -114,7 +114,7 @@ namespace QuickSearch {
 		}
 
 		void SearchField_OnValueChange(string s) {
-			if (!isReady) {
+			if (!isReady || QSettings.Instance.enableEnterToSearch) {
 				return;
 			}
 			QSearch.Text = s;
@@ -123,6 +123,10 @@ namespace QuickSearch {
 		}
 
 		void SearchField_OnEndEdit(string s) {
+			if (QSettings.Instance.enableEnterToSearch) {
+				QSearch.Text = s;
+				EditorPartList.Instance.Refresh ();
+			}
 			InputLockManager.RemoveControlLock (MOD + "-KeyBoard");
 			Log ("SearchField_OnEndEdit", "QEditor");
 		}
