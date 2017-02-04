@@ -88,7 +88,9 @@ namespace QuickBrake {
 		}
 
 		protected override void Start() {
-			controlLost = StartCoroutine (BrakeAtControlLost ());
+			if (QSettings.Instance.EnableBrakeAtControlLost) {
+				controlLost = StartCoroutine (BrakeAtControlLost ());
+			}
 			Log ("Start", "QBrake");
 		}
 
@@ -97,7 +99,7 @@ namespace QuickBrake {
 			while (HighLogic.LoadedSceneIsFlight) {
 				yield return new WaitForSecondsRealtime (1);
 				Vessel _vessel = FlightGlobals.ActiveVessel;
-				if (QSettings.Instance.EnableBrakeAtControlLost && _vessel.CurrentControlLevel != Vessel.ControlLevel.FULL) {
+				if (_vessel.CurrentControlLevel != Vessel.ControlLevel.FULL) {
 					if (!hasBrake) {
 						_vessel.ActionGroups.SetGroup (KSPActionGroup.Brakes, true);
 						hasBrake = true;
@@ -137,7 +139,9 @@ namespace QuickBrake {
 		protected override void OnDestroy() {
 			GameEvents.OnFlightGlobalsReady.Remove (OnFlightGlobalsReady);
 			GameEvents.onLaunch.Remove (OnLaunch);
-			StopCoroutine (controlLost);
+			if (controlLost != null) {
+				StopCoroutine (controlLost);
+			}
 			Log ("OnDestroy", "QBrake");
 		}
 	}
