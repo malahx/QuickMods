@@ -26,6 +26,7 @@ namespace QuickSearch {
 		public static QRnD Instance;
 
 		GUIStyle ButtonStyle;
+		bool saved = false;
 
 		public bool Ready = false;
 
@@ -105,17 +106,23 @@ namespace QuickSearch {
 			GUILayout.BeginArea (RectRDSearch);
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
+			GUI.SetNextControlName ("searchField");
 			string _Text = GUILayout.TextField (QSearch.Text, TextField,GUILayout.Height(30));
 			if (GUILayout.Button (new GUIContent (DeleteTexture, "Clear the search bar"), ButtonStyle,GUILayout.Height(30),GUILayout.Width(30))) {
 				_Text = string.Empty;
 			}
 			if (_Text != QSearch.Text) {
 				QSearch.Text = _Text;
+				saved = false;
 				if (_Text == string.Empty) {
 					Find (true);
 				} else {
 					Find ();
 				}
+			}
+			if (!saved && !string.IsNullOrEmpty(QSearch.Text) && GUI.GetNameOfFocusedControl () != "searchField") {
+				QSearch.Save ();
+				saved = true;
 			}
 			GUILayout.EndHorizontal ();
 			GUILayout.EndVertical ();

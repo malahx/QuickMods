@@ -127,6 +127,7 @@ namespace QuickSearch {
 				QSearch.Text = s;
 				EditorPartList.Instance.Refresh ();
 			}
+			QSearch.Save ();
 			InputLockManager.RemoveControlLock (MOD + "-KeyBoard");
 			Log ("SearchField_OnEndEdit", "QEditor");
 		}

@@ -24,6 +24,16 @@ using System.Text.RegularExpressions;
 namespace QuickSearch {
 	internal class QSearch : QuickSearch {
 
+		static QHistory history;
+		static QHistory History {
+			get {
+				if (history == null) {
+					history = new QHistory ();
+				}
+				return history;
+			}
+		}
+
 		internal enum partInfos {
 			TAG,
 			NAME,
@@ -316,6 +326,9 @@ namespace QuickSearch {
 			} else {
 				return FindStandard (_shipinfo, Text);
 			}
+		}
+		public static void Save() {
+			History.Add (Text);
 		}
 	}
 }
