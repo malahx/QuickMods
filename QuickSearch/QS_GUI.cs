@@ -24,7 +24,9 @@ namespace QuickSearch {
 	public partial class QuickSearch {
 
 		protected GUIStyle TextField;
+		protected bool history = false;
 		bool WindowSettings = false;
+
 		Rect rectSettings = new Rect (0, 0, 0, 0);
 		Rect RectSettings {
 			get {
@@ -103,6 +105,22 @@ namespace QuickSearch {
 			Log ("ShowSettings", "QGUI");
 		}
 
+		protected void HideHistory() {
+			if (!history) {
+				return;
+			}
+			history = false;
+			Log ("HideHistory", "QGUI");
+		}
+
+		protected void ShowHistory() {
+			if (history) {
+				return;
+			}
+			history = true;
+			Log ("ShowHistory", "QGUI");
+		}
+
 		void Save() {
 			QStockToolbar.Instance.Reset ();
 			BlizzyToolbar.Reset ();
@@ -113,11 +131,13 @@ namespace QuickSearch {
 		}
 
 		protected virtual void OnGUI() {
-			if (!WindowSettings) {
-				return;
-			}
 			GUI.skin = HighLogic.Skin;
-			RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
+			if (WindowSettings) {
+				RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
+			}
+			if (history) {
+				QHistory.Instance.Draw ();
+			}
 		}
 
 		// Panneau de configuration

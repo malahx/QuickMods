@@ -119,9 +119,11 @@ namespace QuickSearch {
 				} else {
 					Find ();
 				}
+				ShowHistory ();
 			}
 			if (!saved && !string.IsNullOrEmpty(QSearch.Text) && GUI.GetNameOfFocusedControl () != "searchField") {
 				QSearch.Save ();
+				HideHistory ();
 				saved = true;
 			}
 			GUILayout.EndHorizontal ();

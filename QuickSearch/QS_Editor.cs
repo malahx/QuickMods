@@ -64,7 +64,7 @@ namespace QuickSearch {
 
 		protected override void Start() {
 			base.Start ();
-			Func<AvailablePart, bool> _criteria = (_aPart) => QSearch.FindPart(_aPart);
+			Func<AvailablePart, bool> _criteria = (_aPart) => QSearch.FindPart (_aPart);
 			searchFilterParts = new EditorPartListFilter<AvailablePart> (MOD, _criteria);
 			PartCategorizer.Instance.searchField.onValueChanged.RemoveAllListeners ();
 			PointerClickHandler _pointerClickSearch = null;
@@ -78,6 +78,13 @@ namespace QuickSearch {
 			PartCategorizer.Instance.searchField.GetComponentCached<Image> (ref searchImage);
 			setSearchFilter ();
 			Log ("Start", "QEditor");
+		}
+
+		void FixedUpdate() {
+			if (!history) {
+				return;
+			}
+			QHistory.Instance.Keys ();
 		}
 
 		void Update() {
@@ -107,10 +114,11 @@ namespace QuickSearch {
 			if (searchImage != null) {
 				searchImage.color = Color.cyan;
 			}
-			setSearchFilter();
+			setSearchFilter ();
 			if (!QSettings.Instance.enableEnterToSearch) {
 				EditorPartList.Instance.Refresh (EditorPartList.State.PartSearch);
 			}
+			ShowHistory ();
 			InputLockManager.SetControlLock (ControlTypes.KEYBOARDINPUT, MOD + "-KeyBoard");
 			Log ("InitSearch", "QEditor");
 		}
@@ -119,6 +127,7 @@ namespace QuickSearch {
 			if (!isReady || QSettings.Instance.enableEnterToSearch) {
 				return;
 			}
+			ShowHistory ();
 			QSearch.Text = s;
 			EditorPartList.Instance.Refresh ();
 			Log ("SearchField_OnValueChange: " + s, "QEditor");
@@ -130,6 +139,7 @@ namespace QuickSearch {
 				EditorPartList.Instance.Refresh ();
 			}
 			QSearch.Save ();
+			HideHistory ();
 			InputLockManager.RemoveControlLock (MOD + "-KeyBoard");
 			Log ("SearchField_OnEndEdit", "QEditor");
 		}

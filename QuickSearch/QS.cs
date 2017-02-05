@@ -24,8 +24,7 @@ namespace QuickSearch {
 	public partial class QRnD : QuickSearch { }
 
 	[KSPAddon(KSPAddon.Startup.EditorAny, false)]
-	public partial class QEditor : QuickSearch { }
-
+	public partial class QEditor : QuickSearch { }
 	[KSPAddon (KSPAddon.Startup.MainMenu, true)]
 	public partial class QStockToolbar : QuickSearch { }
 

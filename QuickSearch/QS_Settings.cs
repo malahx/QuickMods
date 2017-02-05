@@ -45,6 +45,7 @@ namespace QuickSearch {
 		[Persistent] internal bool enableSearchExtension = true;
 
 		[Persistent] internal bool enableEnterToSearch = false;
+		[Persistent] internal int historyIndex = 10;
 
 		[Persistent] internal string searchAND = 			"&";
 		[Persistent] internal string searchOR = 			"|";
