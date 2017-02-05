@@ -108,7 +108,7 @@ namespace QuickSearch {
 				searchImage.color = Color.cyan;
 			}
 			setSearchFilter();
-			if (QSettings.Instance.enableEnterToSearch) {
+			if (!QSettings.Instance.enableEnterToSearch) {
 				EditorPartList.Instance.Refresh (EditorPartList.State.PartSearch);
 			}
 			InputLockManager.SetControlLock (ControlTypes.KEYBOARDINPUT, MOD + "-KeyBoard");
