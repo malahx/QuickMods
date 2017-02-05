@@ -22,6 +22,16 @@ using System.IO;
 namespace QuickSearch {
 	public class QHistory {
 
+		[KSPField (isPersistant = true)] static QHistory instance;
+		public static QHistory Instance {
+			get {
+				if (instance == null) {
+					instance = new QHistory ();
+				}
+				return instance;
+			}
+		}
+
 		readonly string cfgNode = "SearchHistory";
 		readonly string configPath = QuickSearch.PATH + "/History.cfg";
 		readonly Dictionary<string, int> history;
