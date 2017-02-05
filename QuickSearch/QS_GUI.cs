@@ -117,9 +117,6 @@ namespace QuickSearch {
 				return;
 			}
 			GUI.skin = HighLogic.Skin;
-			if (!WindowSettings) {
-				return;
-			}
 			RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
 		}
 
