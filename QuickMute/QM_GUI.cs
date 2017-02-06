@@ -32,8 +32,8 @@ namespace QuickMute {
 
 		Coroutine wait;
 
-		string Icon_TexturePathSound = MOD + "/Textures/Icon_sound";
-		string Icon_TexturePathMute = MOD + "/Textures/Icon_mute";
+		string Icon_TexturePathSound = relativePath + "/Textures/Icon_sound";
+		string Icon_TexturePathMute = relativePath + "/Textures/Icon_mute";
 
 		Texture2D Icon_Texture {
 			get {
