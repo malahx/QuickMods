@@ -17,7 +17,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 using Contracts;
 using Strategies;
-using System;
 using System.Collections;
 using System.IO;
 using UnityEngine;
@@ -65,7 +64,8 @@ namespace QuickStart {
 					                 ContractSystem.MandatoryTypes != null &&
 					                 ContractSystem.ContractTypes != null &&
 					                 ContractSystem.PredicateTypes != null &&
-				        			 ContractSystem.ParameterTypes != null;
+				        			 ContractSystem.ParameterTypes != null &&
+					                 ContractSystem.loaded;
 			}
 		}
 
@@ -81,17 +81,11 @@ namespace QuickStart {
 			while (!Ready || !QuickStart_Persistent.Ready) {
 				yield return 0;
 			}
-			if (HighLogic.CurrentGame.Mode == Game.Modes.CAREER) {
-				var date = DateTime.Now;
-				while ((!contractsAreInited || !strategyAreInited) && DateTime.Now.Second - date.Second < 5) {
-					yield return 0;
-				}
-			}
 			yield return new WaitForSecondsRealtime (QSettings.Instance.WaitLoading);
 			yield return new WaitForEndOfFrame ();
 			QuickStart.Log ("SpaceCenter Loaded", "QSpaceCenter");
 			if (QSettings.Instance.gameScene == (int)GameScenes.FLIGHT) {
-				string _saveGame = GamePersistence.SaveGame (HighLogic.CurrentGame, QSaveGame.File, HighLogic.SaveFolder, SaveMode.OVERWRITE);
+				string _saveGame = GamePersistence.SaveGame (QSaveGame.File, HighLogic.SaveFolder, SaveMode.OVERWRITE);
 				if (!string.IsNullOrEmpty (QuickStart_Persistent.vesselID)) {
 					int _idx = HighLogic.CurrentGame.flightState.protoVessels.FindLastIndex (pv => pv.vesselID == QuickStart_Persistent.VesselID);
 					if (_idx != -1) {
