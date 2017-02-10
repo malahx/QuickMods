@@ -58,25 +58,6 @@ namespace QuickStart {
 			QuickStart.Log ("Start", "QSpaceCenter");
 		}
 
-		bool contractsAreInited {
-			get {
-				return ContractSystem.Instance != null && 
-					                 ContractSystem.MandatoryTypes != null &&
-					                 ContractSystem.ContractTypes != null &&
-					                 ContractSystem.PredicateTypes != null &&
-				        			 ContractSystem.ParameterTypes != null &&
-					                 ContractSystem.loaded;
-			}
-		}
-
-		bool strategyAreInited {
-			get {
-				return StrategySystem.Instance != null && 
-					                 StrategySystem.StrategyEffectTypes != null && 
-					                 StrategySystem.StrategyTypes != null;
-			}
-		}
-
 		IEnumerator QStart() {
 			while (!Ready || !QuickStart_Persistent.Ready) {
 				yield return 0;
