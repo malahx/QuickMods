@@ -46,6 +46,7 @@ namespace QuickSearch {
 
 		[Persistent] internal bool enableEnterToSearch = false;
 		[Persistent] internal int historyIndex = 10;
+		[Persistent] internal int historySortby = (int)QHistory.SortBy.COUNT;
 
 		[Persistent] internal string searchAND = 			"&";
 		[Persistent] internal string searchOR = 			"|";

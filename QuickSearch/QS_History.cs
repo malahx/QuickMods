@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using System;
 using System.Collections.Generic;
 using System.IO;
 using KSP.UI.Screens;
@@ -23,6 +24,12 @@ using UnityEngine;
 
 namespace QuickSearch {
 	public class QHistory {
+
+		public enum SortBy {
+			NAME = 0,
+			COUNT = 1,
+			DATE = 2
+		}
 
 		[KSPField (isPersistant = true)]
 		static QHistory instance;
@@ -37,20 +44,9 @@ namespace QuickSearch {
 
 		readonly string cfgNode = "SearchHistory";
 		readonly string configPath = QuickSearch.PATH + "/History.cfg";
-		readonly Dictionary<string, int> history;
-		GUIStyle areaBackground;
+		readonly List<Search> history;
+		readonly GUIStyle areaBackground;
 		int index;
-
-		List<string> cachedKey;
-		List<string> CachedKey {
-			get {
-				if (cachedKey == null) {
-					cachedKey = new List<string> (history.Keys);
-					cachedKey.Sort ((a, b) => history[b].CompareTo (history[a]));
-				}
-				return cachedKey;
-			}
-		}
 
 		GUIStyle lblActive;
 		GUIStyle LblActive {
@@ -68,15 +64,15 @@ namespace QuickSearch {
 				if (HighLogic.LoadedSceneIsEditor) {
 					return new Rect (50, 5 + PartCategorizer.Instance.searchField.textViewport.rect.height, PartCategorizer.Instance.searchField.textViewport.rect.width, 20 * QSettings.Instance.historyIndex);
 				}
-				else {
-					return new Rect (0, 0, Screen.width, Screen.height);
-				}
+				return new Rect (0, 0, Screen.width, Screen.height);
 			}
 		}
 
 		public QHistory() {
-			history = new Dictionary<string, int> ();
+			history = new List<Search> ();
 			index = -1;
+			areaBackground = new GUIStyle ();
+			areaBackground.normal.background = QS_Utils.ColorToTex (area.size, new Color (0, 0, 0, 0.5f));
 			if (!File.Exists (configPath)) {
 				return;
 			}
@@ -86,32 +82,35 @@ namespace QuickSearch {
 				ConfigNode node = nodes[i];
 				string text = "";
 				int count = 0;
-				if (node.TryGetValue ("text", ref text) && node.TryGetValue ("count", ref count)) {
-					history.Add (text, count);
+				long date = 0;
+				if (node.TryGetValue ("text", ref text) && node.TryGetValue ("count", ref count) && node.TryGetValue("date", ref date)) {
+					history.Add (new Search(text, count, new DateTime(date)));
 				}
 			}
-			index = history.Count -1;
-			areaBackground = new GUIStyle ();
-			areaBackground.normal.background = QS_Utils.ColorToTex (area.size, new Color (0, 0, 0, 0.5f));
+			history.SortBy (QSettings.Instance.historySortby);
 		}
 
-		public void Add(string s) {
-			if (history.ContainsKey (s)) {
-				history[s]++;
+		public void Add(string t) {
+			Search s = history.Get (t);
+			if (s != null) {
+				s.count += 1;
 			}
 			else {
-				history.Add (s, 1);
+				history.Add (new Search (t, 1, DateTime.Now));
 			}
-			cachedKey = null;
+			history.SortBy (QSettings.Instance.historySortby);
 			index = -1;
+			Save ();
+		}
+
+		void Save() {
 			ConfigNode node = new ConfigNode ();
-			List<string> keys = new List<string> (history.Keys);
-			for (int i = history.Count - 1; i >= 0; --i) {
-				string text = keys[i];
-				int count = history[text];
+			for (int i = history.Count - 1; i >= 0; i--) {
+				Search s = history[i];
 				ConfigNode n = node.AddNode (cfgNode);
-				n.AddValue ("text", text);
-				n.AddValue ("count", count);
+				n.AddValue ("text", s.text);
+				n.AddValue ("count", s.count);
+				n.AddValue ("date", s.date.Ticks);
 			}
 			node.Save (configPath);
 		}
@@ -124,18 +123,28 @@ namespace QuickSearch {
 				NextIndex ();
 			}
 			if (Input.GetKeyDown (KeyCode.Return) && index > -1) {
-				PartCategorizer.Instance.searchField.text = CachedKey[index];
+				PartCategorizer.Instance.searchField.text = history[index].text;
 			}
 		}
 
 		public void Draw() {
 			GUILayout.BeginArea (area, areaBackground);
-			for (int i = 0; i < CachedKey.Count; i++) {
+			GUILayout.BeginHorizontal ();
+			GUILayout.Label ("History");
+			GUILayout.FlexibleSpace ();
+			GUILayout.Label (QSettings.Instance.historySortby == (int)SortBy.COUNT ? "Count" : "Date");
+			GUILayout.EndHorizontal ();
+			for (int i = 0, count = history.Count; i < count; i++) {
 				if (i >= QSettings.Instance.historyIndex) {
 					break;
 				}
-				string key = CachedKey[i];
-				GUILayout.Label (key, index == i ? LblActive : GUI.skin.label);
+				GUILayout.BeginHorizontal ();
+				Search s = history[i];
+				GUIStyle st = index == i ? LblActive : GUI.skin.label;
+				GUILayout.Label (s.text, st);
+				GUILayout.FlexibleSpace ();
+				GUILayout.Label (QSettings.Instance.historySortby == (int)SortBy.COUNT ? s.count.ToString() : s.getDate(), st);
+				GUILayout.EndHorizontal ();
 			}
 			GUILayout.EndArea ();
 		}
@@ -152,6 +161,33 @@ namespace QuickSearch {
 				index = history.Count > QSettings.Instance.historyIndex ? QSettings.Instance.historyIndex : history.Count;
 			}
 			index--;
+		}
+
+		public class Search {
+			public string text;
+			public int count;
+			public DateTime date;
+
+			public Search(string text, int count, DateTime date) {
+				this.text = text;
+				this.count = count;
+				this.date = date;
+			}
+
+			public string getDate() {
+				string s = "";
+				DateTime today = DateTime.Today;
+				if (date.ToLongDateString () == today.ToLongDateString ()) {
+					s = date.ToLongTimeString ();
+				}
+				else if (date.ToLongDateString () == today.AddDays (-1).ToLongDateString ()) {
+					s = "Yesterday";
+				}
+				else {
+					s = date.ToShortDateString ();
+				}
+				return s;
+			}
 		}
 	}
 }

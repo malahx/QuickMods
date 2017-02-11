@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace QuickSearch {
@@ -30,6 +30,34 @@ namespace QuickSearch {
 			result.SetPixels (pix);
 			result.Apply ();
 			return result;
+		}
+
+		public static void SortBy(this List<QHistory.Search> h, int type) {
+			switch (type) {
+				case (int)QHistory.SortBy.COUNT:
+					h.Sort ((a, b) => b.count.CompareTo (a.count));
+					break;
+				case (int)QHistory.SortBy.DATE:
+					h.Sort ((a, b) => b.date.CompareTo (a.date));
+					break;
+				case (int)QHistory.SortBy.NAME:
+					h.Sort ((a, b) => string.Compare (b.text, a.text, System.StringComparison.Ordinal));
+					break;
+			}
+		}
+
+		public static bool Contains(this List<QHistory.Search> h, string t) {
+			return h.Get (t) != null;
+		}
+
+		public static QHistory.Search Get(this List<QHistory.Search> h, string text) {
+			for (int i = h.Count - 1; i >= 0; i--) {
+				QHistory.Search s = h[i];
+				if (s.text == text) {
+					return s;
+				}
+			}
+			return null;
 		}
 	}
 }
