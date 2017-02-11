@@ -45,6 +45,9 @@ namespace QuickSearch {
 			}
 			set {
 				text = CleanInput (value);
+				if (HighLogic.LoadedSceneIsEditor && text != string.Empty) {
+					EditorPartList.Instance.Refresh ();
+				}
 			}
 		}
 		static string CleanInput(string strIn) {
@@ -316,10 +319,6 @@ namespace QuickSearch {
 			} else {
 				return FindStandard (_shipinfo, Text);
 			}
-		}
-
-		public static void Save() {
-			QHistory.Instance.Add (Text);
 		}
 	}
 }

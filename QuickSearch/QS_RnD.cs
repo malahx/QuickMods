@@ -122,7 +122,6 @@ namespace QuickSearch {
 				ShowHistory ();
 			}
 			if (!saved && !string.IsNullOrEmpty(QSearch.Text) && GUI.GetNameOfFocusedControl () != "searchField") {
-				QSearch.Save ();
 				HideHistory ();
 				saved = true;
 			}

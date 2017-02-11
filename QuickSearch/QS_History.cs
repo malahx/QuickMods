@@ -44,6 +44,9 @@ namespace QuickSearch {
 
 		readonly string cfgNode = "SearchHistory";
 		readonly string configPath = QuickSearch.PATH + "/History.cfg";
+		readonly string SearchTexturePath = QuickSearch.relativePath + "/Textures/search";
+		readonly GUIStyle btnStyle;
+		Texture2D SearchTexture;
 		readonly List<Search> history;
 		int index;
 
@@ -61,6 +64,10 @@ namespace QuickSearch {
 		public QHistory() {
 			history = new List<Search> ();
 			index = -1;
+			SearchTexture = GameDatabase.Instance.GetTexture (SearchTexturePath, false);
+			btnStyle = new GUIStyle (HighLogic.Skin.button);
+			btnStyle.border = new RectOffset ();
+			btnStyle.padding = new RectOffset ();
 			if (!File.Exists (configPath)) {
 				return;
 			}
@@ -131,6 +138,9 @@ namespace QuickSearch {
 				GUILayout.Label (s.text, st);
 				GUILayout.FlexibleSpace ();
 				GUILayout.Label (QSettings.Instance.historySortby == (int)SortBy.COUNT ? s.count.ToString() : s.getDate(), st);
+				if (GUILayout.Button (SearchTexture, btnStyle, GUILayout.Width(20), GUILayout.Height (20))) {
+					PartCategorizer.Instance.searchField.text = history[i].text;
+				}
 				GUILayout.EndHorizontal ();
 			}
 		}

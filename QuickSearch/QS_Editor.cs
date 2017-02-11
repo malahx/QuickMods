@@ -129,25 +129,21 @@ namespace QuickSearch {
 			}
 			ShowHistory ();
 			QSearch.Text = s;
-			EditorPartList.Instance.Refresh ();
 			Log ("SearchField_OnValueChange: " + s, "QEditor");
 		}
 
 		void SearchField_OnEndEdit(string s) {
 			if (QSettings.Instance.enableEnterToSearch) {
 				QSearch.Text = s;
-				EditorPartList.Instance.Refresh ();
 			}
-			QSearch.Save ();
 			HideHistory ();
 			InputLockManager.RemoveControlLock (MOD + "-KeyBoard");
 			Log ("SearchField_OnEndEdit", "QEditor");
 		}
 
 		public void Refresh() {
-			QSearch.Text = PartCategorizer.Instance.searchField.text;
 			setSearchFilter ();
-			EditorPartList.Instance.Refresh ();
+			QSearch.Text = PartCategorizer.Instance.searchField.text;
 		}
 
 		void setSearchFilter() {

@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using System.Collections;
 using System.Text.RegularExpressions;
 using KSP.UI.Screens;
 using UnityEngine;
@@ -125,9 +126,19 @@ namespace QuickSearch {
 		}
 
 		protected void HideHistory() {
+			StartCoroutine (hideHistory ());
+		}
+
+		IEnumerator hideHistory() {
 			if (!WindowHistory) {
-				return;
+				yield break;
 			}
+			yield return new WaitForFixedUpdate ();
+			while (Mouse.Left.GetButton ()) {
+				yield return 0;
+			}
+			yield return new WaitForEndOfFrame ();
+			QHistory.Instance.Add (QSearch.Text);
 			WindowHistory = false;
 			Log ("HideHistory", "QGUI");
 		}
