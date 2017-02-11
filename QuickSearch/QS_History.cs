@@ -45,7 +45,6 @@ namespace QuickSearch {
 		readonly string cfgNode = "SearchHistory";
 		readonly string configPath = QuickSearch.PATH + "/History.cfg";
 		readonly List<Search> history;
-		readonly GUIStyle areaBackground;
 		int index;
 
 		GUIStyle lblActive;
@@ -59,20 +58,9 @@ namespace QuickSearch {
 			}
 		}
 
-		Rect area {
-			get {
-				if (HighLogic.LoadedSceneIsEditor) {
-					return new Rect (50, 5 + PartCategorizer.Instance.searchField.textViewport.rect.height, PartCategorizer.Instance.searchField.textViewport.rect.width, 20 * QSettings.Instance.historyIndex);
-				}
-				return new Rect (0, 0, Screen.width, Screen.height);
-			}
-		}
-
 		public QHistory() {
 			history = new List<Search> ();
 			index = -1;
-			areaBackground = new GUIStyle ();
-			areaBackground.normal.background = QS_Utils.ColorToTex (area.size, new Color (0, 0, 0, 0.5f));
 			if (!File.Exists (configPath)) {
 				return;
 			}
@@ -127,10 +115,9 @@ namespace QuickSearch {
 			}
 		}
 
-		public void Draw() {
-			GUILayout.BeginArea (area, areaBackground);
+		public void Draw(int id) {
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("History");
+			GUILayout.Label ("Last Search");
 			GUILayout.FlexibleSpace ();
 			GUILayout.Label (QSettings.Instance.historySortby == (int)SortBy.COUNT ? "Count" : "Date");
 			GUILayout.EndHorizontal ();
@@ -146,7 +133,6 @@ namespace QuickSearch {
 				GUILayout.Label (QSettings.Instance.historySortby == (int)SortBy.COUNT ? s.count.ToString() : s.getDate(), st);
 				GUILayout.EndHorizontal ();
 			}
-			GUILayout.EndArea ();
 		}
 
 		public void NextIndex() {

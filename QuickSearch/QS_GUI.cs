@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.Text.RegularExpressions;
+using KSP.UI.Screens;
 using UnityEngine;
 
 namespace QuickSearch {
@@ -24,7 +25,7 @@ namespace QuickSearch {
 	public partial class QuickSearch {
 
 		protected GUIStyle TextField;
-		protected bool history = false;
+		protected bool WindowHistory = false;
 		bool WindowSettings = false;
 
 		Rect rectSettings = new Rect (0, 0, 0, 0);
@@ -42,6 +43,24 @@ namespace QuickSearch {
 			}
 			set {
 				rectSettings = value;
+			}
+		}
+
+		Rect rectHistory;
+		Rect RectHistory {
+			get {
+				if (rectHistory == new Rect ()) {
+					if (HighLogic.LoadedSceneIsEditor) {
+						rectHistory = new Rect (50, 5 + PartCategorizer.Instance.searchField.textViewport.rect.height, PartCategorizer.Instance.searchField.textViewport.rect.width, 0);
+					}
+					else {
+						rectHistory = new Rect (0, 0, Screen.width, Screen.height);
+					}
+				}
+				return rectHistory;
+			}
+			set {
+				rectHistory = value;
 			}
 		}
 
@@ -106,18 +125,18 @@ namespace QuickSearch {
 		}
 
 		protected void HideHistory() {
-			if (!history) {
+			if (!WindowHistory) {
 				return;
 			}
-			history = false;
+			WindowHistory = false;
 			Log ("HideHistory", "QGUI");
 		}
 
 		protected void ShowHistory() {
-			if (history) {
+			if (WindowHistory) {
 				return;
 			}
-			history = true;
+			WindowHistory = true;
 			Log ("ShowHistory", "QGUI");
 		}
 
@@ -135,8 +154,8 @@ namespace QuickSearch {
 			if (WindowSettings) {
 				RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
 			}
-			if (history) {
-				QHistory.Instance.Draw ();
+			if (WindowHistory) {
+				RectHistory = GUILayout.Window (1545147, RectHistory, QHistory.Instance.Draw, "History");
 			}
 		}
 

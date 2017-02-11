@@ -81,7 +81,7 @@ namespace QuickSearch {
 		}
 
 		void FixedUpdate() {
-			if (!history) {
+			if (!WindowHistory) {
 				return;
 			}
 			QHistory.Instance.Keys ();
