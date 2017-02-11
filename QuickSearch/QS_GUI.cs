@@ -165,6 +165,7 @@ namespace QuickSearch {
 				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
 			}
 			GUILayout.EndHorizontal ();
+
 			GUILayout.BeginHorizontal ();
 			QSettings.Instance.EditorSearch = GUILayout.Toggle (QSettings.Instance.EditorSearch, QLang.translate ("Replace editor search - reload needed"), GUILayout.Width (400));
 			GUILayout.FlexibleSpace ();
@@ -172,12 +173,39 @@ namespace QuickSearch {
 			GUILayout.EndHorizontal ();
 
 			if (QSettings.Instance.EditorSearch || QSettings.Instance.RnDSearch) {
-
+				
 				GUILayout.BeginHorizontal ();
 				QSettings.Instance.enableSearchExtension = GUILayout.Toggle (QSettings.Instance.enableSearchExtension, QLang.translate ("Enable the extended search"), GUILayout.Width (400));
 				GUILayout.FlexibleSpace ();
-				QSettings.Instance.enableEnterToSearch = GUILayout.Toggle (QSettings.Instance.enableEnterToSearch, QLang.translate ("Enable type Enter to search"), GUILayout.Width (400));
+				QSettings.Instance.enableHistory = GUILayout.Toggle (QSettings.Instance.enableHistory, QLang.translate ("Enable History"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
+
+				GUILayout.BeginHorizontal ();
+				QSettings.Instance.enableEnterToSearch = GUILayout.Toggle (QSettings.Instance.enableEnterToSearch, QLang.translate ("Type Enter to search"), GUILayout.Width (400));
+				GUILayout.FlexibleSpace ();
+
+				GUILayout.EndHorizontal ();
+
+				if (QSettings.Instance.enableHistory) {
+					GUILayout.BeginHorizontal ();
+					GUILayout.Box (QLang.translate ("History"), GUILayout.Height (30));
+					GUILayout.EndHorizontal ();
+
+					GUILayout.BeginHorizontal ();
+					bool b = QSettings.Instance.historySortby == (int)QHistory.SortBy.COUNT;
+					QSettings.Instance.historySortby = GUILayout.Toggle (b, QLang.translate ("Sort history by Count"), GUILayout.Width (400)) ? (int)QHistory.SortBy.COUNT : (int)QHistory.SortBy.DATE;
+					GUILayout.FlexibleSpace ();
+					QSettings.Instance.historySortby = GUILayout.Toggle (!b, QLang.translate ("Sort history by Date"), GUILayout.Width (400)) ? (int)QHistory.SortBy.DATE : (int)QHistory.SortBy.COUNT;
+					GUILayout.EndHorizontal ();
+
+					GUILayout.BeginHorizontal ();
+					GUILayout.Label (QLang.translate ("Number of last search displayed:"), GUILayout.Width (300));
+					int i = 10;
+					if (int.TryParse (GUILayout.TextField (QSettings.Instance.historyIndex.ToString (), TextField, GUILayout.Width (75)), out i)) {
+						QSettings.Instance.historyIndex = i;
+					}
+					GUILayout.EndHorizontal ();
+				}
 
 				if (QSettings.Instance.enableSearchExtension) {
 
@@ -251,14 +279,17 @@ namespace QuickSearch {
 					GUILayout.EndHorizontal ();
 				}
 			}
+
 			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
+
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
 			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Width (100))) {
 				HideSettings ();
 			}
 			GUILayout.EndHorizontal();
+
 			GUILayout.EndVertical ();
 		}
 
