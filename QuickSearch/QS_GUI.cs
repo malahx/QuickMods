@@ -84,26 +84,23 @@ namespace QuickSearch {
 
 		void Settings() {
 			WindowSettings = !WindowSettings;
-			Switch (WindowSettings);
+			QStockToolbar.Instance.Set (WindowSettings);
 			if (!WindowSettings) {
 				Save ();
 			}
 			Log ("Settings", "QGUI");
 		}
 
-		void Switch(bool set) {
-			QStockToolbar.Instance.Set (WindowSettings);
-		}
-
 		void HideSettings() {
 			WindowSettings = false;
-			Switch (false);
+			QStockToolbar.Instance.Set (WindowSettings);
 			Save ();
 			Log ("HideSettings", "QGUI");
 		}
 
 		void ShowSettings() {
 			WindowSettings = true;
+			QStockToolbar.Instance.Set (WindowSettings);
 			Log ("ShowSettings", "QGUI");
 		}
 
