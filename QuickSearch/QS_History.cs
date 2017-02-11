@@ -38,6 +38,7 @@ namespace QuickSearch {
 		readonly string cfgNode = "SearchHistory";
 		readonly string configPath = QuickSearch.PATH + "/History.cfg";
 		readonly Dictionary<string, int> history;
+		GUIStyle areaBackground;
 		int index;
 
 		List<string> cachedKey;
@@ -79,6 +80,8 @@ namespace QuickSearch {
 				}
 			}
 			index = history.Count -1;
+			areaBackground = new GUIStyle ();
+			areaBackground.normal.background = QS_Utils.ColorToTex (area.size, new Color (0, 0, 0, 0.5f));
 		}
 
 		public void Add(string s) {
@@ -115,7 +118,7 @@ namespace QuickSearch {
 		}
 
 		public void Draw() {
-			GUILayout.BeginArea (area);
+			GUILayout.BeginArea (area, areaBackground);
 			for (int i = 0; i < CachedKey.Count; i++) {
 				if (i >= QSettings.Instance.historyIndex) {
 					break;
