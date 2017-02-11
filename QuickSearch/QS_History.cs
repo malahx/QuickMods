@@ -52,6 +52,17 @@ namespace QuickSearch {
 			}
 		}
 
+		GUIStyle lblActive;
+		GUIStyle LblActive {
+			get {
+				if (lblActive == null) {
+					lblActive = new GUIStyle (GUI.skin.label);
+					lblActive.normal.textColor = Color.red;
+				}
+				return lblActive;
+			}
+		}
+
 		Rect area {
 			get {
 				if (HighLogic.LoadedSceneIsEditor) {
@@ -124,11 +135,7 @@ namespace QuickSearch {
 					break;
 				}
 				string key = CachedKey[i];
-				GUIStyle style = new GUIStyle (GUI.skin.label);
-				if (index == i) {
-					style.normal.textColor = Color.red;
-				}
-				GUILayout.Label (key, style);
+				GUILayout.Label (key, index == i ? LblActive : GUI.skin.label);
 			}
 			GUILayout.EndArea ();
 		}
