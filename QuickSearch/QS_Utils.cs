@@ -20,7 +20,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 namespace QuickSearch {
-	internal static class QS_Utils {
+	static class QUtils {
 		internal static Texture2D ColorToTex(Vector2 dim, Color col) {
 			Color[] pix = new Color[(int)dim.x * (int)dim.y];
 			for (int i = pix.Length -1; i >= 0; i--) {
@@ -32,7 +32,7 @@ namespace QuickSearch {
 			return result;
 		}
 
-		public static void SortBy(this List<QHistory.Search> h, int type) {
+		internal static void SortBy(this List<QHistory.Search> h, int type) {
 			switch (type) {
 				case (int)QHistory.SortBy.COUNT:
 					h.Sort ((a, b) => b.count.CompareTo (a.count));
@@ -46,11 +46,11 @@ namespace QuickSearch {
 			}
 		}
 
-		public static bool Contains(this List<QHistory.Search> h, string t) {
+		internal static bool Contains(this List<QHistory.Search> h, string t) {
 			return h.Get (t) != null;
 		}
 
-		public static QHistory.Search Get(this List<QHistory.Search> h, string text) {
+		internal static QHistory.Search Get(this List<QHistory.Search> h, string text) {
 			for (int i = h.Count - 1; i >= 0; i--) {
 				QHistory.Search s = h[i];
 				if (s.text == text) {
@@ -58,6 +58,34 @@ namespace QuickSearch {
 				}
 			}
 			return null;
+		}
+
+		internal static void Lock(bool activate, ControlTypes Ctrl) {
+			if (HighLogic.LoadedSceneIsEditor) {
+				if (activate) {
+					if (InputLockManager.GetControlLock ("EditorLock" + QuickSearch.MOD) == ControlTypes.None) {
+						EditorLogic.fetch.Lock (true, true, true, "EditorLock" + QuickSearch.MOD);
+					}
+				}
+				else {
+					if (InputLockManager.GetControlLock ("EditorLock" + QuickSearch.MOD) != ControlTypes.None) {
+						EditorLogic.fetch.Unlock ("EditorLock" + QuickSearch.MOD);
+					}
+				}
+			}
+			if (activate) {
+				if (InputLockManager.GetControlLock ("Lock" + QuickSearch.MOD) == ControlTypes.None) {
+					InputLockManager.SetControlLock (Ctrl, "Lock" + QuickSearch.MOD);
+				}
+				return;
+			}
+			if (InputLockManager.GetControlLock ("Lock" + QuickSearch.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("Lock" + QuickSearch.MOD);
+			}
+		}
+
+		internal static void Lock(bool activate) {
+			Lock (activate, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
 		}
 	}
 }

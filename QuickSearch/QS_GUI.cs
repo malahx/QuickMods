@@ -66,25 +66,8 @@ namespace QuickSearch {
 			}
 		}
 
-		static void Lock(bool activate, ControlTypes Ctrl) {
-			if (HighLogic.LoadedSceneIsEditor) {
-				if (activate) {
-					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + MOD);
-				} else {
-					EditorLogic.fetch.Unlock ("EditorLock" + MOD);
-				}
-			}
-			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
-			} else {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
-			}
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
-			}
-			if (InputLockManager.GetControlLock ("EditorLock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + MOD);
-			}
+		bool IsMouseOver() {
+			return  (WindowSettings && RectSettings.Contains (Mouse.screenPos)) || (WindowHistory && RectHistory.Contains (Mouse.screenPos));
 		}
 
 		internal static void instancedSettings() {
@@ -110,7 +93,6 @@ namespace QuickSearch {
 
 		void Switch(bool set) {
 			QStockToolbar.Instance.Set (WindowSettings);
-			Lock (WindowSettings, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
 		}
 
 		void HideSettings() {
@@ -122,7 +104,6 @@ namespace QuickSearch {
 
 		void ShowSettings() {
 			WindowSettings = true;
-			Lock (WindowSettings, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
 			Log ("ShowSettings", "QGUI");
 		}
 
@@ -141,9 +122,6 @@ namespace QuickSearch {
 			yield return new WaitForEndOfFrame ();
 			QHistory.Instance.Add (QSearch.Text);
 			WindowHistory = false;
-			if (!WindowSettings) {
-				Lock (WindowHistory, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
-			}
 			Log ("HideHistory", "QGUI");
 		}
 
@@ -152,7 +130,6 @@ namespace QuickSearch {
 				return;
 			}
 			WindowHistory = true;
-			Lock (WindowHistory, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
 			Log ("ShowHistory", "QGUI");
 		}
 
@@ -167,6 +144,7 @@ namespace QuickSearch {
 
 		protected virtual void OnGUI() {
 			GUI.skin = HighLogic.Skin;
+			QUtils.Lock (IsMouseOver ());
 			if (WindowSettings) {
 				RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
 			}
