@@ -68,21 +68,7 @@ namespace QuickSearch {
 			btnStyle = new GUIStyle (HighLogic.Skin.button);
 			btnStyle.border = new RectOffset ();
 			btnStyle.padding = new RectOffset ();
-			if (!File.Exists (configPath)) {
-				return;
-			}
-			ConfigNode nodeLoaded = ConfigNode.Load (configPath);
-			ConfigNode[] nodes = nodeLoaded.GetNodes (cfgNode);
-			for (int i = nodes.Length - 1; i >= 0; --i) {
-				ConfigNode node = nodes[i];
-				string text = "";
-				int count = 0;
-				long date = 0;
-				if (node.TryGetValue ("text", ref text) && node.TryGetValue ("count", ref count) && node.TryGetValue("date", ref date)) {
-					history.Add (new Search(text, count, new DateTime(date)));
-				}
-			}
-			history.SortBy (QSettings.Instance.historySortby);
+			Load ();
 		}
 
 		public void Add(string t) {
@@ -110,6 +96,24 @@ namespace QuickSearch {
 			node.Save (configPath);
 		}
 
+		void Load() {
+			if (!File.Exists (configPath)) {
+				return;
+			}
+			ConfigNode nodeLoaded = ConfigNode.Load (configPath);
+			ConfigNode[] nodes = nodeLoaded.GetNodes (cfgNode);
+			for (int i = nodes.Length - 1; i >= 0; --i) {
+				ConfigNode node = nodes[i];
+				string text = "";
+				int count = 0;
+				long date = 0;
+				if (node.TryGetValue ("text", ref text) && node.TryGetValue ("count", ref count) && node.TryGetValue ("date", ref date)) {
+					history.Add (new Search (text, count, new DateTime (date)));
+				}
+			}
+			history.SortBy (QSettings.Instance.historySortby);
+		}
+
 		public void Keys() {
 			if (Input.GetKeyDown (KeyCode.UpArrow)) {
 				PreviousIndex ();
@@ -133,14 +137,14 @@ namespace QuickSearch {
 					break;
 				}
 				GUILayout.BeginHorizontal ();
+				if (GUILayout.Button (SearchTexture, btnStyle, GUILayout.Width (20), GUILayout.Height (20))) {
+					PartCategorizer.Instance.searchField.text = history[i].text;
+				}
 				Search s = history[i];
 				GUIStyle st = index == i ? LblActive : GUI.skin.label;
 				GUILayout.Label (s.text, st);
 				GUILayout.FlexibleSpace ();
 				GUILayout.Label (QSettings.Instance.historySortby == (int)SortBy.COUNT ? s.count.ToString() : s.getDate(), st);
-				if (GUILayout.Button (SearchTexture, btnStyle, GUILayout.Width(20), GUILayout.Height (20))) {
-					PartCategorizer.Instance.searchField.text = history[i].text;
-				}
 				GUILayout.EndHorizontal ();
 			}
 		}

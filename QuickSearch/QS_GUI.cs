@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections;
 using System.Text.RegularExpressions;
+using KSP.UI;
 using KSP.UI.Screens;
 using UnityEngine;
 
@@ -52,7 +53,7 @@ namespace QuickSearch {
 			get {
 				if (rectHistory == new Rect ()) {
 					if (HighLogic.LoadedSceneIsEditor) {
-						rectHistory = new Rect (50, 5 + PartCategorizer.Instance.searchField.textViewport.rect.height, PartCategorizer.Instance.searchField.textViewport.rect.width, 0);
+						rectHistory = new Rect (50 + PartCategorizer.Instance.searchField.textViewport.rect.width, 20 + PartCategorizer.Instance.searchField.textViewport.rect.height, 250, 0);
 					}
 					else {
 						rectHistory = new Rect (0, 0, Screen.width, Screen.height);
@@ -140,6 +141,9 @@ namespace QuickSearch {
 			yield return new WaitForEndOfFrame ();
 			QHistory.Instance.Add (QSearch.Text);
 			WindowHistory = false;
+			if (!WindowSettings) {
+				Lock (WindowHistory, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
+			}
 			Log ("HideHistory", "QGUI");
 		}
 
@@ -148,6 +152,7 @@ namespace QuickSearch {
 				return;
 			}
 			WindowHistory = true;
+			Lock (WindowHistory, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
 			Log ("ShowHistory", "QGUI");
 		}
 
