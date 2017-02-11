@@ -49,6 +49,7 @@ namespace QuickSearch {
 		Texture2D SearchTexture;
 		readonly List<Search> history;
 		int index;
+		string lastSearch = "";
 
 		GUIStyle lblActive;
 		GUIStyle LblActive {
@@ -72,6 +73,9 @@ namespace QuickSearch {
 		}
 
 		public void Add(string t) {
+			if (lastSearch == t || t != string.Empty) {
+				return;
+			}
 			Search s = history.Get (t);
 			if (s != null) {
 				s.count += 1;
@@ -81,6 +85,7 @@ namespace QuickSearch {
 			}
 			history.SortBy (QSettings.Instance.historySortby);
 			index = -1;
+			lastSearch = t;
 			Save ();
 		}
 
