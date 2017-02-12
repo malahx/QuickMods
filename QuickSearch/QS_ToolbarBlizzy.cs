@@ -59,7 +59,7 @@ namespace QuickSearch {
 			if (!isAvailable || Button == null) {
 				return;
 			}
-			Button.TexturePath = TexturePath;
+			Button.TexturePath = QUtils.Texture.BLIZZY_PATH;
 		}
 
 		internal void Reset() {
