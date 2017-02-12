@@ -21,6 +21,20 @@ using UnityEngine;
 
 namespace QuickSearch {
 	static class QUtils {
+
+	   internal static class Texture {
+	   		static readonly string SEARCH_PATH = QuickSearch.relativePath + "/Textures/search";
+			static Texture2D search;
+			internal static Texture2D Search {
+				get {
+					if (search == null) {
+						search = GameDatabase.Instance.GetTexture (SEARCH_PATH, false);
+					}
+					return search;
+				}
+			}
+	   }
+
 		internal static Texture2D ColorToTex(Vector2 dim, Color col) {
 			Color[] pix = new Color[(int)dim.x * (int)dim.y];
 			for (int i = pix.Length -1; i >= 0; i--) {

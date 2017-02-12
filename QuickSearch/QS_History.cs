@@ -44,12 +44,10 @@ namespace QuickSearch {
 
 		readonly string cfgNode = "SearchHistory";
 		readonly string configPath = QuickSearch.PATH + "/History.cfg";
-		readonly string SearchTexturePath = QuickSearch.relativePath + "/Textures/search";
 		readonly GUIStyle btnStyle;
-		Texture2D SearchTexture;
 		readonly List<Search> history;
 		int index;
-		string lastSearch = "";
+		string lastSearch = string.Empty;
 
 		GUIStyle lblActive;
 		GUIStyle LblActive {
@@ -65,7 +63,6 @@ namespace QuickSearch {
 		public QHistory() {
 			history = new List<Search> ();
 			index = -1;
-			SearchTexture = GameDatabase.Instance.GetTexture (SearchTexturePath, false);
 			btnStyle = new GUIStyle (HighLogic.Skin.button);
 			btnStyle.border = new RectOffset ();
 			btnStyle.padding = new RectOffset ();
@@ -73,12 +70,13 @@ namespace QuickSearch {
 		}
 
 		public void Add(string t) {
-			if (lastSearch == t || t != string.Empty) {
+			if (lastSearch == t || t == string.Empty) {
 				return;
 			}
 			Search s = history.Get (t);
 			if (s != null) {
 				s.count += 1;
+				s.date = DateTime.Now;
 			}
 			else {
 				history.Add (new Search (t, 1, DateTime.Now));
@@ -127,7 +125,12 @@ namespace QuickSearch {
 				NextIndex ();
 			}
 			if (Input.GetKeyDown (KeyCode.Return) && index > -1) {
-				PartCategorizer.Instance.searchField.text = history[index].text;
+				if (HighLogic.LoadedSceneIsEditor) {
+					PartCategorizer.Instance.searchField.text = history[index].text;
+				}
+				else {
+					QSearch.Text = history[index].text;
+				}
 			}
 		}
 
@@ -142,10 +145,16 @@ namespace QuickSearch {
 					break;
 				}
 				GUILayout.BeginHorizontal ();
-				if (GUILayout.Button (SearchTexture, btnStyle, GUILayout.Width (20), GUILayout.Height (20))) {
-					PartCategorizer.Instance.searchField.text = history[i].text;
-				}
 				Search s = history[i];
+				if (GUILayout.Button (QUtils.Texture.Search, btnStyle, GUILayout.Width (20), GUILayout.Height (20))) {
+					if (HighLogic.LoadedSceneIsEditor) {
+						PartCategorizer.Instance.searchField.text = s.text;
+					}
+					else {
+						QRnD.Instance.Text = s.text;
+						GUIUtility.keyboardControl = 0;
+					}
+				}
 				GUIStyle st = index == i ? LblActive : GUI.skin.label;
 				GUILayout.Label (s.text, st);
 				GUILayout.FlexibleSpace ();
@@ -180,7 +189,7 @@ namespace QuickSearch {
 			}
 
 			public string getDate() {
-				string s = "";
+				string s = string.Empty;
 				DateTime today = DateTime.Today;
 				if (date.ToLongDateString () == today.ToLongDateString ()) {
 					s = date.ToLongTimeString ();

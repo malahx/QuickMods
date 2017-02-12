@@ -29,6 +29,7 @@ namespace QuickSearch {
 		protected GUIStyle TextField;
 		protected bool WindowHistory = false;
 		bool WindowSettings = false;
+		Coroutine tryHideHistory;
 
 		Rect rectSettings = new Rect (0, 0, 0, 0);
 		Rect RectSettings {
@@ -56,8 +57,11 @@ namespace QuickSearch {
 						rectHistory = new Rect (50 + PartCategorizer.Instance.searchField.textViewport.rect.width, 20 + PartCategorizer.Instance.searchField.textViewport.rect.height, 250, 0);
 					}
 					else {
-						rectHistory = new Rect (0, 0, Screen.width, Screen.height);
+						rectHistory = new Rect (QRnD.Instance.RectRDSearch.x, 0, QRnD.Instance.RectRDSearch.width, 0);
 					}
+				}
+				if (!HighLogic.LoadedSceneIsEditor) {
+					rectHistory.y = QRnD.Instance.RectRDSearch.y - rectHistory.height -5;
 				}
 				return rectHistory;
 			}
@@ -105,20 +109,21 @@ namespace QuickSearch {
 		}
 
 		protected void HideHistory() {
-			StartCoroutine (hideHistory ());
+			if (!WindowHistory || tryHideHistory != null) {
+				return;
+			}
+			tryHideHistory = StartCoroutine (hideHistory ());
 		}
 
 		IEnumerator hideHistory() {
-			if (!WindowHistory) {
-				yield break;
-			}
-			yield return new WaitForFixedUpdate ();
+			yield return new WaitForEndOfFrame ();
 			while (Mouse.Left.GetButton ()) {
 				yield return 0;
 			}
 			yield return new WaitForEndOfFrame ();
 			QHistory.Instance.Add (QSearch.Text);
 			WindowHistory = false;
+			tryHideHistory = null;
 			Log ("HideHistory", "QGUI");
 		}
 
@@ -146,7 +151,7 @@ namespace QuickSearch {
 				RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
 			}
 			if (WindowHistory) {
-				RectHistory = GUILayout.Window (1545147, RectHistory, QHistory.Instance.Draw, "History");
+				RectHistory = GUILayout.Window (1545147, RectHistory, QHistory.Instance.Draw, MOD + ": History");
 			}
 		}
 

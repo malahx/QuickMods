@@ -45,8 +45,11 @@ namespace QuickSearch {
 			}
 			set {
 				text = CleanInput (value);
-				if (HighLogic.LoadedSceneIsEditor && text != string.Empty) {
+				if (HighLogic.LoadedSceneIsEditor) {
 					EditorPartList.Instance.Refresh ();
+				}
+				else if (RDController.Instance != null) {
+					QRnD.Find (string.IsNullOrEmpty(text));
 				}
 			}
 		}

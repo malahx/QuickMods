@@ -26,14 +26,13 @@ namespace QuickSearch {
 		public static QRnD Instance;
 
 		GUIStyle ButtonStyle;
-		bool saved = false;
-
-		public bool Ready = false;
-
 		string DeleteTexturePath = relativePath + "/Textures/delete";
 		Texture2D DeleteTexture;
 
-		Rect RectRDSearch {
+		public string Text = string.Empty;
+		public bool Ready = false;
+
+		public Rect RectRDSearch {
 			get {
 				return new Rect (Screen.width - 250, Screen.height - 50, 200, 40);
 			}
@@ -107,23 +106,24 @@ namespace QuickSearch {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
 			GUI.SetNextControlName ("searchField");
-			string _Text = GUILayout.TextField (QSearch.Text, TextField,GUILayout.Height(30));
-			if (GUILayout.Button (new GUIContent (DeleteTexture, "Clear the search bar"), ButtonStyle,GUILayout.Height(30),GUILayout.Width(30))) {
-				_Text = string.Empty;
+			Text = GUILayout.TextField (Text, TextField,GUILayout.Height(30));
+			if (GUILayout.Button (QUtils.Texture.Search, ButtonStyle, GUILayout.Width (30), GUILayout.Height (30))) {
+				GUIUtility.keyboardControl = 0;
 			}
-			if (_Text != QSearch.Text) {
-				QSearch.Text = _Text;
-				saved = false;
-				if (_Text == string.Empty) {
-					Find (true);
-				} else {
-					Find ();
-				}
+			if (GUILayout.Button (new GUIContent (DeleteTexture, "Clear the search bar"), ButtonStyle,GUILayout.Height(30),GUILayout.Width(30))) {
+				Text = string.Empty;
+			}
+			if (Text != QSearch.Text && !QSettings.Instance.enableEnterToSearch) {
+				QSearch.Text = Text;
+			}
+			if (GUI.GetNameOfFocusedControl () == "searchField") {
 				ShowHistory ();
 			}
-			if (!saved && !string.IsNullOrEmpty(QSearch.Text) && GUI.GetNameOfFocusedControl () != "searchField") {
+			else {
+				if (QSettings.Instance.enableEnterToSearch) {
+					QSearch.Text = Text;
+				}
 				HideHistory ();
-				saved = true;
 			}
 			GUILayout.EndHorizontal ();
 			GUILayout.EndVertical ();

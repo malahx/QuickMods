@@ -80,13 +80,6 @@ namespace QuickSearch {
 			Log ("Start", "QEditor");
 		}
 
-		void FixedUpdate() {
-			if (!WindowHistory) {
-				return;
-			}
-			QHistory.Instance.Keys ();
-		}
-
 		void Update() {
 			if (!isReady) {
 				return;

@@ -37,8 +37,7 @@ namespace QuickSearch {
 
 		[KSPField(isPersistant = true)] static QBlizzyToolbar BlizzyToolbar;
 
-		protected static void Log (string String, string Title = null, bool force = false)
-		{
+		protected static void Log (string String, string Title = null, bool force = false) {
 			if (!force) {
 				if (!QSettings.Instance.Debug) {
 					return;
@@ -52,8 +51,7 @@ namespace QuickSearch {
 			Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
 		}
 
-		protected static void Warning (string String, string Title = null)
-		{
+		protected static void Warning (string String, string Title = null) {
 			if (Title == null) {
 				Title = MOD;
 			} else {
@@ -70,13 +68,22 @@ namespace QuickSearch {
 			TextField.alignment = TextAnchor.MiddleCenter;
 			Log ("Awake");
 		}
+		
 		protected virtual void Start() {
 			if (BlizzyToolbar != null) BlizzyToolbar.Init ();
 			Log ("Start");
 		}
+		
 		protected virtual void OnDestroy() {
 			if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
 			Log ("OnDestroy");
+		}
+		
+		protected virtual void FixedUpdate() {
+			if (!WindowHistory) {
+				return;
+			}
+			QHistory.Instance.Keys ();
 		}
 	}
 }
