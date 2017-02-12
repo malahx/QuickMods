@@ -136,9 +136,9 @@ namespace QuickSearch {
 
 		public void Draw(int id) {
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label ("Last Search");
+			GUILayout.Label (QLang.translate ("Last Search"));
 			GUILayout.FlexibleSpace ();
-			GUILayout.Label (QSettings.Instance.historySortby == (int)SortBy.COUNT ? "Count" : "Date");
+			GUILayout.Label (QLang.translate (QSettings.Instance.historySortby == (int)SortBy.COUNT ? "Count" : "Date"));
 			GUILayout.EndHorizontal ();
 			for (int i = 0, count = history.Count; i < count; i++) {
 				if (i >= QSettings.Instance.historyIndex) {

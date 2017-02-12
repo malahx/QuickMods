@@ -151,7 +151,7 @@ namespace QuickSearch {
 				RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
 			}
 			if (WindowHistory) {
-				RectHistory = GUILayout.Window (1545147, RectHistory, QHistory.Instance.Draw, MOD + ": History");
+				RectHistory = GUILayout.Window (1545147, RectHistory, QHistory.Instance.Draw, MOD + ":" + QLang.translate ("History"));
 			}
 		}
 
@@ -204,7 +204,7 @@ namespace QuickSearch {
 					GUILayout.EndHorizontal ();
 
 					GUILayout.BeginHorizontal ();
-					GUILayout.Label (QLang.translate ("Number of last search displayed:"), GUILayout.Width (300));
+					GUILayout.Label (QLang.translate ("Last search to display:"), GUILayout.Width (300));
 					int i = 10;
 					if (int.TryParse (GUILayout.TextField (QSettings.Instance.historyIndex.ToString (), TextField, GUILayout.Width (75)), out i)) {
 						QSettings.Instance.historyIndex = i;
