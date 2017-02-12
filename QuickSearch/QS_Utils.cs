@@ -22,8 +22,32 @@ using UnityEngine;
 namespace QuickSearch {
 	static class QUtils {
 
-	   internal static class Texture {
-	   		static readonly string SEARCH_PATH = QuickSearch.relativePath + "/Textures/search";
+		internal static class Texture {
+			internal static readonly string SEARCH_PATH = QuickSearch.relativePath + "/Textures/search";
+			internal static readonly string STOCKTOOLBAR_PATH = QuickSearch.relativePath + "/Textures/StockToolBar";
+			internal static readonly string BLIZZY_PATH = QuickSearch.relativePath + "/Textures/BlizzyToolBar";
+			internal static readonly string DELETE_PATH = QuickSearch.relativePath + "/Textures/delete";
+
+			static Texture2D delete;
+			internal static Texture2D Delete {
+				get {
+					if (delete == null) {
+						delete = GameDatabase.Instance.GetTexture (DELETE_PATH, false);
+					}
+					return delete;
+				}
+			}
+
+			static Texture2D stocktoolbar;
+			internal static Texture2D Stocktoolbar {
+				get {
+					if (stocktoolbar == null) {
+						stocktoolbar = GameDatabase.Instance.GetTexture (STOCKTOOLBAR_PATH, false);
+					}
+					return stocktoolbar;
+				}
+			}
+
 			static Texture2D search;
 			internal static Texture2D Search {
 				get {
@@ -33,7 +57,7 @@ namespace QuickSearch {
 					return search;
 				}
 			}
-	   }
+		}
 
 		internal static Texture2D ColorToTex(Vector2 dim, Color col) {
 			Color[] pix = new Color[(int)dim.x * (int)dim.y];

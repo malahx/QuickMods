@@ -26,8 +26,6 @@ namespace QuickSearch {
 		public static QRnD Instance;
 
 		GUIStyle ButtonStyle;
-		string DeleteTexturePath = relativePath + "/Textures/delete";
-		Texture2D DeleteTexture;
 
 		public string Text = string.Empty;
 		public bool Ready = false;
@@ -70,7 +68,6 @@ namespace QuickSearch {
 			ButtonStyle.alignment = TextAnchor.MiddleCenter;
 			ButtonStyle.padding = new RectOffset (0, 0, 0, 0);
 			ButtonStyle.imagePosition = ImagePosition.ImageOnly;
-			DeleteTexture = GameDatabase.Instance.GetTexture (DeleteTexturePath, false);
 			GameEvents.onGUIRnDComplexSpawn.Add (RnDComplexSpawn);
 			GameEvents.onGUIRnDComplexDespawn.Add (RnDComplexDespawn);
 			base.Start ();
@@ -110,7 +107,7 @@ namespace QuickSearch {
 			if (GUILayout.Button (QUtils.Texture.Search, ButtonStyle, GUILayout.Width (30), GUILayout.Height (30))) {
 				GUIUtility.keyboardControl = 0;
 			}
-			if (GUILayout.Button (new GUIContent (DeleteTexture, "Clear the search bar"), ButtonStyle,GUILayout.Height(30),GUILayout.Width(30))) {
+			if (GUILayout.Button (new GUIContent (QUtils.Texture.Delete, "Clear the search bar"), ButtonStyle,GUILayout.Height(30),GUILayout.Width(30))) {
 				Text = string.Empty;
 			}
 			if (Text != QSearch.Text && !QSettings.Instance.enableEnterToSearch) {

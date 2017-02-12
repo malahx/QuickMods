@@ -36,16 +36,9 @@ namespace QuickSearch {
 		}
 		
 		static ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;
-		static string TexturePath = relativePath + "/Textures/StockToolBar";
 
 		void OnClick() { 
 			QuickSearch.instancedSettings();
-		}
-
-		Texture2D GetTexture {
-			get {
-				return GameDatabase.Instance.GetTexture(TexturePath, false);
-			}
 		}
 
 		ApplicationLauncherButton appLauncherButton;
@@ -116,7 +109,7 @@ namespace QuickSearch {
 				return;
 			}
 			if (appLauncherButton == null) {
-				appLauncherButton = ApplicationLauncher.Instance.AddModApplication (OnClick, OnClick, null, null, null, null, AppScenes, GetTexture);
+				appLauncherButton = ApplicationLauncher.Instance.AddModApplication (OnClick, OnClick, null, null, null, null, AppScenes, QUtils.Texture.Stocktoolbar);
 			}
 			Log ("Init", "QStockToolbar");
 		}

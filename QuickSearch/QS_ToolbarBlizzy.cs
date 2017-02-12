@@ -24,7 +24,6 @@ namespace QuickSearch {
 				return QSettings.Instance.BlizzyToolBar;
 			}
 		}
-		string TexturePath = QuickSearch.relativePath + "/Textures/BlizzyToolBar";
 
 		void OnClick() { 
 			QuickSearch.instancedSettings();
@@ -43,7 +42,7 @@ namespace QuickSearch {
 				return;
 			}
 			Button = ToolbarManager.Instance.add (QuickSearch.MOD, QuickSearch.MOD);
-			Button.TexturePath = TexturePath;
+			Button.TexturePath = QUtils.Texture.BLIZZY_PATH;
 			Button.ToolTip = QuickSearch.MOD;
 			Button.OnClick += (e) => OnClick ();
 		}
