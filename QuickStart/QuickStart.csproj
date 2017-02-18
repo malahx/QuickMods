@@ -47,6 +47,7 @@
     <Compile Include="QS_Flight.cs" />
     <Compile Include="LanguageAPI.cs" />
     <Compile Include="QS_Lang.cs" />
+    <Compile Include="QS_Utils.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
