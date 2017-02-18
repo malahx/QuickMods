@@ -80,6 +80,7 @@ namespace QuickStart {
 			labelStyle.fontSize = (Screen.height / 20);
 			labelStyle.fontStyle = FontStyle.Bold;
 			labelStyle.normal.textColor = Color.green;
+			labelStyle.normal.background = QUtils.ColorToTex (new Vector2 (Screen.width, Screen.height), Color.black);
 			QuickStart.Log ("Awake", "QLoading");
 		}
 
