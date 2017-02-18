@@ -43,7 +43,7 @@ namespace QuickStart {
 
 		Rect RectGUI {
 			get {
-				return new Rect (0, Screen.height - 50, Screen.width, 50);
+				return new Rect (0, Screen.width < 1440 ? 0 : Screen.height - 50, Screen.width, 100);
 			}
 		}
 
@@ -159,7 +159,13 @@ namespace QuickStart {
 							QSettings.Instance.editorFacility = (int)EditorFacility.VAB;
 						}
 					}
-					GUILayout.FlexibleSpace ();
+					if (Screen.width < 1440) {
+						GUILayout.EndHorizontal ();
+						GUILayout.BeginHorizontal ();
+					}
+					else {
+						GUILayout.FlexibleSpace ();
+					}
 					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, QLang.translate ("Space Plane Hangar"), GUILayout.Width (250))) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.SPH) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
@@ -174,7 +180,7 @@ namespace QuickStart {
 					}
 					GUILayout.FlexibleSpace ();
 					GUI.enabled = !string.IsNullOrEmpty (QuickStart_Persistent.vesselID);
-					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.FLIGHT, (!string.IsNullOrEmpty (QSaveGame.vesselName) ? string.Format("{0}: {1}({2})", QLang.translate("Last Vessel"), QSaveGame.vesselName, QSaveGame.vesselType) : QLang.translate ("No vessel found")), GUILayout.Width (300))) {
+					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.FLIGHT, (!string.IsNullOrEmpty (QSaveGame.vesselName) ? string.Format("{0}: {1}({2})", QLang.translate("Last Vessel"), QSaveGame.vesselName, QSaveGame.vesselType) : QLang.translate ("No vessel found")), GUILayout.Width (250))) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.FLIGHT) {
 							QSettings.Instance.gameScene = (int)GameScenes.FLIGHT;
 						}
