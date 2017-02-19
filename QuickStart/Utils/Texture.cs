@@ -18,19 +18,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using UnityEngine;
 
-namespace QuickStart {
-	public static class QUtils {
-		
-		internal static Texture2D ColorToTex(Vector2 dim, Color col) {
-			Color[] pix = new Color[(int)dim.x * (int)dim.y];
-			for (int i = pix.Length - 1; i >= 0; i--) {
-				pix[i] = col;
-			}
-			Texture2D result = new Texture2D ((int)dim.x, (int)dim.y);
-			result.SetPixels (pix);
-			result.Apply ();
-			return result;
-		}
-	}
-}
+namespace QuickStart.QUtils {
+    public static class QTexture {
 
+        internal static Texture2D ColorToTex(Vector2 dim, Color col) {
+            Color[] pix = new Color[(int)dim.x * (int)dim.y];
+            for (int i = pix.Length - 1; i >= 0; i--) {
+                pix[i] = col;
+            }
+            Texture2D result = new Texture2D((int)dim.x, (int)dim.y);
+            result.SetPixels(pix);
+            result.Apply();
+            return result;
+        }
+
+    }
+}

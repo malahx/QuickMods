@@ -17,15 +17,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using UnityEngine;
+using QuickStart.QUtils;
 
 namespace QuickStart {
 
 	public partial class QLoading {
 
 		[KSPField (isPersistant = true)] public static bool Ended = false;
-
-		GUIStyle Button;
-		[KSPField (isPersistant = true)] public static GUIStyle labelStyle;
 
 		internal bool WindowSettings = false;
 
@@ -70,17 +68,6 @@ namespace QuickStart {
 				return;
 			}
 			Instance = this;
-			Button = new GUIStyle(HighLogic.Skin.button);
-			Button.contentOffset = new Vector2(2,2);
-			Button.alignment = TextAnchor.MiddleCenter;
-			labelStyle = new GUIStyle ();
-			labelStyle.stretchWidth = true;
-			labelStyle.stretchHeight = true;
-			labelStyle.alignment = TextAnchor.MiddleCenter;
-			labelStyle.fontSize = (Screen.height / 20);
-			labelStyle.fontStyle = FontStyle.Bold;
-			labelStyle.normal.textColor = Color.green;
-			labelStyle.normal.background = QUtils.ColorToTex (new Vector2 (Screen.width, Screen.height), Color.black);
 			QuickStart.Log ("Awake", "QLoading");
 		}
 
@@ -133,12 +120,12 @@ namespace QuickStart {
 					_text = string.Format("<b><color=#000000>{0}</color></b>", QLang.translate ("No last game found"));
 				}
 				GUILayout.Label (string.Format ("[{0}] {1}", QuickStart.MOD, _text));
-				if (GUILayout.Button ("►", Button, GUILayout.Width (20), GUILayout.Height (20))) {
+				if (GUILayout.Button ("►", QStyle.Button, GUILayout.Width (20), GUILayout.Height (20))) {
 					QSaveGame.Next ();
 				}
 			}
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (QLang.translate ("Settings"), Button, GUILayout.Height (20))) {
+            if (GUILayout.Button (QLang.translate ("Settings"), QStyle.Button, GUILayout.Height (20))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();

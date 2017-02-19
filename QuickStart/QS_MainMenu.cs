@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections;
 using UnityEngine;
+using QuickStart.QUtils;
 
 namespace QuickStart {
 
@@ -113,8 +114,8 @@ namespace QuickStart {
 			if (HighLogic.LoadedScene != GameScenes.MAINMENU) {
 				return;
 			}
-			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QLoading.labelStyle);
-			GUILayout.Label (QuickStart.MOD + "...", QLoading.labelStyle);
+			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QStyle.Label);
+			GUILayout.Label (QuickStart.MOD + "...", QStyle.Label);
 			GUILayout.EndArea ();
 		}
 	}

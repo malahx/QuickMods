@@ -15,11 +15,11 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
-using Contracts;
-using Strategies;
+
 using System.Collections;
 using System.IO;
 using UnityEngine;
+using QuickStart.QUtils;
 
 namespace QuickStart {
 	public partial class QSpaceCenter {
@@ -126,8 +126,8 @@ namespace QuickStart {
 			if (HighLogic.LoadedScene != GameScenes.SPACECENTER || QLoading.Ended) {
 				return;
 			}
-			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QLoading.labelStyle);
-			GUILayout.Label (QuickStart.MOD + "...", QLoading.labelStyle);
+			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QStyle.Label);
+			GUILayout.Label (QuickStart.MOD + "...", QStyle.Label);
 			GUILayout.EndArea ();
 		}
 	}
