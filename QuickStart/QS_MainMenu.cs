@@ -24,11 +24,13 @@ namespace QuickStart {
 
 	public partial class QMainMenu {
 
-		public bool Ready = false;
 		public static QMainMenu Instance {
 			get;
 			private set;
 		}
+
+        public bool Ready = false;
+        Coroutine start;
 
 		void Awake() {
 			if (QLoading.Ended) {
@@ -51,7 +53,7 @@ namespace QuickStart {
 				DestroyThis ();
 				return;
 			}
-			StartCoroutine (QStart ());
+			start = StartCoroutine (QStart ());
 			QuickStart.Log ("Start", "QMainMenu");
 		}
 
@@ -98,6 +100,16 @@ namespace QuickStart {
 				Ready = true;
 			}
 		}
+
+        void Update() {
+            if (QKey.isKeyDown(QKey.Key.Escape)) {
+                if (start != null) {
+                    StopCoroutine(start);
+                    QuickStart.Log("Escape", "QSpaceCenter");
+                    DestroyThis();
+                }
+            }
+        }
 
 		void DestroyThis() {
 			QuickStart.Log ("DestroyThis", "QMainMenu");

@@ -27,11 +27,13 @@ namespace QuickStart {
 
 		internal bool WindowSettings = false;
 
-		Rect rectSettings = new Rect (0, 0, 0, 0);
+		Rect rectSettings = new Rect ();
 		Rect RectSettings {
 			get {
-				rectSettings.x = (Screen.width - rectSettings.width) / 2;
-				rectSettings.y = (Screen.height - rectSettings.height) / 2;
+                if (rectSettings.position == Vector2.zero && rectSettings.size != Vector2.zero) {
+                    rectSettings.x = Screen.width - rectSettings.width;
+                    rectSettings.y = Screen.width < 1440 ? 100 : Screen.height - rectSettings.height - 100;
+                }
 				return rectSettings;
 			}
 			set {
@@ -79,6 +81,7 @@ namespace QuickStart {
 				Destroy (this);
 				return;
 			}
+            QKey.VerifyKey();
 			QuickStart.Log ("Start", "QLoading");
 		}
 
@@ -86,6 +89,15 @@ namespace QuickStart {
 			QSettings.Instance.Save ();
 			QuickStart.Log ("OnDestroy", "QLoading");
 		}
+
+        void Update() {
+            if (QKey.SetKey()) {
+                return;
+            }
+            if (QKey.isKeyDown(QKey.Key.Escape)) {
+                QSettings.Instance.Enabled = false;
+            }
+        }
 
 		void Settings() {
 			WindowSettings = !WindowSettings;
@@ -103,6 +115,8 @@ namespace QuickStart {
 				return;
 			}
 			GUI.skin = HighLogic.Skin;
+
+            QKey.DrawSetKey();
 
 			if (WindowSettings) {
 				RectSettings = GUILayout.Window (1545177, RectSettings, DrawSettings, QuickStart.MOD + " " + QuickStart.VERSION);
@@ -222,7 +236,7 @@ namespace QuickStart {
 			GUILayout.BeginHorizontal ();
 			QSettings.Instance.enablePauseOnFlight = GUILayout.Toggle (QSettings.Instance.enablePauseOnFlight, QLang.translate ("Pause the Flight at Load"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
-
+            QKey.DrawConfigKey();
 			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();

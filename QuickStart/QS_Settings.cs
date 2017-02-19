@@ -18,7 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections.Generic;
 using System.IO;
-using System.Reflection;
+using QuickStart.QUtils;
+using UnityEngine;
 
 namespace QuickStart {
 	public class QSettings : QuickStart {
@@ -65,7 +66,9 @@ namespace QuickStart {
 
 		[Persistent] internal string Lang = "EN";
 
-		public void Save() {
+        [Persistent] internal KeyCode KeyEscape = QKey.DefaultKey(QKey.Key.Escape);
+
+        public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);
 			Log ("Settings Saved", "QSettings", true);
