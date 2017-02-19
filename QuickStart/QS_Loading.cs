@@ -194,6 +194,14 @@ namespace QuickStart {
 			}
 			GUILayout.EndHorizontal ();
 
+            GUILayout.BeginHorizontal();
+            bool b = GUILayout.Toggle(QSettings.Instance.enableBlackScreen, QLang.translate("Black screen when it waits"), GUILayout.Width(400));
+            if (b != QSettings.Instance.enableBlackScreen) {
+                QSettings.Instance.enableBlackScreen = b;
+                QStyle.Label = null;
+            }
+            GUILayout.EndHorizontal();
+
 			GUILayout.BeginHorizontal ();
 			QSettings.Instance.enableEditorAutoSaveShip = GUILayout.Toggle (QSettings.Instance.enableEditorAutoSaveShip, QLang.translate ("Auto Save Ship on Editor"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();

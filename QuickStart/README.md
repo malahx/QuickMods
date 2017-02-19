@@ -34,6 +34,9 @@ Delete the QuickMods/QuickStart folder in your KSP/GameData folder.
 
 #### Changelog
 
+v2.14-dev - 2017.02
+* New: Added an option to disable black screen.
+
 v2.13 - 2017.02.18
 * New: Added a black screen when QuickStart wait,
 * Fix: Corrected the start to last vessel to keep all contracts (thanks Liquid5n0w & Jebs_SY),

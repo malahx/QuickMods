@@ -47,7 +47,8 @@
     <Compile Include="QS_Flight.cs" />
     <Compile Include="LanguageAPI.cs" />
     <Compile Include="QS_Lang.cs" />
-    <Compile Include="QS_Utils.cs" />
+    <Compile Include="Utils\Texture.cs" />
+    <Compile Include="Utils\Style.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -65,6 +66,7 @@
     <Folder Include="GameData\" />
     <Folder Include="GameData\QuickMods\" />
     <Folder Include="GameData\QuickMods\QuickStart\" />
+    <Folder Include="Utils\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

@@ -33,9 +33,14 @@ namespace QuickStart.QUtils {
                     label.fontSize = (Screen.height / 20);
                     label.fontStyle = FontStyle.Bold;
                     label.normal.textColor = Color.green;
-                    label.normal.background = QTexture.ColorToTex(new Vector2(Screen.width, Screen.height), Color.black);
+                    if (QSettings.Instance.enableBlackScreen) {
+                        label.normal.background = QTexture.ColorToTex(new Vector2(Screen.width, Screen.height), Color.black);
+                    }
                 }
                 return label;
+            }
+            internal set {
+                label = value;
             }
         }
 
