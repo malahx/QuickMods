@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using System.Collections;
+using QuickStart.QUtils;
 using UnityEngine;
 
 namespace QuickStart {
@@ -58,7 +59,7 @@ namespace QuickStart {
 				}
 			}
 			QSettings.Instance.Save ();
-			QuickStart.Log ("OnAwake", "QPersistent");
+			QDebug.Log ("OnAwake", "QPersistent");
 		}
 
 		void Start() {
@@ -66,24 +67,24 @@ namespace QuickStart {
 				StartCoroutine (autoSaveShip ());
 			}
 			Ready = true;
-			QuickStart.Log ("Start", "QPersistent");
+			QDebug.Log ("Start", "QPersistent");
 		}
 
 		IEnumerator autoSaveShip() {
-			QuickStart.Log ("autoSaveShip: start", "QPersistent");
+			QDebug.Log ("autoSaveShip: start", "QPersistent");
 			while (HighLogic.LoadedSceneIsEditor && QSettings.Instance.enableEditorAutoSaveShip) {
 				yield return new WaitForSeconds (QSettings.Instance.editorTimeToSave);
 				ShipConstruction.SaveShip(shipFilename);
-				QuickStart.Log ("autoSaveShip: save", "QPersistent");
+				QDebug.Log ("autoSaveShip: save", "QPersistent");
 			}
-			QuickStart.Log ("autoSaveShip: end", "QPersistent");
+			QDebug.Log ("autoSaveShip: end", "QPersistent");
 		}
 
 		void OnDestroy() {
 			GameEvents.onFlightReady.Remove (OnFlightReady);
 			GameEvents.onVesselChange.Remove (OnVesselChange);
 			GameEvents.onGameSceneSwitchRequested.Remove (OnSceneSwitch);
-			QuickStart.Log ("OnDestroy", "QPersistent");
+			QDebug.Log ("OnDestroy", "QPersistent");
 		}
 
 		void OnSceneSwitch(GameEvents.FromToAction<GameScenes,GameScenes> gameScenes) {
@@ -98,12 +99,12 @@ namespace QuickStart {
 					if (vesselID == string.Empty) {
 						if (node.HasValue ("vesselID")) {
 							vesselID = node.GetValue ("vesselID");
-							QuickStart.Log ("OnLoad " + vesselID, "QPersistent");
+							QDebug.Log ("OnLoad " + vesselID, "QPersistent");
 						}
 					}
 				}
 			} catch (Exception e) {
-				QuickStart.Warning ("Can't load: {0} " + e, "QPersistent");
+				QDebug.Warning ("Can't load: {0} " + e, "QPersistent");
 			}
 		}
 
@@ -112,20 +113,20 @@ namespace QuickStart {
 				if (!string.IsNullOrEmpty (vesselID)) {
 					node.AddValue ("vesselID", vesselID);
 				}
-				QuickStart.Log ("OnSave " + vesselID, "QPersistent");
+				QDebug.Log ("OnSave " + vesselID, "QPersistent");
 			} catch (Exception e) {
-				QuickStart.Warning ("Can't save: {0} " + e, "QPersistent");
+				QDebug.Warning ("Can't save: {0} " + e, "QPersistent");
 			}
 		}
 
 		void OnFlightReady() {
 			vesselID = FlightGlobals.ActiveVessel.id.ToString();
-			QuickStart.Log ("OnFlightReady " + vesselID, "QPersistent");
+			QDebug.Log ("OnFlightReady " + vesselID, "QPersistent");
 		}
 
 		void OnVesselChange(Vessel vessel) {
 			vesselID = vessel.id.ToString();
-			QuickStart.Log ("OnVesselChange " + vesselID, "QPersistent");
+			QDebug.Log ("OnVesselChange " + vesselID, "QPersistent");
 		}
 	}
 }

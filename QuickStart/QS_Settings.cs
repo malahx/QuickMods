@@ -22,7 +22,7 @@ using QuickStart.QUtils;
 using UnityEngine;
 
 namespace QuickStart {
-	public class QSettings : QuickStart {
+	public class QSettings {
 
 		static readonly List<string> longWait = new List<string>(){
 			"EVEManager"
@@ -38,7 +38,7 @@ namespace QuickStart {
 			}
 		}
 
-		internal static readonly string FileConfig = PATH + "/Config.txt";
+		internal static readonly string FileConfig = QuickStart.PATH + "/Config.txt";
 
 		public static bool needLongWait() {
 			AssemblyLoader.LoadedAssembyList _assemblies = AssemblyLoader.loadedAssemblies;
@@ -71,7 +71,7 @@ namespace QuickStart {
         public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);
-			Log ("Settings Saved", "QSettings", true);
+			QDebug.Log ("Settings Saved", "QSettings", true);
 		}
 		public void Load() {
 			if (File.Exists (FileConfig)) {
@@ -81,7 +81,7 @@ namespace QuickStart {
 				} catch {
 					Save ();
 				}
-				Log ("Settings Loaded", "QSettings", true);
+				QDebug.Log ("Settings Loaded", "QSettings", true);
 			} else {
 				Save ();
 			}

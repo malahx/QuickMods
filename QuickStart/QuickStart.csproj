@@ -41,15 +41,16 @@
     <Compile Include="QS_Settings.cs" />
     <Compile Include="QS_MainMenu.cs" />
     <Compile Include="QS_Loading.cs" />
-    <Compile Include="QS_SaveGame.cs" />
     <Compile Include="QS_SpaceCenter.cs" />
     <Compile Include="QS_Persistent.cs" />
     <Compile Include="QS_Flight.cs" />
-    <Compile Include="LanguageAPI.cs" />
     <Compile Include="Utils\Texture.cs" />
     <Compile Include="Utils\Style.cs" />
     <Compile Include="Utils\Lang.cs" />
     <Compile Include="Utils\Key.cs" />
+    <Compile Include="Utils\SaveGame.cs" />
+    <Compile Include="Utils\Debug.cs" />
+    <Compile Include="Wrapper\LanguageAPI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -68,6 +69,7 @@
     <Folder Include="GameData\QuickMods\" />
     <Folder Include="GameData\QuickMods\QuickStart\" />
     <Folder Include="Utils\" />
+    <Folder Include="Wrapper\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

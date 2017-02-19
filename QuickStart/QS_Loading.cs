@@ -54,40 +54,40 @@ namespace QuickStart {
 
 		void Awake() {
 			if (Ended) {
-				QuickStart.Warning ("Reload? Destroy.", "QLoading");
+				QDebug.Warning ("Reload? Destroy.", "QLoading");
 				Destroy (this);
 				return;
 			}
 			if (HighLogic.LoadedScene != GameScenes.LOADING) {
-				QuickStart.Warning ("It's not a real Loading? Destroy.", "QLoading");
+				QDebug.Warning ("It's not a real Loading? Destroy.", "QLoading");
 				Ended = true;
 				Destroy (this);
 				return;
 			}
 			if (Instance != null) {
-				QuickStart.Warning ("There's already an Instance", "QLoading");
+				QDebug.Warning ("There's already an Instance", "QLoading");
 				Destroy (this);
 				return;
 			}
 			Instance = this;
-			QuickStart.Log ("Awake", "QLoading");
+			QDebug.Log ("Awake", "QLoading");
 		}
 
 		void Start() {
 			if (string.IsNullOrEmpty (QSaveGame.LastUsed)) {
 				ScreenMessages.PostScreenMessage ("[" + QuickStart.MOD + "]: No savegame found.", 10);
-				QuickStart.Log ("No savegame found, destroy...", "QLoading");
+				QDebug.Log ("No savegame found, destroy...", "QLoading");
 				Ended = true;
 				Destroy (this);
 				return;
 			}
             QKey.VerifyKey();
-			QuickStart.Log ("Start", "QLoading");
+			QDebug.Log ("Start", "QLoading");
 		}
 
 		void OnDestroy() {
 			QSettings.Instance.Save ();
-			QuickStart.Log ("OnDestroy", "QLoading");
+			QDebug.Log ("OnDestroy", "QLoading");
 		}
 
         void Update() {
@@ -104,7 +104,7 @@ namespace QuickStart {
 			if (!WindowSettings) {
 				QSettings.Instance.Save ();
 			}
-			QuickStart.Log ("Settings", "QGUI");
+			QDebug.Log ("Settings", "QGUI");
 		}
 
 		void OnGUI() {

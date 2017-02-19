@@ -34,29 +34,29 @@ namespace QuickStart {
 
 		void Awake() {
 			if (QLoading.Ended) {
-				QuickStart.Warning ("Reload? Destroy.", "QSpaceCenter");
+				QDebug.Warning ("Reload? Destroy.", "QSpaceCenter");
 				Destroy (this);
 				return;
 			}
 			if (Instance != null) {
-				QuickStart.Warning ("There's already an Instance", "QSpaceCenter");
+				QDebug.Warning ("There's already an Instance", "QSpaceCenter");
 				Destroy (this);
 				return;
 			}
 			Instance = this;
-			QuickStart.Log ("Awake", "QSpaceCenter");
+			QDebug.Log ("Awake", "QSpaceCenter");
 		}
 
 		void Start() {
 			InputLockManager.RemoveControlLock("applicationFocus");
 			if (!QSettings.Instance.Enabled || QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER) {
-				QuickStart.Log ("Not need to keep it loaded.", "QSpaceCenter");
+				QDebug.Log ("Not need to keep it loaded.", "QSpaceCenter");
 				QLoading.Ended = true;
 				Destroy (this);
 				return;
 			}
 			start = StartCoroutine (QStart ());
-			QuickStart.Log ("Start", "QSpaceCenter");
+			QDebug.Log ("Start", "QSpaceCenter");
 		}
 
 		IEnumerator QStart() {
@@ -65,20 +65,20 @@ namespace QuickStart {
 			}
 			yield return new WaitForSecondsRealtime (QSettings.Instance.WaitLoading);
 			yield return new WaitForEndOfFrame ();
-			QuickStart.Log ("SpaceCenter Loaded", "QSpaceCenter");
+			QDebug.Log ("SpaceCenter Loaded", "QSpaceCenter");
 			if (QSettings.Instance.gameScene == (int)GameScenes.FLIGHT) {
-				string _saveGame = GamePersistence.SaveGame (QSaveGame.File, HighLogic.SaveFolder, SaveMode.OVERWRITE);
+				string _saveGame = GamePersistence.SaveGame (QSaveGame.FILE, HighLogic.SaveFolder, SaveMode.OVERWRITE);
 				if (!string.IsNullOrEmpty (QuickStart_Persistent.vesselID)) {
 					int _idx = HighLogic.CurrentGame.flightState.protoVessels.FindLastIndex (pv => pv.vesselID == QuickStart_Persistent.VesselID);
 					if (_idx != -1) {
-						QuickStart.Log (string.Format("StartAndFocusVessel: {0}({1})[{2}] idx: {3}", QSaveGame.vesselName, QSaveGame.vesselType, QuickStart_Persistent.vesselID, _idx), "QSpaceCenter");
+						QDebug.Log (string.Format("StartAndFocusVessel: {0}({1})[{2}] idx: {3}", QSaveGame.vesselName, QSaveGame.vesselType, QuickStart_Persistent.vesselID, _idx), "QSpaceCenter");
 						FlightDriver.StartAndFocusVessel (_saveGame, _idx);
 					} else {
-						QuickStart.Warning ("QStart: invalid idx", "QSpaceCenter");
+						QDebug.Warning ("QStart: invalid idx", "QSpaceCenter");
 						DestroyThis ();
 					}
 				} else {
-					QuickStart.Warning ("QStart: No vessel found", "QSpaceCenter");
+					QDebug.Warning ("QStart: No vessel found", "QSpaceCenter");
 					DestroyThis ();
 				}
 			}
@@ -86,20 +86,20 @@ namespace QuickStart {
 				HighLogic.LoadScene	(GameScenes.LOADINGBUFFER);
 				HighLogic.LoadScene (GameScenes.TRACKSTATION);
 				InputLockManager.ClearControlLocks ();
-				QuickStart.Log ("Goto Tracking Station", "QSpaceCenter");
+				QDebug.Log ("Goto Tracking Station", "QSpaceCenter");
 				DestroyThis ();
 			}
 			if (QSettings.Instance.gameScene == (int)GameScenes.EDITOR) {
 				if (QSettings.Instance.enableEditorLoadAutoSave && File.Exists (QuickStart_Persistent.shipPath)) {
 					EditorDriver.StartAndLoadVessel(QuickStart_Persistent.shipPath, (EditorFacility)QSettings.Instance.editorFacility);
-					QuickStart.Log ("StartAndLoadVessel: " + QuickStart_Persistent.shipPath, "QSpaceCenter");
+					QDebug.Log ("StartAndLoadVessel: " + QuickStart_Persistent.shipPath, "QSpaceCenter");
 				} else {
 					EditorDriver.StartupBehaviour = EditorDriver.StartupBehaviours.START_CLEAN;
 					EditorDriver.StartEditor((EditorFacility)QSettings.Instance.editorFacility);
-					QuickStart.Log ("StartEditor", "QSpaceCenter");
+					QDebug.Log ("StartEditor", "QSpaceCenter");
 				}
 				InputLockManager.ClearControlLocks ();
-				QuickStart.Log ("Goto " + (QSettings.Instance.editorFacility == (int)EditorFacility.VAB ? "Vehicle Assembly Building" : "Space Plane Hangar"), "QSpaceCenter");
+				QDebug.Log ("Goto " + (QSettings.Instance.editorFacility == (int)EditorFacility.VAB ? "Vehicle Assembly Building" : "Space Plane Hangar"), "QSpaceCenter");
 				DestroyThis ();
 			}
 			Destroy (this);
@@ -108,7 +108,7 @@ namespace QuickStart {
 
 		void LateUpdate() {
 			if (!Ready) {
-				QuickStart.Log ("Ready", "QSpaceCenter");
+				QDebug.Log ("Ready", "QSpaceCenter");
 				Ready = true;
 			}
 		}
@@ -117,18 +117,18 @@ namespace QuickStart {
             if (QKey.isKeyDown(QKey.Key.Escape)) {
                 if (start != null) {
                     StopCoroutine(start);
-                    QuickStart.Log ("Escape", "QSpaceCenter");
+                    QDebug.Log ("Escape", "QSpaceCenter");
                     DestroyThis();
                 }
             }
         }
 
 		void OnDestroy() {
-			QuickStart.Log ("OnDestroy", "QSpaceCenter");
+			QDebug.Log ("OnDestroy", "QSpaceCenter");
 		}
 
 		void DestroyThis() {
-			QuickStart.Log ("DestroyThis", "QSpaceCenter");
+			QDebug.Log ("DestroyThis", "QSpaceCenter");
 			QLoading.Ended = true;
 			Destroy (this);
 		}

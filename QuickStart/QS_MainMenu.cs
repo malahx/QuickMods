@@ -34,37 +34,37 @@ namespace QuickStart {
 
 		void Awake() {
 			if (QLoading.Ended) {
-				QuickStart.Warning ("Reload? Destroy.", "QMainMenu");
+				QDebug.Warning ("Reload? Destroy.", "QMainMenu");
 				Destroy (this);
 				return;
 			}
 			if (Instance != null) {
-				QuickStart.Warning ("There's already an Instance", "QMainMenu");
+				QDebug.Warning ("There's already an Instance", "QMainMenu");
 				Destroy (this);
 				return;
 			}
 			Instance = this;
-			QuickStart.Log ("Awake", "QMainMenu");
+			QDebug.Log ("Awake", "QMainMenu");
 		}
 
 		void Start() {
 			if (!QSettings.Instance.Enabled) {
-				QuickStart.Log ("No need to keep it loaded.", "QMainMenu");
+				QDebug.Log ("No need to keep it loaded.", "QMainMenu");
 				DestroyThis ();
 				return;
 			}
 			start = StartCoroutine (QStart ());
-			QuickStart.Log ("Start", "QMainMenu");
+			QDebug.Log ("Start", "QMainMenu");
 		}
 
 		IEnumerator QStart() {
 			if (string.IsNullOrEmpty (QSaveGame.LastUsed)) {
-				QuickStart.Warning ("Last savegame not found!", "QMainMenu");
+				QDebug.Warning ("Last savegame not found!", "QMainMenu");
 				DestroyThis ();
 				yield break;
 			}
 			if (!QSettings.Instance.Enabled) {
-				QuickStart.Log ("QuickStart is disabled!", "QMainMenu");
+				QDebug.Log ("QuickStart is disabled!", "QMainMenu");
 				DestroyThis ();
 				yield break;
 			}
@@ -74,29 +74,29 @@ namespace QuickStart {
 			yield return new WaitForEndOfFrame ();
 			yield return new WaitForSeconds (QSettings.Instance.WaitLoading);
 			yield return new WaitForEndOfFrame ();
-			QuickStart.Log ("MainMenu Loaded", "QMainMenu");
-			QuickStart.Warning ("The last game found: " + QSaveGame.LastUsed, "QMainMenu");
-			HighLogic.CurrentGame = GamePersistence.LoadGame (QSaveGame.File, QSaveGame.LastUsed, true, false);
+			QDebug.Log ("MainMenu Loaded", "QMainMenu");
+			QDebug.Warning ("The last game found: " + QSaveGame.LastUsed, "QMainMenu");
+			HighLogic.CurrentGame = GamePersistence.LoadGame (QSaveGame.FILE, QSaveGame.LastUsed, true, false);
 			if (HighLogic.CurrentGame != null) {
 				HighLogic.SaveFolder = QSaveGame.LastUsed;
 				if (GamePersistence.UpdateScenarioModules (HighLogic.CurrentGame)) {
-					GamePersistence.SaveGame (HighLogic.CurrentGame, QSaveGame.File, HighLogic.SaveFolder, SaveMode.OVERWRITE);
+					GamePersistence.SaveGame (HighLogic.CurrentGame, QSaveGame.FILE, HighLogic.SaveFolder, SaveMode.OVERWRITE);
 				}
-				QuickStart.Log ("Goto SpaceCenter", "QMainMenu");
+				QDebug.Log ("Goto SpaceCenter", "QMainMenu");
 				HighLogic.CurrentGame.startScene = GameScenes.SPACECENTER;
 				HighLogic.CurrentGame.Start ();
 				InputLockManager.ClearControlLocks ();
 				Destroy (this);
 				yield break;
 			}
-			QuickStart.Warning ("Can't load the last save game", "QMainMenu");
+			QDebug.Warning ("Can't load the last save game", "QMainMenu");
 			DestroyThis ();
 			yield break;
 		}
 
 		void LateUpdate() {
 			if (!Ready) {
-				QuickStart.Log ("Ready", "QMainMenu");
+				QDebug.Log ("Ready", "QMainMenu");
 				Ready = true;
 			}
 		}
@@ -105,21 +105,21 @@ namespace QuickStart {
             if (QKey.isKeyDown(QKey.Key.Escape)) {
                 if (start != null) {
                     StopCoroutine(start);
-                    QuickStart.Log("Escape", "QSpaceCenter");
+                    QDebug.Log("Escape", "QSpaceCenter");
                     DestroyThis();
                 }
             }
         }
 
 		void DestroyThis() {
-			QuickStart.Log ("DestroyThis", "QMainMenu");
+			QDebug.Log ("DestroyThis", "QMainMenu");
 			QuickStart_Persistent.vesselID = string.Empty;
 			QLoading.Ended = true;
 			Destroy (this);
 		}
 
 		void OnDestroy() {
-			QuickStart.Log ("OnDestroy", "QMainMenu");
+			QDebug.Log ("OnDestroy", "QMainMenu");
 		}
 
 		void OnGUI() {

@@ -42,26 +42,5 @@ namespace QuickStart {
 		public readonly static string relativePath = "QuickMods/" + MOD;
 		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
 
-		internal static void Log(string String, string Title = null, bool force = false) {
-			if (!force) {
-				if (!QSettings.Instance.Debug) {
-					return;
-				}
-			}
-			if (Title == null) {
-				Title = MOD;
-			} else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
-		internal static void Warning(string String, string Title = null) {
-			if (Title == null) {
-				Title = MOD;
-			} else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.LogWarning (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
 	}
 }

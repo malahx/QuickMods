@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using QuickStart.QUtils;
+
 namespace QuickStart {
 	public partial class QFlight {
 
@@ -26,39 +28,39 @@ namespace QuickStart {
 
 		void Awake() {
 			if (QLoading.Ended) {
-				QuickStart.Warning ("Reload? Destroy.", "QLoading");
+				QDebug.Warning ("Reload? Destroy.", "QLoading");
 				Destroy (this);
 				return;
 			}
 			if (!QSettings.Instance.enablePauseOnFlight || !QSettings.Instance.Enabled || QSettings.Instance.gameScene != (int)GameScenes.FLIGHT) {
-				QuickStart.Log ("Not need to keep it loaded.", "QFlight");
+				QDebug.Log ("Not need to keep it loaded.", "QFlight");
 				QLoading.Ended = true;
 				Destroy (this);
 				return;
 			}
 			if (Instance != null) {
-				QuickStart.Warning ("There's already an Instance", "QFlight");
+				QDebug.Warning ("There's already an Instance", "QFlight");
 				Destroy (this);
 				return;
 			}
 			Instance = this;
 			GameEvents.onFlightReady.Add (OnFlightReady);
-			QuickStart.Log ("Awake", "QFlight");
+			QDebug.Log ("Awake", "QFlight");
 		}
 
 		void Start() {
-			QuickStart.Log ("Start", "QFlight");
+			QDebug.Log ("Start", "QFlight");
 		}
 
 		void OnDestroy() {
 			GameEvents.onFlightReady.Remove (OnFlightReady);
-			QuickStart.Log ("OnDestroy", "QFlight");
+			QDebug.Log ("OnDestroy", "QFlight");
 		}
 
 		void OnFlightReady() {
 			PauseMenu.Display ();
 			QLoading.Ended = true;
-			QuickStart.Log ("Not need to keep it loaded.", "QFlight");
+			QDebug.Log ("Not need to keep it loaded.", "QFlight");
 			Destroy (this);
 			return;
 		}
