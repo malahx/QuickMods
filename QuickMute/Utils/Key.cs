@@ -18,8 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using UnityEngine;
 
-namespace QuickMute {
-	public class QKey : QuickMute {
+namespace QuickMute.QUtils {
+	static class QKey {
 	
 		internal static Key SetKey = Key.None;
 
@@ -49,15 +49,15 @@ namespace QuickMute {
 				Input.GetKey (CurrentKey (Key.Mute));
 			}
 			catch {
-				Warning ("Wrong key: " + CurrentKey (Key.Mute), "QKey");
+				QDebug.Warning ("Wrong key: " + CurrentKey (Key.Mute), "QKey");
 				SetCurrentKey (Key.Mute, DefaultKey (Key.Mute));
 			}
-			Log ("VerifyKey", "QKey");
+			QDebug.Log ("VerifyKey", "QKey");
 		}
 
 		internal static void SetCurrentKey(Key key, KeyCode currentKey) {
 			QSettings.Instance.KeyMute = currentKey;
-			Log (string.Format("SetCurrentKey({0}): {1}", GetText(key), currentKey), "QKey");
+			QDebug.Log (string.Format("SetCurrentKey({0}): {1}", GetText(key), currentKey), "QKey");
 		}
 
 		internal static void DrawSetKey(int id) {

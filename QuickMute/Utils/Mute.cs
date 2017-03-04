@@ -1,5 +1,5 @@
 ﻿/* 
-Quick0
+QuickMute
 Copyright 2017 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -19,9 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
 using UnityEngine;
 
-
-namespace QuickMute {
-	public class QMute : QuickMute {
+namespace QuickMute.QUtils {
+	static class QMute {
 
 		static Dictionary<string, float> audioVolume = new Dictionary<string, float> ();
 		static AudioSource[] audioSources;
@@ -39,7 +38,7 @@ namespace QuickMute {
 				return;
 			}
 			refreshAudioSource ();
-			Log ("Verify", "QMute");
+			QDebug.Log ("Verify", "QMute");
 		}
 
 		internal static void refreshAudioSource() {
@@ -55,7 +54,7 @@ namespace QuickMute {
 					}
 				}
 			}
-			Log ("refreshAudioSource", "QMute");
+			QDebug.Log ("refreshAudioSource", "QMute");
 		}
 
 		internal static void refresh(bool mute) {
@@ -69,7 +68,7 @@ namespace QuickMute {
 				ResetSavedVolume ();
 				MusicLogic.SetVolume (GameSettings.MUSIC_VOLUME);
 			}
-			Log ("refresh: " + (QSettings.Instance.Muted ? "Mute" : "Unmute"), "QMute");
+			QDebug.Log ("refresh: " + (QSettings.Instance.Muted ? "Mute" : "Unmute"), "QMute");
 		}
 
 		static bool VolumeSettingsIsZero {
@@ -77,11 +76,13 @@ namespace QuickMute {
 				return GameSettings.AMBIENCE_VOLUME == 0 && GameSettings.MUSIC_VOLUME == 0 && GameSettings.SHIP_VOLUME == 0 && GameSettings.UI_VOLUME == 0 && GameSettings.VOICE_VOLUME == 0;
 			}
 		}
+
 		static bool VolumeSavedIsZero {
 			get {
 				return QSettings.Instance.AMBIENCE_VOLUME == 0 && QSettings.Instance.MUSIC_VOLUME == 0 && QSettings.Instance.SHIP_VOLUME == 0 && QSettings.Instance.UI_VOLUME == 0 && QSettings.Instance.VOICE_VOLUME == 0;
 			}
 		}
+
 		static void SaveSettingsVolume() {
 			if (!VolumeSettingsIsZero) {
 				QSettings.Instance.AMBIENCE_VOLUME = GameSettings.AMBIENCE_VOLUME;
@@ -91,6 +92,7 @@ namespace QuickMute {
 				QSettings.Instance.VOICE_VOLUME = GameSettings.VOICE_VOLUME;
 			}
 		}
+
 		static void LoadSavedVolume() {
 			if (!VolumeSavedIsZero) {
 				GameSettings.AMBIENCE_VOLUME = QSettings.Instance.AMBIENCE_VOLUME;
@@ -100,6 +102,7 @@ namespace QuickMute {
 				GameSettings.VOICE_VOLUME = QSettings.Instance.VOICE_VOLUME;
 			}
 		}
+
 		static void ResetSavedVolume() {
 			if (!VolumeSettingsIsZero) {
 				QSettings.Instance.AMBIENCE_VOLUME = 0;
@@ -109,6 +112,7 @@ namespace QuickMute {
 				QSettings.Instance.VOICE_VOLUME = 0;
 			}
 		}
+
 		static void ResetSettingsVolume() {
 			if (!VolumeSavedIsZero) {
 				GameSettings.AMBIENCE_VOLUME = 0;

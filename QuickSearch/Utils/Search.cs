@@ -21,7 +21,7 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
-namespace QuickSearch {
+namespace QuickSearch.QUtils {
 	internal class QSearch : QuickSearch {
 
 		internal enum partInfos {

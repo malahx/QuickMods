@@ -17,10 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.IO;
+using QuickMute.QUtils;
 using UnityEngine;
 
 namespace QuickMute {
-	public class QSettings : QuickMute {
+	public class QSettings {
 
 		[KSPField(isPersistant = true)] static readonly QSettings instance = new QSettings ();
 		public static QSettings Instance {
@@ -32,7 +33,7 @@ namespace QuickMute {
 			}
 		}
 
-		internal static string FileConfig = QuickMute.PATH + "/Config.txt";
+		internal static string FileConfig = QVars.PATH + "/Config.txt";
 
 		[KSPField(isPersistant = true)]	bool isLoaded = false;
 
@@ -55,7 +56,7 @@ namespace QuickMute {
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);
-			Log ("Settings Saved", "QSettings",  true);
+			QDebug.Log ("Settings Saved", "QSettings",  true);
 		}
 		public void Load() {
 			if (File.Exists (FileConfig)) {
@@ -65,7 +66,7 @@ namespace QuickMute {
 				} catch {
 					Save ();
 				}
-				Log ("Settings Loaded", "QSettings",  true);
+				QDebug.Log ("Settings Loaded", "QSettings",  true);
 			} else {
 				Save ();
 			}

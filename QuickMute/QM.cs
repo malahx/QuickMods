@@ -16,60 +16,101 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using System.Reflection;
+using System.Collections;
+using QuickMute.QUtils;
+using QuickMute.Toolbar;
 using UnityEngine;
-
 
 namespace QuickMute {
 	
 	[KSPAddon (KSPAddon.Startup.EveryScene, false)]
-	public partial class QGUI : QuickMute { }
+	public class QuickMute : MonoBehaviour {
 
-	[KSPAddon (KSPAddon.Startup.MainMenu, true)]
-	public partial class QStockToolbar : QuickMute { }
+        internal static QuickMute Instance;
+        [KSPField(isPersistant = true)] internal static QBlizzy BlizzyToolbar;
+        internal static QGUI gui;
+        Coroutine wait;
 
-	public partial class QuickMute : MonoBehaviour {
+        void Awake() {
+            Instance = this;
+            if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy();
+            GameEvents.onVesselGoOffRails.Add(OnVesselGoOffRails);
+            gui = new QGUI();
+            QDebug.Log("Awake");
+        }
 
-		public readonly static string VERSION = Assembly.GetExecutingAssembly ().GetName ().Version.Major + "." + Assembly.GetExecutingAssembly ().GetName ().Version.Minor + Assembly.GetExecutingAssembly ().GetName ().Version.Build;
-		public readonly static string MOD = Assembly.GetExecutingAssembly ().GetName ().Name;
-		public readonly static string relativePath = "QuickMods/" + MOD;
-		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+        IEnumerator Wait(int seconds) {
+            yield return new WaitForSeconds(seconds);
+            gui.draw = false;
+            wait = null;
+            QDebug.Log("Wait");
+        }
 
-		internal static void Log(string String, string Title = null, bool force = false) {
-			if (!force) {
-				if (!QSettings.Instance.Debug) {
-					return;
-				}
-			}
-			if (Title == null) {
-				Title = MOD;
-			}
-			else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
+        void Start() {
+            if (BlizzyToolbar != null) BlizzyToolbar.Init();
+            if (QSettings.Instance.Muted) {
+                Mute(true);
+            }
+            QDebug.Log("Start");
+        }
 
-		internal static void Warning(string String, string Title = null) {
-			if (Title == null) {
-				Title = MOD;
-			}
-			else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.LogWarning (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
+        void OnDestroy() {
+            if (BlizzyToolbar != null) BlizzyToolbar.Destroy();
+            GameEvents.onVesselGoOffRails.Remove(OnVesselGoOffRails);
+            QDebug.Log("OnDestroy");
+        }
 
-		protected virtual void Awake() {
-			Log ("Awake");
-		}
+        void OnVesselGoOffRails(Vessel vessel) {
+            QMute.Verify();
+            QDebug.Log("OnVesselGoOffRails");
+        }
 
-		protected virtual void Start() {
-			Log ("Start");
-		}
+        void Update() {
+            if (Input.GetKeyDown(QSettings.Instance.KeyMute)) {
+                Mute();
+            }
+            if (QKey.SetKey == QKey.Key.None) {
+                return;
+            }
+            if (Event.current.isKey) {
+                KeyCode _key = Event.current.keyCode;
+                if (_key != KeyCode.None) {
+                    QKey.SetCurrentKey(QKey.SetKey, _key);
+                    QKey.SetKey = QKey.Key.None;
+                }
+            }
+        }
 
-		protected virtual void OnDestroy() {
-			Log ("OnDestroy");
-		}
+        void OnGUI() {
+            gui.Render();
+        }
+
+        void OnApplicationQuit() {
+            Mute(false);
+            GameSettings.SaveSettings();
+            QDebug.Log("OnApplicationQuit");
+        }
+
+        public void Mute() {
+            Mute(!QSettings.Instance.Muted);
+        }
+
+        void Mute(bool mute) {
+            QSettings.Instance.Muted = mute;
+            if (BlizzyToolbar != null) {
+                BlizzyToolbar.Refresh();
+            }
+            if (QStock.Instance != null) {
+                QStock.Instance.Refresh();
+            }
+            QMute.refresh(mute);
+            gui.draw = true;
+            if (wait != null) {
+                StopCoroutine(wait);
+            }
+            wait = StartCoroutine(Wait(5));
+            QSettings.Instance.Save();
+            QDebug.Log("Mute");
+        }
 	}
 }

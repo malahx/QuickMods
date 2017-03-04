@@ -16,8 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-namespace QuickMute {
-	public class QBlizzyToolbar {
+using QuickMute.QUtils;
+
+namespace QuickMute.Toolbar {
+	public class QBlizzy {
 	
 		internal bool Enabled {
 			get {
@@ -25,18 +27,8 @@ namespace QuickMute {
 			}
 		}
 
-		string TexturePathSound = QuickMute.relativePath + "/Textures/BlizzyToolBar_sound";
-		string TexturePathMute = QuickMute.relativePath + "/Textures/BlizzyToolBar_mute";
-		string TexturePathConf = QuickMute.relativePath + "/Textures/BlizzyConf";
-
 		void OnClick() { 
-			QGUI.Instance.Mute ();
-		}
-
-		string TexturePath {
-			get {
-				return (QSettings.Instance.Muted ? TexturePathMute : TexturePathSound);
-			}
+            QuickMute.Instance.Mute();
 		}
 
 		IButton Button;
@@ -48,27 +40,27 @@ namespace QuickMute {
 			}
 		}
 
-		internal void Start() {
+		internal void Init() {
 			if (!HighLogic.LoadedSceneIsGame || !isAvailable || !Enabled) {
 				return;
 			}
 			if (Button == null) {
-				Button = ToolbarManager.Instance.add (QuickMute.MOD, QuickMute.MOD);
-				Button.TexturePath = TexturePath;
-				Button.ToolTip = QuickMute.MOD;
+				Button = ToolbarManager.Instance.add (QVars.MOD, QVars.MOD);
+                Button.TexturePath = QTexture.BlizzyTexturePath;
+				Button.ToolTip = QVars.MOD;
 				Button.OnClick += (e) => OnClick ();
 			}
 
 			if (ButtonConf == null) {
-				ButtonConf = ToolbarManager.Instance.add (QuickMute.MOD + "Conf", QuickMute.MOD + "Conf");
-				ButtonConf.TexturePath = TexturePathConf;
-				ButtonConf.ToolTip = QuickMute.MOD + ": " + QLang.translate ("Settings");
-				ButtonConf.OnClick += (e) => QGUI.Instance.Settings ();
+				ButtonConf = ToolbarManager.Instance.add (QVars.MOD + "Conf", QVars.MOD + "Conf");
+				ButtonConf.TexturePath = QTexture.BlizzyTexturePath;
+				ButtonConf.ToolTip = QVars.MOD + ": " + QLang.translate ("Settings");
+				ButtonConf.OnClick += (e) => QuickMute.gui.Settings ();
 			}
-			QuickMute.Log ("Start", "QBlizzyToolbar");
+			QDebug.Log ("Start", "QBlizzyToolbar");
 		}
 
-		internal void OnDestroy() {
+		internal void Destroy() {
 			if (!isAvailable) {
 				return;
 			}
@@ -82,24 +74,24 @@ namespace QuickMute {
 				ButtonConf.Destroy ();
 				ButtonConf = null;
 			}
-			QuickMute.Log ("OnDestroy", "QBlizzyToolbar");
+			QDebug.Log ("OnDestroy", "QBlizzyToolbar");
 		}
 
 		internal void Refresh() {
 			if (!isAvailable || Button == null) {
 				return;
 			}
-			Button.TexturePath = TexturePath;
-			QuickMute.Log ("Refresh", "QBlizzyToolbar");
+			Button.TexturePath = QTexture.BlizzyTexturePath;
+			QDebug.Log ("Refresh", "QBlizzyToolbar");
 		}
 
 		internal void Reset() {
 			if (Enabled) {
-				Start ();
+				Init ();
 			} else {
-				OnDestroy ();
+				Destroy ();
 			}
-			QuickMute.Log ("Reset", "QBlizzyToolbar");
+			QDebug.Log ("Reset", "QBlizzyToolbar");
 		}
 	}
 }

@@ -16,7 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-namespace QuickSearch {
+using QuickSearch.QUtils;
+
+namespace QuickSearch.Toolbar {
 	public class QBlizzyToolbar {
 	
 		internal bool Enabled {
@@ -59,7 +61,7 @@ namespace QuickSearch {
 			if (!isAvailable || Button == null) {
 				return;
 			}
-			Button.TexturePath = QUtils.Texture.BLIZZY_PATH;
+			Button.TexturePath = Texture.BLIZZY_PATH;
 		}
 
 		internal void Reset() {

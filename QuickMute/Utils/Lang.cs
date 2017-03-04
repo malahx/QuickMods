@@ -19,8 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using LanguagePatches;
 using UnityEngine;
 
-namespace QuickMute {
-	public class QLang : QuickMute {
+namespace QuickMute.QUtils {
+	static class QLang {
 
 		static readonly string[] langs = {
 			"EN",
