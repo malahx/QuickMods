@@ -30,8 +30,10 @@ namespace QuickMute {
 		Rect rectSettings = new Rect();
 		Rect RectSettings {
 			get {
-				rectSettings.x = (Screen.width - rectSettings.width) / 2;
-				rectSettings.y = (Screen.height - rectSettings.height) / 2;
+                if (rectSettings.position == Vector2.zero && rectSettings.size != Vector2.zero) {
+                    rectSettings.x = (Screen.width - rectSettings.width) / 2;
+                    rectSettings.y = (Screen.height - rectSettings.height) / 2;
+                }
 				return rectSettings;
 			}
 			set {
@@ -42,8 +44,10 @@ namespace QuickMute {
 		Rect rectSetKey = new Rect ();
 		Rect RectSetKey {
 			get {
-				rectSetKey.x = (Screen.width - rectSetKey.width) / 2;
-				rectSetKey.y = (Screen.height - rectSetKey.height) / 2;
+                if (rectSetKey.position == Vector2.zero && rectSetKey.size != Vector2.zero) {
+                    rectSetKey.x = (Screen.width - rectSetKey.width) / 2;
+                    rectSetKey.y = (Screen.height - rectSetKey.height) / 2;
+                }
 				return rectSetKey;
 			}
 			set {
