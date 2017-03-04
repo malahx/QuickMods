@@ -93,7 +93,7 @@ namespace QuickMute {
 
 		internal void Render () {
 			GUI.skin = HighLogic.Skin;
-			if (draw) {
+            if (QSettings.Instance.MuteIcon && draw) {
                 GUILayout.BeginArea (new Rect ((Screen.width - 96) / 2, (Screen.height - 96) / 2, 96, 96), QTexture.IconTexture);
 				GUILayout.EndArea ();
 			}
@@ -109,29 +109,47 @@ namespace QuickMute {
 
 		void DrawSettings (int id) {
 			GUILayout.BeginVertical ();
+
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (QLang.translate ("Toolbars"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
+
 			GUILayout.BeginHorizontal ();
 			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
+
             if (QBlizzy.isAvailable) {
+                
 				GUILayout.BeginHorizontal ();
 				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
+
 			}
+
+            GUILayout.BeginHorizontal();
+            GUILayout.Box(QLang.translate("Options"), GUILayout.Height(30));
+            GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            QSettings.Instance.MuteIcon = GUILayout.Toggle(QSettings.Instance.MuteIcon, QLang.translate("Show Mute Icon"), GUILayout.Width(400));
+            GUILayout.EndHorizontal();
+
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (QLang.translate ("Keyboard shortcuts"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
+
 			QKey.DrawConfigKey (QKey.Key.Mute);
 			QLang.DrawLang ();
+
 			GUILayout.FlexibleSpace ();
+
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
 			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height (30))) {
 				HideSettings ();
 			}
 			GUILayout.EndHorizontal ();
+
 			GUILayout.EndVertical ();
 		}
 	}

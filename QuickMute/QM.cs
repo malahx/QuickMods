@@ -104,9 +104,11 @@ namespace QuickMute {
                 QStock.Instance.Refresh();
             }
             QMute.refresh(mute);
-            gui.draw = true;
-            if (wait != null) {
-                StopCoroutine(wait);
+            if (QSettings.Instance.MuteIcon) {
+                gui.draw = true;
+                if (wait != null) {
+                    StopCoroutine(wait);
+                }
             }
             wait = StartCoroutine(Wait(5));
             QSettings.Instance.Save();
