@@ -20,6 +20,7 @@ using System;
 using System.Collections.Generic;
 using System.IO;
 using KSP.UI.Screens;
+using QuickSearch.QUtils;
 using UnityEngine;
 
 namespace QuickSearch {
@@ -42,8 +43,8 @@ namespace QuickSearch {
 			}
 		}
 
-		readonly string cfgNode = "SearchHistory";
-		readonly string configPath = QuickSearch.PATH + "/History.cfg";
+		readonly string CFGNODE = "SearchHistory";
+		readonly string CONFIG_PATH = QuickSearch.PATH + "/History.cfg";
 		readonly GUIStyle btnStyle;
 		readonly List<Search> history;
 		int index;
@@ -91,20 +92,20 @@ namespace QuickSearch {
 			ConfigNode node = new ConfigNode ();
 			for (int i = history.Count - 1; i >= 0; i--) {
 				Search s = history[i];
-				ConfigNode n = node.AddNode (cfgNode);
+				ConfigNode n = node.AddNode (CFGNODE);
 				n.AddValue ("text", s.text);
 				n.AddValue ("count", s.count);
 				n.AddValue ("date", s.date.Ticks);
 			}
-			node.Save (configPath);
+			node.Save (CONFIG_PATH);
 		}
 
 		void Load() {
-			if (!File.Exists (configPath)) {
+			if (!File.Exists (CONFIG_PATH)) {
 				return;
 			}
-			ConfigNode nodeLoaded = ConfigNode.Load (configPath);
-			ConfigNode[] nodes = nodeLoaded.GetNodes (cfgNode);
+			ConfigNode nodeLoaded = ConfigNode.Load (CONFIG_PATH);
+			ConfigNode[] nodes = nodeLoaded.GetNodes (CFGNODE);
 			for (int i = nodes.Length - 1; i >= 0; --i) {
 				ConfigNode node = nodes[i];
 				string text = "";

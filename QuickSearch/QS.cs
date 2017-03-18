@@ -17,6 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.Reflection;
+using QuickSearch.QUtils;
+using QuickSearch.Toolbar;
 using UnityEngine;
 
 namespace QuickSearch {
@@ -24,9 +26,7 @@ namespace QuickSearch {
 	public partial class QRnD : QuickSearch { }
 
 	[KSPAddon(KSPAddon.Startup.EditorAny, false)]
-	public partial class QEditor : QuickSearch { }
-	[KSPAddon (KSPAddon.Startup.MainMenu, true)]
-	public partial class QStockToolbar : QuickSearch { }
+	public partial class QEditor : QuickSearch { }
 
 	public partial class QuickSearch : MonoBehaviour {
 
@@ -35,48 +35,25 @@ namespace QuickSearch {
 		public readonly static string relativePath = "QuickMods/" + MOD;
 		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
 
-		[KSPField(isPersistant = true)] static QBlizzyToolbar BlizzyToolbar;
-
-		protected static void Log (string String, string Title = null, bool force = false) {
-			if (!force) {
-				if (!QSettings.Instance.Debug) {
-					return;
-				}
-			}
-			if (Title == null) {
-				Title = MOD;
-			} else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
-
-		protected static void Warning (string String, string Title = null) {
-			if (Title == null) {
-				Title = MOD;
-			} else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.LogWarning (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
+		[KSPField(isPersistant = true)] static QBlizzy BlizzyToolbar;
 
 		protected virtual void Awake() {
-			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
+			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy ();
 			TextField = new GUIStyle(HighLogic.Skin.textField);
 			TextField.stretchWidth = true;
 			TextField.stretchHeight = true;
 			TextField.alignment = TextAnchor.MiddleCenter;
-			Log ("Awake");
+			QDebug.Log ("Awake");
 		}
 		
 		protected virtual void Start() {
 			if (BlizzyToolbar != null) BlizzyToolbar.Init ();
-			Log ("Start");
+			QDebug.Log ("Start");
 		}
 		
 		protected virtual void OnDestroy() {
 			if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
-			Log ("OnDestroy");
+			QDebug.Log ("OnDestroy");
 		}
 		
 		protected virtual void FixedUpdate() {

@@ -23,6 +23,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.Events;
 using UnityEngine.EventSystems;
+using QuickSearch.QUtils;
 
 namespace QuickSearch {
 	public partial class QEditor {
@@ -43,23 +44,23 @@ namespace QuickSearch {
 
 		protected override void Awake() {
 			if (HighLogic.LoadedScene != GameScenes.EDITOR) {
-				Warning ("The editor search function works only on the on the Editor. Destroy.", "QEditor");
+				QDebug.Warning ("The editor search function works only on the on the Editor. Destroy.", "QEditor");
 				Destroy (this);
 				return;
 			}
 			if (Instance != null) {
-				Warning ("There's already an Instance of " + MOD + ". Destroy.", "QEditor");
+				QDebug.Warning ("There's already an Instance of " + MOD + ". Destroy.", "QEditor");
 				Destroy (this);
 				return;
 			}
 			Instance = this;
 			if (!QSettings.Instance.EditorSearch) {
-				Warning ("The editor search function is disabled. Destroy.", "QEditor");
+				QDebug.Warning ("The editor search function is disabled. Destroy.", "QEditor");
 				Destroy (this);
 				return;
 			}
 			base.Awake ();
-			Log ("Awake", "QEditor");
+			QDebug.Log ("Awake", "QEditor");
 		}
 
 		protected override void Start() {
@@ -77,21 +78,22 @@ namespace QuickSearch {
 			PartCategorizer.Instance.searchField.onValueChanged.AddListener (new UnityAction<string> (SearchField_OnValueChange));
 			PartCategorizer.Instance.searchField.GetComponentCached<Image> (ref searchImage);
 			setSearchFilter ();
-			Log ("Start", "QEditor");
+			QDebug.Log ("Start", "QEditor");
 		}
 
 		void Update() {
 			if (!isReady) {
 				return;
 			}
-			if (Input.GetKeyDown (GameSettings.Editor_partSearch.primary) || Input.GetKeyDown (GameSettings.Editor_partSearch.secondary)) {
+
+            if (GameSettings.Editor_partSearch.GetKeyDown()) {
 				InitSearch ();
 			}
 		}
 
 		protected override void OnDestroy() {
 			base.OnDestroy ();
-			Log ("OnDestroy", "QEditor");
+			QDebug.Log ("OnDestroy", "QEditor");
 		}
 
 		void SearchField_OnClick(PointerEventData eventData) {
@@ -99,7 +101,7 @@ namespace QuickSearch {
 				return;
 			}
 			InitSearch ();
-			Log ("SearchField_OnClick", "QEditor");
+			QDebug.Log ("SearchField_OnClick", "QEditor");
 		}
 
 		void InitSearch() {
@@ -113,7 +115,7 @@ namespace QuickSearch {
 			}
 			ShowHistory ();
 			InputLockManager.SetControlLock (ControlTypes.KEYBOARDINPUT, MOD + "-KeyBoard");
-			Log ("InitSearch", "QEditor");
+			QDebug.Log ("InitSearch", "QEditor");
 		}
 
 		void SearchField_OnValueChange(string s) {
@@ -122,7 +124,7 @@ namespace QuickSearch {
 			}
 			ShowHistory ();
 			QSearch.Text = s;
-			Log ("SearchField_OnValueChange: " + s, "QEditor");
+			QDebug.Log ("SearchField_OnValueChange: " + s, "QEditor");
 		}
 
 		void SearchField_OnEndEdit(string s) {
@@ -131,7 +133,7 @@ namespace QuickSearch {
 			}
 			HideHistory ();
 			InputLockManager.RemoveControlLock (MOD + "-KeyBoard");
-			Log ("SearchField_OnEndEdit", "QEditor");
+			QDebug.Log ("SearchField_OnEndEdit", "QEditor");
 		}
 
 		public void Refresh() {
@@ -142,12 +144,12 @@ namespace QuickSearch {
 		void setSearchFilter() {
 			EditorPartList.Instance.SearchFilterParts = searchFilterParts;
 			Ready = true;
-			Log ("setSearchFilter", "QEditor");
+			QDebug.Log ("setSearchFilter", "QEditor");
 		}
 
 		void resetSearchFilter() {
 			EditorPartList.Instance.SearchFilterParts = null;
-			Log ("resetSearchFilter", "QEditor");
+			QDebug.Log ("resetSearchFilter", "QEditor");
 		}
 	}
 }

@@ -17,10 +17,11 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.IO;
+using QuickSearch.QUtils;
 using UnityEngine;
 
 namespace QuickSearch {
-	public class QSettings : QuickSearch {
+	public class QSettings {
 
 		[KSPField (isPersistant = true)] static readonly QSettings instance = new QSettings ();
 		public static QSettings Instance {
@@ -32,7 +33,7 @@ namespace QuickSearch {
 			}
 		}
 
-		readonly string FileConfig = PATH + "/Config.txt";
+		readonly string FileConfig = QuickSearch.PATH + "/Config.txt";
 
 		[KSPField (isPersistant = true)] bool isLoaded = false;
 
@@ -73,7 +74,7 @@ namespace QuickSearch {
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);
-			Log ("Settings Saved", "QSettings", true);
+			QDebug.Log ("Settings Saved", "QSettings", true);
 		}
 		public void Load() {
 			if (File.Exists (FileConfig)) {
@@ -83,7 +84,7 @@ namespace QuickSearch {
 				} catch {
 					Save ();
 				}
-				Log ("Settings Loaded", "QSettings", true);
+				QDebug.Log ("Settings Loaded", "QSettings", true);
 			} else {
 				Save ();
 			}

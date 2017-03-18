@@ -22,7 +22,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 
 namespace QuickSearch.QUtils {
-	internal class QSearch : QuickSearch {
+	static class QSearch {
 
 		internal enum partInfos {
 			TAG,

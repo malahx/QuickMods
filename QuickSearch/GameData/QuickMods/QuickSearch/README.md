@@ -57,6 +57,12 @@ Delete the QuickMods/QuickSearch folder in your KSP/GameData folder.
 
 #### Changelog
 
+v3.19.9-pre - 2017.03.18
+* New: Added an history of the last search (requested by RealKolago),
+* New: Added a search button on the RnD,
+* New: Added an option to search only when you type Enter or click outside the text field (requested by RealKolago),
+* Compiled against KSP 1.2.9.1727
+
 v3.12 - 2017.01.14
 * Fix: Corrected the error with LanguageAPI and unloaded plugins.
 

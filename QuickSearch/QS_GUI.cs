@@ -20,6 +20,8 @@ using System.Collections;
 using System.Text.RegularExpressions;
 using KSP.UI;
 using KSP.UI.Screens;
+using QuickSearch.QUtils;
+using QuickSearch.Toolbar;
 using UnityEngine;
 
 namespace QuickSearch {
@@ -83,29 +85,29 @@ namespace QuickSearch {
 				QRnD.Instance.Settings ();
 				return;
 			}
-			Log ("No instance");
+			QDebug.Log ("No instance");
 		}
 
 		void Settings() {
 			WindowSettings = !WindowSettings;
-			QStockToolbar.Instance.Set (WindowSettings);
+			QStock.Instance.Set (WindowSettings);
 			if (!WindowSettings) {
 				Save ();
 			}
-			Log ("Settings", "QGUI");
+			QDebug.Log ("Settings", "QGUI");
 		}
 
 		void HideSettings() {
 			WindowSettings = false;
-			QStockToolbar.Instance.Set (WindowSettings);
+			QStock.Instance.Set (WindowSettings);
 			Save ();
-			Log ("HideSettings", "QGUI");
+			QDebug.Log ("HideSettings", "QGUI");
 		}
 
 		void ShowSettings() {
 			WindowSettings = true;
-			QStockToolbar.Instance.Set (WindowSettings);
-			Log ("ShowSettings", "QGUI");
+			QStock.Instance.Set (WindowSettings);
+			QDebug.Log ("ShowSettings", "QGUI");
 		}
 
 		protected void HideHistory() {
@@ -124,7 +126,7 @@ namespace QuickSearch {
 			QHistory.Instance.Add (QSearch.Text);
 			WindowHistory = false;
 			tryHideHistory = null;
-			Log ("HideHistory", "QGUI");
+			QDebug.Log ("HideHistory", "QGUI");
 		}
 
 		protected void ShowHistory() {
@@ -132,11 +134,11 @@ namespace QuickSearch {
 				return;
 			}
 			WindowHistory = true;
-			Log ("ShowHistory", "QGUI");
+			QDebug.Log ("ShowHistory", "QGUI");
 		}
 
 		void Save() {
-			QStockToolbar.Instance.Reset ();
+			QStock.Instance.Reset ();
 			BlizzyToolbar.Reset ();
 			if (QEditor.Instance != null) {
 				QEditor.Instance.Refresh ();
@@ -146,7 +148,7 @@ namespace QuickSearch {
 
 		protected virtual void OnGUI() {
 			GUI.skin = HighLogic.Skin;
-			QUtils.Lock (IsMouseOver ());
+			QGUI.Lock (IsMouseOver ());
 			if (WindowSettings) {
 				RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
 			}
@@ -166,7 +168,7 @@ namespace QuickSearch {
 			GUILayout.BeginHorizontal ();
 			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (400));
 			GUILayout.FlexibleSpace ();
-			if (QBlizzyToolbar.isAvailable) {
+			if (QBlizzy.isAvailable) {
 				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
 			}
 			GUILayout.EndHorizontal ();

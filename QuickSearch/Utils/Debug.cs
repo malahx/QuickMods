@@ -18,20 +18,20 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using UnityEngine;
 
-namespace QuickStart.QUtils {
+namespace QuickSearch.QUtils {
     public static class QDebug {
 
         internal static void Log(string String, string Title = null, bool force = false) {
             if (!force && !QSettings.Instance.Debug) {
                 return;
             }
-            Title = Title == null ? QuickStart.MOD : string.Format("{0}({1})", QuickStart.MOD, Title);
-            Debug.Log(string.Format("{0}[{1}]: {2}", Title, QuickStart.VERSION, String));
+            Title = Title == null ? QuickSearch.MOD : string.Format("{0}({1})", QuickSearch.MOD, Title);
+            Debug.Log(string.Format("{0}[{1}]: {2}", Title, QuickSearch.VERSION, String));
         }
 
         internal static void Warning(string String, string Title = null) {
-            Title = Title == null ? QuickStart.MOD : string.Format("{0}({1})", QuickStart.MOD, Title);
-            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, QuickStart.VERSION, String));
+            Title = Title == null ? QuickSearch.MOD : string.Format("{0}({1})", QuickSearch.MOD, Title);
+            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, QuickSearch.VERSION, String));
         }
     }
 }

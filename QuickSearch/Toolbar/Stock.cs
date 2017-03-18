@@ -23,7 +23,7 @@ using UnityEngine;
 namespace QuickSearch.Toolbar {
 	
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
-	public class QStockToolbar : MonoBehaviour {
+	public class QStock : MonoBehaviour {
 
 		public static bool Enabled {
 			get {
@@ -56,7 +56,7 @@ namespace QuickSearch.Toolbar {
 				return Instance != null && isAvailable;
 			}
 		}
-		public static QStockToolbar Instance {
+		public static QStock Instance {
 			get;
 			private set;
 		}
@@ -161,11 +161,11 @@ namespace QuickSearch.Toolbar {
 			} else {
 				AppScenes = ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;
 			}
-			if (QStockToolbar.Instance == null) {
+			if (QStock.Instance == null) {
 				return;
 			}
-			if (QStockToolbar.Instance.appLauncherButton != null) {
-				QStockToolbar.Instance.appLauncherButton.VisibleInScenes = AppScenes;
+			if (QStock.Instance.appLauncherButton != null) {
+				QStock.Instance.appLauncherButton.VisibleInScenes = AppScenes;
 			}
 			QDebug.Log ("ResetScenes", "QStockToolbar");
 		}

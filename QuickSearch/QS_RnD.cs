@@ -19,6 +19,8 @@ using KSP.UI;
 using KSP.UI.Screens;
 using System.Collections.Generic;
 using UnityEngine;
+using QuickSearch.QUtils;
+using QuickSearch.Toolbar;
 
 namespace QuickSearch {
 	public partial class QRnD {
@@ -38,29 +40,29 @@ namespace QuickSearch {
 
 		protected override void Awake() {
 			if (HighLogic.LoadedScene != GameScenes.SPACECENTER) {
-				Warning ("The RnD search function works only on the SpaceCenter. Destroy.", "QRnD");
+				QDebug.Warning ("The RnD search function works only on the SpaceCenter. Destroy.", "QRnD");
 				Destroy (this);
 				return;
 			}
-			QStockToolbar.ResetScenes ();
+			QStock.ResetScenes ();
 			if (HighLogic.CurrentGame.Mode != Game.Modes.CAREER && HighLogic.CurrentGame.Mode != Game.Modes.SCIENCE_SANDBOX) {
-				Warning ("The RnD search function works only on a Career or on a Science gamemode. Destroy.", "QRnD");
+				QDebug.Warning ("The RnD search function works only on a Career or on a Science gamemode. Destroy.", "QRnD");
 				Destroy (this);
 				return;
 			}
 			if (Instance != null) {
-				Warning ("There's already an Instance of " + MOD +". Destroy.", "QRnD");
+				QDebug.Warning ("There's already an Instance of " + MOD +". Destroy.", "QRnD");
 				Destroy (this);
 				return;
 			}
 			Instance = this;
 			if (!QSettings.Instance.RnDSearch) {
-				Warning ("The RnD search function is disabled. Destroy.", "QRnD");
+				QDebug.Warning ("The RnD search function is disabled. Destroy.", "QRnD");
 				Destroy (this);
 				return;
 			}
 			base.Awake ();
-			Log ("Awake", "QRnD");
+			QDebug.Log ("Awake", "QRnD");
 		}
 
 		protected override void Start() {
@@ -71,26 +73,26 @@ namespace QuickSearch {
 			GameEvents.onGUIRnDComplexSpawn.Add (RnDComplexSpawn);
 			GameEvents.onGUIRnDComplexDespawn.Add (RnDComplexDespawn);
 			base.Start ();
-			Log ("Start", "QRnD");
+			QDebug.Log ("Start", "QRnD");
 		}
 
 		void RnDComplexSpawn() {
 			Ready = true;
 			QSearch.Text = string.Empty;
-			Log ("RnDComplexSpawn", "QRnD");
+			QDebug.Log ("RnDComplexSpawn", "QRnD");
 		}
 
 		void RnDComplexDespawn() {
 			Ready = false;
 			QSearch.Text = string.Empty;			
-			Log ("RnDComplexDespawn", "QRnD");
+			QDebug.Log ("RnDComplexDespawn", "QRnD");
 		}
 
 		protected override void OnDestroy() {
 			GameEvents.onGUIRnDComplexSpawn.Remove (RnDComplexSpawn);
 			GameEvents.onGUIRnDComplexDespawn.Remove (RnDComplexDespawn);
 			base.OnDestroy ();
-			Log ("OnDestroy", "QRnD");
+			QDebug.Log ("OnDestroy", "QRnD");
 		}
 
 		protected override void OnGUI() {
@@ -141,7 +143,7 @@ namespace QuickSearch {
                     _button.Image.color = new Color(1f, 1f, 1f);   
                 }  
 			}
-			Log ("Find: " + QSearch.Text, "QRnD");
+			QDebug.Log ("Find: " + QSearch.Text, "QRnD");
 		}
 	}
 }

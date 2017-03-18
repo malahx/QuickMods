@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using QuickSearch.QUtils;
 
 namespace QuickSearch.Toolbar {
-	public class QBlizzyToolbar {
+	public class QBlizzy {
 	
 		internal bool Enabled {
 			get {
