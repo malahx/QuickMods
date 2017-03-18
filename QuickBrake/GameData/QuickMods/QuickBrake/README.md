@@ -34,6 +34,10 @@ Delete the QuickMods/QuickBrake folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.32.9 - 2017.03.19
+* Fix: Corrected the Enable Brake on Control Lost setting (thanks verdesmarald),
+* Compiled against KSP 1.2.9.1727
+
 v1.32 - 2017.01.14
 * Fix: Corrected the error with LanguageAPI and unloaded plugins.
 
