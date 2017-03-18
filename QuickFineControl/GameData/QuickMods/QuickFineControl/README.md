@@ -1,4 +1,4 @@
-﻿#### QuickFineControl
+﻿# QuickFineControl
 #### A plugin for Kerbal Space Program
 #### Copyright 2017 Malah
 
@@ -33,6 +33,9 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickFineControl folder in your KSP/GameData folder.
 
 #### Changelog
+
+v1.05.9-pre - 2017.03.18
+* Compiled against KSP 1.2.9.1727
 
 v1.05 - 2016.12.09
 * Compiled against KSP 1.2.2.1622
