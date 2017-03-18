@@ -1,4 +1,4 @@
-﻿#### QuickStart
+﻿# QuickStart
 #### A plugin for Kerbal Space Program
 #### Copyright 2017 Malah
 
@@ -34,9 +34,11 @@ Delete the QuickMods/QuickStart folder in your KSP/GameData folder.
 
 #### Changelog
 
-v2.14-dev - 2017.02
+v2.13.9-pre - 2017.03.18
 * New: Added an option to disable black screen,
-* New: Added a keyboard shortcut to stop QuickStart (Escape by default).
+* New: Added a keyboard shortcut to stop QuickStart (Escape by default),
+* Fix: Refactorize,
+* Compiled against KSP 1.2.9.1727
 
 v2.13 - 2017.02.18
 * New: Added a black screen when QuickStart wait,
