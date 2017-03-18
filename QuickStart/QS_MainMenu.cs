@@ -127,8 +127,8 @@ namespace QuickStart {
 				return;
 			}
 			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QStyle.Label);
-			GUILayout.Label (QuickStart.MOD + "...", QStyle.Label);
-			GUILayout.EndArea ();
+            GUILayout.Label(QuickStart.MOD + "...\n" + string.Format(QLang.translate("Push on {0} to abort the operation"), QSettings.Instance.KeyEscape), QStyle.Label);
+            GUILayout.EndArea ();
 		}
 	}
 }
