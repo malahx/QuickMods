@@ -16,7 +16,9 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.UI;
 using KSP.UI.Screens;
+using KSP.UI.Util;
 using QuickMute.QUtils;
 using UnityEngine;
 
@@ -25,25 +27,11 @@ namespace QuickMute.Toolbar {
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     public class QStock : MonoBehaviour {
 
-        internal static bool Enabled {
-            get {
-                return QSettings.Instance.StockToolBar;
-            }
-        }
-
         static bool CanUseIt {
             get {
                 return HighLogic.LoadedSceneIsGame;
             }
         }
-
-        ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.FLIGHT | ApplicationLauncher.AppScenes.MAPVIEW | ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.TRACKSTATION | ApplicationLauncher.AppScenes.VAB;
-
-        void OnClick() {
-            QuickMute.Instance.Mute();
-        }
-
-        ApplicationLauncherButton appLauncherButton;
 
         internal static bool isAvailable {
             get {
@@ -54,6 +42,58 @@ namespace QuickMute.Toolbar {
         internal static QStock Instance {
             get;
             private set;
+        }
+        
+        ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.FLIGHT | ApplicationLauncher.AppScenes.MAPVIEW | ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.TRACKSTATION | ApplicationLauncher.AppScenes.VAB;
+        ApplicationLauncherButton appLauncherButton;
+
+        internal bool isActive {
+            get {
+                return appLauncherButton != null && isAvailable;
+            }
+        }
+
+        internal bool isTrue {
+            get {
+                return isActive && appLauncherButton.toggleButton.CurrentState == UIRadioButton.State.True;
+            }
+        }
+
+        internal bool isFalse {
+            get {
+                return isActive && appLauncherButton.toggleButton.CurrentState == UIRadioButton.State.False;
+            }
+        }
+
+        internal bool isHovering {
+            get {
+                if (appLauncherButton == null) {
+                    return false;
+                }
+                if (QuickMute.gui.level.Dim.IsEmpty()) {
+                    return false;
+                }
+                return appLauncherButton.IsHovering || QuickMute.gui.level.Dim.Contains(Mouse.screenPos);
+            }
+        }
+
+        internal Rect Position {
+            get {
+                if (appLauncherButton == null || !isAvailable) {
+                    return new Rect();
+                }
+                Camera _camera = UIMainCamera.Camera;
+                Vector3 _pos = _camera.WorldToScreenPoint(appLauncherButton.GetAnchorUL());
+                return new Rect(_pos.x, Screen.height - _pos.y, 41, 41);
+            }
+        }
+
+        void OnClick() {
+            QuickMute.Instance.Mute();
+        }
+
+        void OnHover() {
+            QuickMute.gui.level.OnHover();
         }
 
         void Awake() {
@@ -70,7 +110,7 @@ namespace QuickMute.Toolbar {
         }
 
         void AppLauncherReady() {
-            if (!Enabled) {
+            if (!QSettings.Instance.StockToolBar) {
                 return;
             }
             Init();
@@ -99,7 +139,7 @@ namespace QuickMute.Toolbar {
                 return;
             }
             if (appLauncherButton == null) {
-                appLauncherButton = ApplicationLauncher.Instance.AddModApplication(OnClick, OnClick, null, null, null, null, AppScenes, QTexture.StockTexture);
+                appLauncherButton = ApplicationLauncher.Instance.AddModApplication(QuickMute.Instance.Mute, QuickMute.Instance.Mute, QuickMute.gui.level.OnHover, null, null, QuickMute.gui.level.Hide, AppScenes, QTexture.StockTexture);
                 appLauncherButton.onRightClick = delegate { QuickMute.gui.Settings(); };
             }
             QDebug.Log("Init", "QStockToolbar");
@@ -134,11 +174,11 @@ namespace QuickMute.Toolbar {
         internal void Reset() {
             if (appLauncherButton != null) {
                 Set(false);
-                if (!Enabled) {
+                if (!QSettings.Instance.StockToolBar) {
                     Destroy();
                 }
             }
-            if (Enabled) {
+            if (QSettings.Instance.StockToolBar) {
                 Init();
             }
             QDebug.Log("Reset", "QStockToolbar");
@@ -146,10 +186,10 @@ namespace QuickMute.Toolbar {
 
         internal void Refresh() {
             if (appLauncherButton != null) {
-                if (QSettings.Instance.Muted && appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.False) {
+                if (QSettings.Instance.Muted && isFalse) {
                     appLauncherButton.SetTrue(false);
                 }
-                if (!QSettings.Instance.Muted && appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.True) {
+                if (!QSettings.Instance.Muted && isTrue) {
                     appLauncherButton.SetFalse(false);
                 }
                 appLauncherButton.SetTexture(QTexture.StockTexture);

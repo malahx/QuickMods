@@ -42,6 +42,7 @@ namespace QuickMute {
 		[Persistent] internal KeyCode KeyMute = QKey.DefaultKey (QKey.Key.Mute);
 		[Persistent] internal bool Muted = false;
         [Persistent] internal bool MuteIcon = true;
+        [Persistent] internal bool Level = true;
 
 		[Persistent] internal bool StockToolBar = true;
 		[Persistent] internal bool BlizzyToolBar = true;
