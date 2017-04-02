@@ -1,4 +1,4 @@
-﻿#### QuickSAS
+﻿# QuickSAS
 #### A plugin for Kerbal Space Program
 #### Copyright 2017 Malah
 

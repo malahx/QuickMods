@@ -1,4 +1,4 @@
-﻿#### QuickSAS
+﻿# QuickSAS
 #### A plugin for Kerbal Space Program
 #### Copyright 2017 Malah
 
@@ -47,6 +47,9 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickSAS folder in your KSP/GameData folder.
 
 #### Changelog
+
+v1.12.9-pre - 2017.03.18
+* Compiled against KSP 1.2.9.1727
 
 v1.12 - 2017.01.14
 * Fix: Corrected the error with LanguageAPI and unloaded plugins.
