@@ -70,7 +70,7 @@ namespace QuickMute.Toolbar {
                 if (appLauncherButton == null) {
                     return false;
                 }
-                if (QuickMute.gui.level.Dim.IsEmpty()) {
+                if (QuickMute.Instance == null || QuickMute.gui.level.Dim.IsEmpty()) {
                     return false;
                 }
                 return appLauncherButton.IsHovering || QuickMute.gui.level.Dim.Contains(Mouse.screenPos);

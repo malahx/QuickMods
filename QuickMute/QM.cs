@@ -28,14 +28,16 @@ namespace QuickMute {
 
         internal static QuickMute Instance;
         [KSPField(isPersistant = true)] internal static QBlizzy BlizzyToolbar;
-        internal static QGUI gui;
+        internal static QGUI gui = new QGUI();
+        internal Volume volume;
+
         Coroutine wait;
 
         void Awake() {
             Instance = this;
             if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy();
             GameEvents.onVesselGoOffRails.Add(OnVesselGoOffRails);
-            gui = new QGUI();
+            volume = new Volume(GameSettings.MASTER_VOLUME, QSettings.Instance.Muted);
             QDebug.Log("Awake");
         }
 
@@ -48,15 +50,14 @@ namespace QuickMute {
 
         void Start() {
             if (BlizzyToolbar != null) BlizzyToolbar.Init();
-            if (QSettings.Instance.Muted) {
-                Mute(true);
-            }
             QDebug.Log("Start");
         }
 
         void OnDestroy() {
             if (BlizzyToolbar != null) BlizzyToolbar.Destroy();
             GameEvents.onVesselGoOffRails.Remove(OnVesselGoOffRails);
+            volume.Restore();
+            gui.level.Hide(true);
             QDebug.Log("OnDestroy");
         }
 
@@ -86,8 +87,9 @@ namespace QuickMute {
         }
 
         void OnApplicationQuit() {
-            Mute(false);
+            volume.Restore();
             GameSettings.SaveSettings();
+            QSettings.Instance.Save();
             QDebug.Log("OnApplicationQuit");
         }
 
@@ -96,23 +98,25 @@ namespace QuickMute {
         }
 
         void Mute(bool mute) {
-            QSettings.Instance.Muted = mute;
+            volume.isMute = mute;
+            Refresh();
+            if (QSettings.Instance.MuteIcon) {
+                gui.draw = true;
+                if (wait != null) {
+                    StopCoroutine(wait);
+                }
+                wait = StartCoroutine(Wait(5));
+            }
+            QDebug.Log("Mute");
+        }
+
+        public void Refresh() {
             if (BlizzyToolbar != null) {
                 BlizzyToolbar.Refresh();
             }
             if (QStock.Instance != null) {
                 QStock.Instance.Refresh();
             }
-            QMute.refresh(mute);
-            if (QSettings.Instance.MuteIcon) {
-                gui.draw = true;
-                if (wait != null) {
-                    StopCoroutine(wait);
-                }
-            }
-            wait = StartCoroutine(Wait(5));
-            QSettings.Instance.Save();
-            QDebug.Log("Mute");
         }
 	}
 }

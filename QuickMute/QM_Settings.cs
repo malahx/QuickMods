@@ -40,18 +40,12 @@ namespace QuickMute {
 		[Persistent] internal bool Debug = true;
 
 		[Persistent] internal KeyCode KeyMute = QKey.DefaultKey (QKey.Key.Mute);
-		[Persistent] internal bool Muted = false;
         [Persistent] internal bool MuteIcon = true;
         [Persistent] internal bool Level = true;
+        [Persistent] internal bool Muted = false;
 
 		[Persistent] internal bool StockToolBar = true;
 		[Persistent] internal bool BlizzyToolBar = true;
-
-		[Persistent] internal float AMBIENCE_VOLUME = 0;
-		[Persistent] internal float MUSIC_VOLUME = 0;
-		[Persistent] internal float SHIP_VOLUME = 0;
-		[Persistent] internal float UI_VOLUME = 0;
-		[Persistent] internal float VOICE_VOLUME = 0;
 
 		[Persistent] internal string Lang = "EN";
 

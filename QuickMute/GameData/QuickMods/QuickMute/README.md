@@ -45,6 +45,8 @@ Delete the QuickMods/QuickMute folder in your KSP/GameData folder.
 
 v1.29-pre - 2017.03
 * New: Added an option to show/hide mute icon,
+* New: Added easy volume controle,
+* Fix: Rewrite to only use master volume, 
 * Fix: Corrected icon path,
 * Fix: Refactor.
 

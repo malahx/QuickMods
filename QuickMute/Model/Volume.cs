@@ -16,83 +16,59 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using QuickMute.Toolbar;
+
 namespace QuickMute {
     public class Volume {
-        float ambience, music, ship, ui, voice, level;
         bool mute;
+        float master;
 
-        public Volume() {
-            ambience = 1;
-            music = 1;
-            ship = 1;
-            ui = 1;
-            voice = 1;
-            level = 1;
-            mute = false;
+        public Volume(float master, bool mute) {
+            this.master = master;
+            this.mute = mute;
+            Apply();
         }
 
-        public Volume(float ambience, float music, float ship, float ui, float voice) {
-            this.ambience = ambience;
-            this.music = music;
-            this.ship = ship;
-            this.ui = ui;
-            this.voice = voice;
-            level = 1;
-            mute = false;
-        }
-
-        public Volume(float ambience, float music, float ship, float ui, float voice, float level) {
-            this.ambience = ambience;
-            this.music = music;
-            this.ship = ship;
-            this.ui = ui;
-            this.voice = voice;
-            this.level = level;
-            mute = false;
-        }
-
-        public bool IsMuted() {
-            return mute;
-        }
-
-        public float Level {
+        public bool isMute {
             get {
-                return level;
+                return mute;
             }
             set {
-                if (System.Math.Abs(value) < float.Epsilon) {
-                    mute = true;
+                mute = value;
+                QSettings.Instance.Muted = mute;
+                Apply();
+            }
+        }
+
+        public float Master {
+            get {
+                return master;
+            }
+            set {
+                if (isMute && value < 0.01) {
                     return;
                 }
-                level = value;
+                bool save = System.Math.Abs(master - value) > 0.05;
+                master = value;
+                if (isMute) {
+                    isMute = false;
+                    QuickMute.Instance.Refresh();
+                } else {
+                    Apply();
+                } 
+                if (save) {
+                    GameSettings.SaveSettings();
+                }
             }
         }
 
         public void Apply() {
-            if (mute) {
-                GameSettings.AMBIENCE_VOLUME = 0;
-                GameSettings.MUSIC_VOLUME = 0;
-                GameSettings.SHIP_VOLUME = 0;
-                GameSettings.UI_VOLUME = 0;
-                GameSettings.VOICE_VOLUME = 0;
-                MusicLogic.SetVolume(0);
-                return;
-            }
-            GameSettings.AMBIENCE_VOLUME = ambience * level;
-            GameSettings.MUSIC_VOLUME = music * level;
-            GameSettings.SHIP_VOLUME = ship * level;
-            GameSettings.UI_VOLUME = ui * level;
-            GameSettings.VOICE_VOLUME = voice * level;
-            MusicLogic.SetVolume(music * level);
+            GameSettings.MASTER_VOLUME = isMute ? 0 : master;
         }
 
         public void Restore() {
-            GameSettings.AMBIENCE_VOLUME = ambience;
-            GameSettings.MUSIC_VOLUME = music;
-            GameSettings.SHIP_VOLUME = ship;
-            GameSettings.UI_VOLUME = ui;
-            GameSettings.VOICE_VOLUME = voice ;
-            MusicLogic.SetVolume(music);
+            GameSettings.MASTER_VOLUME = master;
+            GameSettings.SaveSettings();
         }
     }
 }

@@ -30,7 +30,7 @@ namespace QuickMute {
         Rect rectSettings = new Rect();
         Rect RectSettings {
             get {
-                if (rectSettings.position == Vector2.zero && rectSettings.size != Vector2.zero) {
+                if (rectSettings.IsEmpty()) {
                     rectSettings.x = (Screen.width - rectSettings.width) / 2;
                     rectSettings.y = (Screen.height - rectSettings.height) / 2;
                 }
@@ -44,7 +44,7 @@ namespace QuickMute {
         Rect rectSetKey = new Rect();
         Rect RectSetKey {
             get {
-                if (rectSetKey.position == Vector2.zero && rectSetKey.size != Vector2.zero) {
+                if (rectSetKey.IsEmpty()) {
                     rectSetKey.x = (Screen.width - rectSetKey.width) / 2;
                     rectSetKey.y = (Screen.height - rectSetKey.height) / 2;
                 }
@@ -79,7 +79,7 @@ namespace QuickMute {
 
         internal void Switch(bool set) {
             QStock.Instance.Set(windowSettings, false);
-            QRender.Lock(windowSettings, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
+            QRender.Lock(windowSettings);
             QDebug.Log("Switch: " + set, "QGUI");
         }
 
@@ -91,12 +91,15 @@ namespace QuickMute {
         }
 
         internal void Render() {
+            if (QRender.isHide) {
+                return;
+            }
             GUI.skin = HighLogic.Skin;
+            level.Render();
             if (QSettings.Instance.MuteIcon && draw) {
                 GUILayout.BeginArea(new Rect((Screen.width - 96) / 2, (Screen.height - 96) / 2, 96, 96), QTexture.IconTexture);
                 GUILayout.EndArea();
             }
-            level.Render();
             if (!windowSettings) {
                 return;
             }

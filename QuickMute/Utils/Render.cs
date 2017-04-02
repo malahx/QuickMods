@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.UI;
+
 namespace QuickMute.QUtils {
     static class QRender {
 
@@ -44,6 +46,17 @@ namespace QuickMute.QUtils {
 
         internal static void Lock(bool activate) {
             Lock(activate, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
+        }
+
+        internal static bool isHide {
+            get {
+                return UIMasterController.Instance.uiCamera != null ? !UIMasterController.Instance.uiCamera.enabled : true &&
+                    !UIMasterController.Instance.mainCanvas.enabled &&
+                    !UIMasterController.Instance.appCanvas.enabled &&
+                    !UIMasterController.Instance.actionCanvas.enabled &&
+                    !UIMasterController.Instance.dialogCanvas.enabled &&
+                    !UIMasterController.Instance.tooltipCanvas.enabled;
+            }
         }
     }
 }
