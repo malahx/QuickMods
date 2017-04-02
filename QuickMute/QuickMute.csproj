@@ -50,8 +50,8 @@
     <Compile Include="Utils\Mute.cs" />
     <Compile Include="Utils\Ext.cs" />
     <Compile Include="Utils\Level.cs" />
-    <Compile Include="Model\Volume.cs" />
-    <Compile Include="QM_GUI.cs" />
+    <Compile Include="Object\Volume.cs" />
+    <Compile Include="Object\GUI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -79,7 +79,7 @@
     <Folder Include="Toolbar\" />
     <Folder Include="Utils\" />
     <Folder Include="Wrapper\" />
-    <Folder Include="Model\" />
+    <Folder Include="Object\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

@@ -16,9 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using QuickMute.Toolbar;
-
-namespace QuickMute {
+namespace QuickMute.Object {
     public class Volume {
         bool mute;
         float master;

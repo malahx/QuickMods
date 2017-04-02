@@ -20,8 +20,8 @@ using QuickMute.QUtils;
 using QuickMute.Toolbar;
 using UnityEngine;
 
-namespace QuickMute {
-    public class QGUI {
+namespace QuickMute.Object {
+    public class Gui {
 
         internal bool windowSettings = false;
         internal bool draw = false;

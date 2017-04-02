@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections;
 using QuickMute.QUtils;
 using QuickMute.Toolbar;
+using QuickMute.Object;
 using UnityEngine;
 
 namespace QuickMute {
@@ -28,7 +29,7 @@ namespace QuickMute {
 
         internal static QuickMute Instance;
         [KSPField(isPersistant = true)] internal static QBlizzy BlizzyToolbar;
-        internal static QGUI gui = new QGUI();
+        internal static Gui gui = new Gui();
         internal Volume volume;
 
         Coroutine wait;
