@@ -102,6 +102,7 @@ namespace QuickMute.QUtils {
                 keep = false;
             }
             QSettings.Instance.Save();
+            QuickMute.Instance.Refresh();
             QDebug.Log("Hide force: " + force, "QLevel");
         }
 

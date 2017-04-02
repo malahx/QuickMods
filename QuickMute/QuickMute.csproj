@@ -63,14 +63,24 @@
     <None Include="GameData\QuickMods\QuickMute\Plugins\QuickMute.dll" />
     <None Include="GameData\QuickMods\QuickMute\QuickMute.version" />
     <None Include="GameData\QuickMods\QuickMute\README.md" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_mute.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_sound.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_mute.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_sound.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_mute.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_sound.dds" />
     <None Include="Lang.cfg" />
     <None Include="GameData\QuickMods\QuickMute\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyConf.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_high.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_low.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_medium.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_mute.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_zero.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_high.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_low.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_medium.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_mute.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_zero.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_high.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_low.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_medium.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_mute.dds" />
+    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_zero.dds" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\" />
@@ -80,6 +90,7 @@
     <Folder Include="Utils\" />
     <Folder Include="Wrapper\" />
     <Folder Include="Object\" />
+    <Folder Include="GameData\QuickMods\QuickMute\Textures\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

@@ -31,8 +31,9 @@ namespace QuickMute.Toolbar {
             QuickMute.Instance.Mute();
 		}
 
-		IButton Button;
-		IButton ButtonConf;
+		IButton button;
+        IButton buttonVol;
+        IButton buttonConf;
 
 		internal static bool isAvailable {
 			get {
@@ -44,18 +45,23 @@ namespace QuickMute.Toolbar {
 			if (!HighLogic.LoadedSceneIsGame || !isAvailable || !Enabled) {
 				return;
 			}
-			if (Button == null) {
-				Button = ToolbarManager.Instance.add (QVars.MOD, QVars.MOD);
-                Button.TexturePath = QTexture.BlizzyTexturePath;
-				Button.ToolTip = QVars.MOD;
-				Button.OnClick += (e) => OnClick ();
+			if (button == null) {
+				button = ToolbarManager.Instance.add (QVars.MOD, QVars.MOD);
+                button.TexturePath = QTexture.BlizzyTexturePath;
+				button.ToolTip = QVars.MOD;
+				button.OnClick += (e) => OnClick ();
 			}
-
-			if (ButtonConf == null) {
-				ButtonConf = ToolbarManager.Instance.add (QVars.MOD + "Conf", QVars.MOD + "Conf");
-				ButtonConf.TexturePath = QTexture.BlizzyTexturePath;
-				ButtonConf.ToolTip = QVars.MOD + ": " + QLang.translate ("Settings");
-				ButtonConf.OnClick += (e) => QuickMute.gui.Settings ();
+            if (buttonVol == null) {
+                buttonVol = ToolbarManager.Instance.add(QVars.MOD + "Vol", QVars.MOD + "Vol");
+                buttonVol.TexturePath = QTexture.BLIZZY_PATH_VOL;
+                buttonVol.ToolTip = QVars.MOD + ": " + QLang.translate("Volume");
+                buttonVol.OnClick += (e) => QuickMute.gui.level.Show();
+            }
+			if (buttonConf == null) {
+				buttonConf = ToolbarManager.Instance.add (QVars.MOD + "Conf", QVars.MOD + "Conf");
+				buttonConf.TexturePath = QTexture.BLIZZY_PATH_CONF;
+				buttonConf.ToolTip = QVars.MOD + ": " + QLang.translate ("Settings");
+				buttonConf.OnClick += (e) => QuickMute.gui.Settings ();
 			}
 			QDebug.Log ("Start", "QBlizzyToolbar");
 		}
@@ -65,23 +71,28 @@ namespace QuickMute.Toolbar {
 				return;
 			}
 
-			if (Button != null) {
-				Button.Destroy ();
-				Button = null;
+			if (button != null) {
+				button.Destroy ();
+				button = null;
 			}
 
-			if (ButtonConf != null) {
-				ButtonConf.Destroy ();
-				ButtonConf = null;
+            if (buttonVol != null) {
+                buttonVol.Destroy();
+                buttonVol = null;
+            }
+
+			if (buttonConf != null) {
+				buttonConf.Destroy ();
+				buttonConf = null;
 			}
 			QDebug.Log ("OnDestroy", "QBlizzyToolbar");
 		}
 
 		internal void Refresh() {
-			if (!isAvailable || Button == null) {
+			if (!isAvailable || button == null) {
 				return;
 			}
-			Button.TexturePath = QTexture.BlizzyTexturePath;
+			button.TexturePath = QTexture.BlizzyTexturePath;
 			QDebug.Log ("Refresh", "QBlizzyToolbar");
 		}
 

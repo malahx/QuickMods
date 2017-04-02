@@ -118,6 +118,7 @@ namespace QuickMute {
             if (QStock.Instance != null) {
                 QStock.Instance.Refresh();
             }
+            QDebug.Log("Refresh");
         }
 	}
 }

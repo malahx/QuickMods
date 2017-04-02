@@ -46,16 +46,14 @@ namespace QuickMute.Object {
                 if (isMute && value < 0.01) {
                     return;
                 }
-                bool save = System.Math.Abs(master - value) > 0.05;
+                bool refresh = System.Math.Abs(master - value) > 0.005 || isMute;
                 master = value;
-                if (isMute) {
+                if (refresh) {
                     isMute = false;
                     QuickMute.Instance.Refresh();
+                    GameSettings.SaveSettings();
                 } else {
                     Apply();
-                } 
-                if (save) {
-                    GameSettings.SaveSettings();
                 }
             }
         }
