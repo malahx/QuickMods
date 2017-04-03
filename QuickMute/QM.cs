@@ -81,6 +81,12 @@ namespace QuickMute {
             if (Input.GetKeyDown(QSettings.Instance.KeyMute)) {
                 Mute();
             }
+            if (gui.level.Dim.Contains(Mouse.screenPos)) {
+                if (QSettings.Instance.ScrollLevel && System.Math.Abs(Input.GetAxis("Mouse ScrollWheel")) > float.Epsilon) {
+                    float scroll = Input.GetAxis("Mouse ScrollWheel");
+                    volume.Master = Mathf.Clamp(volume.Master + scroll, 0 , 1);
+                }
+            }
         }
 
         void OnGUI() {

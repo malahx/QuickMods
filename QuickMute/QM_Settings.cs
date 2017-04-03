@@ -43,6 +43,7 @@ namespace QuickMute {
         [Persistent] internal bool MuteIcon = true;
         [Persistent] internal bool Level = true;
         [Persistent] internal bool Muted = false;
+        [Persistent] internal bool ScrollLevel = true;
 
 		[Persistent] internal bool StockToolBar = true;
 		[Persistent] internal bool BlizzyToolBar = true;
