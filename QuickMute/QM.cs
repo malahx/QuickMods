@@ -68,18 +68,18 @@ namespace QuickMute {
         }
 
         void Update() {
-            if (Input.GetKeyDown(QSettings.Instance.KeyMute)) {
-                Mute();
-            }
-            if (QKey.SetKey == QKey.Key.None) {
+            if (QKey.SetKey != QKey.Key.None) {
+                if (Event.current.isKey) {
+                    KeyCode _key = Event.current.keyCode;
+                    if (_key != KeyCode.None) {
+                        QKey.SetCurrentKey(QKey.SetKey, _key);
+                        QKey.SetKey = QKey.Key.None;
+                    }
+                }
                 return;
             }
-            if (Event.current.isKey) {
-                KeyCode _key = Event.current.keyCode;
-                if (_key != KeyCode.None) {
-                    QKey.SetCurrentKey(QKey.SetKey, _key);
-                    QKey.SetKey = QKey.Key.None;
-                }
+            if (Input.GetKeyDown(QSettings.Instance.KeyMute)) {
+                Mute();
             }
         }
 
