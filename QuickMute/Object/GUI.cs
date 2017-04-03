@@ -55,6 +55,12 @@ namespace QuickMute.Object {
             }
         }
 
+        internal bool isHovering {
+            get {
+                return windowSettings && (RectSettings.Contains(Mouse.screenPos) || (QKey.SetKey != QKey.Key.None && RectSetKey.Contains(Mouse.screenPos)));
+            }
+        }
+
         public void Settings() {
             if (windowSettings) {
                 HideSettings();
@@ -79,7 +85,6 @@ namespace QuickMute.Object {
 
         internal void Switch(bool set) {
             QStock.Instance.Set(windowSettings, false);
-            QRender.Lock(windowSettings);
             QDebug.Log("Switch: " + set, "QGUI");
         }
 

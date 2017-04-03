@@ -34,6 +34,14 @@ namespace QuickMute {
 
         Coroutine wait;
 
+        internal static bool MouseIsHover {
+            get {
+                return gui.isHovering || 
+                          gui.level.isHovering ||
+                          (QSettings.Instance.StockToolBar && QStock.Instance != null && QStock.Instance.isHovering);
+            }
+        }
+
         void Awake() {
             Instance = this;
             if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy();
@@ -81,11 +89,16 @@ namespace QuickMute {
             if (Input.GetKeyDown(QSettings.Instance.KeyMute)) {
                 Mute();
             }
-            if (gui.level.Dim.Contains(Mouse.screenPos)) {
+            if (MouseIsHover) {
                 if (QSettings.Instance.ScrollLevel && System.Math.Abs(Input.GetAxis("Mouse ScrollWheel")) > float.Epsilon) {
                     float scroll = Input.GetAxis("Mouse ScrollWheel");
-                    volume.Master = Mathf.Clamp(volume.Master + scroll, 0 , 1);
+                    volume.Master = Mathf.Clamp(volume.Master + scroll, 0, 1);
                 }
+                if (!QRender.isLock) {
+                    QRender.Lock(true);
+                }
+            } else if (QRender.isLock) {
+                QRender.Lock(false);
             }
         }
 

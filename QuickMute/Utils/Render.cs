@@ -48,6 +48,12 @@ namespace QuickMute.QUtils {
             Lock(activate, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI | ControlTypes.CAMERACONTROLS | ControlTypes.MAP);
         }
 
+        internal static bool isLock {
+            get {
+                return InputLockManager.GetControlLock("Lock" + QVars.MOD) != ControlTypes.None || InputLockManager.GetControlLock("EditorLock" + QVars.MOD) != ControlTypes.None;
+            }
+        }
+
         internal static bool isHide {
             get {
                 return UIMasterController.Instance.uiCamera != null ? !UIMasterController.Instance.uiCamera.enabled : true &&

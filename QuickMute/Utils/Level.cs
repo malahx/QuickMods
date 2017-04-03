@@ -18,7 +18,6 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using KSP.UI.Screens;
-using KSP.UI.Util;
 using QuickMute.Toolbar;
 using UnityEngine;
 
@@ -31,8 +30,8 @@ namespace QuickMute.QUtils {
         readonly GUIStyle styleSlider;
         readonly GUIStyle styleThumb;
 
-        internal bool window = false;
-        public bool Window {
+        bool window = false;
+        internal bool Window {
             get {
                 return window || keep;
             }
@@ -72,6 +71,12 @@ namespace QuickMute.QUtils {
             }
             set {
                 dim = value;
+            }
+        }
+
+        internal bool isHovering {
+            get {
+                return Window && !Dim.IsEmpty() && Dim.Contains(Mouse.screenPos);
             }
         }
 
@@ -123,7 +128,7 @@ namespace QuickMute.QUtils {
             }
             GUI.skin = HighLogic.Skin;
             if (QStock.Instance.isActive) {
-                if (!QStock.Instance.isHovering && !keep) {
+                if (QuickMute.MouseIsHover && !keep) {
                     Hide();
                     return;
                 }
@@ -133,7 +138,7 @@ namespace QuickMute.QUtils {
                 if ((DateTime.Now - keepDate).TotalSeconds > 1) {
                     keep = false;
                 }
-                if (QStock.Instance.isHovering) {
+                if (QuickMute.MouseIsHover) {
                     keepDate = DateTime.Now;
                 }
             }
