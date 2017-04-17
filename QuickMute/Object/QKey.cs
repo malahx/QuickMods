@@ -18,33 +18,53 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using UnityEngine;
 
-namespace QuickMute.QUtils {
-	static class QKey {
-	
-		internal static Key SetKey = Key.None;
+namespace QuickMute.Object {
+	public class QKey {
 
-		internal enum Key {
-			None,
-			Mute
-		}					
+        internal enum Key {
+            None,
+            Mute
+        }
+
+        Key SetKey = Key.None;
+
+        Rect rectSetKey = new Rect();
+        Rect RectSetKey {
+            get {
+                if (rectSetKey.IsEmpty()) {
+                    rectSetKey.x = (Screen.width - rectSetKey.width) / 2;
+                    rectSetKey.y = (Screen.height - rectSetKey.height) / 2;
+                }
+                return rectSetKey;
+            }
+            set {
+                rectSetKey = value;
+            }
+        }
 	
 		internal static KeyCode DefaultKey(Key key) {
 			return KeyCode.F6;
 		}
 
-		internal static bool isKeyDown(Key key) {
+        internal bool isHovering {
+            get {
+                return SetKey != Key.None && RectSetKey.Contains(Mouse.screenPos);
+            }
+        }
+
+		bool isKeyDown(Key key) {
 			return Input.GetKeyDown (CurrentKey (key));
 		}
 
-		internal static string GetText(Key key) {
+		string GetText(Key key) {
 			return QLang.translate ("Mute");
 		}
 
-		internal static KeyCode CurrentKey(Key key) {
+		KeyCode CurrentKey(Key key) {
 			return QSettings.Instance.KeyMute;
 		}
 
-		internal static void VerifyKey() {
+		void VerifyKey() {
 			try {
 				Input.GetKey (CurrentKey (Key.Mute));
 			}
@@ -55,12 +75,12 @@ namespace QuickMute.QUtils {
 			QDebug.Log ("VerifyKey", "QKey");
 		}
 
-		internal static void SetCurrentKey(Key key, KeyCode currentKey) {
+		void SetCurrentKey(Key key, KeyCode currentKey) {
 			QSettings.Instance.KeyMute = currentKey;
 			QDebug.Log (string.Format("SetCurrentKey({0}): {1}", GetText(key), currentKey), "QKey");
 		}
 
-		internal static void DrawSetKey(int id) {
+		void DrawSetKey(int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label (string.Format ("{0} <color=#FFFFFF><b>{1}</b></color>", QLang.translate ("Press a key to select the"), GetText (SetKey)));
@@ -83,7 +103,7 @@ namespace QuickMute.QUtils {
 			GUILayout.EndVertical ();
 		}
 
-		internal static void DrawConfigKey(Key key) {
+		internal void DrawConfigKey(Key key) {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label (string.Format ("{0}: <color=#FFFFFF><b>{1}</b></color>", GetText (key), CurrentKey (key)), GUILayout.Width (350));
 			GUILayout.FlexibleSpace();
@@ -93,5 +113,29 @@ namespace QuickMute.QUtils {
 			GUILayout.EndHorizontal ();
 			GUILayout.Space (5);
 		}
+
+        internal void Update() {
+            if (SetKey != Key.None) {
+                if (Event.current.isKey) {
+                    KeyCode _key = Event.current.keyCode;
+                    if (_key != KeyCode.None) {
+                        SetCurrentKey(SetKey, _key);
+                        SetKey = Key.None;
+                    }
+                }
+                return;
+            }
+            if (isKeyDown(Key.Mute)) {
+                QuickMute.Instance.Mute();
+            }
+        }
+
+        internal bool Render() {
+            if (SetKey == Key.None) {
+                return false;
+            }
+            RectSetKey = GUILayout.Window(1545156, RectSetKey, DrawSetKey, string.Format("{0} {1}", QLang.translate("Set Key:"), GetText(SetKey)), GUILayout.ExpandHeight(true));
+            return true;
+        }
 	}
 }

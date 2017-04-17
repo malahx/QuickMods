@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using UnityEngine;
 
-namespace QuickMute.QUtils {
+namespace QuickMute.Object {
     public static class QDebug {
 
         internal static void Log(string String, string Title = null, bool force = false) {

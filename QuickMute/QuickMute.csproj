@@ -42,16 +42,16 @@
     <Compile Include="Toolbar\Blizzy.cs" />
     <Compile Include="Toolbar\Stock.cs" />
     <Compile Include="Utils\Lang.cs" />
-    <Compile Include="Utils\Key.cs" />
     <Compile Include="Utils\Debug.cs" />
     <Compile Include="Utils\Render.cs" />
     <Compile Include="Utils\Texture.cs" />
     <Compile Include="Utils\Vars.cs" />
     <Compile Include="Utils\Mute.cs" />
     <Compile Include="Utils\Ext.cs" />
-    <Compile Include="Utils\Level.cs" />
-    <Compile Include="Object\Volume.cs" />
-    <Compile Include="Object\GUI.cs" />
+    <Compile Include="Object\QVolume.cs" />
+    <Compile Include="Object\QGui.cs" />
+    <Compile Include="Object\QLevel.cs" />
+    <Compile Include="Object\QKey.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

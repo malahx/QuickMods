@@ -18,8 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using KSP.UI;
 using KSP.UI.Screens;
-using KSP.UI.Util;
-using QuickMute.QUtils;
+using QuickMute.Object;
 using UnityEngine;
 
 namespace QuickMute.Toolbar {
@@ -42,6 +41,10 @@ namespace QuickMute.Toolbar {
         internal static QStock Instance {
             get;
             private set;
+        }
+
+        internal static bool IsHovering() {
+            return Instance != null && Instance.isActive && Instance.isHovering;
         }
         
         ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.FLIGHT | ApplicationLauncher.AppScenes.MAPVIEW | ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.TRACKSTATION | ApplicationLauncher.AppScenes.VAB;
@@ -67,13 +70,7 @@ namespace QuickMute.Toolbar {
 
         internal bool isHovering {
             get {
-                if (appLauncherButton == null) {
-                    return false;
-                }
-                if (QuickMute.Instance == null) {
-                    return false;
-                }
-                return appLauncherButton.IsHovering;
+                return appLauncherButton != null && appLauncherButton.IsHovering;
             }
         }
 
@@ -93,7 +90,11 @@ namespace QuickMute.Toolbar {
         }
 
         void OnHover() {
-            QuickMute.gui.level.OnHover();
+            QuickMute.Instance.gui.level.OnHover();
+        }
+
+        void OnHide() {
+            QuickMute.Instance.gui.level.Hide();
         }
 
         void Awake() {
@@ -139,8 +140,8 @@ namespace QuickMute.Toolbar {
                 return;
             }
             if (appLauncherButton == null) {
-                appLauncherButton = ApplicationLauncher.Instance.AddModApplication(QuickMute.Instance.Mute, QuickMute.Instance.Mute, QuickMute.gui.level.OnHover, null, null, QuickMute.gui.level.Hide, AppScenes, QTexture.StockTexture);
-                appLauncherButton.onRightClick = delegate { QuickMute.gui.Settings(); };
+                appLauncherButton = ApplicationLauncher.Instance.AddModApplication(OnClick, OnClick, OnHover, null, null, OnHide, AppScenes, QTexture.StockTexture);
+                appLauncherButton.onRightClick = delegate { QuickMute.Instance.gui.Settings(); };
             }
             QDebug.Log("Init", "QStockToolbar");
         }

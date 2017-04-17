@@ -17,9 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.Collections;
-using QuickMute.QUtils;
-using QuickMute.Toolbar;
 using QuickMute.Object;
+using QuickMute.Toolbar;
 using UnityEngine;
 
 namespace QuickMute {
@@ -29,31 +28,44 @@ namespace QuickMute {
 
         internal static QuickMute Instance;
         [KSPField(isPersistant = true)] internal static QBlizzy BlizzyToolbar;
-        internal static Gui gui = new Gui();
-        internal Volume volume;
+        internal QGui gui;
+        internal QVolume volume;
+        QKey qKey;
+        QLevel level;
 
-        Coroutine wait;
-
-        internal static bool MouseIsHover {
+        internal bool mouseIsHover {
             get {
-                return gui.isHovering || 
-                          gui.level.isHovering ||
-                          (QSettings.Instance.StockToolBar && QStock.Instance != null && QStock.Instance.isHovering);
+                return gui.isHovering || level.mouseIsHover;
             }
         }
 
         void Awake() {
+            if (Instance != null) {
+                QDebug.Log("Destroy, already exists!");
+                Destroy(this);
+                return;
+            }
             Instance = this;
             if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy();
             GameEvents.onVesselGoOffRails.Add(OnVesselGoOffRails);
-            volume = new Volume(GameSettings.MASTER_VOLUME, QSettings.Instance.Muted);
+            if (System.Math.Abs(GameSettings.MASTER_VOLUME) < float.Epsilon) {
+                GameSettings.MASTER_VOLUME = QSettings.Instance.Master;
+                GameSettings.SaveSettings();
+            }
+            volume = new QVolume(GameSettings.MASTER_VOLUME, QSettings.Instance.Muted);
+            level = new QLevel(volume);
+            qKey = new QKey();
+            gui = new QGui(qKey, level);
             QDebug.Log("Awake");
         }
 
         IEnumerator Wait(int seconds) {
-            yield return new WaitForSeconds(seconds);
+            if (gui.draw) {
+                yield break;
+            }
+            gui.draw = true;
+            yield return new WaitForSecondsRealtime(seconds);
             gui.draw = false;
-            wait = null;
             QDebug.Log("Wait");
         }
 
@@ -66,6 +78,7 @@ namespace QuickMute {
             if (BlizzyToolbar != null) BlizzyToolbar.Destroy();
             GameEvents.onVesselGoOffRails.Remove(OnVesselGoOffRails);
             volume.Restore();
+            gui.draw = false;
             gui.level.Hide(true);
             QDebug.Log("OnDestroy");
         }
@@ -76,23 +89,11 @@ namespace QuickMute {
         }
 
         void Update() {
-            if (QKey.SetKey != QKey.Key.None) {
-                if (Event.current.isKey) {
-                    KeyCode _key = Event.current.keyCode;
-                    if (_key != KeyCode.None) {
-                        QKey.SetCurrentKey(QKey.SetKey, _key);
-                        QKey.SetKey = QKey.Key.None;
-                    }
-                }
-                return;
-            }
-            if (Input.GetKeyDown(QSettings.Instance.KeyMute)) {
-                Mute();
-            }
-            if (MouseIsHover) {
+            qKey.Update();
+            if (mouseIsHover) {
                 if (QSettings.Instance.ScrollLevel && System.Math.Abs(Input.GetAxis("Mouse ScrollWheel")) > float.Epsilon) {
                     float scroll = Input.GetAxis("Mouse ScrollWheel");
-                    volume.Master = Mathf.Clamp(volume.Master + scroll, 0, 1);
+                    volume.Master += scroll;
                 }
                 if (!QRender.isLock) {
                     QRender.Lock(true);
@@ -108,8 +109,6 @@ namespace QuickMute {
 
         void OnApplicationQuit() {
             volume.Restore();
-            GameSettings.SaveSettings();
-            QSettings.Instance.Save();
             QDebug.Log("OnApplicationQuit");
         }
 
@@ -121,11 +120,7 @@ namespace QuickMute {
             volume.isMute = mute;
             Refresh();
             if (QSettings.Instance.MuteIcon) {
-                gui.draw = true;
-                if (wait != null) {
-                    StopCoroutine(wait);
-                }
-                wait = StartCoroutine(Wait(5));
+                StartCoroutine(Wait(5));
             }
             QDebug.Log("Mute");
         }

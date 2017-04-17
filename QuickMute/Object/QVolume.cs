@@ -16,12 +16,14 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using UnityEngine;
+
 namespace QuickMute.Object {
-    public class Volume {
+    public class QVolume {
         bool mute;
         float master;
 
-        public Volume(float master, bool mute) {
+        public QVolume(float master, bool mute) {
             this.master = master;
             this.mute = mute;
             Apply();
@@ -47,7 +49,7 @@ namespace QuickMute.Object {
                     return;
                 }
                 bool refresh = System.Math.Abs(master - value) > 0.005 || isMute;
-                master = value;
+                master = Mathf.Clamp(value, 0, 1);
                 if (refresh) {
                     isMute = false;
                     QuickMute.Instance.Refresh();
@@ -63,8 +65,13 @@ namespace QuickMute.Object {
         }
 
         public void Restore() {
-            GameSettings.MASTER_VOLUME = master;
-            GameSettings.SaveSettings();
+            if (GameSettings.Ready) {
+                GameSettings.MASTER_VOLUME = master;
+                GameSettings.SaveSettings();
+            } else {
+                QSettings.Instance.Master = master;
+                QSettings.Instance.Save();
+            }
         }
     }
 }

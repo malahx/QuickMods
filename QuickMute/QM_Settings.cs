@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.IO;
-using QuickMute.QUtils;
+using QuickMute.Object;
 using UnityEngine;
 
 namespace QuickMute {
@@ -47,6 +47,8 @@ namespace QuickMute {
 
 		[Persistent] internal bool StockToolBar = true;
 		[Persistent] internal bool BlizzyToolBar = true;
+
+        [Persistent] internal float Master = 0;
 
 		[Persistent] internal string Lang = "EN";
 

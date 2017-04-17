@@ -21,11 +21,12 @@ using KSP.UI.Screens;
 using QuickMute.Toolbar;
 using UnityEngine;
 
-namespace QuickMute.QUtils {
+namespace QuickMute.Object {
     public class QLevel {
 
         bool keep = false;
         DateTime keepDate = DateTime.Now;
+        readonly QVolume volume;
         readonly GUIStyle styleWindow;
         readonly GUIStyle styleSlider;
         readonly GUIStyle styleThumb;
@@ -37,7 +38,7 @@ namespace QuickMute.QUtils {
             }
             set {
                 if (!value) {
-                    if (QStock.Instance.isActive && QSettings.Instance.Level && window) {
+                    if (QStock.Instance != null && QStock.Instance.isActive && window) {
                         keep = true;
                         keepDate = DateTime.Now;
                     }
@@ -53,16 +54,14 @@ namespace QuickMute.QUtils {
                 if (dim.IsEmpty()) {
                     dim.x = (Screen.width - dim.width) / 2;
                     dim.y = (Screen.height - dim.height) / 2;
-                    if (QSettings.Instance.StockToolBar) {
-                        if (QStock.Instance.isActive) {
-                            Rect activeButtonPos = QStock.Instance.Position;
-                            if (ApplicationLauncher.Instance.IsPositionedAtTop) {
-                                dim.x = activeButtonPos.x - dim.width;
-                                dim.y = activeButtonPos.y;
-                            } else {
-                                dim.x = activeButtonPos.x + activeButtonPos.width / 2 - dim.width / 2;
-                                dim.y = activeButtonPos.y - dim.height;
-                            }
+                    if (QStock.Instance != null && QStock.Instance.isActive) {
+                        Rect activeButtonPos = QStock.Instance.Position;
+                        if (ApplicationLauncher.Instance.IsPositionedAtTop) {
+                            dim.x = activeButtonPos.x - dim.width;
+                            dim.y = activeButtonPos.y - activeButtonPos.width / 2;
+                        } else {
+                            dim.x = activeButtonPos.x + activeButtonPos.width / 2 - dim.width / 2;
+                            dim.y = activeButtonPos.y - dim.height;
                         }
                     }
                     QDebug.Log("Dim init", "QLevel");
@@ -74,18 +73,25 @@ namespace QuickMute.QUtils {
             }
         }
 
+        internal bool mouseIsHover {
+            get {
+                return isHovering || QStock.IsHovering();
+            }
+        }
+
         internal bool isHovering {
             get {
                 return Window && !Dim.IsEmpty() && Dim.Contains(Mouse.screenPos);
             }
         }
 
-        public QLevel() {
+        public QLevel(QVolume volume) {
             styleWindow = new GUIStyle(HighLogic.Skin.window);
             styleWindow.padding = new RectOffset();
             styleSlider = new GUIStyle(HighLogic.Skin.verticalSlider);
             styleSlider.padding = new RectOffset();
             styleThumb = new GUIStyle(HighLogic.Skin.verticalSliderThumb);
+            this.volume = volume;
             QDebug.Log("Init", "QLevel");
         }
 
@@ -112,13 +118,10 @@ namespace QuickMute.QUtils {
         }
 
         internal void Show() {
-            if (Window) {
+            if (window) {
                 return;
             }
             Window = true;
-            if (QSettings.Instance.StockToolBar) {
-                keep = true;
-            }
             QDebug.Log("Show", "QLevel");
         }
 
@@ -126,21 +129,16 @@ namespace QuickMute.QUtils {
             if (!Window) {
                 return;
             }
-            GUI.skin = HighLogic.Skin;
-            if (QStock.Instance.isActive) {
-                if (QuickMute.MouseIsHover && !keep) {
-                    Hide();
-                    return;
-                }
-            }
             Dim = GUILayout.Window(1584665, Dim, Draw, "Level", styleWindow);
             if (keep) {
                 if ((DateTime.Now - keepDate).TotalSeconds > 1) {
                     keep = false;
                 }
-                if (QuickMute.MouseIsHover) {
+                if (mouseIsHover) {
                     keepDate = DateTime.Now;
                 }
+            } else if (!mouseIsHover) {
+                Hide();
             }
         }
 
@@ -148,7 +146,7 @@ namespace QuickMute.QUtils {
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
             GUILayout.Space(17);
-            QuickMute.Instance.volume.Master = GUILayout.VerticalSlider(GameSettings.MASTER_VOLUME, 1, 0, styleSlider, styleThumb);
+            volume.Master = GUILayout.VerticalSlider(GameSettings.MASTER_VOLUME, 1, 0, styleSlider, styleThumb);
             GUILayout.Space(12);
             GUILayout.EndHorizontal();
             GUILayout.EndVertical();

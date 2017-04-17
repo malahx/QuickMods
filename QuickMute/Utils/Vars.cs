@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Reflection;
 
-namespace QuickMute.QUtils {
+namespace QuickMute.Object {
     static class QVars {
         public readonly static string VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
         public readonly static string MOD = Assembly.GetExecutingAssembly().GetName().Name;

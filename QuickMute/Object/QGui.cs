@@ -16,16 +16,21 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using QuickMute.QUtils;
 using QuickMute.Toolbar;
 using UnityEngine;
 
 namespace QuickMute.Object {
-    public class Gui {
+    public class QGui {
 
-        internal bool windowSettings = false;
+        bool windowSettings = false;
         internal bool draw = false;
-        internal QLevel level = new QLevel();
+        internal QLevel level;
+        internal QKey qKey;
+
+        public QGui(QKey qKey, QLevel level) {
+            this.qKey = qKey;
+            this.level = level; 
+        }
 
         Rect rectSettings = new Rect();
         Rect RectSettings {
@@ -41,23 +46,9 @@ namespace QuickMute.Object {
             }
         }
 
-        Rect rectSetKey = new Rect();
-        Rect RectSetKey {
-            get {
-                if (rectSetKey.IsEmpty()) {
-                    rectSetKey.x = (Screen.width - rectSetKey.width) / 2;
-                    rectSetKey.y = (Screen.height - rectSetKey.height) / 2;
-                }
-                return rectSetKey;
-            }
-            set {
-                rectSetKey = value;
-            }
-        }
-
         internal bool isHovering {
             get {
-                return windowSettings && (RectSettings.Contains(Mouse.screenPos) || (QKey.SetKey != QKey.Key.None && RectSetKey.Contains(Mouse.screenPos)));
+                return windowSettings && (RectSettings.Contains(Mouse.screenPos) || qKey.isHovering);
             }
         }
 
@@ -67,32 +58,27 @@ namespace QuickMute.Object {
             } else {
                 ShowSettings();
             }
-            QDebug.Log("Settings", "QGUI");
+            QDebug.Log("Settings", "QGui");
         }
 
         internal void ShowSettings() {
             windowSettings = true;
-            Switch(true);
-            QDebug.Log("ShowSettings", "QGUI");
+            QStock.Instance.Set(windowSettings, false);
+            QDebug.Log("ShowSettings", "QGui");
         }
 
         internal void HideSettings() {
             windowSettings = false;
-            Switch(false);
-            Save();
-            QDebug.Log("HideSettings", "QGUI");
-        }
-
-        internal void Switch(bool set) {
             QStock.Instance.Set(windowSettings, false);
-            QDebug.Log("Switch: " + set, "QGUI");
+            Save();
+            QDebug.Log("HideSettings", "QGui");
         }
 
         void Save() {
             QStock.Instance.Reset();
             QuickMute.BlizzyToolbar.Reset();
             QSettings.Instance.Save();
-            QDebug.Log("Save", "QGUI");
+            QDebug.Log("Save", "QGui");
         }
 
         internal void Render() {
@@ -105,11 +91,7 @@ namespace QuickMute.Object {
                 GUILayout.BeginArea(new Rect((Screen.width - 96) / 2, (Screen.height - 96) / 2, 96, 96), QTexture.IconTexture);
                 GUILayout.EndArea();
             }
-            if (!windowSettings) {
-                return;
-            }
-            if (QKey.SetKey != QKey.Key.None) {
-                RectSetKey = GUILayout.Window(1545156, RectSetKey, QKey.DrawSetKey, string.Format("{0} {1}", QLang.translate("Set Key:"), QKey.GetText(QKey.SetKey)), GUILayout.ExpandHeight(true));
+            if (!windowSettings || qKey.Render()) {
                 return;
             }
             RectSettings = GUILayout.Window(1545175, RectSettings, DrawSettings, QVars.MOD + " " + QVars.VERSION);
@@ -146,7 +128,7 @@ namespace QuickMute.Object {
             GUILayout.Box(QLang.translate("Keyboard shortcuts"), GUILayout.Height(30));
             GUILayout.EndHorizontal();
 
-            QKey.DrawConfigKey(QKey.Key.Mute);
+            qKey.DrawConfigKey(QKey.Key.Mute);
             QLang.DrawLang();
 
             GUILayout.FlexibleSpace();

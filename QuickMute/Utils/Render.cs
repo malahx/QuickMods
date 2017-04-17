@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using KSP.UI;
 
-namespace QuickMute.QUtils {
+namespace QuickMute.Object {
     static class QRender {
 
         internal static void Lock(bool activate, ControlTypes Ctrl) {

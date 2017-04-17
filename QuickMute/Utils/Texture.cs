@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using UnityEngine;
 
-namespace QuickMute.QUtils {
+namespace QuickMute.Object {
     static class QTexture {
         
         internal static readonly string BLIZZY_PATH_HIGH = QVars.relativePath + "/Textures/BlizzyToolBar_high";
