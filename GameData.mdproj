@@ -144,6 +144,7 @@
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_medium.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_mute.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_zero.dds" />
+    <None Include="GameData\QuickMods\QuickSearch\Textures\search.dds" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\QuickMods\QuickMute\Textures\" />
