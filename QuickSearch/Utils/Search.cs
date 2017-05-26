@@ -65,23 +65,6 @@ namespace QuickSearch.QUtils {
 			}
 		}
 
-		static bool partHasCategory(AvailablePart part) {
-			if (part.category != PartCategories.none) {
-				return true;
-			}
-			PartCategorizer.Category _filter = FilterByFunctions;
-			List<PartCategorizer.Category> _subcategories = _filter.subcategories;
-			bool _val = false;
-			for (int _i = _subcategories.Count - 1; _i >= 0; --_i) {
-				PartCategorizer.Category _subcategory = _subcategories[_i];
-				if (_subcategory.exclusionFilter == null) {
-					continue;
-				}
-				_val |= _subcategory.exclusionFilter.FilterCriteria.Invoke (part);
-			}
-			return _val;
-		}
-
 		static string PartInfo(AvailablePart part, string search) {
 			string _partinfo = " ";
 			if (!string.IsNullOrEmpty(part.tags) && searchExtension(partInfos.TAG, search)) {
@@ -142,6 +125,12 @@ namespace QuickSearch.QUtils {
 			if (part == null) {
 				return false;
 			}
+            if (part.TechRequired == "none" || 
+                part.TechRequired == string.Empty || 
+                part.TechRequired == "Unresearcheable" || 
+                part.category == PartCategories.none) {
+                return false;
+            }
 			if (Text == string.Empty) {
 				return true;
 			}
