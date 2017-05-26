@@ -39,13 +39,13 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "GameData", "GameData.mdproj", "{732E642A-6428-4A48-BCE8-A65E3BA8181C}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "QuickEngineer", "QuickEngineer\QuickEngineer.csproj", "{FA685819-31D8-43E0-BAE1-4DD2AE7096AD}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "QuickEngineer", "QuickEngineer\QuickEngineer.csproj", "{56DC3B7D-80B6-4477-82A0-DEDA13D3FCF3}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "QuickEngineer_VesselSimulator", "QuickEngineer\VesselSimulator\QuickEngineer_VesselSimulator.csproj", "{8766F007-D550-46BB-85BC-9868A71224E2}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "QuickEngineer_VesselSimulator", "QuickEngineer\VesselSimulator\QuickEngineer_VesselSimulator.csproj", "{49E4D160-E099-41B8-9491-E23FEC03F589}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "QuickScroll", "QuickScroll\QuickScroll.csproj", "{7847B1F4-5101-4769-8846-B96D6A828EC1}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "QuickScroll", "QuickScroll\QuickScroll.csproj", "{E9B26EBA-04A2-4DF2-BFB0-44A7FA3C6174}"
 EndProject
-Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "QuickScience", "QuickScience\QuickScience.csproj", "{7878D09A-9777-4042-BBFE-F35042E2A49F}"
+Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "QuickScience", "QuickScience\QuickScience.csproj", "{5084B58E-58DE-483D-B4B2-CE5520951F14}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -138,28 +138,28 @@ Global
 		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Release|Any CPU.Build.0 = Default|Any CPU
 		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Default|Any CPU.ActiveCfg = Default|Any CPU
 		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Default|Any CPU.Build.0 = Default|Any CPU
-		{FA685819-31D8-43E0-BAE1-4DD2AE7096AD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{FA685819-31D8-43E0-BAE1-4DD2AE7096AD}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{FA685819-31D8-43E0-BAE1-4DD2AE7096AD}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{FA685819-31D8-43E0-BAE1-4DD2AE7096AD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{FA685819-31D8-43E0-BAE1-4DD2AE7096AD}.Default|Any CPU.ActiveCfg = Default|Any CPU
-		{8766F007-D550-46BB-85BC-9868A71224E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{8766F007-D550-46BB-85BC-9868A71224E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{8766F007-D550-46BB-85BC-9868A71224E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{8766F007-D550-46BB-85BC-9868A71224E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{8766F007-D550-46BB-85BC-9868A71224E2}.Default|Any CPU.ActiveCfg = Debug|Any CPU
-		{8766F007-D550-46BB-85BC-9868A71224E2}.Default|Any CPU.Build.0 = Debug|Any CPU
-		{7847B1F4-5101-4769-8846-B96D6A828EC1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7847B1F4-5101-4769-8846-B96D6A828EC1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7847B1F4-5101-4769-8846-B96D6A828EC1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7847B1F4-5101-4769-8846-B96D6A828EC1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7847B1F4-5101-4769-8846-B96D6A828EC1}.Default|Any CPU.ActiveCfg = Default|Any CPU
-		{7878D09A-9777-4042-BBFE-F35042E2A49F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{7878D09A-9777-4042-BBFE-F35042E2A49F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{7878D09A-9777-4042-BBFE-F35042E2A49F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{7878D09A-9777-4042-BBFE-F35042E2A49F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{7878D09A-9777-4042-BBFE-F35042E2A49F}.Default|Any CPU.ActiveCfg = Debug|Any CPU
-		{7878D09A-9777-4042-BBFE-F35042E2A49F}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{56DC3B7D-80B6-4477-82A0-DEDA13D3FCF3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{56DC3B7D-80B6-4477-82A0-DEDA13D3FCF3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{56DC3B7D-80B6-4477-82A0-DEDA13D3FCF3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{56DC3B7D-80B6-4477-82A0-DEDA13D3FCF3}.Release|Any CPU.Build.0 = Release|Any CPU
+		{56DC3B7D-80B6-4477-82A0-DEDA13D3FCF3}.Default|Any CPU.ActiveCfg = Default|Any CPU
+		{49E4D160-E099-41B8-9491-E23FEC03F589}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{49E4D160-E099-41B8-9491-E23FEC03F589}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{49E4D160-E099-41B8-9491-E23FEC03F589}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{49E4D160-E099-41B8-9491-E23FEC03F589}.Release|Any CPU.Build.0 = Release|Any CPU
+		{49E4D160-E099-41B8-9491-E23FEC03F589}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{49E4D160-E099-41B8-9491-E23FEC03F589}.Default|Any CPU.Build.0 = Debug|Any CPU
+		{E9B26EBA-04A2-4DF2-BFB0-44A7FA3C6174}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E9B26EBA-04A2-4DF2-BFB0-44A7FA3C6174}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E9B26EBA-04A2-4DF2-BFB0-44A7FA3C6174}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E9B26EBA-04A2-4DF2-BFB0-44A7FA3C6174}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E9B26EBA-04A2-4DF2-BFB0-44A7FA3C6174}.Default|Any CPU.ActiveCfg = Default|Any CPU
+		{5084B58E-58DE-483D-B4B2-CE5520951F14}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5084B58E-58DE-483D-B4B2-CE5520951F14}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5084B58E-58DE-483D-B4B2-CE5520951F14}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5084B58E-58DE-483D-B4B2-CE5520951F14}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5084B58E-58DE-483D-B4B2-CE5520951F14}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{5084B58E-58DE-483D-B4B2-CE5520951F14}.Default|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
@@ -198,12 +198,16 @@ Global
 		$0.NameConventionPolicy = $7
 		$7.Rules = $8
 		$8.NamingRule = $9
-		$9.Name = Namespaces
-		$9.AffectedEntity = Namespace
+		$9.Name = Type Parameters
+		$9.AffectedEntity = TypeParameter
 		$9.VisibilityMask = VisibilityMask
 		$9.NamingStyle = PascalCase
 		$9.IncludeInstanceMembers = True
 		$9.IncludeStaticEntities = True
+		$9.RequiredPrefixes = $30
+		$30.String = T
+		$9.RequiredSuffixes = $31
+		$31.String = Exception
 		$8.NamingRule = $10
 		$10.Name = Types
 		$10.AffectedEntity = Class, Struct, Enum, Delegate
