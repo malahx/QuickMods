@@ -118,13 +118,16 @@ namespace QuickExit {
 		public void Dialog() {
 			if (QStockToolbar.Instance != null) QStockToolbar.Instance.Set (false);
 			string _count = (QSettings.Instance.CountDown ? QLang.translate ("in") + " 5s" : ((needToSavegame && !CanSavegame) ? QLang.translate ("in") + " 10s" : QLang.translate ("now")));
-			PopupDialog.SpawnPopupDialog (new Vector2 (0.5f, 0.5f), new Vector2 (0.5f, 0.5f), 
-			    new MultiOptionDialog (QLang.translate ("Are you sure you want to exit KSP?"), MOD, HighLogic.UISkin, new DialogGUIBase[] {
-				new DialogGUIButton (QLang.translate ("Oh noooo!"), () => HideSettings ()),
-				new DialogGUIButton (QLang.translate ("Settings"), () => ShowSettings ()),
-				new DialogGUIButton (string.Format ("{0}, {1}! ({2} + {3})", QLang.translate ("Exit"), _count, GameSettings.MODIFIER_KEY.primary.ToString (), QSettings.Instance.Key), () => TryExit (true))
-				}), 
-				true, HighLogic.UISkin);
+			PopupDialog.SpawnPopupDialog (
+                new Vector2 (0.5f, 0.5f), 
+                new Vector2 (0.5f, 0.5f),
+                new MultiOptionDialog(MOD, QLang.translate("Are you sure you want to exit KSP?"), MOD, HighLogic.UISkin,
+                                       new DialogGUIBase[] {
+                                        new DialogGUIButton (QLang.translate ("Oh noooo!"), () => HideSettings ()),
+                                        new DialogGUIButton (QLang.translate ("Settings"), () => ShowSettings ()),
+                                        new DialogGUIButton (string.Format ("{0}, {1}! ({2} + {3})", QLang.translate ("Exit"), _count, GameSettings.MODIFIER_KEY.primary.ToString (), QSettings.Instance.Key), () => TryExit (true))
+                }),
+                true, HighLogic.UISkin);
 			Log ("Dialog", "QExit");
 		}
 

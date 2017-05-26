@@ -26,11 +26,6 @@
     <None Include="GameData\QuickMods\QuickCursorHider\QuickCursorHider.version" />
     <None Include="GameData\QuickMods\QuickCursorHider\README.md" />
     <None Include="GameData\QuickMods\QuickCursorHider\Plugins\QuickCursorHider.dll" />
-    <None Include="GameData\QuickMods\QuickEngineer\COPYING" />
-    <None Include="GameData\QuickMods\QuickEngineer\QuickEngineer.version" />
-    <None Include="GameData\QuickMods\QuickEngineer\README.md" />
-    <None Include="GameData\QuickMods\QuickEngineer\Plugins\QuickEngineer.dll" />
-    <None Include="GameData\QuickMods\QuickEngineer\Plugins\VesselSimulator-QE.dll" />
     <None Include="GameData\QuickMods\QuickExit\COPYING" />
     <None Include="GameData\QuickMods\QuickExit\QuickExit.version" />
     <None Include="GameData\QuickMods\QuickExit\README.md" />
@@ -110,12 +105,6 @@
     <None Include="GameData\QuickMods\QuickSAS\Plugins\QuickSAS.dll" />
     <None Include="GameData\QuickMods\QuickSAS\Textures\BlizzyToolBar.dds" />
     <None Include="GameData\QuickMods\QuickSAS\Textures\StockToolBar.dds" />
-    <None Include="GameData\QuickMods\QuickScroll\COPYING" />
-    <None Include="GameData\QuickMods\QuickScroll\QuickScroll.version" />
-    <None Include="GameData\QuickMods\QuickScroll\README.md" />
-    <None Include="GameData\QuickMods\QuickScroll\Plugins\QuickScroll.dll" />
-    <None Include="GameData\QuickMods\QuickScroll\Textures\BlizzyToolBar.dds" />
-    <None Include="GameData\QuickMods\QuickScroll\Textures\StockToolBar.dds" />
     <None Include="GameData\QuickMods\QuickSearch\COPYING" />
     <None Include="GameData\QuickMods\QuickSearch\QuickSearch.version" />
     <None Include="GameData\QuickMods\QuickSearch\README.md" />
