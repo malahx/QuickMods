@@ -1,7 +1,8 @@
 #!/bin/bash
 MODS=$1
 cp -f bin/${MODS}.dll GameData/QuickMods/${MODS}/Plugins/
-cp -f Lang.cfg GameData/QuickMods/${MODS}/
+rm -rf Lang/*~
+cp -rf Lang/ GameData/QuickMods/${MODS}/
 cp -f README.md GameData/QuickMods/${MODS}/
 cp -f COPYING GameData/QuickMods/${MODS}/
 cp -f ${MODS}.version GameData/QuickMods/${MODS}/

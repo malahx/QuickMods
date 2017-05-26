@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
+
 namespace QuickBrake
 {
 	public class QBlizzyToolbar
@@ -52,7 +54,7 @@ namespace QuickBrake
 			}
 			Button = ToolbarManager.Instance.add (QuickBrake.MOD, QuickBrake.MOD);
 			Button.TexturePath = TexturePath;
-			Button.ToolTip = QuickBrake.MOD + ": " + QLang.translate("Settings");
+            Button.ToolTip = QuickBrake.MOD + ": " + Localizer.Format("quickbrake_settings");
 			Button.OnClick += (e) => OnClick ();
 			Button.Visibility = new GameScenesVisibility (QBlizzyToolbar.AppScenes);
 		}

@@ -44,10 +44,8 @@
     <Compile Include="QB_GUI.cs" />
     <Compile Include="QB_ToolbarBlizzy.cs" />
     <Compile Include="QB_ToolbarStock.cs" />
-    <Compile Include="ToolbarWrapper.cs" />
     <Compile Include="QB_Brake.cs" />
-    <Compile Include="LanguageAPI.cs" />
-    <Compile Include="QB_Lang.cs" />
+    <Compile Include="ToolbarWrapper.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -60,13 +58,16 @@
     <None Include="GameData\QuickMods\QuickBrake\README.md" />
     <None Include="GameData\QuickMods\QuickBrake\Textures\BlizzyToolBar.dds" />
     <None Include="GameData\QuickMods\QuickBrake\Textures\StockToolBar.dds" />
-    <None Include="Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickBrake\Lang.cfg" />
+    <None Include="Lang\en-us.cfg" />
+    <None Include="Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickBrake\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickBrake\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\" />
     <Folder Include="GameData\QuickMods\" />
     <Folder Include="GameData\QuickMods\QuickBrake\" />
+    <Folder Include="Lang\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

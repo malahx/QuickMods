@@ -43,8 +43,6 @@
     <Compile Include="QC_Contracts.cs" />
     <Compile Include="QC_Key.cs" />
     <Compile Include="QC_GUI.cs" />
-    <Compile Include="LanguageAPI.cs" />
-    <Compile Include="QC_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -56,13 +54,16 @@
     <None Include="GameData\QuickMods\QuickContracts\QuickContracts.version" />
     <None Include="GameData\QuickMods\QuickContracts\README.md" />
     <None Include="GameData\QuickMods\QuickContracts\Textures\Settings.dds" />
-    <None Include="Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickContracts\Lang.cfg" />
+    <None Include="Lang\en-us.cfg" />
+    <None Include="Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickContracts\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickContracts\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\" />
     <Folder Include="GameData\QuickMods\" />
     <Folder Include="GameData\QuickMods\QuickContracts\" />
+    <Folder Include="Lang\" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine.UI">

@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickContracts {
@@ -49,13 +50,13 @@ namespace QuickContracts {
 		string GetText(Key key) {
 			switch (key) {
 			case Key.DeclineSelectedContract:
-					return QLang.translate ("Decline Selected Contract");
+					return Localizer.Format("quickcontracts_declineSelected");
 			case Key.DeclineAllContracts:
-					return QLang.translate ("Decline All Contracts");
+					return Localizer.Format("quickcontracts_declineAll");
 			case Key.DeclineAllTest:
-					return QLang.translate ("Decline All Test");
+					return Localizer.Format("quickcontracts_declineTest");
 			case Key.AcceptSelectedContract:
-					return QLang.translate ("Accept Selected Contract");
+					return Localizer.Format("quickcontracts_acceptSelected");
 			}
 			return string.Empty;
 		}
@@ -110,18 +111,18 @@ namespace QuickContracts {
 		void DrawSetKey(int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label (string.Format (QLang.translate("Press a key to select the") + " <color=#FFFFFF><b>{0}</b></color>", GetText (SetKey)));
+			GUILayout.Label (Localizer.Format("quickcontracts_pressKey", GetText (SetKey)));
 			GUILayout.EndHorizontal ();
 			GUILayout.BeginHorizontal ();
-			if (GUILayout.Button (QLang.translate ("Clear Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quickcontracts_clearAssign"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, KeyCode.None);
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button (QLang.translate ("Default Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quickcontracts_defaultAssign"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, DefaultKey (SetKey));
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button (QLang.translate ("Cancel Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quickcontracts_cancelAssign"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetKey = Key.None;
 			}
 			GUILayout.EndHorizontal ();
@@ -132,7 +133,7 @@ namespace QuickContracts {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label (string.Format ("{0}: <color=#FFFFFF><b>{1}</b></color>", GetText (key), CurrentKey (key)), GUILayout.Width (250));
 			GUILayout.FlexibleSpace();
-			if (GUILayout.Button (QLang.translate ("Set"), GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
+			if (GUILayout.Button (Localizer.Format("quickcontracts_set"), GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
 				SetKey = key;
 			}
 			GUILayout.EndHorizontal ();

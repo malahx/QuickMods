@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickBrake {
@@ -27,8 +28,8 @@ namespace QuickBrake {
 
 		internal bool WindowSettings = false;
 
-		private Rect rectSettings = new Rect();
-		private Rect RectSettings {
+		Rect rectSettings = new Rect();
+		Rect RectSettings {
 			get {
 				rectSettings.x = (Screen.width - rectSettings.width) / 2;
 				rectSettings.y = (Screen.height - rectSettings.height) / 2;
@@ -61,7 +62,7 @@ namespace QuickBrake {
 			Log ("OnDestroy", "QGUI");
 		}
 
-		private void Lock (bool activate, ControlTypes Ctrl = 0)	{
+		void Lock (bool activate, ControlTypes Ctrl = 0)	{
 			if (activate) {
 				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
 				return;
@@ -102,7 +103,7 @@ namespace QuickBrake {
 			Log ("Switch: " + set, "QGUI");
 		}
 
-		private void Save () {
+		void Save () {
 			QStockToolbar.Instance.Reset ();
 			BlizzyToolbar.Reset ();
 			QSettings.Instance.Save ();
@@ -117,56 +118,55 @@ namespace QuickBrake {
 			RectSettings = GUILayout.Window (1545165, RectSettings, DrawSettings, QuickBrake.MOD + " " + QuickBrake.VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
 		}
 
-		private void DrawSettings (int id) {
+		void DrawSettings (int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box (QLang.translate ("Toolbars"), GUILayout.Height (30));
+			GUILayout.Box (Localizer.Format("quickbrake_toolbars"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (400));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickbrake_stockTB"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
 			if (QBlizzyToolbar.isAvailable) {
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickbrake_blizzyTB"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
 			}
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box (QLang.translate ("Options"), GUILayout.Height (30));
+			GUILayout.Box (Localizer.Format("quickbrake_options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.AlwaysBrakeLandedVessel = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedVessel, QLang.translate ("Enable Brake Landed Vessel at Start"), GUILayout.Width (400));
+			QSettings.Instance.AlwaysBrakeLandedVessel = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedVessel, Localizer.Format("quickbrake_landedVatStart"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
 			if (!QSettings.Instance.AlwaysBrakeLandedVessel) {
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.AlwaysBrakeLandedPlane = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedPlane, QLang.translate ("Enable Brake Landed Plane at Start"), GUILayout.Width (400));
+				QSettings.Instance.AlwaysBrakeLandedPlane = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedPlane, Localizer.Format("quickbrake_landedPatStart"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.AlwaysBrakeLandedRover = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedRover, QLang.translate ("Enable Brake Landed Rover at Start"), GUILayout.Width (400));
+				QSettings.Instance.AlwaysBrakeLandedRover = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedRover, Localizer.Format("quickbrake_landedRatStart"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.AlwaysBrakeLandedBase = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedBase, QLang.translate ("Enable Brake Landed Base at Start"), GUILayout.Width (400));
+				QSettings.Instance.AlwaysBrakeLandedBase = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedBase, Localizer.Format("quickbrake_landedBatStart"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.AlwaysBrakeLandedLander = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedLander, QLang.translate ("Enable Brake Landed Lander at Start"), GUILayout.Width (400));
+				QSettings.Instance.AlwaysBrakeLandedLander = GUILayout.Toggle (QSettings.Instance.AlwaysBrakeLandedLander, Localizer.Format("quickbrake_landedLatStart"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.EnableBrakeAtLaunchPad = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtLaunchPad, QLang.translate ("Enable Brake at LaunchPad"), GUILayout.Width (400));
+				QSettings.Instance.EnableBrakeAtLaunchPad = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtLaunchPad, Localizer.Format("quickbrake_launchPad"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.EnableBrakeAtRunway = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtRunway, QLang.translate ("Enable Brake at Runway"), GUILayout.Width (400));
+				QSettings.Instance.EnableBrakeAtRunway = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtRunway, Localizer.Format("quickbrake_runway"), GUILayout.Width (400));
 				GUILayout.EndHorizontal ();
 			}
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.EnableBrakeAtControlLost = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtControlLost, QLang.translate ("Enable Brake at Control Lost"), GUILayout.Width (400));
+			QSettings.Instance.EnableBrakeAtControlLost = GUILayout.Toggle (QSettings.Instance.EnableBrakeAtControlLost, Localizer.Format("quickbrake_controlLost"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.EnableUnBrakeAtLaunch = GUILayout.Toggle (QSettings.Instance.EnableUnBrakeAtLaunch, QLang.translate ("Enable UnBrake at Launch"), GUILayout.Width (400));
+			QSettings.Instance.EnableUnBrakeAtLaunch = GUILayout.Toggle (QSettings.Instance.EnableUnBrakeAtLaunch, Localizer.Format("quickbrake_unbrake"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
-			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quickbrake_close"), GUILayout.Height (30))) {
 				HideSettings ();
 			}
 			GUILayout.EndHorizontal ();

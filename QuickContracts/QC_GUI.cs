@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.UI.Screens;
 using System;
 using UnityEngine;
+using KSP.Localization;
 
 namespace QuickContracts {
 	public partial class QGUI {
@@ -140,7 +141,7 @@ namespace QuickContracts {
 			}
 			GUI.skin = HighLogic.Skin;
 			if (SetKey != Key.None) {
-				rectSetKey = GUILayout.Window (1545146, rectSetKey, DrawSetKey, string.Format (QLang.translate("Set Key:") + " {0}", GetText (SetKey)), GUILayout.ExpandHeight (true));
+				rectSetKey = GUILayout.Window (1545146, rectSetKey, DrawSetKey, Localizer.Format("quickcontracts_setKey", GetText (SetKey)), GUILayout.ExpandHeight (true));
 				return;
 			}
 			if (windowSettings) {
@@ -157,23 +158,22 @@ namespace QuickContracts {
 		void DrawSettings(int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box (QLang.translate ("Shortcuts"), GUILayout.Height (30));
+			GUILayout.Box (Localizer.Format("quickcontracts_shortcuts"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
 			DrawConfigKey (Key.AcceptSelectedContract);
 			DrawConfigKey (Key.DeclineSelectedContract);
 			DrawConfigKey (Key.DeclineAllContracts);
 			DrawConfigKey (Key.DeclineAllTest);
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box (QLang.translate ("Options"), GUILayout.Height (30));
+			GUILayout.Box (Localizer.Format("quickcontracts_options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.EnableMessage = GUILayout.Toggle (QSettings.Instance.EnableMessage, QLang.translate ("Enable message for declined contracts"), GUILayout.Width (250));
+			QSettings.Instance.EnableMessage = GUILayout.Toggle (QSettings.Instance.EnableMessage, Localizer.Format("quickcontracts_messageDeclined"), GUILayout.Width (250));
 			GUILayout.EndHorizontal ();
-			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (QLang.translate ("Close"))) {
+			if (GUILayout.Button (Localizer.Format("quickcontracts_close"))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();

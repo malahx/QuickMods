@@ -34,7 +34,7 @@ namespace QuickContracts {
 		}
 		string FileConfig = PATH + "/Config.txt";
 
-		[KSPField (isPersistant = true)] private bool isLoaded = false;
+		[KSPField (isPersistant = true)] bool isLoaded = false;
 
 		[Persistent] internal bool Debug = true;
 		[Persistent] internal KeyCode KeyDeclineSelectedContract;
@@ -42,7 +42,6 @@ namespace QuickContracts {
 		[Persistent] internal KeyCode KeyDeclineAllTest;
 		[Persistent] internal KeyCode KeyAcceptSelectedContract;
 		[Persistent] internal bool EnableMessage = true;
-		[Persistent] internal string Lang = "EN";
 
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
