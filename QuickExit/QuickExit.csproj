@@ -50,8 +50,6 @@
     <Compile Include="QE_Settings.cs" />
     <Compile Include="QE_ToolbarBlizzy.cs" />
     <Compile Include="QE_ToolbarStock.cs" />
-    <Compile Include="LanguageAPI.cs" />
-    <Compile Include="QE_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -70,8 +68,10 @@
     <None Include="GameData\QuickMods\QuickExit\README.md" />
     <None Include="GameData\QuickMods\QuickExit\Textures\BlizzyToolBar.dds" />
     <None Include="GameData\QuickMods\QuickExit\Textures\StockToolBar.dds" />
-    <None Include="Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickExit\Lang.cfg" />
+    <None Include="Lang\en-us.cfg" />
+    <None Include="Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickExit\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickExit\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System.Collections;
 using System.IO;
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickExit {
@@ -38,7 +39,7 @@ namespace QuickExit {
 			}
 			set {
 				if (coroutineTryExit != null) {
-					StopCoroutine (coroutineTryExit);					
+					StopCoroutine (coroutineTryExit);
 					coroutineTryExit = null;
 				}
 				saveDone = false;
@@ -153,24 +154,24 @@ namespace QuickExit {
 				if (CanSavegame) {
 					if (GamePersistence.SaveGame ("persistent", HighLogic.SaveFolder, SaveMode.OVERWRITE) != string.Empty) {
 						saveDone = true;
-						ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}.", MOD, QLang.translate ("Game saved")), 5);
+                        ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_gameSaved", MOD), 5);
 						Log ("Game saved.", "QExit");
 					} else {
 						count = 10;
 						Log ("Can't save game.", "QExit");
-						ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}.", MOD, QLang.translate ("Can't save game")), 10);
+						ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_cantSave", MOD), 10);
 					}
 					if (HighLogic.LoadedSceneIsEditor) {
 						ShipConstruction.SaveShip (shipFilename);
 						Log ("Ship saved.", "QExit");
-						ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}.", MOD, QLang.translate ("Ship saved")), 5);
+						ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_shipSaved", MOD), 5);
 					}
 				} else {
 					count = 10;
 					ClearToSaveStatus clearToSaveStatus = FlightGlobals.ClearToSave ();
 					string _status = FlightGlobals.GetNotClearToSaveStatusReason (clearToSaveStatus, string.Empty);
 					Log ("Can't game saved: " + _status, "QExit");
-					ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}: {2}", MOD, QLang.translate ("Can't save game"), _status.ToString ()), 10);
+					ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_cantSave", MOD) + ": " + _status, 10);
 				}
 			}
 			while (count >= 0) {

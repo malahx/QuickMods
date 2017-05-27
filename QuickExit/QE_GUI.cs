@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System;
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickExit {
@@ -43,14 +44,14 @@ namespace QuickExit {
 			get {
 				string _text = string.Empty;
 				if (count > 0) {
-					_text = string.Format (QLang.translate ("Exit in {0}s{1}Push on {2} to abort the operation."), count, Environment.NewLine, QSettings.Instance.Key);
+                    _text = Localizer.Format("quickexit_exitIn", count) + Environment.NewLine + Localizer.Format("quickexit_abort", QSettings.Instance.Key);
 					if (needToSavegame) {
 						if (!saveDone) {
-							_text += string.Format ("{0}{1} {2}", Environment.NewLine, MOD, QLang.translate ("can't savegame, are you sure you want to exit?"));
+							_text += Environment.NewLine + Localizer.Format("quickexit_cantSave", MOD) + " " + Localizer.Format("quickexit_sureExit");
 						}
 					}
 				} else {
-					_text = QLang.translate ("Exiting, bye ...");
+					_text = Localizer.Format("quickexit_exiting");
 				}
 				return _text;
 			}
@@ -117,15 +118,15 @@ namespace QuickExit {
 
 		public void Dialog() {
 			if (QStockToolbar.Instance != null) QStockToolbar.Instance.Set (false);
-			string _count = (QSettings.Instance.CountDown ? QLang.translate ("in") + " 5s" : ((needToSavegame && !CanSavegame) ? QLang.translate ("in") + " 10s" : QLang.translate ("now")));
+			string _count = (QSettings.Instance.CountDown ? Localizer.Format("quickexit_in", 5) : ((needToSavegame && !CanSavegame) ? Localizer.Format("quickexit_in", 10) : Localizer.Format("quickexit_now")));
 			PopupDialog.SpawnPopupDialog (
                 new Vector2 (0.5f, 0.5f), 
                 new Vector2 (0.5f, 0.5f),
-                new MultiOptionDialog(MOD, QLang.translate("Are you sure you want to exit KSP?"), MOD, HighLogic.UISkin,
+                new MultiOptionDialog(MOD, Localizer.Format("quickexit_sureExit"), MOD, HighLogic.UISkin,
                                        new DialogGUIBase[] {
-                                        new DialogGUIButton (QLang.translate ("Oh noooo!"), () => HideSettings ()),
-                                        new DialogGUIButton (QLang.translate ("Settings"), () => ShowSettings ()),
-                                        new DialogGUIButton (string.Format ("{0}, {1}! ({2} + {3})", QLang.translate ("Exit"), _count, GameSettings.MODIFIER_KEY.primary.ToString (), QSettings.Instance.Key), () => TryExit (true))
+                                        new DialogGUIButton (Localizer.Format("quickexit_ohNo"), () => HideSettings ()),
+                                        new DialogGUIButton (Localizer.Format("quickexit_settings"), () => ShowSettings ()),
+                                        new DialogGUIButton (string.Format ("{0}, {1}! ({2} + {3})", Localizer.Format("quickexit_exit"), _count, GameSettings.MODIFIER_KEY.primary.ToString (), QSettings.Instance.Key), () => TryExit (true))
                 }),
                 true, HighLogic.UISkin);
 			Log ("Dialog", "QExit");
@@ -146,38 +147,37 @@ namespace QuickExit {
 		void DrawSettings(int id) {
 			GUILayout.BeginVertical();
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width(400));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickexit_stockTB"), GUILayout.Width(400));
 			GUILayout.EndHorizontal();
 			if (QSettings.Instance.StockToolBar) {
 				GUILayout.BeginHorizontal ();
 				GUILayout.Space (30);
-				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, QLang.translate ("Put QuickExit in Stock"), GUILayout.Width (370));
+				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, Localizer.Format("quickexit_instock", MOD), GUILayout.Width (370));
 				GUILayout.EndHorizontal ();
 			}
 			if (QBlizzyToolbar.isAvailable) {
 				GUILayout.BeginHorizontal();
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width(400));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickexit_blizzyTB"), GUILayout.Width(400));
 				GUILayout.EndHorizontal();
 			}
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.AutomaticSave = GUILayout.Toggle (QSettings.Instance.AutomaticSave, QLang.translate ("Automatic save before exit"), GUILayout.Width(400));
+			QSettings.Instance.AutomaticSave = GUILayout.Toggle (QSettings.Instance.AutomaticSave, Localizer.Format("quickexit_automaticSave"), GUILayout.Width(400));
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.CountDown = GUILayout.Toggle (QSettings.Instance.CountDown, QLang.translate ("Count Down"), GUILayout.Width(400));
+			QSettings.Instance.CountDown = GUILayout.Toggle (QSettings.Instance.CountDown, Localizer.Format("quickexit_count"), GUILayout.Width(400));
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
-			GUILayout.Label (QLang.translate ("Key to exit") + ": ", GUILayout.ExpandWidth(true));
+			GUILayout.Label (Localizer.Format("quickexit_key"), GUILayout.ExpandWidth(true));
 			QSettings.Instance.Key = GUILayout.TextField (QSettings.Instance.Key, GUILayout.Width (100));
 			GUILayout.EndHorizontal();
-			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (QLang.translate ("Exit"), GUILayout.Height(30))) {
+			if (GUILayout.Button (Localizer.Format("quickexit_exit"), GUILayout.Height(30))) {
 				Settings();
 				TryExit ();
 			}
-			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height(30))) {
+			if (GUILayout.Button (Localizer.Format("quickexit_close"), GUILayout.Height(30))) {
 				try {
 					Input.GetKey(QSettings.Instance.Key);
 				} catch {
