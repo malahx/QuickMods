@@ -21,6 +21,7 @@ using KSP.UI.Screens;
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using KSP.Localization;
 
 namespace QuickGoTo {
 
@@ -461,30 +462,30 @@ namespace QuickGoTo {
 			GUILayout.BeginVertical();
 
 			GUILayout.BeginHorizontal();
-			GUILayout.Box(QLang.translate ("Options"),GUILayout.Height(30));
+			GUILayout.Box(Localizer.Format("quickgoto_options"), GUILayout.Height(30));
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (300));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickgoto_stockTB"), GUILayout.Width (300));
 			if (QSettings.Instance.StockToolBar) {
-				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, QLang.translate ("Put QuickGoTo in Stock"), GUILayout.Width (300));
+				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, Localizer.Format("quickgoto_instock", MOD), GUILayout.Width (300));
 			} else {
 				GUILayout.Space (300);
 			}
 			if (QBlizzyToolbar.isAvailable) {
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickgoto_blizzyTB"), GUILayout.Width (400));
 			}
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal (); 
-			QSettings.Instance.EnableBatButton = GUILayout.Toggle (QSettings.Instance.EnableBatButton, QLang.translate ("Enable button in the batiments"), GUILayout.Width (300));
-			bool _bool = GUILayout.Toggle (QSettings.Instance.ImageOnly, QLang.translate ("Panel with only the icons"), GUILayout.Width (300));
+			QSettings.Instance.EnableBatButton = GUILayout.Toggle (QSettings.Instance.EnableBatButton, Localizer.Format("quickgoto_button"), GUILayout.Width (300));
+			bool _bool = GUILayout.Toggle (QSettings.Instance.ImageOnly, Localizer.Format("quickgoto_iconsOnly"), GUILayout.Width (300));
 			if (_bool != QSettings.Instance.ImageOnly) {
 				QSettings.Instance.ImageOnly = _bool;
 				RectGoTo = new Rect (); 
 			}
 			if (QSettings.Instance.StockToolBar && !QSettings.Instance.ImageOnly) {
-				_bool = GUILayout.Toggle (QSettings.Instance.CenterText, QLang.translate ("Center the buttons"), GUILayout.Width (300));
+				_bool = GUILayout.Toggle (QSettings.Instance.CenterText, Localizer.Format("quickgoto_center"), GUILayout.Width (300));
 				if (_bool != QSettings.Instance.CenterText) {
 					QSettings.Instance.CenterText = _bool;
 					RectGoTo = new Rect ();
@@ -494,9 +495,9 @@ namespace QuickGoTo {
 
 			GUILayout.BeginHorizontal ();
 			if (QSettings.Instance.StockToolBar) {
-				QSettings.Instance.StockToolBar_OnHover = GUILayout.Toggle (QSettings.Instance.StockToolBar_OnHover, QLang.translate ("Show buttons on hovering"), GUILayout.Width (300));
+				QSettings.Instance.StockToolBar_OnHover = GUILayout.Toggle (QSettings.Instance.StockToolBar_OnHover, Localizer.Format("quickgoto_hovering"), GUILayout.Width (300));
 				if (QSettings.Instance.StockToolBar_OnHover) {
-					QSettings.Instance.LockHover = GUILayout.Toggle (QSettings.Instance.LockHover, QLang.translate ("Lock buttons on hover"), GUILayout.Width (300));
+					QSettings.Instance.LockHover = GUILayout.Toggle (QSettings.Instance.LockHover, Localizer.Format("quickgoto_lockHover"), GUILayout.Width (300));
 				} else {
 					GUILayout.Space (300);
 				}
@@ -505,7 +506,7 @@ namespace QuickGoTo {
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal();
-			GUILayout.Box(QLang.translate ("Enable/Disable"),GUILayout.Height(30));
+			GUILayout.Box(Localizer.Format("quickgoto_enable"), GUILayout.Height(30));
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal();
@@ -539,13 +540,12 @@ namespace QuickGoTo {
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.EnableSettings = GUILayout.Toggle (QSettings.Instance.EnableSettings, GetText(GoTo.Configurations) + " (" + QLang.translate ("if disabled, it will be displayed only on the Space Center") + ")", GUILayout.Width (900));
+			QSettings.Instance.EnableSettings = GUILayout.Toggle (QSettings.Instance.EnableSettings, GetText(GoTo.Configurations) + " (" + Localizer.Format("quickgoto_ifDisabled") + ")", GUILayout.Width (900));
 			GUILayout.EndHorizontal();
-			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height(20))) {
+			if (GUILayout.Button (Localizer.Format("quickgoto_close"), GUILayout.Height(20))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();

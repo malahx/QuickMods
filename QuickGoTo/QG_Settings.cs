@@ -71,8 +71,6 @@ namespace QuickGoTo {
 		[Persistent] public bool EnableQuickMute = false;
 		[Persistent] public bool EnableQuickIVA = false;
 
-		[Persistent] internal string Lang = "EN";
-
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);

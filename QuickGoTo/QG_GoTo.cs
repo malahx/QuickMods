@@ -22,6 +22,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using KSP.Localization;
 
 namespace QuickGoTo {
 	public partial class QGoTo {
@@ -49,38 +50,38 @@ namespace QuickGoTo {
 		public string GetText(GoTo goTo, bool force = false) {
 			switch (goTo) {
 			case GoTo.TrackingStation:
-				return QLang.translate ("Go to the Tracking Station");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_ts");
 			case GoTo.SpaceCenter:
-				return QLang.translate ("Go to the Space Center");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_sc");
 			case GoTo.MissionControl:
-				return QLang.translate ("Go to the Mission Control");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_mc");
 			case GoTo.Administration:
-				return QLang.translate ("Go to the Administration");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_admin");
 			case GoTo.RnD:
-				return QLang.translate ("Go to the Research and Dev.");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_rnd");
 			case GoTo.AstronautComplex:
-				return QLang.translate ("Go to the Astronaut Complex");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_ac");
 			case GoTo.VAB:
-				return QLang.translate ("Go to the Vehicle Assembly");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_vab");
 			case GoTo.SPH:
-				return QLang.translate ("Go to the Space Plane Hangar");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_sph");
 			case GoTo.LastVessel:
 				QData _lastVessel = LastVesselLastIndex ();
-				return string.Format ("{0} {1}", QLang.translate ("Go to the"), (_lastVessel != null && !force ? QLang.translate ("vessel") + ": " + _lastVessel.protoVessel.vesselName : QLang.translate ("last Vessel")));
+				return Localizer.Format("quickgoto_goto") + (_lastVessel != null && !force ? Localizer.Format("quickgoto_vessle") + _lastVessel.protoVessel.vesselName : Localizer.Format("quickgoto_lastVessel"));
 			case GoTo.Recover:
-				return QLang.translate ("Recover");
+				return Localizer.Format("quickgoto_recover");
 			case GoTo.Revert:
-				return QLang.translate ("Revert to Launch");
+				return Localizer.Format("quickgoto_revert") + Localizer.Format("quickgoto_launch");
 			case GoTo.RevertToEditor:
-				return QLang.translate ("Revert to Editor");
+				return Localizer.Format("quickgoto_revert") + Localizer.Format("quickgoto_editor");
 			case GoTo.RevertToSpaceCenter:
-				return QLang.translate ("Revert to SpaceCenter");
+				return Localizer.Format("quickgoto_revert") + Localizer.Format("quickgoto_sc");
 			case GoTo.MainMenu:
-				return QLang.translate ("Go to The Main Menu");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_mainMenu");
 			case GoTo.Settings:
-				return QLang.translate ("Go to the Settings");
+				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_toSettings");
 			case GoTo.Configurations:
-				return string.Format("{0}: {1}", MOD, QLang.translate ("Settings"));
+				return MOD + Localizer.Format("quickgoto_settings");
 			}
 			return string.Empty;
 		}
@@ -435,7 +436,7 @@ namespace QuickGoTo {
 
 		void screenMSG(GoTo scene) {
 			Warning ("You can't " + GetText (scene), "QGoTo");
-			ScreenMessages.PostScreenMessage (QLang.translate ("You can't") + " " + GetText (scene), 10, ScreenMessageStyle.UPPER_RIGHT);			
+            ScreenMessages.PostScreenMessage (Localizer.Format("quickgoto_cant", GetText (scene)), 10, ScreenMessageStyle.UPPER_RIGHT);			
 		}
 
 		public void mainMenu() {
