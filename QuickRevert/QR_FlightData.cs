@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using System.IO;
+using KSP.Localization;
 
 namespace QuickRevert {
 	public class QFlightData : QuickRevert {
@@ -305,7 +306,7 @@ namespace QuickRevert {
 			if (HighLogic.LoadedSceneIsGame && pVessel != null) {
 				string _vesselName = pVessel.vesselName;
 				Log ("You have lost the possibility to revert: " + _vesselName, "QFlightData");
-				ScreenMessages.PostScreenMessage (string.Format ("[{0}] " + QLang.translate("You have lost the possibility to revert the last launch") + " ({1})", MOD, _vesselName), 10, ScreenMessageStyle.UPPER_CENTER);
+				ScreenMessages.PostScreenMessage (Localizer.Format("quickrevert_revertLost", MOD, _vesselName), 10, ScreenMessageStyle.UPPER_CENTER);
 			}
 			PostInitState = null;
 			PreLaunchState = null;

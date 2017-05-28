@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
+
 namespace QuickRevert {
 	public class QBlizzyToolbar {
 	
@@ -47,7 +49,7 @@ namespace QuickRevert {
 			}
 			Button = ToolbarManager.Instance.add (QuickRevert.MOD, QuickRevert.MOD);
 			Button.TexturePath = TexturePath;
-			Button.ToolTip = QuickRevert.MOD + ": " + QLang.translate ("Settings");
+			Button.ToolTip = QuickRevert.MOD + ": " + Localizer.Format("quickrevert_settings");
 			Button.OnClick += (e) => OnClick ();
 			Button.Visibility = new GameScenesVisibility(AppScenes);
 			QuickRevert.Log ("Init", "QBlizzyToolbar");

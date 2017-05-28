@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickRevert {
@@ -126,15 +127,15 @@ namespace QuickRevert {
 					GUILayout.Box("Revert Saved",GUILayout.Height(30));
 					GUILayout.EndHorizontal();
 					GUILayout.BeginHorizontal();
-					GUILayout.Label (string.Format("{0} <color=#FFFFFF><b>({1}){2}</b></color>", QLang.translate("Revert of the last Vessel saved:"), QFlight.data.pVessel.vesselType, QFlight.data.pVessel.vesselName), GUILayout.Width (400));
+					GUILayout.Label (Localizer.Format("quickrevert_revertLastV", QFlight.data.pVessel.vesselType, QFlight.data.pVessel.vesselName), GUILayout.Width (400));
 					GUILayout.FlexibleSpace ();
-					if (GUILayout.Button (QLang.translate ("Lose it"))) {
+					if (GUILayout.Button (Localizer.Format("quickrevert_loseIt"))) {
 						QFlight.data.Reset ();
 					}
 					GUILayout.EndHorizontal();
 					GUILayout.BeginHorizontal ();
 					GUILayout.FlexibleSpace ();
-					if (GUILayout.Button (QLang.translate("Goto this vessel"))) {
+					if (GUILayout.Button (Localizer.Format("quickrevert_gotoV"))) {
 						Settings ();
 						string _saveGame = GamePersistence.SaveGame ("persistent", HighLogic.SaveFolder, SaveMode.OVERWRITE);
 						FlightDriver.StartAndFocusVessel (_saveGame, QFlight.data.currentActiveVesselIdx);
@@ -144,7 +145,7 @@ namespace QuickRevert {
 					GUILayout.Space (5);
 					if (!QFlight.data.PreLaunchStateIsSaved) {
 						GUILayout.BeginHorizontal ();
-						GUILayout.Label (string.Format ("<color=#FF0000><b>{0}</b></color>", QLang.translate ("Only the revert to launch is saved!")), GUILayout.Width (500));
+						GUILayout.Label (Localizer.Format("quickrevert_onlyRevertLaunch"), GUILayout.Width (500));
 						GUILayout.EndHorizontal ();
 					}
 				}
@@ -155,20 +156,19 @@ namespace QuickRevert {
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal();
-			QSettings.Instance.EnableRevertLoss = GUILayout.Toggle (QSettings.Instance.EnableRevertLoss, string.Format ("{0} {1}", QLang.translate("Enable the revert loss when you escape"), QLang.translate (Planetarium.fetch.Home.atmosphere ? "atmosphere" : "sphere of influence")), GUILayout.Width (450));
+            QSettings.Instance.EnableRevertLoss = GUILayout.Toggle (QSettings.Instance.EnableRevertLoss, Planetarium.fetch.Home.atmosphere ? Localizer.Format("quickrevert_revertLossAtm") : Localizer.Format("quickrevert_revertLossSOI"), GUILayout.Width (450));
 			GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate("Use the Stock Toolbar"), GUILayout.Width (350));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickrevert_stockTB"), GUILayout.Width (350));
 			if (QBlizzyToolbar.isAvailable) {
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (350));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickrevert_blizzyTB"), GUILayout.Width (350));
 			}
 			GUILayout.EndHorizontal ();
-			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (QLang.translate("Close"),GUILayout.Height(30))) {
+			if (GUILayout.Button (Localizer.Format("quickrevert_close"), GUILayout.Height(30))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal();
