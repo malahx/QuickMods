@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickIVA {
@@ -97,37 +98,37 @@ namespace QuickIVA {
 		void DrawSettings(int id) {
 			GUILayout.BeginVertical();
 			GUILayout.BeginHorizontal();
-			GUILayout.Box(QLang.translate("General Options"),GUILayout.Height(30));
+			GUILayout.Box(Localizer.Format("quickiva_general"), GUILayout.Height(30));
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, QLang.translate ("Enable Automatic IVA"), GUILayout.Width (275));
-			QSettings.Instance.KeyEnabled = GUILayout.Toggle (QSettings.Instance.KeyEnabled, QLang.translate ("Enable Keyboard shortcuts"), GUILayout.Width (225));
+            QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, Localizer.Format("quickiva_autoiva"), GUILayout.Width (275));
+			QSettings.Instance.KeyEnabled = GUILayout.Toggle (QSettings.Instance.KeyEnabled, Localizer.Format("quickiva_enableKeyShortcuts"), GUILayout.Width (225));
 			GUILayout.EndHorizontal ();
 			if (QBlizzyToolbar.isAvailable) {
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (275));
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (225));
+				QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickiva_stockTB"), GUILayout.Width (275));
+				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickiva_blizzyTB"), GUILayout.Width (225));
 				GUILayout.EndHorizontal ();
 			}
 			if (QSettings.Instance.Enabled) {
 				GUILayout.BeginHorizontal();
-				GUILayout.Box(QLang.translate ("IVA Options"),GUILayout.Height(30));
+				GUILayout.Box(Localizer.Format("quickiva_ivaOptions"), GUILayout.Height(30));
 				GUILayout.EndHorizontal();
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.IVAatLaunch = GUILayout.Toggle (QSettings.Instance.IVAatLaunch, QLang.translate ("IVA at Launch, if disabled, it will be IVA at the Loading"), GUILayout.Width (250));
+                QSettings.Instance.IVAatLaunch = GUILayout.Toggle (QSettings.Instance.IVAatLaunch, Localizer.Format("quickiva_ivaLaunch"), GUILayout.Width (250));
 				GUILayout.EndHorizontal ();
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.AutoHideUI = GUILayout.Toggle (QSettings.Instance.AutoHideUI, QLang.translate ("Automatic Hide UI on IVA"), GUILayout.Width (275));
+                QSettings.Instance.AutoHideUI = GUILayout.Toggle (QSettings.Instance.AutoHideUI, Localizer.Format("quickiva_hideUI"), GUILayout.Width (275));
 				if (QSettings.Instance.AutoHideUI) {
-					QSettings.Instance.DisableShowUIonIVA = GUILayout.Toggle (QSettings.Instance.DisableShowUIonIVA, QLang.translate ("Disable UI on IVA"), GUILayout.Width (225));
+                    QSettings.Instance.DisableShowUIonIVA = GUILayout.Toggle (QSettings.Instance.DisableShowUIonIVA, Localizer.Format("quickiva_disableUI"), GUILayout.Width (225));
 				} else {
 					QSettings.Instance.DisableShowUIonIVA = false;
 				}
 				GUILayout.EndHorizontal ();
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.DisableThirdPersonVessel = GUILayout.Toggle (QSettings.Instance.DisableThirdPersonVessel, QLang.translate ("Disable 3rd person view on vessel"), GUILayout.Width (275));
+				QSettings.Instance.DisableThirdPersonVessel = GUILayout.Toggle (QSettings.Instance.DisableThirdPersonVessel, Localizer.Format("quickiva_disableTrd"), GUILayout.Width (275));
 				if (QSettings.Instance.DisableThirdPersonVessel && QSettings.Instance.DisableShowUIonIVA) {
-					QSettings.Instance.DisableMapView = GUILayout.Toggle (QSettings.Instance.DisableMapView, QLang.translate ("Disable MAP View shortcut"), GUILayout.Width (225));
+					QSettings.Instance.DisableMapView = GUILayout.Toggle (QSettings.Instance.DisableMapView, Localizer.Format("quickiva_disableMAP"), GUILayout.Width (225));
 				} else {
 					QSettings.Instance.DisableMapView = false;
 				}
@@ -135,22 +136,21 @@ namespace QuickIVA {
 			}
 			if (QSettings.Instance.KeyEnabled) {
 				GUILayout.BeginHorizontal();
-				GUILayout.Box(QLang.translate ("Keyboard Shortcuts"),GUILayout.Height(30));
+				GUILayout.Box(Localizer.Format("quickiva_keyShortcuts"), GUILayout.Height(30));
 				GUILayout.EndHorizontal();
 				GUILayout.BeginHorizontal();
-				GUILayout.Label (QLang.translate ("Key to recovery:"), GUILayout.ExpandWidth(true));
+                GUILayout.Label (Localizer.Format("quickiva_recover"), GUILayout.ExpandWidth(true));
 				QSettings.Instance.KeyRecovery = GUILayout.TextField (QSettings.Instance.KeyRecovery, GUILayout.Width (225));
 				GUILayout.EndHorizontal();
 				GUILayout.BeginHorizontal();
-				GUILayout.Label (QLang.translate ("Key to EVA:"), GUILayout.ExpandWidth(true));
+                GUILayout.Label (Localizer.Format("quickiva_eva"), GUILayout.ExpandWidth(true));
 				QSettings.Instance.KeyEVA = GUILayout.TextField (QSettings.Instance.KeyEVA, GUILayout.Width (225));
 				GUILayout.EndHorizontal();
 			}
-			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (QLang.translate ("Close"),GUILayout.Height(30))) {
+            if (GUILayout.Button (Localizer.Format("quickiva_close"), GUILayout.Height(30))) {
 				try {
 					Input.GetKey(QSettings.Instance.KeyRecovery);
 				} catch {

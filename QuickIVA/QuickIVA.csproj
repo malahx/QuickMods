@@ -30,9 +30,18 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="BeforeExecute" command="" />
-        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
-        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
+        <Command>
+          <type>BeforeExecute</type>
+          <command></command>
+        </Command>
+        <Command>
+          <type>AfterBuild</type>
+          <command>../install.sh ${ProjectName}</command>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>../clean.sh ${ProjectName}</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -45,8 +54,6 @@
     <Compile Include="QI_IVA.cs" />
     <Compile Include="QI_ToolbarBlizzy.cs" />
     <Compile Include="QI_ToolbarStock.cs" />
-    <Compile Include="LanguageAPI.cs" />
-    <Compile Include="QI_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -61,8 +68,10 @@
     <None Include="GameData\QuickMods\QuickIVA\README.md" />
     <None Include="GameData\QuickMods\QuickIVA\Textures\BlizzyToolBar.dds" />
     <None Include="GameData\QuickMods\QuickIVA\Textures\StockToolBar.dds" />
-    <None Include="Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickIVA\Lang.cfg" />
+    <None Include="Lang\en-us.cfg" />
+    <None Include="Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickIVA\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickIVA\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\" />

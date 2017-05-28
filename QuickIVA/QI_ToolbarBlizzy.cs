@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
+
 namespace QuickIVA {
 	public class QBlizzyToolbar {
 	
@@ -46,7 +48,7 @@ namespace QuickIVA {
 			}
 			Button = ToolbarManager.Instance.add (QuickIVA.MOD, QuickIVA.MOD);
 			Button.TexturePath = TexturePath;
-			Button.ToolTip = QuickIVA.MOD + ": " + QLang.translate("Settings");
+			Button.ToolTip = QuickIVA.MOD + ": " + Localizer.Format("quickiva_settings");
 			Button.OnClick += (e) => OnClick ();
 		 	Button.Visibility = new GameScenesVisibility(AppScenes);
 		}
