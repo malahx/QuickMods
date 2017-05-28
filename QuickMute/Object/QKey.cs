@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickMute.Object {
@@ -57,7 +58,7 @@ namespace QuickMute.Object {
 		}
 
 		string GetText(Key key) {
-			return QLang.translate ("Mute");
+            return Localizer.Format("quickmute_mute");
 		}
 
 		KeyCode CurrentKey(Key key) {
@@ -83,19 +84,19 @@ namespace QuickMute.Object {
 		void DrawSetKey(int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label (string.Format ("{0} <color=#FFFFFF><b>{1}</b></color>", QLang.translate ("Press a key to select the"), GetText (SetKey)));
+			GUILayout.Label (Localizer.Format("quickmute_pressKey", GetText (SetKey)));
 			GUILayout.EndHorizontal ();
 			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
-			if (GUILayout.Button (QLang.translate ("Clear Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quickmute_clearAssign"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, KeyCode.None);
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button (QLang.translate ("Default Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quickmute_defaultAssign"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, DefaultKey (SetKey));
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button (QLang.translate ("Cancel Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quickmute_cancelAssign"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetKey = Key.None;
 			}
 			GUILayout.EndHorizontal ();
@@ -107,7 +108,7 @@ namespace QuickMute.Object {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label (string.Format ("{0}: <color=#FFFFFF><b>{1}</b></color>", GetText (key), CurrentKey (key)), GUILayout.Width (350));
 			GUILayout.FlexibleSpace();
-			if (GUILayout.Button (QLang.translate ("Set"), GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
+			if (GUILayout.Button (Localizer.Format("quickmute_set"), GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
 				SetKey = key;
 			}
 			GUILayout.EndHorizontal ();
@@ -134,7 +135,7 @@ namespace QuickMute.Object {
             if (SetKey == Key.None) {
                 return false;
             }
-            RectSetKey = GUILayout.Window(1545156, RectSetKey, DrawSetKey, string.Format("{0} {1}", QLang.translate("Set Key:"), GetText(SetKey)), GUILayout.ExpandHeight(true));
+            RectSetKey = GUILayout.Window(1545156, RectSetKey, DrawSetKey, Localizer.Format("quickmute_setKey", GetText(SetKey)), GUILayout.ExpandHeight(true));
             return true;
         }
 	}

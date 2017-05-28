@@ -50,8 +50,6 @@ namespace QuickMute {
 
         [Persistent] internal float Master = 0;
 
-		[Persistent] internal string Lang = "EN";
-
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);

@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
 using QuickMute.Toolbar;
 using UnityEngine;
 
@@ -101,41 +102,40 @@ namespace QuickMute.Object {
             GUILayout.BeginVertical();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Box(QLang.translate("Toolbars"), GUILayout.Height(30));
+            GUILayout.Box(Localizer.Format("quickmute_toolbars"), GUILayout.Height(30));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            QSettings.Instance.StockToolBar = GUILayout.Toggle(QSettings.Instance.StockToolBar, QLang.translate("Use the Stock Toolbar"), GUILayout.Width(400));
+            QSettings.Instance.StockToolBar = GUILayout.Toggle(QSettings.Instance.StockToolBar, Localizer.Format("quickmute_stockTB"), GUILayout.Width(400));
             GUILayout.EndHorizontal();
 
             if (QBlizzy.isAvailable) {
 
                 GUILayout.BeginHorizontal();
-                QSettings.Instance.BlizzyToolBar = GUILayout.Toggle(QSettings.Instance.BlizzyToolBar, QLang.translate("Use the Blizzy Toolbar"), GUILayout.Width(400));
+                QSettings.Instance.BlizzyToolBar = GUILayout.Toggle(QSettings.Instance.BlizzyToolBar, Localizer.Format("quickmute_blizzyTB"), GUILayout.Width(400));
                 GUILayout.EndHorizontal();
 
             }
 
             GUILayout.BeginHorizontal();
-            GUILayout.Box(QLang.translate("Options"), GUILayout.Height(30));
+            GUILayout.Box(Localizer.Format("quickmute_options"), GUILayout.Height(30));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            QSettings.Instance.MuteIcon = GUILayout.Toggle(QSettings.Instance.MuteIcon, QLang.translate("Show Mute Icon"), GUILayout.Width(400));
+            QSettings.Instance.MuteIcon = GUILayout.Toggle(QSettings.Instance.MuteIcon, Localizer.Format("quickmute_muteIcon"), GUILayout.Width(400));
             GUILayout.EndHorizontal();
 
             GUILayout.BeginHorizontal();
-            GUILayout.Box(QLang.translate("Keyboard shortcuts"), GUILayout.Height(30));
+            GUILayout.Box(Localizer.Format("quickmute_keyShortcuts"), GUILayout.Height(30));
             GUILayout.EndHorizontal();
 
             qKey.DrawConfigKey(QKey.Key.Mute);
-            QLang.DrawLang();
 
             GUILayout.FlexibleSpace();
 
             GUILayout.BeginHorizontal();
             GUILayout.FlexibleSpace();
-            if (GUILayout.Button(QLang.translate("Close"), GUILayout.Height(30))) {
+            if (GUILayout.Button(Localizer.Format("quickmute_close"), GUILayout.Height(30))) {
                 HideSettings();
             }
             GUILayout.EndHorizontal();

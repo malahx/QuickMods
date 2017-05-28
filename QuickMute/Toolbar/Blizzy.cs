@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
 using QuickMute.Object;
 
 namespace QuickMute.Toolbar {
@@ -54,13 +55,13 @@ namespace QuickMute.Toolbar {
             if (buttonVol == null) {
                 buttonVol = ToolbarManager.Instance.add(QVars.MOD + "Vol", QVars.MOD + "Vol");
                 buttonVol.TexturePath = QTexture.BLIZZY_PATH_VOL;
-                buttonVol.ToolTip = QVars.MOD + ": " + QLang.translate("Volume");
+                buttonVol.ToolTip = QVars.MOD + ": " + Localizer.Format("quickmute_volume");
                 buttonVol.OnClick += (e) => QuickMute.Instance.gui.level.Show();
             }
 			if (buttonConf == null) {
 				buttonConf = ToolbarManager.Instance.add (QVars.MOD + "Conf", QVars.MOD + "Conf");
 				buttonConf.TexturePath = QTexture.BLIZZY_PATH_CONF;
-				buttonConf.ToolTip = QVars.MOD + ": " + QLang.translate ("Settings");
+				buttonConf.ToolTip = QVars.MOD + ": " + Localizer.Format("quickmute_settings");
 				buttonConf.OnClick += (e) => QuickMute.Instance.gui.Settings ();
 			}
 			QDebug.Log ("Start", "QBlizzyToolbar");

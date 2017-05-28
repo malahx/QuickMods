@@ -28,8 +28,14 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
-        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>../install.sh ${ProjectName}</command>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>../clean.sh ${ProjectName}</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -38,10 +44,8 @@
     <Compile Include="QM.cs" />
     <Compile Include="QM_Settings.cs" />
     <Compile Include="Wrapper\ToolbarWrapper.cs" />
-    <Compile Include="Wrapper\LanguageAPI.cs" />
     <Compile Include="Toolbar\Blizzy.cs" />
     <Compile Include="Toolbar\Stock.cs" />
-    <Compile Include="Utils\Lang.cs" />
     <Compile Include="Utils\Debug.cs" />
     <Compile Include="Utils\Render.cs" />
     <Compile Include="Utils\Texture.cs" />
@@ -63,8 +67,6 @@
     <None Include="GameData\QuickMods\QuickMute\Plugins\QuickMute.dll" />
     <None Include="GameData\QuickMods\QuickMute\QuickMute.version" />
     <None Include="GameData\QuickMods\QuickMute\README.md" />
-    <None Include="Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickMute\Lang.cfg" />
     <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyConf.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_high.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_low.dds" />
@@ -81,6 +83,10 @@
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_medium.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_mute.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_zero.dds" />
+    <None Include="Lang\en-us.cfg" />
+    <None Include="Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickMute\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickMute\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\" />
