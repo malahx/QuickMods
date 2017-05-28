@@ -20,6 +20,8 @@ using System.Collections;
 using System.IO;
 using UnityEngine;
 using QuickStart.QUtils;
+using KSP.Localization;
+using System;
 
 namespace QuickStart {
 	public partial class QSpaceCenter {
@@ -133,12 +135,12 @@ namespace QuickStart {
 			Destroy (this);
 		}
 
-		void OnGUI() {
+		protected void OnGUI() {
 			if (HighLogic.LoadedScene != GameScenes.SPACECENTER || QLoading.Ended) {
 				return;
 			}
 			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QStyle.Label);
-            GUILayout.Label (QuickStart.MOD + "...\n" + string.Format(QLang.translate("Push on {0} to abort the operation"), QSettings.Instance.KeyEscape), QStyle.Label);
+            GUILayout.Label (QuickStart.MOD + "..." + Environment.NewLine + Localizer.Format("quickstart_abort", QSettings.Instance.KeyEscape), QStyle.Label);
 			GUILayout.EndArea ();
 		}
 	}

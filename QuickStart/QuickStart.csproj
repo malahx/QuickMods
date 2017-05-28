@@ -30,8 +30,14 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
-        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>../install.sh ${ProjectName}</command>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>../clean.sh ${ProjectName}</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -46,11 +52,9 @@
     <Compile Include="QS_Flight.cs" />
     <Compile Include="Utils\Texture.cs" />
     <Compile Include="Utils\Style.cs" />
-    <Compile Include="Utils\Lang.cs" />
     <Compile Include="Utils\Key.cs" />
     <Compile Include="Utils\SaveGame.cs" />
     <Compile Include="Utils\Debug.cs" />
-    <Compile Include="Wrapper\LanguageAPI.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -61,8 +65,10 @@
     <None Include="GameData\QuickMods\QuickStart\Plugins\QuickStart.dll" />
     <None Include="GameData\QuickMods\QuickStart\QuickStart.version" />
     <None Include="GameData\QuickMods\QuickStart\README.md" />
-    <None Include="Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickStart\Lang.cfg" />
+    <None Include="Lang\en-us.cfg" />
+    <None Include="Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickStart\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickStart\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\" />

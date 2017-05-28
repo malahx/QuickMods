@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickStart.QUtils {
@@ -46,7 +47,7 @@ namespace QuickStart.QUtils {
         static string GetText(Key key) {
             switch (key) {
                 case Key.Escape:
-                    return QLang.translate("Stop QuickStart");
+                    return Localizer.Format("quickstart_stop", QuickStart.MOD);
             }
             return string.Empty;
         }
@@ -112,25 +113,25 @@ namespace QuickStart.QUtils {
             if (setKey == Key.None) {
                 return;
             }
-            RectSetKey = GUILayout.Window(1545156, RectSetKey, DrawSetKey, string.Format("{0} {1}", QLang.translate("Set Key:"), GetText(setKey)), GUILayout.ExpandHeight(true));
+            RectSetKey = GUILayout.Window(1545156, RectSetKey, DrawSetKey, Localizer.Format("quickstart_setKey", GetText(setKey)), GUILayout.ExpandHeight(true));
         }
 
         static void DrawSetKey(int id) {
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
-            GUILayout.Label(string.Format("{0} <color=#FFFFFF><b>{1}</b></color>", QLang.translate("Press a key to select the"), GetText(setKey)));
+            GUILayout.Label(Localizer.Format("quickstart_pressKey", GetText(setKey)));
             GUILayout.EndHorizontal();
             GUILayout.Space(5);
             GUILayout.BeginHorizontal();
-            if (GUILayout.Button(QLang.translate("Clear Assignment"), GUILayout.ExpandWidth(true), GUILayout.Height(30))) {
+            if (GUILayout.Button(Localizer.Format("quickstart_clearAssign"), GUILayout.ExpandWidth(true), GUILayout.Height(30))) {
                 SetCurrentKey(setKey, KeyCode.None);
                 setKey = Key.None;
             }
-            if (GUILayout.Button(QLang.translate("Default Assignment"), GUILayout.ExpandWidth(true), GUILayout.Height(30))) {
+            if (GUILayout.Button(Localizer.Format("quickstart_defaultAssign"), GUILayout.ExpandWidth(true), GUILayout.Height(30))) {
                 SetCurrentKey(setKey, DefaultKey(setKey));
                 setKey = Key.None;
             }
-            if (GUILayout.Button(QLang.translate("Cancel Assignment"), GUILayout.ExpandWidth(true), GUILayout.Height(30))) {
+            if (GUILayout.Button(Localizer.Format("quickstart_cancelAssign"), GUILayout.ExpandWidth(true), GUILayout.Height(30))) {
                 setKey = Key.None;
             }
             GUILayout.EndHorizontal();
@@ -146,7 +147,7 @@ namespace QuickStart.QUtils {
             GUILayout.BeginHorizontal();
             GUILayout.Label(string.Format("{0}: <color=#FFFFFF><b>{1}</b></color>", GetText(key), CurrentKey(key)), GUILayout.Width(350));
             GUILayout.FlexibleSpace();
-            if (GUILayout.Button(QLang.translate("Set"), GUILayout.ExpandWidth(true), GUILayout.Height(20))) {
+            if (GUILayout.Button(Localizer.Format("quickstart_set"), GUILayout.ExpandWidth(true), GUILayout.Height(20))) {
                 setKey = key;
             }
             GUILayout.EndHorizontal();

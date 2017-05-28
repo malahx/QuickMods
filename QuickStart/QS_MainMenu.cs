@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections;
 using UnityEngine;
 using QuickStart.QUtils;
+using System;
+using KSP.Localization;
 
 namespace QuickStart {
 
@@ -127,7 +129,7 @@ namespace QuickStart {
 				return;
 			}
 			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QStyle.Label);
-            GUILayout.Label(QuickStart.MOD + "...\n" + string.Format(QLang.translate("Push on {0} to abort the operation"), QSettings.Instance.KeyEscape), QStyle.Label);
+            GUILayout.Label(QuickStart.MOD + "..." + Environment.NewLine + Localizer.Format("quickstart_abort", QSettings.Instance.KeyEscape), QStyle.Label);
             GUILayout.EndArea ();
 		}
 	}

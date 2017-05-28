@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using UnityEngine;
 using QuickStart.QUtils;
+using KSP.Localization;
 
 namespace QuickStart {
 
@@ -126,35 +127,31 @@ namespace QuickStart {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
 			if (QSettings.Instance.Enabled) {
-				string _text;
-				if (!string.IsNullOrEmpty (QSaveGame.LastUsed)) {
-					_text = string.Format ("{0}: <color=white><b>{1}</b></color>", QLang.translate ("Last game found"), QSaveGame.LastUsed);
-				}
-				else {
-					_text = string.Format("<b><color=#000000>{0}</color></b>", QLang.translate ("No last game found"));
-				}
+                string _text = !string.IsNullOrEmpty(QSaveGame.LastUsed) ?
+                                                     Localizer.Format("quickstart_lastGame", QSaveGame.LastUsed):
+                                                     Localizer.Format("quickstart_noLastGame");
 				GUILayout.Label (string.Format ("[{0}] {1}", QuickStart.MOD, _text));
 				if (GUILayout.Button ("►", QStyle.Button, GUILayout.Width (20), GUILayout.Height (20))) {
 					QSaveGame.Next ();
 				}
 			}
 			GUILayout.FlexibleSpace ();
-            if (GUILayout.Button (QLang.translate ("Settings"), QStyle.Button, GUILayout.Height (20))) {
+            if (GUILayout.Button (Localizer.Format("quicktart_settings"), QStyle.Button, GUILayout.Height (20))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();
 			if (!string.IsNullOrEmpty (QSaveGame.LastUsed)) {
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, QLang.translate("Enable") + " " + QuickStart.MOD, GUILayout.Width (250));
+				QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, Localizer.Format("quickstart_enable", QuickStart.MOD), GUILayout.Width (250));
 				if (QSettings.Instance.Enabled) {
 					GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER, QLang.translate("Space Center"), GUILayout.Width (250))) {
+					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER, Localizer.Format("quickstart_sc"), GUILayout.Width (250))) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.SPACECENTER) {
 							QSettings.Instance.gameScene = (int)GameScenes.SPACECENTER;
 						}
 					}
 					GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.VAB && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, QLang.translate ("Vehicle Assembly Building"), GUILayout.Width (250))) {
+					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.VAB && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_vab"), GUILayout.Width (250))) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.VAB) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
 							QSettings.Instance.editorFacility = (int)EditorFacility.VAB;
@@ -167,21 +164,21 @@ namespace QuickStart {
 					else {
 						GUILayout.FlexibleSpace ();
 					}
-					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, QLang.translate ("Space Plane Hangar"), GUILayout.Width (250))) {
+					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_sph"), GUILayout.Width (250))) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.SPH) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
 							QSettings.Instance.editorFacility = (int)EditorFacility.SPH;
 						}
 					}
 					GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.TRACKSTATION, QLang.translate ("Tracking Station"), GUILayout.Width (250))) {
+					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.TRACKSTATION, Localizer.Format("quickstart_ts"), GUILayout.Width (250))) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.TRACKSTATION) {
 							QSettings.Instance.gameScene = (int)GameScenes.TRACKSTATION;
 						}
 					}
 					GUILayout.FlexibleSpace ();
 					GUI.enabled = !string.IsNullOrEmpty (QuickStart_Persistent.vesselID);
-					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.FLIGHT, (!string.IsNullOrEmpty (QSaveGame.vesselName) ? string.Format("{0}: {1}({2})", QLang.translate("Last Vessel"), QSaveGame.vesselName, QSaveGame.vesselType) : QLang.translate ("No vessel found")), GUILayout.Width (250))) {
+					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.FLIGHT, (!string.IsNullOrEmpty (QSaveGame.vesselName) ? Localizer.Format("quickstart_lastVessel", QSaveGame.vesselName, QSaveGame.vesselType) : Localizer.Format("quickstart_noVessel")), GUILayout.Width (250))) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.FLIGHT) {
 							QSettings.Instance.gameScene = (int)GameScenes.FLIGHT;
 						}
@@ -197,11 +194,11 @@ namespace QuickStart {
 			GUILayout.BeginVertical ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box (QLang.translate ("Options"), GUILayout.Height (30));
+			GUILayout.Box (Localizer.Format("quickstart_options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label (QLang.translate ("Wait after Loading in seconds:"), GUILayout.Width (300));
+			GUILayout.Label (Localizer.Format("quickstart_waitLoading"), GUILayout.Width (300));
 			int _int;
 			if (int.TryParse (GUILayout.TextField (QSettings.Instance.WaitLoading.ToString (), GUILayout.Width (100)), out _int)) {
 				QSettings.Instance.WaitLoading = _int;
@@ -209,7 +206,7 @@ namespace QuickStart {
 			GUILayout.EndHorizontal ();
 
             GUILayout.BeginHorizontal();
-            bool b = GUILayout.Toggle(QSettings.Instance.enableBlackScreen, QLang.translate("Black screen when it waits"), GUILayout.Width(400));
+            bool b = GUILayout.Toggle(QSettings.Instance.enableBlackScreen, Localizer.Format("quickstart_blackScreen"), GUILayout.Width(400));
             if (b != QSettings.Instance.enableBlackScreen) {
                 QSettings.Instance.enableBlackScreen = b;
                 QStyle.Label = null;
@@ -217,12 +214,12 @@ namespace QuickStart {
             GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.enableEditorAutoSaveShip = GUILayout.Toggle (QSettings.Instance.enableEditorAutoSaveShip, QLang.translate ("Auto Save Ship on Editor"), GUILayout.Width (400));
+			QSettings.Instance.enableEditorAutoSaveShip = GUILayout.Toggle (QSettings.Instance.enableEditorAutoSaveShip, Localizer.Format("quickstart_autoSaveShip"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
 
 			if (QSettings.Instance.enableEditorAutoSaveShip) {
 				GUILayout.BeginHorizontal ();
-				GUILayout.Label (QLang.translate ("Save each seconds:"), GUILayout.Width (300));
+				GUILayout.Label (Localizer.Format("quickstart_saveEach"), GUILayout.Width (300));
 				if (int.TryParse (GUILayout.TextField (QSettings.Instance.editorTimeToSave.ToString (), GUILayout.Width (100)), out _int)) {
 					QSettings.Instance.editorTimeToSave = _int;
 				}
@@ -230,18 +227,17 @@ namespace QuickStart {
 			}
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.enableEditorLoadAutoSave = GUILayout.Toggle (QSettings.Instance.enableEditorLoadAutoSave, QLang.translate ("Auto Load the Last Saved Ship"), GUILayout.Width (400));
+			QSettings.Instance.enableEditorLoadAutoSave = GUILayout.Toggle (QSettings.Instance.enableEditorLoadAutoSave, Localizer.Format("quickstart_loadLastShip"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.enablePauseOnFlight = GUILayout.Toggle (QSettings.Instance.enablePauseOnFlight, QLang.translate ("Pause the Flight at Load"), GUILayout.Width (400));
+			QSettings.Instance.enablePauseOnFlight = GUILayout.Toggle (QSettings.Instance.enablePauseOnFlight, Localizer.Format("quickstart_pauseLoad"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
             QKey.DrawConfigKey();
-			QLang.DrawLang ();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quickstart_close"), GUILayout.Height (30))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();
