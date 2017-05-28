@@ -24,7 +24,10 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="./install.sh" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>./install.sh</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -37,8 +40,14 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
-        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>../install.sh ${ProjectName}</command>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>../clean.sh ${ProjectName}</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -50,10 +59,8 @@
     <Compile Include="QS_Editor.cs" />
     <Compile Include="QS_GUI.cs" />
     <Compile Include="QS_History.cs" />
-    <Compile Include="Wrapper\LanguageAPI.cs" />
     <Compile Include="Wrapper\ToolbarWrapper.cs" />
     <Compile Include="Utils\Texture.cs" />
-    <Compile Include="Utils\Lang.cs" />
     <Compile Include="Utils\Search.cs" />
     <Compile Include="Utils\HistoryExt.cs" />
     <Compile Include="Utils\GUI.cs" />
@@ -75,8 +82,11 @@
     <None Include="GameData\QuickMods\QuickSearch\Textures\BlizzyToolBar.dds" />
     <None Include="GameData\QuickMods\QuickSearch\Textures\delete.dds" />
     <None Include="GameData\QuickMods\QuickSearch\Textures\StockToolBar.dds" />
-    <None Include="Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickSearch\Lang.cfg" />
+    <None Include="GameData\QuickMods\QuickSearch\Textures\search.dds" />
+    <None Include="Lang\en-us.cfg" />
+    <None Include="Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickSearch\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickSearch\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="Assembly-CSharp">

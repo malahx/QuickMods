@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System;
 using System.Collections.Generic;
 using System.IO;
+using KSP.Localization;
 using KSP.UI.Screens;
 using QuickSearch.QUtils;
 using UnityEngine;
@@ -137,9 +138,9 @@ namespace QuickSearch {
 
 		public void Draw(int id) {
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label (QLang.translate ("Last Search"));
+			GUILayout.Label (Localizer.Format("quicksearch_lastSearch"));
 			GUILayout.FlexibleSpace ();
-			GUILayout.Label (QLang.translate (QSettings.Instance.historySortby == (int)SortBy.COUNT ? "Count" : "Date"));
+            GUILayout.Label (QSettings.Instance.historySortby == (int)SortBy.COUNT ? Localizer.Format("quicksearch_count") : Localizer.Format("quicksearch_date"));
 			GUILayout.EndHorizontal ();
 			for (int i = 0, count = history.Count; i < count; i++) {
 				if (i >= QSettings.Instance.historyIndex) {

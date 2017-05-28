@@ -69,8 +69,6 @@ namespace QuickSearch {
 		[Persistent] internal string searchTechRequired = 	"@";
 		[Persistent] internal string searchModule = 		"_";
 
-		[Persistent] internal string Lang = "EN";
-
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);
