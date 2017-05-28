@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickSAS {
@@ -73,27 +74,27 @@ namespace QuickSAS {
 		internal static string GetText(Key key) {
 			switch (key) {
 				case Key.Current:
-					return QLang.translate ("Stability Assist");
+					return Localizer.Format("quicksas_stability");
 				case Key.Prograde:
-					return QLang.translate ("Prograde");
+					return Localizer.Format("quicksas_prograde");
 				case Key.Retrograde:
-					return QLang.translate ("Retrograde");
+					return Localizer.Format("quicksas_retrograde");
 				case Key.Normal:
-					return QLang.translate ("Normal");
+					return Localizer.Format("quicksas_normal");
 				case Key.AntiNormal:
-					return QLang.translate ("Anti-Normal");
+					return Localizer.Format("quicksas_antiNormal");
 				case Key.RadialIn:
-					return QLang.translate ("Radial");
+					return Localizer.Format("quicksas_radial");
 				case Key.RadialOut:
-					return QLang.translate ("Anti-Radial");
+					return Localizer.Format("quicksas_antiRadial");
 				case Key.TargetPrograde:
-					return QLang.translate ("Target");
+					return Localizer.Format("quicksas_target");
 				case Key.TargetRetrograde:
-					return QLang.translate ("Anti-Target");
+					return Localizer.Format("quicksas_antiTarget");
 				case Key.Maneuver:
-					return QLang.translate ("Maneuver");
+					return Localizer.Format("quicksas_maneuver");
 				case Key.WarpToNode:
-					return QLang.translate ("WarpToNode");
+					return Localizer.Format("quicksas_warpToNode");
 			}
 			return string.Empty;
 		}
@@ -216,19 +217,19 @@ namespace QuickSAS {
 		internal static void DrawSetKey(int id) {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			GUILayout.Label (string.Format ("{0} <color=#FFFFFF><b>{1}</b></color>", QLang.translate ("Press a key to select the"), GetText (SetKey)));
+			GUILayout.Label (Localizer.Format("quicksas_pressKey", GetText (SetKey)));
 			GUILayout.EndHorizontal ();
 			GUILayout.Space (5);
 			GUILayout.BeginHorizontal ();
-			if (GUILayout.Button (QLang.translate ("Clear Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quicksas_clearAssign"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, KeyCode.None);
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button (QLang.translate ("Default Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quicksas_defaultAssign"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetCurrentKey (SetKey, DefaultKey (SetKey));
 				SetKey = Key.None;
 			}
-			if (GUILayout.Button (QLang.translate ("Cancel Assignment"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
+			if (GUILayout.Button (Localizer.Format("quicksas_cancelAssign"), GUILayout.ExpandWidth (true), GUILayout.Height (30))) {
 				SetKey = Key.None;
 			}
 			GUILayout.EndHorizontal ();
@@ -240,7 +241,7 @@ namespace QuickSAS {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label (string.Format ("{0}: <color=#FFFFFF><b>{1}</b></color>", GetText (key), CurrentKey (key)), GUILayout.Width (350));
 			GUILayout.FlexibleSpace();
-			if (GUILayout.Button (QLang.translate ("Set"), GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
+			if (GUILayout.Button (Localizer.Format("quicksas_set"), GUILayout.ExpandWidth (true), GUILayout.Height (20))) {
 				SetKey = key;
 			}
 			GUILayout.EndHorizontal ();

@@ -18,6 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using System.Collections;
+using KSP.Localization;
 using UnityEngine;
 
 namespace QuickSAS {
@@ -92,7 +93,7 @@ namespace QuickSAS {
 						_UT = _manNode.UT - (_estimatedBurnTime / 2) - 15;
 					}
 					if (Planetarium.GetUniversalTime () > _UT) {
-						ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}", MOD, QLang.translate ("No need to time warp!")), 5, ScreenMessageStyle.UPPER_CENTER);
+						ScreenMessages.PostScreenMessage (Localizer.Format("quicksas_noNeed", MOD), 5, ScreenMessageStyle.UPPER_CENTER);
 						Log ("No need to time warp!", "QSAS");
 						return;
 					}
@@ -100,7 +101,7 @@ namespace QuickSAS {
 					Log (QKey.GetText (QKey.Key.WarpToNode), "QSAS");
 				}
 				else {
-					ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}", MOD, QLang.translate ("No maneuver node!")), 5, ScreenMessageStyle.UPPER_CENTER);
+					ScreenMessages.PostScreenMessage (Localizer.Format("quicksas_noManeuver", MOD), 5, ScreenMessageStyle.UPPER_CENTER);
 					Log ("No maneuver node!", "QSAS");
 				}
 			}
