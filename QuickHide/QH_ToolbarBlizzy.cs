@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using KSP.Localization;
+
 namespace QuickHide {
 	public class QBlizzyToolbar {
 	
@@ -60,13 +62,13 @@ namespace QuickHide {
 			if (Button == null) {
 				Button = ToolbarManager.Instance.add (QuickHide.MOD, QuickHide.MOD);
 				Button.TexturePath = TexturePath;
-				Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": " + QLang.translate ("Show") : QuickHide.MOD + ": " + QLang.translate ("Hide"));
+				Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": " + Localizer.Format("quickhide_show") : QuickHide.MOD + ": " + Localizer.Format("quickhide_hide"));
 				Button.OnClick += (e) => OnClick ();
 			}
 			if (ButtonConf == null) {
 				ButtonConf = ToolbarManager.Instance.add (QuickHide.MOD + "Conf", QuickHide.MOD + "Conf");
 				ButtonConf.TexturePath = TexturePathConf;
-				ButtonConf.ToolTip = QuickHide.MOD + ": " + QLang.translate ("Settings");
+				ButtonConf.ToolTip = QuickHide.MOD + ": " + Localizer.Format("quickhide_settings");
 				ButtonConf.OnClick += (e) => QHide.Instance.Settings ();
 			}
 		}
@@ -97,7 +99,7 @@ namespace QuickHide {
 		internal void Refresh() {
 			if (isActive) {
 				Button.TexturePath = TexturePath;
-				Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": " + QLang.translate ("Show") : QuickHide.MOD + ": " + QLang.translate ("Hide"));
+				Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": " + Localizer.Format("quickhide_show") : QuickHide.MOD + ": " + Localizer.Format("quickhide_hide"));
 			}
 		}
 	}

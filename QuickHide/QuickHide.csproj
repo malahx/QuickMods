@@ -23,7 +23,10 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="./install.sh" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>./install.sh</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
   </PropertyGroup>
@@ -35,8 +38,14 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
-        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>../install.sh ${ProjectName}</command>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>../clean.sh ${ProjectName}</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
     <DebugSymbols>true</DebugSymbols>
@@ -51,8 +60,6 @@
     <Compile Include="QH_ToolbarBlizzy.cs" />
     <Compile Include="QH_ToolbarStock.cs" />
     <Compile Include="QH_Mods.cs" />
-    <Compile Include="LanguageAPI.cs" />
-    <Compile Include="QH_Lang.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -69,8 +76,10 @@
     <None Include="GameData\QuickMods\QuickHide\Textures\BlizzyToolBar_Show.dds" />
     <None Include="GameData\QuickMods\QuickHide\Textures\StockToolBar_Hide.dds" />
     <None Include="GameData\QuickMods\QuickHide\Textures\StockToolBar_Show.dds" />
-    <None Include="Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickHide\Lang.cfg" />
+    <None Include="Lang\en-us.cfg" />
+    <None Include="Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickHide\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickHide\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\QuickMods\" />

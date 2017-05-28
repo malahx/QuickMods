@@ -48,8 +48,6 @@ namespace QuickHide {
 		[Persistent] public List<string> CanSetFalse = new List<string>();
 		[Persistent] public List<string> ModHasFirstConfig = new List<string>();
 
-		[Persistent] internal string Lang = "EN";
-
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
 			_temp.Save(FileConfig);

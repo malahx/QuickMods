@@ -19,6 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.UI.Screens;
 using System;
 using UnityEngine;
+using KSP.Localization;
 
 namespace QuickHide {
 
@@ -157,43 +158,42 @@ namespace QuickHide {
 			GUILayout.BeginVertical ();
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box (QLang.translate ("Options"), GUILayout.Height (30));
+			GUILayout.Box (Localizer.Format("quickhide_options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, QLang.translate ("Use the Stock Toolbar"), GUILayout.Width (400));
+			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickhide_stockTB"), GUILayout.Width (400));
 			GUILayout.FlexibleSpace ();
 			if (QSettings.Instance.StockToolBar) {
-				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, QLang.translate ("Put QuickHide in Stock"), GUILayout.Width (400));
+				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, Localizer.Format("quickhide_instock", MOD), GUILayout.Width (400));
 			}
 			GUILayout.FlexibleSpace ();
 			if (QBlizzyToolbar.isAvailable) {
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, QLang.translate ("Use the Blizzy Toolbar"), GUILayout.Width (400));
+                QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickhide_blizzyTB"), GUILayout.Width (400));
 			}
 			GUILayout.EndHorizontal ();
 			GUILayout.BeginHorizontal ();
-			QSettings.Instance.HideAppLauncher = GUILayout.Toggle (QSettings.Instance.HideAppLauncher, QLang.translate ("Auto-Hide on mouse hovering out the Stock Toolbar"), GUILayout.Width (450));
+            QSettings.Instance.HideAppLauncher = GUILayout.Toggle (QSettings.Instance.HideAppLauncher, Localizer.Format("quickhide_hideTB"), GUILayout.Width (450));
 			GUILayout.FlexibleSpace ();
-			QSettings.Instance.HideStage = GUILayout.Toggle (QSettings.Instance.HideStage, QLang.translate ("Auto-Hide on mouse hovering out the stages"), GUILayout.Width (400));
+			QSettings.Instance.HideStage = GUILayout.Toggle (QSettings.Instance.HideStage, Localizer.Format("quickhide_hideStages"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
 			if (QSettings.Instance.HideAppLauncher) {
 				GUILayout.BeginHorizontal ();
-				GUILayout.Label (QLang.translate ("Time to keep the Stock ToolBar after a mouse hovering out in seconds:"), GUILayout.Width (490));
+				GUILayout.Label (Localizer.Format("quickhide_time"), GUILayout.Width (490));
 				QSettings.Instance.TimeToKeep = int.Parse(GUILayout.TextField (QSettings.Instance.TimeToKeep.ToString(), GUILayout.Width (100)));
 				GUILayout.EndHorizontal ();
 			}
 
 			GUILayout.BeginHorizontal ();
-			GUILayout.Box (QLang.translate ("Mods"), GUILayout.Height (30));
+			GUILayout.Box (Localizer.Format("quickhide_mods"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
 			scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.ExpandWidth(true), GUILayout.Height (300));
 			DrawAppLauncherButtons ();
-			GUILayout.EndScrollView ();
-			QLang.DrawLang ();
+            GUILayout.EndScrollView();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (QLang.translate ("Close"), GUILayout.Height (30))) {
+            if (GUILayout.Button (Localizer.Format("quickhide_close"), GUILayout.Height (30))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();
