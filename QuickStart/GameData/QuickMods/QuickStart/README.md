@@ -34,6 +34,11 @@ Delete the QuickMods/QuickStart folder in your KSP/GameData folder.
 
 #### Changelog
 
+v2.14 - 2017.05.31
+* New: Added support of the stock localisation,
+* New: Deleted support of the LanguagePatches,
+* Compiled against KSP 1.3.0.1804
+
 v2.13.9-pre - 2017.03.18
 * New: Added an option to disable black screen,
 * New: Added a keyboard shortcut to stop QuickStart (Escape by default),

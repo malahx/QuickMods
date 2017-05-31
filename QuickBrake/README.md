@@ -1,4 +1,4 @@
-﻿#### QuickBrake
+﻿# QuickBrake
 #### A plugin for Kerbal Space Program
 #### Copyright 2017 Malah
 
@@ -33,6 +33,11 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickBrake folder in your KSP/GameData folder.
 
 #### Changelog
+
+v1.33 - 2017.05.31
+* New: Added support of the stock localisation,
+* New: Deleted support of the LanguagePatches,
+* Compiled against KSP 1.3.0.1804
 
 v1.32.9 - 2017.03.19
 * Fix: Corrected the Enable Brake on Control Lost setting (thanks verdesmarald),

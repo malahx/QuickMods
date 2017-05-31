@@ -57,6 +57,11 @@ Delete the QuickMods/QuickSearch folder in your KSP/GameData folder.
 
 #### Changelog
 
+v3.20 - 2017.05.31
+* New: Added support of the stock localisation,
+* New: Deleted support of the LanguagePatches,
+* Compiled against KSP 1.3.0.1804
+
 v3.19.9-pre - 2017.03.18
 * New: Added an history of the last search (requested by RealKolago),
 * New: Added a search button on the RnD,

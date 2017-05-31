@@ -35,6 +35,9 @@ Delete the QuickMods/QuickCursorHider folder in your KSP/GameData folder.
 
 #### Changelog
 
+v1.06 - 2017.05.31
+* Compiled against KSP 1.3.0.1804
+
 v1.05.9-pre - 2017.03.18
 * Compiled against KSP 1.2.9.1727
 
