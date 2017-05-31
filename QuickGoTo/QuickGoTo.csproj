@@ -89,7 +89,6 @@
     <None Include="GameData\QuickMods\QuickGoTo\Textures\StockToolBar.dds" />
     <None Include="GameData\QuickMods\QuickGoTo\Textures\StockTS.dds" />
     <None Include="GameData\QuickMods\QuickGoTo\Textures\StockVAB.dds" />
-    <None Include="Lang.cfg" />
     <None Include="Lang\en-us.cfg" />
     <None Include="Lang\fr-fr.cfg" />
     <None Include="GameData\QuickMods\QuickGoTo\Lang\en-us.cfg" />

@@ -354,24 +354,26 @@ namespace QuickGoTo {
 		}
 
 		void Lock(bool activate, ControlTypes Ctrl) {
-			if (HighLogic.LoadedSceneIsEditor) {
-				if (activate) {
-					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + MOD);
-				} else {
-					EditorLogic.fetch.Unlock ("EditorLock" + MOD);
-				}
-			}
-			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
-			} else {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
-			}
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
-			}
-			if (InputLockManager.GetControlLock ("EditorLock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + MOD);
-			}
+            if (HighLogic.LoadedSceneIsEditor) {
+                if (activate) {
+                    if (InputLockManager.GetControlLock("EditorLock" + MOD) == ControlTypes.None) {
+                        EditorLogic.fetch.Lock(true, true, true, "EditorLock" + MOD);
+                    }
+                } else {
+                    if (InputLockManager.GetControlLock("EditorLock" + MOD) != ControlTypes.None) {
+                        EditorLogic.fetch.Unlock("EditorLock" + MOD);
+                    }
+                }
+            }
+            if (activate) {
+                if (InputLockManager.GetControlLock("Lock" + MOD) == ControlTypes.None) {
+                    InputLockManager.SetControlLock(Ctrl, "Lock" + MOD);
+                }
+                return;
+            }
+            if (InputLockManager.GetControlLock("Lock" + MOD) != ControlTypes.None) {
+                InputLockManager.RemoveControlLock("Lock" + MOD);
+            }
 			Log ("Lock " + activate, "QGUI");
 		}
 
