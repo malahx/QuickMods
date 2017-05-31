@@ -116,17 +116,6 @@
     <None Include="GameData\QuickMods\QuickStart\QuickStart.version" />
     <None Include="GameData\QuickMods\QuickStart\README.md" />
     <None Include="GameData\QuickMods\QuickStart\Plugins\QuickStart.dll" />
-    <None Include="GameData\QuickMods\QuickContracts\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickBrake\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickExit\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickGoTo\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickHide\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickIVA\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickMute\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickRevert\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickSAS\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickSearch\Lang.cfg" />
-    <None Include="GameData\QuickMods\QuickStart\Lang.cfg" />
     <None Include="GameData\QuickMods\QuickRevert\PluginData\empty" />
     <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyConf.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_high.dds" />
@@ -145,6 +134,28 @@
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_mute.dds" />
     <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_zero.dds" />
     <None Include="GameData\QuickMods\QuickSearch\Textures\search.dds" />
+    <None Include="GameData\QuickMods\QuickContracts\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickContracts\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickBrake\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickBrake\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickExit\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickExit\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickGoTo\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickGoTo\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickHide\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickHide\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickIVA\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickIVA\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickMute\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickMute\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickRevert\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickRevert\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickSAS\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickSAS\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickSearch\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickSearch\Lang\fr-fr.cfg" />
+    <None Include="GameData\QuickMods\QuickStart\Lang\en-us.cfg" />
+    <None Include="GameData\QuickMods\QuickStart\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="GameData\QuickMods\QuickMute\Textures\" />

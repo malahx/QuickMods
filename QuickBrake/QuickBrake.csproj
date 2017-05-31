@@ -29,9 +29,19 @@
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
-        <Command type="AfterBuild" command="../install.sh ${ProjectName}" />
-        <Command type="AfterClean" command="../clean.sh ${ProjectName}" />
-        <Command type="Custom" name="compresser" command="../compress.sh ${ProjectName}" />
+        <Command>
+          <type>AfterBuild</type>
+          <command>../install.sh ${ProjectName}</command>
+        </Command>
+        <Command>
+          <type>AfterClean</type>
+          <command>../clean.sh ${ProjectName}</command>
+        </Command>
+        <Command>
+          <type>Custom</type>
+          <name>compresser</name>
+          <command>../compress.sh ${ProjectName}</command>
+        </Command>
       </CustomCommands>
     </CustomCommands>
     <DebugSymbols>true</DebugSymbols>

@@ -127,16 +127,15 @@ namespace QuickStart {
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
 			if (QSettings.Instance.Enabled) {
-                string _text = !string.IsNullOrEmpty(QSaveGame.LastUsed) ?
-                                                     Localizer.Format("quickstart_lastGame", QSaveGame.LastUsed):
-                                                     Localizer.Format("quickstart_noLastGame");
-				GUILayout.Label (string.Format ("[{0}] {1}", QuickStart.MOD, _text));
+                GUILayout.Label(!string.IsNullOrEmpty(QSaveGame.LastUsed) ?
+                                                     Localizer.Format("quickstart_lastGame", QuickStart.MOD, QSaveGame.LastUsed) :
+                                                     Localizer.Format("quickstart_noLastGame", QuickStart.MOD));
 				if (GUILayout.Button ("►", QStyle.Button, GUILayout.Width (20), GUILayout.Height (20))) {
 					QSaveGame.Next ();
 				}
 			}
 			GUILayout.FlexibleSpace ();
-            if (GUILayout.Button (Localizer.Format("quicktart_settings"), QStyle.Button, GUILayout.Height (20))) {
+            if (GUILayout.Button (Localizer.Format("quickstart_settings"), QStyle.Button, GUILayout.Height (20))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal ();

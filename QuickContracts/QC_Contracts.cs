@@ -42,7 +42,7 @@ namespace QuickContracts {
 			QSettings.Instance.Save ();
 			if (declineCost > 0 && declineContracts > 0 & MessageSystem.Ready) {
 				if (QSettings.Instance.EnableMessage) {
-                    string _string = Localizer.Format("quickcontracts_declined", declineContracts) + "\n" + Localizer.Format("quickcontracts_cost", declineCost);
+                    string _string = Localizer.Format("quickcontracts_declined", declineContracts) + Environment.NewLine + Localizer.Format("quickcontracts_cost", declineCost);
 					MessageSystem.Instance.AddMessage (new MessageSystem.Message (MOD, _string, MessageSystemButton.MessageButtonColor.ORANGE, MessageSystemButton.ButtonIcons.ALERT));
 					Log ("Message send.", "QGUI");
 				}
