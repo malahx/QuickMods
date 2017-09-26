@@ -39,6 +39,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 EndProject
 Project("{9344BDBB-3E7F-41FC-A0DD-8665D75EE146}") = "GameData", "GameData.mdproj", "{732E642A-6428-4A48-BCE8-A65E3BA8181C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickScience", "QuickScience\QuickScience.csproj", "{5F236E96-6741-4586-BA1D-66F13C8D9DA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -130,6 +132,12 @@ Global
 		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Release|Any CPU.Build.0 = Default|Any CPU
 		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Default|Any CPU.ActiveCfg = Default|Any CPU
 		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Default|Any CPU.Build.0 = Default|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Default|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 	EndGlobalSection
@@ -141,10 +149,8 @@ Global
 		$2.FileSeparator = ", "
 		$2.IncludeDirectoryPaths = True
 		$2.Wrap = False
-		$1.inheritsSet = Mono
+		$2.LineAlign = 0
 		$0.DotNetNamingPolicy = $3
-		$3.DirectoryNamespaceAssociation = None
-		$3.ResourceNamePolicy = FileFormatDefault
 		$0.TextStylePolicy = $4
 		$4.FileWidth = 120
 		$4.EolMarker = Unix
@@ -153,18 +159,23 @@ Global
 		$4.scope = text/markdown
 		$4.TabsToSpaces = True
 		$0.CSharpFormattingPolicy = $5
-		$5.IndentSwitchSection = True
 		$5.NewLinesForBracesInTypes = False
 		$5.NewLinesForBracesInMethods = False
-		$5.SpacingAfterMethodDeclarationName = False
-		$5.SpaceAfterMethodCallName = False
-		$5.SpaceBeforeOpenSquareBracket = False
-		$5.inheritsSet = Mono
-		$5.inheritsScope = text/x-csharp
 		$5.scope = text/x-csharp
+		$5.NewLinesForBracesInProperties = False
+		$5.NewLinesForBracesInAccessors = False
+		$5.NewLinesForBracesInAnonymousMethods = False
+		$5.NewLinesForBracesInControlBlocks = False
+		$5.NewLinesForBracesInAnonymousTypes = False
+		$5.NewLinesForBracesInObjectCollectionArrayInitializers = False
+		$5.NewLinesForBracesInLambdaExpressionBody = False
+		$5.NewLineForElse = False
+		$5.NewLineForCatch = False
+		$5.NewLineForFinally = False
+		$5.NewLineForMembersInObjectInit = False
+		$5.NewLineForMembersInAnonymousTypes = False
+		$5.NewLineForClausesInQuery = False
 		$0.StandardHeader = $6
-		$6.Text = 
-		$6.IncludeInNewFiles = True
 		$0.NameConventionPolicy = $7
 		$7.Rules = $8
 		$8.NamingRule = $9
