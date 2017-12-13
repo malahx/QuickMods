@@ -1,7 +1,7 @@
 {
 	"NAME"				: "QuickGoTo",
-	"URL"				: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickGoTo/QuickGoTo.version",
-	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickGoTo/README.md", 
+	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickGoTo/QuickGoTo.version",
+	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickGoTo/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/102/QuickGoTo",
 	"VERSION": {
 		"MAJOR"			: 1,

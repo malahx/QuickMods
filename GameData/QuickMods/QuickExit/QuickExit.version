@@ -1,7 +1,7 @@
 {
 	"NAME"				: "QuickExit",
-	"URL"				: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickExit/QuickExit.version",
-	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickExit/README.md", 
+	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickExit/QuickExit.version",
+	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickExit/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/105/QuickExit",
 	"VERSION": {
 		"MAJOR"			: 2,

@@ -49,7 +49,7 @@ v1.04 - 2016.11.02
 
 v1.03 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickCursorHider
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v1.02 - 2016.10.15
 * Compiled against KSP 1.2.0.1586
@@ -70,4 +70,4 @@ v1.00 - 2016.06.23
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/783/QuickCursorHider
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods

@@ -89,7 +89,7 @@ v3.06 - 2016.10.31
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * Fix: Corrected the stocktoolbar button,
 * Fix: Enhanced the settings functions,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v3.05 - 2016.10.14
 * Compiled against KSP 1.2.0.1586
@@ -192,7 +192,7 @@ v0.10 - 2015.01.02
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/101/QuickSearch
 * http://kerbal.curseforge.com/ksp-mods/226668-quicksearch
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Tree Toppler: http://forum.kerbalspaceprogram.com/index.php?/topic/97033-
 * PartCatalog: http://forum.kerbalspaceprogram.com/threads/35018

@@ -81,7 +81,7 @@ v1.25-beta - 2016.11.02
 v1.24-beta - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickGoTo
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v1.23-beta - 2016.10.15
 * Fix: Corrected the crash to desktop with a goto from flight scene,
@@ -148,7 +148,7 @@ v0.10 - 2015.03.21
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/102/QuickGoTo
 * http://kerbal.curseforge.com/ksp-mods/230004-quickgoto
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * SceneJumper: http://forum.kerbalspaceprogram.com/threads/66116

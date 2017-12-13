@@ -1,7 +1,7 @@
 {
 	"NAME"				: "QuickSearch",
-	"URL"				: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickSearch/QuickSearch.version",
-	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickSearch/README.md", 
+	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickSearch/QuickSearch.version",
+	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickSearch/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/101/QuickSearch",
 	"VERSION": {
 		"MAJOR"			: 3,

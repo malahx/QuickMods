@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
@@ -37,6 +37,11 @@
     </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AssemblyVersion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyVersion.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QC.cs" />
     <Compile Include="QC_Settings.cs" />
@@ -59,24 +64,36 @@
     <None Include="GameData\QuickMods\QuickContracts\Lang\en-us.cfg" />
     <None Include="GameData\QuickMods\QuickContracts\Lang\fr-fr.cfg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="GameData\" />
-    <Folder Include="GameData\QuickMods\" />
-    <Folder Include="GameData\QuickMods\QuickContracts\" />
-    <Folder Include="Lang\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
+      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine">
-      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
+      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>
     <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
+      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
     </Reference>
     <Reference Include="System">
-      <HintPath>..\..\lib\Managed\System.dll</HintPath>
+      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\System.dll</HintPath>
     </Reference>
   </ItemGroup>
+  <ItemGroup>
+    <Content Include="AssemblyVersion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <PropertyGroup>
+    <PreBuildEvent>set textTemplatingPath="%25ProgramFiles(x86)%25\Microsoft Visual Studio\2017\Community\Common7\IDE\texttransform.exe"
+
+%25textTemplatingPath%25 "$(ProjectDir)AssemblyVersion.tt"</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>start /D D:\Users\jbb\github\QuickMods /WAIT install.bat   $(TargetDir) $(TargetFileName) $(ProjectName)</PostBuildEvent>
+  </PropertyGroup>
 </Project>

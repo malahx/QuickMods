@@ -1,7 +1,7 @@
 {
 	"NAME"				: "QuickStart",
-	"URL"				: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickStart/QuickStart.version",
-	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickStart/README.md", 
+	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickStart/QuickStart.version",
+	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickStart/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/110/QuickStart",
 	"VERSION": {
 		"MAJOR"			: 2,

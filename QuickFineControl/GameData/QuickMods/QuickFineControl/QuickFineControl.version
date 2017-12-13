@@ -1,7 +1,7 @@
 {
 	"NAME"				: "QuickFineControl",
-	"URL"				: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickFineControl/QuickFineControl.version",
-	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickFineControl/README.md", 
+	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickFineControl/QuickFineControl.version",
+	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickFineControl/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/784/QuickFineControl",
 	"VERSION": {
 		"MAJOR"			: 1,

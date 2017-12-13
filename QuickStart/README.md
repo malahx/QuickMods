@@ -73,7 +73,7 @@ v2.05 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickStart
 * Fix: Corrected the SPH checkbox (thanks MK3424),
 * Fix: Corrected the contracts deletion,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v2.04 - 2016.10.14
 * Compiled against KSP 1.2.0.1586
@@ -161,6 +161,6 @@ v1.00 - 2015.05.08
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/110/QuickStart
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Magic Smoke Industries DevHelper: http://forum.kerbalspaceprogram.com/threads/60880

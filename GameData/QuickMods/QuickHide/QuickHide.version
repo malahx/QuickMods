@@ -1,7 +1,7 @@
 {
 	"NAME"				: "QuickHide",
-	"URL"				: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickHide/QuickHide.version",
-	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickHide/README.md", 
+	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickHide/QuickHide.version",
+	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickHide/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/106/QuickHide",
 	"VERSION": {
 		"MAJOR"			: 3,

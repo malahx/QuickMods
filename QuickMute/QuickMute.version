@@ -1,7 +1,7 @@
 {
 	"NAME"				: "QuickMute",
-	"URL"				: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickMute/QuickMute.version",
-	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickMute/README.md", 
+	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickMute/QuickMute.version",
+	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickMute/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/108/QuickMute",
 	"VERSION": {
 		"MAJOR"			: 1,

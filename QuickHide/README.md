@@ -68,7 +68,7 @@ v3.12 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickHide
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * Fix: Deleted useless config load,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v3.11 - 2016.10.15
 * Compiled against KSP 1.2.0.1586
@@ -148,7 +148,7 @@ v1.00 - 2014.12.08
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/106/QuickHide
 * http://kerbal.curseforge.com/ksp-mods/226070-quickhide
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

@@ -76,7 +76,7 @@ v1.02 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickSAS
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * Fix: Deleted useless config load,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v1.01 - 2016.10.15
 * Fix: Corrected the stocktoolbar,
@@ -97,7 +97,7 @@ v1.00 - 2016.09.24
 #### Links
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * http://spacedock.info/mod/999/QuickSAS
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
