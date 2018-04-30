@@ -30,21 +30,68 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="System" />
-    <Reference Include="System.Core" />
-    <Reference Include="System.Xml.Linq" />
-    <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\QuickBrake\QuickBrake.csproj">
+      <Project>{7ddf2096-48ae-4e47-b690-d3ee29afc86b}</Project>
+      <Name>QuickBrake</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickContracts\QuickContracts.csproj">
+      <Project>{c939085f-8cbb-4286-a270-f82c7e33507c}</Project>
+      <Name>QuickContracts</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickCursorHider\QuickCursorHider.csproj">
+      <Project>{8df01a99-22ae-46da-bb0b-bc6d6c17e651}</Project>
+      <Name>QuickCursorHider</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickExit\QuickExit.csproj">
+      <Project>{53f47534-1537-4369-94ef-79311fa08a9f}</Project>
+      <Name>QuickExit</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickFineControl\QuickFineControl.csproj">
+      <Project>{f73efb9a-5cba-456f-93e9-b20c099fc3b1}</Project>
+      <Name>QuickFineControl</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickGoTo\QuickGoTo.csproj">
+      <Project>{0fdc1965-81eb-42c5-9123-bdfff6d54d53}</Project>
+      <Name>QuickGoTo</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickHide\QuickHide.csproj">
+      <Project>{8ece3013-6315-45cc-8049-fa460b008e77}</Project>
+      <Name>QuickHide</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickIVA\QuickIVA.csproj">
+      <Project>{efd77602-b0ca-4f9d-9856-051c9c8a9a85}</Project>
+      <Name>QuickIVA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickMute\QuickMute.csproj">
+      <Project>{44ada825-2207-4a6b-9410-8b857a847c13}</Project>
+      <Name>QuickMute</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickRevert\QuickRevert.csproj">
+      <Project>{cf983f74-7b18-4ea3-8aa1-6f96fe19aa5d}</Project>
+      <Name>QuickRevert</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickSAS\QuickSAS.csproj">
+      <Project>{7c295d18-5eee-47f6-9353-86be7cbfc673}</Project>
+      <Name>QuickSAS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickSearch\QuickSearch.csproj">
+      <Project>{883ea339-278b-4ddd-8ced-58bd9fa812d1}</Project>
+      <Name>QuickSearch</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\QuickStart\QuickStart.csproj">
+      <Project>{7f8da55f-b033-42a7-a719-c825c354cd83}</Project>
+      <Name>QuickStart</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
-    <PostBuildEvent>start /D D:\Users\jbb\github\QuickMods /WAIT deploy.bat  $(TargetDir) $(TargetFileName)
+    <PostBuildEvent>start /D D:\Users\jbb\github\QuickMods /WAIT deployCopy.bat   $(TargetDir) $(TargetFileName) $(ProjectName) $(ProjectDir)
 
 if $(ConfigurationName) == Release (
 

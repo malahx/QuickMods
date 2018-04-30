@@ -14,7 +14,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -22,7 +22,7 @@
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
     <ConsolePause>false</ConsolePause>
@@ -48,8 +48,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QM.cs" />
     <Compile Include="QM_Settings.cs" />
-    <Compile Include="Wrapper\ToolbarWrapper.cs" />
-    <Compile Include="Toolbar\Blizzy.cs" />
+    <Compile Include="ToolbarRegistration.cs" />
     <Compile Include="Toolbar\Stock.cs" />
     <Compile Include="Utils\Debug.cs" />
     <Compile Include="Utils\Render.cs" />
@@ -68,45 +67,8 @@
     <None Include="QuickMute.version" />
     <None Include="README.md" />
     <None Include="Mute.xcf" />
-    <None Include="GameData\QuickMods\QuickMute\COPYING" />
-    <None Include="GameData\QuickMods\QuickMute\Plugins\QuickMute.dll" />
-    <None Include="GameData\QuickMods\QuickMute\QuickMute.version" />
-    <None Include="GameData\QuickMods\QuickMute\README.md" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyConf.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_high.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_low.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_medium.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_mute.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\BlizzyToolBar_zero.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_high.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_low.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_medium.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_mute.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\Icon_zero.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_high.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_low.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_medium.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_mute.dds" />
-    <None Include="GameData\QuickMods\QuickMute\Textures\StockToolBar_zero.dds" />
     <None Include="Lang\en-us.cfg" />
     <None Include="Lang\fr-fr.cfg" />
-    <None Include="GameData\QuickMods\QuickMute\Lang\en-us.cfg" />
-    <None Include="GameData\QuickMods\QuickMute\Lang\fr-fr.cfg" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\System.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AssemblyVersion.tt">
@@ -117,12 +79,30 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>R:\KSP_1.4.1_dev\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ClickThroughBlocker">
+      <HintPath>R:\KSP_1.4.1_dev\GameData\ClickThroughBlocker\Plugins\ClickThroughBlocker.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="ToolbarControl">
+      <HintPath>R:\KSP_1.4.1_dev\GameData\001_ToolbarControl\Plugins\ToolbarControl.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>R:\KSP_1.4.1_dev\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>R:\KSP_1.4.1_dev\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup>
     <PreBuildEvent>set textTemplatingPath="%25ProgramFiles(x86)%25\Microsoft Visual Studio\2017\Community\Common7\IDE\texttransform.exe"
 
 %25textTemplatingPath%25 "$(ProjectDir)AssemblyVersion.tt"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>start /D D:\Users\jbb\github\QuickMods /WAIT install.bat   $(TargetDir) $(TargetFileName) $(ProjectName)</PostBuildEvent>
+    <PostBuildEvent>start /D D:\Users\jbb\github\QuickMods /WAIT deploy.bat   $(TargetDir) $(TargetFileName) $(ProjectName) $(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>

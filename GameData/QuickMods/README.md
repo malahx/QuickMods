@@ -46,7 +46,7 @@ Delete the QuickMods folder in your KSP/GameData folder.
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/profile/malah
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * KSP-AVC: http://forum.kerbalspaceprogram.com/index.php?/topic/72169-1
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

@@ -12,10 +12,10 @@ set GAMEDIR=QuickMods
 set GAMEDATA="GameData"
 set VERSIONFILE=%GAMEDIR%.version
 
-copy /Y "%1%2" "%GAMEDATA%\%GAMEDIR%\%3\Plugins"
-IF EXIST "%4Lang" xcopy /y /s /I "%4Lang" "%GAMEDATA%\%GAMEDIR%\%3\Lang"
-copy /y  %4%3.version  %GAMEDATA%\%GAMEDIR%\%3
+copy /y  QuickMods.version  %GAMEDATA%\%GAMEDIR%
 copy /y  README.md %GAMEDATA%\%GAMEDIR%\%3
 copy /y  COPYING %GAMEDATA%\%GAMEDIR%\%3
 
-rem xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
+xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
+
+pause

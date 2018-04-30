@@ -42,7 +42,8 @@ namespace QuickExit {
 
 		[Persistent] internal bool StockToolBar = true;
 		[Persistent] internal bool StockToolBar_ModApp = true;
-		[Persistent] internal bool BlizzyToolBar = true;
+
+		//[Persistent] internal bool BlizzyToolBar = true;
 
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());

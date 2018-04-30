@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.Localization;
 using UnityEngine;
 
+using ClickThroughFix;
+
 namespace QuickSAS {
 	public partial class QGUI {
 		public static QGUI Instance {
@@ -52,26 +54,21 @@ namespace QuickSAS {
 			}
 		} 
 
-		internal QBlizzyToolbar BlizzyToolbar;
 			
 		protected override void Awake () {
 			if (!HighLogic.LoadedSceneIsGame || QGUI.Instance != null) {
 				Destroy (this);
 			}
 			Instance = this;
-			if (BlizzyToolbar == null) {
-				BlizzyToolbar = new QBlizzyToolbar ();
-			}
+
 			Log ("Awake", "QGUI");
 		}
 
 		protected override void Start () {
-			BlizzyToolbar.Start ();
 			Log ("Start", "QGUI");
 		}
 
 		protected override void OnDestroy () {
-			BlizzyToolbar.OnDestroy ();
 			Log ("OnDestroy", "QGUI");
 		}
 
@@ -139,7 +136,7 @@ namespace QuickSAS {
 
 		void Save () {
 			QStockToolbar.Instance.Reset ();
-			BlizzyToolbar.Reset ();
+			//BlizzyToolbar.Reset ();
 			QSettings.Instance.Save ();
 			Log ("Save", "QGUI");
 		}
@@ -163,10 +160,10 @@ namespace QuickSAS {
 			}
 			GUI.skin = HighLogic.Skin;
 			if (QKey.SetKey != QKey.Key.None) {
-				RectSetKey = GUILayout.Window (1545156, RectSetKey, QKey.DrawSetKey, Localizer.Format("quicksas_setKey", QKey.GetText (QKey.SetKey)), GUILayout.ExpandHeight (true));
+				RectSetKey = ClickThruBlocker.GUILayoutWindow (1545156, RectSetKey, QKey.DrawSetKey, Localizer.Format("quicksas_setKey", QKey.GetText (QKey.SetKey)), GUILayout.ExpandHeight (true));
 				return;
 			}
-			RectSettings = GUILayout.Window (1545175, RectSettings, DrawSettings, MOD + " " + VERSION);
+			RectSettings = ClickThruBlocker.GUILayoutWindow (1545175, RectSettings, DrawSettings, MOD + " " + VERSION);
 		}
 
 		void DrawSettings (int id) {
@@ -174,14 +171,7 @@ namespace QuickSAS {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quicksas_toolbars"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quicksas_stockTB"), GUILayout.Width (400));
-			GUILayout.EndHorizontal ();
-			if (QBlizzyToolbar.isAvailable) {
-				GUILayout.BeginHorizontal ();
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quicksas_blizzyTB"), GUILayout.Width (400));
-				GUILayout.EndHorizontal ();
-			}
+
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quicksas_options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();

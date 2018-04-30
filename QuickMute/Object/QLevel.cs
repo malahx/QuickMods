@@ -21,6 +21,8 @@ using KSP.UI.Screens;
 using QuickMute.Toolbar;
 using UnityEngine;
 
+using ClickThroughFix;
+
 namespace QuickMute.Object {
     public class QLevel {
 
@@ -38,8 +40,10 @@ namespace QuickMute.Object {
             }
             set {
                 if (!value) {
-                    if (QStock.Instance != null && QStock.Instance.isActive && window) {
-                        keep = true;
+                    //if (QStock.Instance != null && QStock.Instance.isActive && window)
+                        if (QStock.Instance != null && window)
+                        {
+                            keep = true;
                         keepDate = DateTime.Now;
                     }
                     dim.position = Vector2.zero;
@@ -54,7 +58,7 @@ namespace QuickMute.Object {
                 if (dim.IsEmpty()) {
                     dim.x = (Screen.width - dim.width) / 2;
                     dim.y = (Screen.height - dim.height) / 2;
-                    if (QStock.Instance != null && QStock.Instance.isActive) {
+                    if (QStock.Instance != null/*  && QStock.Instance.isActive */) {
                         Rect activeButtonPos = QStock.Instance.Position;
                         if (ApplicationLauncher.Instance.IsPositionedAtTop) {
                             dim.x = activeButtonPos.x - dim.width;
@@ -129,7 +133,7 @@ namespace QuickMute.Object {
             if (!Window) {
                 return;
             }
-            Dim = GUILayout.Window(1584665, Dim, Draw, "Level", styleWindow);
+            Dim = ClickThruBlocker.GUILayoutWindow(1584665, Dim, Draw, "Level", styleWindow);
             if (keep) {
                 if ((DateTime.Now - keepDate).TotalSeconds > 1) {
                     keep = false;

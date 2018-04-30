@@ -35,10 +35,10 @@ namespace QuickSearch {
 		public readonly static string relativePath = "QuickMods/" + MOD;
 		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
 
-		[KSPField(isPersistant = true)] static QBlizzy BlizzyToolbar;
+		//[KSPField(isPersistant = true)] static QBlizzy BlizzyToolbar;
 
 		protected virtual void Awake() {
-			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy ();
+			//if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy ();
 			TextField = new GUIStyle(HighLogic.Skin.textField);
 			TextField.stretchWidth = true;
 			TextField.stretchHeight = true;
@@ -47,12 +47,12 @@ namespace QuickSearch {
 		}
 		
 		protected virtual void Start() {
-			if (BlizzyToolbar != null) BlizzyToolbar.Init ();
+			//if (BlizzyToolbar != null) BlizzyToolbar.Init ();
 			QDebug.Log ("Start");
 		}
 		
 		protected virtual void OnDestroy() {
-			if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
+			//if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
 			QDebug.Log ("OnDestroy");
 		}
 		

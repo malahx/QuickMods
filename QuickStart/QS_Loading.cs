@@ -20,6 +20,8 @@ using UnityEngine;
 using QuickStart.QUtils;
 using KSP.Localization;
 
+using ClickThroughFix;
+
 namespace QuickStart {
 
 	public partial class QLoading {
@@ -120,7 +122,7 @@ namespace QuickStart {
             QKey.DrawSetKey();
 
 			if (WindowSettings) {
-				RectSettings = GUILayout.Window (1545177, RectSettings, DrawSettings, QuickStart.MOD + " " + QuickStart.VERSION);
+				RectSettings = ClickThruBlocker.GUILayoutWindow (1545177, RectSettings, DrawSettings, QuickStart.MOD + " " + QuickStart.VERSION);
 			}
 
 			GUILayout.BeginArea (RectGUI);

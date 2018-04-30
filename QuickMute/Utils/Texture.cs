@@ -28,11 +28,13 @@ namespace QuickMute.Object {
         internal static readonly string BLIZZY_PATH_MUTE = QVars.relativePath + "/Textures/BlizzyToolBar_mute";
         internal static readonly string BLIZZY_PATH_CONF = QVars.relativePath + "/Textures/BlizzyConf";
         internal static readonly string BLIZZY_PATH_VOL = QVars.relativePath + "/Textures/BlizzyVol";
+
         internal static readonly string STOCK_PATH_HIGH = QVars.relativePath + "/Textures/StockToolBar_high";
         internal static readonly string STOCK_PATH_MEDIUM = QVars.relativePath + "/Textures/StockToolBar_medium";
         internal static readonly string STOCK_PATH_LOW = QVars.relativePath + "/Textures/StockToolBar_low";
         internal static readonly string STOCK_PATH_ZERO = QVars.relativePath + "/Textures/StockToolBar_zero";
         internal static readonly string STOCK_PATH_MUTE = QVars.relativePath + "/Textures/StockToolBar_mute";
+
         internal static readonly string ICON_PATH_HIGH = QVars.relativePath + "/Textures/Icon_high";
         internal static readonly string ICON_PATH_MEDIUM = QVars.relativePath + "/Textures/Icon_medium";
         internal static readonly string ICON_PATH_LOW = QVars.relativePath + "/Textures/Icon_low";
@@ -41,41 +43,45 @@ namespace QuickMute.Object {
 
         internal static string BlizzyTexturePath {
             get {
-                return QSettings.Instance.Muted ? BLIZZY_PATH_MUTE : 
+                var st =  QSettings.Instance.Muted ? BLIZZY_PATH_MUTE : 
                         QuickMute.Instance.volume.Master > 0.75 ? BLIZZY_PATH_HIGH : 
                         QuickMute.Instance.volume.Master > 0.25 ? BLIZZY_PATH_MEDIUM : 
                         QuickMute.Instance.volume.Master > 0.01 ? BLIZZY_PATH_LOW : 
                         BLIZZY_PATH_ZERO;
+                Debug.Log("BlizzyTexturePath: " + st);
+                return st;
             }
         }
 
-        static Texture2D stockHigh;
-        static Texture2D stockMedium;
-        static Texture2D stockLow;
-        static Texture2D stockZero;
-        static Texture2D stockMute;
-        internal static Texture2D StockTexture {
+        static string stockHigh;
+        static string stockMedium;
+        static string stockLow;
+        static string stockZero;
+        static string stockMute;
+        internal static string StockTexture {
             get {
                 if (stockHigh == null) {
-                    stockHigh = GameDatabase.Instance.GetTexture(STOCK_PATH_HIGH, false);
+                    stockHigh = STOCK_PATH_HIGH;
                 }
                 if (stockMedium == null) {
-                    stockMedium = GameDatabase.Instance.GetTexture(STOCK_PATH_MEDIUM, false);
+                    stockMedium = STOCK_PATH_MEDIUM;
                 }
                 if (stockLow == null) {
-                    stockLow = GameDatabase.Instance.GetTexture(STOCK_PATH_LOW, false);
+                    stockLow = STOCK_PATH_LOW;
                 }
                 if (stockZero == null) {
-                    stockZero = GameDatabase.Instance.GetTexture(STOCK_PATH_ZERO, false);
+                    stockZero = STOCK_PATH_ZERO;
                 }
                 if (stockMute == null) {
-                    stockMute = GameDatabase.Instance.GetTexture(STOCK_PATH_MUTE, false);
+                    stockMute = STOCK_PATH_MUTE;
                 }
-                return QSettings.Instance.Muted ? stockMute : 
+                var st =  QSettings.Instance.Muted ? stockMute : 
                         QuickMute.Instance.volume.Master > 0.75 ? stockHigh : 
                         QuickMute.Instance.volume.Master > 0.25 ? stockMedium : 
                         QuickMute.Instance.volume.Master > 0.01 ? stockLow : 
                         stockZero;
+                Debug.Log("StockTexture: " + st);
+                return st;
             }
         }
 

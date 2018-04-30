@@ -37,16 +37,6 @@ namespace QuickSearch.QUtils {
             }
         }
 
-        static Texture2D stocktoolbar;
-        internal static Texture2D Stocktoolbar {
-            get {
-                if (stocktoolbar == null) {
-                    stocktoolbar = GameDatabase.Instance.GetTexture(STOCKTOOLBAR_PATH, false);
-                }
-                return stocktoolbar;
-            }
-        }
-
         static Texture2D search;
         internal static Texture2D Search {
             get {

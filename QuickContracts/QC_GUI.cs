@@ -21,6 +21,8 @@ using System;
 using UnityEngine;
 using KSP.Localization;
 
+using ClickThroughFix;
+
 namespace QuickContracts {
 	public partial class QGUI {
 		
@@ -141,11 +143,11 @@ namespace QuickContracts {
 			}
 			GUI.skin = HighLogic.Skin;
 			if (SetKey != Key.None) {
-				rectSetKey = GUILayout.Window (1545146, rectSetKey, DrawSetKey, Localizer.Format("quickcontracts_setKey", GetText (SetKey)), GUILayout.ExpandHeight (true));
+				rectSetKey = ClickThruBlocker.GUILayoutWindow (1545146, rectSetKey, DrawSetKey, Localizer.Format("quickcontracts_setKey", GetText (SetKey)), GUILayout.ExpandHeight (true));
 				return;
 			}
 			if (windowSettings) {
-				rectSettings = GUILayout.Window (1545147, rectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.ExpandHeight (true));
+				rectSettings = ClickThruBlocker.GUILayoutWindow (1545147, rectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.ExpandHeight (true));
 				return;
 			}
 			GUILayout.BeginArea (rectButton);

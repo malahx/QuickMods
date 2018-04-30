@@ -26,8 +26,6 @@ namespace QuickExit {
 
 		public static QExit Instance;
 
-		[KSPField(isPersistant = true)] internal static QBlizzyToolbar BlizzyToolbar;
-
 		public static readonly string shipFilename = "Auto-Saved Ship";
 
 		int count = 5;
@@ -114,12 +112,12 @@ namespace QuickExit {
 				return;
 			}
 			Instance = this;
-			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
+			//if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
 			Log ("Awake", "QExit");
 		}
 
 		protected override void Start() {
-			if (BlizzyToolbar != null) BlizzyToolbar.Init ();
+			//if (BlizzyToolbar != null) BlizzyToolbar.Init ();
 			labelStyle = new GUIStyle ();
 			labelStyle.stretchWidth = true;
 			labelStyle.stretchHeight = true;
@@ -145,7 +143,7 @@ namespace QuickExit {
 		}
 			
 		protected override void OnDestroy() {
-			if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
+			//if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
 			Log ("OnDestroy", "QExit");
 		}
 

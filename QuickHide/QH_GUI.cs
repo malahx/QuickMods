@@ -21,6 +21,8 @@ using System;
 using UnityEngine;
 using KSP.Localization;
 
+using ClickThroughFix;
+
 namespace QuickHide {
 
 	public partial class QHide {
@@ -151,7 +153,7 @@ namespace QuickHide {
 			}
 			GUI.skin = HighLogic.Skin;
 			RefreshStyle ();
-			RectSettings = GUILayout.Window (1584654, RectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
+			RectSettings = ClickThruBlocker.GUILayoutWindow (1584654, RectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
 		}
 
 		void DrawSettings(int id) {

@@ -50,38 +50,38 @@ namespace QuickGoTo {
 		public string GetText(GoTo goTo, bool force = false) {
 			switch (goTo) {
 			case GoTo.TrackingStation:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_ts");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_ts");
 			case GoTo.SpaceCenter:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_sc");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_sc");
 			case GoTo.MissionControl:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_mc");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_mc");
 			case GoTo.Administration:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_admin");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_admin");
 			case GoTo.RnD:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_rnd");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_rnd");
 			case GoTo.AstronautComplex:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_ac");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_ac");
 			case GoTo.VAB:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_vab");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_vab");
 			case GoTo.SPH:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_sph");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_sph");
 			case GoTo.LastVessel:
 				QData _lastVessel = LastVesselLastIndex ();
-				return Localizer.Format("quickgoto_goto") + (_lastVessel != null && !force ? Localizer.Format("quickgoto_vessle") + _lastVessel.protoVessel.vesselName : Localizer.Format("quickgoto_lastVessel"));
+                    return Localizer.Format("quickgoto_goto") + " " + (_lastVessel != null && !force ? Localizer.Format("quickgoto_vessle") + _lastVessel.protoVessel.vesselName : Localizer.Format("quickgoto_lastVessel"));
 			case GoTo.Recover:
-				return Localizer.Format("quickgoto_recover");
+                    return Localizer.Format("quickgoto_recover");
 			case GoTo.Revert:
-				return Localizer.Format("quickgoto_revert") + Localizer.Format("quickgoto_launch");
+                    return Localizer.Format("quickgoto_revert") + " " + Localizer.Format("quickgoto_launch");
 			case GoTo.RevertToEditor:
-				return Localizer.Format("quickgoto_revert") + Localizer.Format("quickgoto_editor");
+                    return Localizer.Format("quickgoto_revert") + " " + Localizer.Format("quickgoto_editor");
 			case GoTo.RevertToSpaceCenter:
-				return Localizer.Format("quickgoto_revert") + Localizer.Format("quickgoto_sc");
+                    return Localizer.Format("quickgoto_revert") + " " + Localizer.Format("quickgoto_sc");
 			case GoTo.MainMenu:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_mainMenu");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_mainMenu");
 			case GoTo.Settings:
-				return Localizer.Format("quickgoto_goto") + Localizer.Format("quickgoto_toSettings");
+                    return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_toSettings");
 			case GoTo.Configurations:
-				return MOD + Localizer.Format("quickgoto_settings");
+                    return MOD + Localizer.Format("quickgoto_settings");
 			}
 			return string.Empty;
 		}

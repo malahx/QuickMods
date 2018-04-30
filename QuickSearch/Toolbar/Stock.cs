@@ -20,43 +20,22 @@ using KSP.UI.Screens;
 using QuickSearch.QUtils;
 using UnityEngine;
 
+using ToolbarControl_NS;
+
 namespace QuickSearch.Toolbar {
 	
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
 	public class QStock : MonoBehaviour {
 
-		public static bool Enabled {
-			get {
-				return QSettings.Instance.StockToolBar;
-			}
-		}
-
-		static bool CanUseIt {
-			get {
-				return (HighLogic.LoadedScene == GameScenes.SPACECENTER && QSettings.Instance.RnDSearch) || (HighLogic.LoadedSceneIsEditor && QSettings.Instance.EditorSearch);
-			}
-		}
-		
 		static ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;
 
 		void OnClick() { 
 			QuickSearch.instancedSettings();
 		}
+        
+        ToolbarControl toolbarControl;
 
-		ApplicationLauncherButton appLauncherButton;
-
-		public static bool isAvailable {
-			get {
-				return ApplicationLauncher.Ready && ApplicationLauncher.Instance != null;
-			}
-		}
-
-		public static bool isActive {
-			get {
-				return Instance != null && isAvailable;
-			}
-		}
-		public static QStock Instance {
+        public static QStock Instance {
 			get;
 			private set;
 		}
@@ -68,89 +47,64 @@ namespace QuickSearch.Toolbar {
 			}
 			Instance = this;
 			DontDestroyOnLoad (Instance);
-			GameEvents.onGUIApplicationLauncherReady.Add (AppLauncherReady);
-			GameEvents.onGUIApplicationLauncherDestroyed.Add (AppLauncherDestroyed);
-			GameEvents.onLevelWasLoadedGUIReady.Add (AppLauncherDestroyed);
-			QDebug.Log ("Awake", "QStockToolbar");
+
+            Init();
+
+            QDebug.Log ("Awake", "QStockToolbar");
 		}
 
 		void Start() { 
 			QDebug.Log ("Start", "QStockToolbar");
 		}
 
-		void AppLauncherReady() {
-			if (!Enabled) {
-				return;
-			}
-			Init ();
-			QDebug.Log ("AppLauncherReady", "QStockToolbar");
-		}
 
-		void AppLauncherDestroyed(GameScenes gameScene) {
-			if (CanUseIt) {
-				return;
-			}
-			AppLauncherDestroyed ();
-		}
-		
-		void AppLauncherDestroyed() {
-			Destroy ();
-			QDebug.Log ("AppLauncherDestroyed", "QStockToolbar");
-		}
+        internal const string MODID = "QuickSearch_NS";
+        internal const string MODNAME = "QuickSearch";
+        void Init() {
 
-		void OnDestroy() {
-			GameEvents.onGUIApplicationLauncherReady.Remove (AppLauncherReady);
-			GameEvents.onGUIApplicationLauncherDestroyed.Remove (AppLauncherDestroyed);
-			GameEvents.onLevelWasLoadedGUIReady.Remove (AppLauncherDestroyed);
-			QDebug.Log ("OnDestroy", "QStockToolbar");
-		}
-
-		void Init() {
-			if (!isAvailable || !CanUseIt) {
-				return;
-			}
-			if (appLauncherButton == null) {
-				appLauncherButton = ApplicationLauncher.Instance.AddModApplication (OnClick, OnClick, null, null, null, null, AppScenes, QUtils.Texture.Stocktoolbar);
-			}
-			QDebug.Log ("Init", "QStockToolbar");
-		}
-
-		void Destroy() {
-			if (appLauncherButton != null) {
-				ApplicationLauncher.Instance.RemoveModApplication (appLauncherButton);
-				appLauncherButton = null;
-			}
-			QDebug.Log ("Destroy", "QStockToolbar");
+            if (toolbarControl == null)
+            {
+                if (HighLogic.CurrentGame != null && HighLogic.CurrentGame.Mode != Game.Modes.CAREER && HighLogic.CurrentGame.Mode != Game.Modes.SCIENCE_SANDBOX)
+                {
+                    AppScenes = ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;
+                    QDebug.Warning("Hide applauncher on the SpaceCenter", "QStockToolbar");
+                }
+                else
+                {
+                    AppScenes = ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;
+                }
+                toolbarControl = gameObject.AddComponent<ToolbarControl>();
+                toolbarControl.AddToAllToolbars(OnClick, OnClick,
+                    AppScenes,
+                    MODID,
+                    "quickSearchButton",
+                    QUtils.Texture.STOCKTOOLBAR_PATH,
+                    QUtils.Texture.BLIZZY_PATH,
+                    MODNAME
+                );
+            }
+            QDebug.Log ("Init", "QStockToolbar");
 		}
 
 		internal void Set(bool SetTrue, bool force = false) {
-			if (!isAvailable) {
-				return;
-			}
-			if (appLauncherButton != null) {
+			if (toolbarControl != null) {
 				if (SetTrue) {
-					if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.False) {
-						appLauncherButton.SetTrue (force);
-					}
+                        toolbarControl.SetTrue (force);
 				} else {
-					if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.True) {
-						appLauncherButton.SetFalse (force);
-					}
+                        toolbarControl.SetFalse (force);
 				}
 			}
 			QDebug.Log ("Set: " + SetTrue + " force: " + force, "QStockToolbar");
 		}
 
 		internal void Reset() {
-			if (appLauncherButton != null) {
-				Set (false);
-				if (!Enabled) {
-					Destroy ();
-				}
-			}
-			if (Enabled) {
+            if (toolbarControl != null)
+            {
+                Set(false);
+            }
+            else
 				Init ();
-			}
+			
 			QDebug.Log ("Reset", "QStockToolbar");
 		}
 
@@ -164,9 +118,14 @@ namespace QuickSearch.Toolbar {
 			if (QStock.Instance == null) {
 				return;
 			}
-			if (QStock.Instance.appLauncherButton != null) {
-				QStock.Instance.appLauncherButton.VisibleInScenes = AppScenes;
-			}
+            if (QStock.Instance.toolbarControl != null)
+            {
+                QStock.Instance.toolbarControl.OnDestroy();
+                Destroy(QStock.Instance.toolbarControl﻿﻿);
+                QStock.Instance.toolbarControl﻿﻿ = null;
+            }
+            QStock.Instance.Init();
+
 			QDebug.Log ("ResetScenes", "QStockToolbar");
 		}
 	}

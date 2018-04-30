@@ -17,7 +17,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -54,30 +54,8 @@
     <None Include="COPYING" />
     <None Include="QuickContracts.version" />
     <None Include="README.md" />
-    <None Include="GameData\QuickMods\QuickContracts\COPYING" />
-    <None Include="GameData\QuickMods\QuickContracts\Plugins\QuickContracts.dll" />
-    <None Include="GameData\QuickMods\QuickContracts\QuickContracts.version" />
-    <None Include="GameData\QuickMods\QuickContracts\README.md" />
-    <None Include="GameData\QuickMods\QuickContracts\Textures\Settings.dds" />
     <None Include="Lang\en-us.cfg" />
     <None Include="Lang\fr-fr.cfg" />
-    <None Include="GameData\QuickMods\QuickContracts\Lang\en-us.cfg" />
-    <None Include="GameData\QuickMods\QuickContracts\Lang\fr-fr.cfg" />
-  </ItemGroup>
-  <ItemGroup />
-  <ItemGroup>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>r:\KSP_1.3.1_dev\KSP_x64_Data\Managed\System.dll</HintPath>
-    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Content Include="AssemblyVersion.tt">
@@ -88,12 +66,27 @@
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Assembly-CSharp">
+      <HintPath>R:\KSP_1.4.1_dev\KSP_x64_Data\Managed\Assembly-CSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="ClickThroughBlocker">
+      <HintPath>R:\KSP_1.4.1_dev\GameData\ClickThroughBlocker\Plugins\ClickThroughBlocker.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="UnityEngine">
+      <HintPath>R:\KSP_1.4.1_dev\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>R:\KSP_1.4.1_dev\KSP_x64_Data\Managed\UnityEngine.UI.dll</HintPath>
+    </Reference>
+  </ItemGroup>
   <PropertyGroup>
     <PreBuildEvent>set textTemplatingPath="%25ProgramFiles(x86)%25\Microsoft Visual Studio\2017\Community\Common7\IDE\texttransform.exe"
 
 %25textTemplatingPath%25 "$(ProjectDir)AssemblyVersion.tt"</PreBuildEvent>
   </PropertyGroup>
   <PropertyGroup>
-    <PostBuildEvent>start /D D:\Users\jbb\github\QuickMods /WAIT install.bat   $(TargetDir) $(TargetFileName) $(ProjectName)</PostBuildEvent>
+    <PostBuildEvent>start /D D:\Users\jbb\github\QuickMods /WAIT deploy.bat   $(TargetDir) $(TargetFileName) $(ProjectName) $(ProjectDir)</PostBuildEvent>
   </PropertyGroup>
 </Project>

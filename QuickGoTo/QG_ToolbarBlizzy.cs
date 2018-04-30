@@ -1,4 +1,5 @@
-﻿/* 
+﻿
+/* 
 QuickGoTo
 Copyright 2017 Malah
 

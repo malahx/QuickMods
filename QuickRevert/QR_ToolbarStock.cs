@@ -19,41 +19,19 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.UI.Screens;
 using UnityEngine;
 
+using ToolbarControl_NS;
 namespace QuickRevert {
 	public partial class QStockToolbar  {
 
-		internal static bool Enabled {
-			get {
-				return QSettings.Instance.StockToolBar;
-			}
-		}
-
-		static bool CanUseIt {
-			get {
-				return HighLogic.LoadedScene == GameScenes.SPACECENTER;
-			}
-		}
-		
-		internal ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER;
+        internal ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER;
 		static string TexturePath = relativePath + "/Textures/StockToolBar";
 
 		void OnClick() { 
 			QGUI.Instance.Settings ();
 		}
-			
-		Texture2D GetTexture {
-			get {
-				return GameDatabase.Instance.GetTexture(TexturePath, false);
-			}
-		}
 
-		internal ApplicationLauncherButton appLauncherButton;
+        ToolbarControl toolbarControl = null;
 
-		internal static bool isAvailable {
-			get {
-				return ApplicationLauncher.Ready && ApplicationLauncher.Instance != null;
-			}
-		}
 
 		internal static QStockToolbar Instance {
 			get;
@@ -67,9 +45,9 @@ namespace QuickRevert {
 			}
 			Instance = this;
 			DontDestroyOnLoad (Instance);
-			GameEvents.onGUIApplicationLauncherReady.Add (AppLauncherReady);
-			GameEvents.onGUIApplicationLauncherDestroyed.Add (AppLauncherDestroyed);
-			GameEvents.onLevelWasLoadedGUIReady.Add (AppLauncherDestroyed);
+
+            Init();
+
 			Log ("Awake", "QStockToolbar");
 		}
 
@@ -77,81 +55,51 @@ namespace QuickRevert {
 			Log ("Start", "QStockToolbar");
 		}
 			
-		void AppLauncherReady() {
-			if (!Enabled) {
-				return;
-			}
-			Init ();
-			Log ("AppLauncherReady", "QStockToolbar");
-		}
 
-		void AppLauncherDestroyed(GameScenes gameScene) {
-			if (CanUseIt) {
-				return;
-			}
-			Destroy ();
-			Log ("onLevelWasLoadedGUIReady", "QStockToolbar");
-		}
-		
-		void AppLauncherDestroyed() {
-			Destroy ();
-			Log ("onGUIApplicationLauncherDestroyed", "QStockToolbar");
-		}
 
-		protected override void OnDestroy() {
-			GameEvents.onGUIApplicationLauncherReady.Remove (AppLauncherReady);
-			GameEvents.onGUIApplicationLauncherDestroyed.Remove (AppLauncherDestroyed);
-			GameEvents.onLevelWasLoadedGUIReady.Remove (AppLauncherDestroyed);
-			Log ("OnDestroy", "QStockToolbar");
-		}
+        internal const string MODID = "QuickRevert_NS";
+        internal const string MODNAME = "QuickRevert";
+        internal void Init() {
+            Debug.Log("QuickRevert.Init");
 
-		internal void Init() {
-			if (!isAvailable || !CanUseIt) {
-				return;
-			}
-			if (appLauncherButton == null) {
-				appLauncherButton = ApplicationLauncher.Instance.AddModApplication (OnClick, OnClick, null, null, null, null, AppScenes, GetTexture);
-			}
-			Log ("Init", "QStockToolbar");
-		}
-
-		internal void Destroy() {
-			if (appLauncherButton == null) {
-				return;
-			}
-			ApplicationLauncher.Instance.RemoveModApplication (appLauncherButton);
-			appLauncherButton = null;
-			Log ("Destroy", "QStockToolbar");
+            if (toolbarControl == null)
+            {
+                toolbarControl = gameObject.AddComponent<ToolbarControl>();
+                toolbarControl.AddToAllToolbars(OnClick, OnClick,
+                    AppScenes,
+                    MODID,
+                    "﻿quickRevertButton",
+                    TexturePath,
+                    QuickRevert.relativePath + "/Textures/BlizzyToolBar",
+                    MODNAME
+                );
+                Debug.Log("QuickRevert.Init toolbar created");
+            }
+            Log ("Init", "QStockToolbar");
 		}
 
 		internal void Set(bool SetTrue, bool force = false) {
-			if (!isAvailable) {
-				return;
-			}
-			if (appLauncherButton != null) {
+
+			if (toolbarControl != null) {
 				if (SetTrue) {
-					if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.False) {
-						appLauncherButton.SetTrue (force);
-					}
+					//if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.False) {
+                        toolbarControl.SetTrue (force);
+					//}
 				} else {
-					if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.True) {
-						appLauncherButton.SetFalse (force);
-					}
+					//if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.True) {
+                        toolbarControl.SetFalse (force);
+					//}
 				}
 			}
 			Log ("Set " + SetTrue + " force: " + force, "QStockToolbar");
 		}
 
 		internal void Reset() {
-			if (appLauncherButton != null) {
+			if (toolbarControl != null) 
 				Set (false);
-				if (!Enabled) {
-					Destroy ();
-				}
-			}
-			if (Enabled) {
+            else
 				Init ();
-			}
+			
 			Log ("Reset", "QStockToolbar");
 		}
 	}

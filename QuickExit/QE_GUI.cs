@@ -20,6 +20,8 @@ using System;
 using KSP.Localization;
 using UnityEngine;
 
+using ClickThroughFix;
+
 namespace QuickExit {
 
 	public partial class QExit {
@@ -91,7 +93,7 @@ namespace QuickExit {
 			SettingsSwitch ();
 			if (!WindowSettings) {
 				QStockToolbar.Instance.Reset ();
-				QExit.BlizzyToolbar.Reset ();
+				//QExit.BlizzyToolbar.Reset ();
 				QSettings.Instance.Save ();
 			}
 			Log ("Settings", "QExit");
@@ -135,7 +137,7 @@ namespace QuickExit {
 		void OnGUI() {
 			if (WindowSettings) {
 				GUI.skin = HighLogic.Skin;
-				RectSettings = GUILayout.Window (1248597845, RectSettings, DrawSettings, MOD + " " + VERSION);
+				RectSettings = ClickThruBlocker.GUILayoutWindow (1248597845, RectSettings, DrawSettings, MOD + " " + VERSION);
 			} 
 			if (IsTryExit) {
 				GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), labelStyle);
@@ -149,18 +151,8 @@ namespace QuickExit {
 			GUILayout.BeginHorizontal();
 			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickexit_stockTB"), GUILayout.Width(400));
 			GUILayout.EndHorizontal();
-			if (QSettings.Instance.StockToolBar) {
-				GUILayout.BeginHorizontal ();
-				GUILayout.Space (30);
-				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, Localizer.Format("quickexit_instock", MOD), GUILayout.Width (370));
-				GUILayout.EndHorizontal ();
-			}
-			if (QBlizzyToolbar.isAvailable) {
-				GUILayout.BeginHorizontal();
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickexit_blizzyTB"), GUILayout.Width(400));
-				GUILayout.EndHorizontal();
-			}
-			GUILayout.BeginHorizontal();
+
+            GUILayout.BeginHorizontal();
 			QSettings.Instance.AutomaticSave = GUILayout.Toggle (QSettings.Instance.AutomaticSave, Localizer.Format("quickexit_automaticSave"), GUILayout.Width(400));
 			GUILayout.EndHorizontal();
 			GUILayout.BeginHorizontal();
