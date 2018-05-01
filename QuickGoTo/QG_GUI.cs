@@ -22,7 +22,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using KSP.Localization;
-//using ClickThroughFix;
+using ClickThroughFix;
 
 namespace QuickGoTo {
 
@@ -76,7 +76,7 @@ namespace QuickGoTo {
 		bool windowGoTo = false;
 		public bool WindowGoTo {
 			get {
-				return windowGoTo || (keepGoTo && QSettings.Instance.StockToolBar_OnHover);
+                return windowGoTo || (keepGoTo && QSettings.Instance.StockToolBar_OnHover);
 			}
 			set {
 				if (QStockToolbar.Instance.isActive && QSettings.Instance.StockToolBar_OnHover && windowGoTo && !value) {
@@ -84,7 +84,7 @@ namespace QuickGoTo {
 					keepDate = DateTime.Now;
 				}
 				windowGoTo = value;
-			}
+            }
 		}
 
 		public bool WindowSettings = false;
@@ -415,8 +415,9 @@ namespace QuickGoTo {
 				keepGoTo = false;
 			} else {
 				WindowGoTo = false;
-			}
-			Lock (WindowGoTo, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI);
+            }
+
+            Lock(WindowGoTo, ControlTypes.KSC_ALL | ControlTypes.TRACKINGSTATION_UI);
 			Log ("HideGoTo force: " + force, "QGUI");
 		}
 
@@ -439,7 +440,7 @@ namespace QuickGoTo {
 			}
 			if (WindowSettings) {
 				Rect _rect = RectSettings;
-				RectSettings = GUILayout.Window (1584654, _rect, DrawSettings, MOD + " " + VERSION, GUILayout.Width (_rect.width), GUILayout.ExpandHeight (true));
+				RectSettings = ClickThruBlocker.GUILayoutWindow (1584654, _rect, DrawSettings, MOD + " " + VERSION, GUILayout.Width (_rect.width), GUILayout.ExpandHeight (true));
 			}
 			if (WindowGoTo) {
 				if (QStockToolbar.Instance.isActive) {
@@ -449,10 +450,11 @@ namespace QuickGoTo {
 					}
 				}
 				GUI.color = guiColor;
-				RectGoTo = GUILayout.Window (1584664, RectGoTo, DrawGoTo, "GoTo", GoToWindowStyle);
+				RectGoTo = ClickThruBlocker.GUILayoutWindow (1584664, RectGoTo, DrawGoTo, "GoTo", GoToWindowStyle);
 				if (keepGoTo) {
 					if ((DateTime.Now - keepDate).TotalSeconds > 1) {
-						keepGoTo = false;
+                        HideGoTo(true);
+                        //keepGoTo = false;
 					}
 					if (QStockToolbar.Instance.isHovering) {
 						keepDate = DateTime.Now;
