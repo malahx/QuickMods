@@ -24,18 +24,18 @@
 1:QuickMods, QuickMods.version
 
 # 2:PROJNAME, PROJFILE, VERSIONFILE, PLUGINSFOLDER
-2:QuickBrake,QuickBrake/QuickBrake.csproj,QuickBrake/QuickBrake.version,GameData/QuickBrake/Plugins
-2:QuickContracts,QuickContracts/QuickContracts.csproj,QuickContracts/QuickContracts.version,GameData/QuickContracts/Plugins
-2:QuickCursorHider,QuickCursorHider/QuickCursorHider.csproj,QuickCursorHider/QuickCursorHider.version,GameData/QuickCursorHider/Plugins
-2:QuickExit,QuickExit/QuickExit.csproj,QuickExit/QuickExit.version,GameData/QuickExit/Plugins
-2:QuickFineControl,QuickFineControl/QuickFineControl.csproj,QuickFineControl/QuickFineControl.version,GameData/QuickFineControl/Plugins
-2:QuickGoTo,QuickGoTo/QuickGoTo.csproj,QuickGoTo/QuickGoTo.version,GameData/QuickGoTo/Plugins
-2:QuickHide,QuickHide/QuickHide.csproj,QuickHide/QuickHide.version,GameData/QuickHide/Plugins
-2:QuickIVA,QuickIVA/QuickIVA.csproj,QuickIVA/QuickIVA.version,GameData/QuickIVA/Plugins
-2:QuickMute,QuickMute/QuickMute.csproj,QuickMute/QuickMute.version,GameData/QuickMute/Plugins
-2:QuickRevert,QuickRevert/QuickRevert.csproj,QuickRevert/QuickRevert.version,GameData/QuickRevert/Plugins
-2:QuickSAS,QuickSAS/QuickSAS.csproj,QuickSAS/QuickSAS.version,GameData/QuickSAS/Plugins
-2:QuickStart,QuickStart/QuickStart.csproj,QuickStart/QuickStart.version,GameData/QuickStart/Plugins
+2:QuickBrake,QuickBrake/QuickBrake.csproj,QuickBrake/QuickBrake.version,GameData/QuickMods/QuickBrake/Plugins
+2:QuickContracts,QuickContracts/QuickContracts.csproj,QuickContracts/QuickContracts.version,GameData/QuickMods/QuickContracts/Plugins
+2:QuickCursorHider,QuickCursorHider/QuickCursorHider.csproj,QuickCursorHider/QuickCursorHider.version,GameData/QuickMods/QuickCursorHider/Plugins
+2:QuickExit,QuickExit/QuickExit.csproj,QuickExit/QuickExit.version,GameData/QuickMods/QuickExit/Plugins
+2:QuickFineControl,QuickFineControl/QuickFineControl.csproj,QuickFineControl/QuickFineControl.version,GameData/QuickMods/QuickFineControl/Plugins
+2:QuickGoTo,QuickGoTo/QuickGoTo.csproj,QuickGoTo/QuickGoTo.version,GameData/QuickMods/QuickGoTo/Plugins
+2:QuickHide,QuickHide/QuickHide.csproj,QuickHide/QuickHide.version,GameData/QuickMods/QuickHide/Plugins
+2:QuickIVA,QuickIVA/QuickIVA.csproj,QuickIVA/QuickIVA.version,GameData/QuickMods/QuickIVA/Plugins
+2:QuickMute,QuickMute/QuickMute.csproj,QuickMute/QuickMute.version,GameData/QuickMods/QuickMute/Plugins
+2:QuickRevert,QuickRevert/QuickRevert.csproj,QuickRevert/QuickRevert.version,GameData/QuickMods/QuickRevert/Plugins
+2:QuickSAS,QuickSAS/QuickSAS.csproj,QuickSAS/QuickSAS.version,GameData/QuickMods/QuickSAS/Plugins
+2:QuickStart,QuickStart/QuickStart.csproj,QuickStart/QuickStart.version,GameData/QuickMods/QuickStart/Plugins
 
 # 3:SOURCEFILE, DESTDIR
 3:QuickMods.version,GameData/QuickMods
