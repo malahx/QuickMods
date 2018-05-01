@@ -26,21 +26,17 @@ namespace QuickIVA {
 
 		internal static bool WindowSettings = false;
 		static Rect RectSettings = new Rect();
-		//internal static QBlizzyToolbar BlizzyToolbar;
 
 		protected override void Awake() {
 			RectSettings = new Rect ((Screen.width - 515)/2, (Screen.height - 450)/2, 515, 450);
-			//if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
 			Log ("Awake", "QGUI");
 		}
 
 		protected override void Start() {
-			//BlizzyToolbar.Init ();
 			Log ("Start", "QGUI");
 		}
 
 		protected override void OnDestroy() {
-			//BlizzyToolbar.Destroy ();
 			Log ("OnDestroy", "QGUI");
 		}
 

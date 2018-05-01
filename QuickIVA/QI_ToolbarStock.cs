@@ -46,7 +46,7 @@ namespace QuickIVA {
 				return;
 			}
 			Instance = this;
-			DontDestroyOnLoad (Instance);
+			DontDestroyOnLoad (this);
 
             Init();
 			Log ("Awake", "QStockToolbar");
@@ -69,6 +69,7 @@ namespace QuickIVA {
                     QuickIVA.relativePath + "/Textures/BlizzyToolBar",
                     MODNAME
                 );
+                Log("toolbarControl Init", "QStockToolbar");
             }
 
             Log("Init", "QStockToolbar");
@@ -77,13 +78,9 @@ namespace QuickIVA {
 		internal void Set(bool SetTrue, bool force = false) {
 			if (toolbarControl != null) {
 				if (SetTrue) {
-                    //if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.False) {
                     toolbarControl.SetTrue (force);
-					//}
 				} else {
-                    //if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.True) {
                     toolbarControl.SetFalse (force);
-					//}
 				}
 			}
 			Log ("Set " + SetTrue + " force: " + force, "QStockToolbar");
