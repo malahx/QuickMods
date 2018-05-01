@@ -22,7 +22,7 @@ using UnityEngine;
 using ToolbarControl_NS;
 
 namespace QuickIVA {
-	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
 	public class QStockToolbar : QuickIVA {
 
 

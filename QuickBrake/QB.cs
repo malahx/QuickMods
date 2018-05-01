@@ -27,7 +27,7 @@ namespace QuickBrake {
 	[KSPAddon(KSPAddon.Startup.Flight, false)]
 	public partial class QBrake : QuickBrake {}
 		
-	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
 	public partial class QStockToolbar : QuickBrake {}
 
 	public class QuickBrake : MonoBehaviour {

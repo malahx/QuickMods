@@ -75,13 +75,9 @@ namespace QuickBrake
 
 			if (toolbarControl != null) {
 				if (SetTrue) {
-					//if (toolbarControl.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.False) {
                         toolbarControl.SetTrue (force);
-					//}
 				} else {
-					//if (toolbarControl.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.True) {
                         toolbarControl.SetFalse (force);
-					//}
 				}
 			}
 			Log ("Set: " + SetTrue + " " + force, "QStockToolbar");

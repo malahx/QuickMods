@@ -24,7 +24,7 @@ namespace QuickGoTo {
 	[KSPAddon(KSPAddon.Startup.AllGameScenes, false)]
 	public partial class QGoTo : QuickGoTo {}
 
-	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
 	public partial class QStockToolbar : QuickGoTo {}
 
 	public class QuickGoTo : MonoBehaviour {

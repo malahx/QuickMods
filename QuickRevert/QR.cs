@@ -21,10 +21,10 @@ using UnityEngine;
 
 namespace QuickRevert {
 
-	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
 	public partial class QStockToolbar : QuickRevert  { }
 
-	[KSPAddon(KSPAddon.Startup.MainMenu, false)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
 	public partial class QDataReset : QuickRevert { }
 
 	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]

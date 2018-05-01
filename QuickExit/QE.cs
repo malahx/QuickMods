@@ -24,7 +24,7 @@ namespace QuickExit {
 	[KSPAddon(KSPAddon.Startup.EveryScene, false)]
 	public partial class QExit : QuickExit {}
 
-	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
 	public partial class QStockToolbar : QuickExit {}
 
 	public partial class QuickExit : MonoBehaviour {

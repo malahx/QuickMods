@@ -24,7 +24,7 @@ using ToolbarControl_NS;
 
 namespace QuickSearch.Toolbar {
 	
-    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
+    [KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
 	public class QStock : MonoBehaviour {
 
 		static ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.VAB;

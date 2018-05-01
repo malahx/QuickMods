@@ -21,7 +21,7 @@ using UnityEngine;
 
 namespace QuickHide {
 
-	[KSPAddon (KSPAddon.Startup.MainMenu, true)]
+	[KSPAddon (KSPAddon.Startup.SpaceCentre, true)]
 	public partial class QStockToolbar : QuickHide { }
 
 	[KSPAddon(KSPAddon.Startup.AllGameScenes, false)]
