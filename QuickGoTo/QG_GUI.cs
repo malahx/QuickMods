@@ -22,7 +22,7 @@ using System;
 using System.Collections.Generic;
 using UnityEngine;
 using KSP.Localization;
-using ClickThroughFix;
+//using ClickThroughFix;
 
 namespace QuickGoTo {
 
@@ -439,7 +439,7 @@ namespace QuickGoTo {
 			}
 			if (WindowSettings) {
 				Rect _rect = RectSettings;
-				RectSettings = ClickThruBlocker.GUILayoutWindow (1584654, _rect, DrawSettings, MOD + " " + VERSION, GUILayout.Width (_rect.width), GUILayout.ExpandHeight (true));
+				RectSettings = GUILayout.Window (1584654, _rect, DrawSettings, MOD + " " + VERSION, GUILayout.Width (_rect.width), GUILayout.ExpandHeight (true));
 			}
 			if (WindowGoTo) {
 				if (QStockToolbar.Instance.isActive) {
@@ -449,7 +449,7 @@ namespace QuickGoTo {
 					}
 				}
 				GUI.color = guiColor;
-				RectGoTo = ClickThruBlocker.GUILayoutWindow (1584664, RectGoTo, DrawGoTo, "GoTo", GoToWindowStyle);
+				RectGoTo = GUILayout.Window (1584664, RectGoTo, DrawGoTo, "GoTo", GoToWindowStyle);
 				if (keepGoTo) {
 					if ((DateTime.Now - keepDate).TotalSeconds > 1) {
 						keepGoTo = false;
