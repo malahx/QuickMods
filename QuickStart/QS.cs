@@ -23,7 +23,7 @@ namespace QuickStart {
 	[KSPAddon(KSPAddon.Startup.Instantly, true)]
 	public partial class QLoading : MonoBehaviour {}
 
-	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
+	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
 	public partial class QMainMenu : MonoBehaviour {}
 
 	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]

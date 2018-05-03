@@ -40,6 +40,9 @@ Delete the QuickMods/QuickHide folder in your KSP/GameData folder.
 
 #### Changelog
 
+3.2.4
+	Fixed issue when one mod (ie: ToolbarController) has multiple buttons, QuickHide was getting confused
+
 v3.23 - 2017.05.31
 * New: Added support of the stock localisation,
 * New: Deleted support of the LanguagePatches,

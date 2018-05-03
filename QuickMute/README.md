@@ -43,6 +43,9 @@ Delete the QuickMods/QuickMute folder in your KSP/GameData folder.
 
 #### Changelog
 
+1.3.1
+	Fixed nullref which happend after switching several scenes
+
 v1.30 - 2017.05.31
 * New: Added support of the stock localisation,
 * New: Deleted support of the LanguagePatches,

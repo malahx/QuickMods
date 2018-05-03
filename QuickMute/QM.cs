@@ -46,7 +46,7 @@ namespace QuickMute {
                 return;
             }
             Instance = this;
-            //if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy();
+
             GameEvents.onVesselGoOffRails.Add(OnVesselGoOffRails);
             if (System.Math.Abs(GameSettings.MASTER_VOLUME) < float.Epsilon) {
                 GameSettings.MASTER_VOLUME = QSettings.Instance.Master;

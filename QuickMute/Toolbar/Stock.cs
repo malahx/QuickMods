@@ -26,7 +26,7 @@ using ToolbarControl_NS;
 namespace QuickMute.Toolbar
 {
 
-    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
+    [KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
     public class QStock : MonoBehaviour
     {
 
@@ -76,11 +76,12 @@ namespace QuickMute.Toolbar
             get
             {
 
-                var r = toolbarControl.Position;
+                var r = toolbarControl.StockPosition;
                 if (r == null)
                 {
                     return new Rect();
                 }
+
                 return (Rect)r;
             }
         }
@@ -93,10 +94,12 @@ namespace QuickMute.Toolbar
         void OnHover()
         {
             _isHovering = true;
+            QuickMute.Instance.gui.level.OnHover();
         }
         void OnHoverOut()
         {
             _isHovering = false;
+            //QuickMute.Instance.gui.level.Hide();
         }
 
         void OnHide()
@@ -123,8 +126,6 @@ namespace QuickMute.Toolbar
 
         void Init()
         {
-            Debug.Log("QuickMute.Init");
-
             if (toolbarControl == null)
             {
                 toolbarControl = gameObject.AddComponent<ToolbarControl>();

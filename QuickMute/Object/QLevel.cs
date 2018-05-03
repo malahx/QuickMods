@@ -23,8 +23,10 @@ using UnityEngine;
 
 using ClickThroughFix;
 
-namespace QuickMute.Object {
-    public class QLevel {
+namespace QuickMute.Object
+{
+    public class QLevel
+    {
 
         bool keep = false;
         DateTime keepDate = DateTime.Now;
@@ -33,63 +35,81 @@ namespace QuickMute.Object {
         readonly GUIStyle styleSlider;
         readonly GUIStyle styleThumb;
 
-        bool window = false;
-        internal bool Window {
-            get {
-                return window || keep;
+        bool _window = false;
+        internal bool Window
+        {
+            get
+            {
+                return _window || keep;
             }
-            set {
-                if (!value) {
+            set
+            {
+                if (!value)
+                {
                     //if (QStock.Instance != null && QStock.Instance.isActive && window)
-                        if (QStock.Instance != null && window)
-                        {
-                            keep = true;
+                    if (QStock.Instance != null && _window)
+                    {
+                        keep = true;
                         keepDate = DateTime.Now;
                     }
                     dim.position = Vector2.zero;
                 }
-                window = value;
+                _window = value;
             }
         }
 
         Rect dim = new Rect();
-        internal Rect Dim {
-            get {
-                if (dim.IsEmpty()) {
+        internal Rect Dim
+        {
+            get
+            {
+                if (dim.IsEmpty())
+                {
                     dim.x = (Screen.width - dim.width) / 2;
                     dim.y = (Screen.height - dim.height) / 2;
-                    if (QStock.Instance != null/*  && QStock.Instance.isActive */) {
+                    if (QStock.Instance != null/*  && QStock.Instance.isActive */)
+                    {
                         Rect activeButtonPos = QStock.Instance.Position;
-                        if (ApplicationLauncher.Instance.IsPositionedAtTop) {
+                        if (ApplicationLauncher.Instance.IsPositionedAtTop)
+                        {
                             dim.x = activeButtonPos.x - dim.width;
                             dim.y = activeButtonPos.y - activeButtonPos.width / 2;
-                        } else {
+                        }
+                        else
+                        {
                             dim.x = activeButtonPos.x + activeButtonPos.width / 2 - dim.width / 2;
                             dim.y = activeButtonPos.y - dim.height;
                         }
                     }
+
                     QDebug.Log("Dim init", "QLevel");
                 }
                 return dim;
             }
-            set {
+            set
+            {
                 dim = value;
             }
         }
 
-        internal bool mouseIsHover {
-            get {
+        internal bool mouseIsHover
+        {
+            get
+            {
                 return isHovering || QStock.IsHovering();
             }
         }
 
-        internal bool isHovering {
-            get {
+        internal bool isHovering
+        {
+            get
+            {
                 return Window && !Dim.IsEmpty() && Dim.Contains(Mouse.screenPos);
             }
         }
 
-        public QLevel(QVolume volume) {
+        public QLevel(QVolume volume)
+        {
             styleWindow = new GUIStyle(HighLogic.Skin.window);
             styleWindow.padding = new RectOffset();
             styleSlider = new GUIStyle(HighLogic.Skin.verticalSlider);
@@ -99,21 +119,26 @@ namespace QuickMute.Object {
             QDebug.Log("Init", "QLevel");
         }
 
-        internal void OnHover() {
-            if (!QSettings.Instance.Level) {
+        internal void OnHover()
+        {
+            if (!QSettings.Instance.Level)
+            {
                 return;
             }
             Show();
             QDebug.Log("OnHover", "QLevel");
         }
 
-        internal void Hide() {
+        internal void Hide()
+        {
             Hide(false);
         }
 
-        internal void Hide(bool force) {
+        internal void Hide(bool force)
+        {
             Window = false;
-            if (force) {
+            if (force)
+            {
                 keep = false;
             }
             QSettings.Instance.Save();
@@ -121,32 +146,43 @@ namespace QuickMute.Object {
             QDebug.Log("Hide force: " + force, "QLevel");
         }
 
-        internal void Show() {
-            if (window) {
+        internal void Show()
+        {
+            if (_window)
+            {
                 return;
             }
             Window = true;
             QDebug.Log("Show", "QLevel");
         }
 
-        public void Render() {
-            if (!Window) {
+        public void Render()
+        {
+            if (!Window)
+            {
                 return;
             }
             Dim = ClickThruBlocker.GUILayoutWindow(1584665, Dim, Draw, "Level", styleWindow);
-            if (keep) {
-                if ((DateTime.Now - keepDate).TotalSeconds > 1) {
+
+            if (keep)
+            {
+                if ((DateTime.Now - keepDate).TotalSeconds > 1)
+                {
                     keep = false;
                 }
-                if (mouseIsHover) {
+                if (mouseIsHover)
+                {
                     keepDate = DateTime.Now;
                 }
-            } else if (!mouseIsHover) {
+            }
+            else if (!mouseIsHover)
+            {
                 Hide();
             }
         }
 
-        void Draw(int id) {
+        void Draw(int id)
+        {
             GUILayout.BeginVertical();
             GUILayout.BeginHorizontal();
             GUILayout.Space(17);

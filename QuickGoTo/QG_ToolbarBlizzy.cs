@@ -150,13 +150,13 @@ namespace QuickGoTo {
 				ButtonSC.Enabled = HighLogic.LoadedScene != GameScenes.SPACECENTER;
 				ButtonSC.OnClick += (e) => QGoTo.Instance.spaceCenter ();
 			}
-			if (QSettings.Instance.EnableGoToVAB && ButtonVAB == null) {
+			if (QSettings.Instance.EnableGoToVAB && ButtonVAB == null && !HighLogic.LoadedSceneIsEditor) {
 				ButtonVAB = ToolbarManager.Instance.add (QuickGoTo.MOD + "VAB", QuickGoTo.MOD + "VAB");
 				ButtonVAB.TexturePath = VAB_TexturePath;
 				ButtonVAB.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.VAB);
 				ButtonVAB.OnClick += (e) => QGoTo.Instance.VAB ();
 			}
-			if (QSettings.Instance.EnableGoToSPH && ButtonSPH == null) {
+			if (QSettings.Instance.EnableGoToSPH && ButtonSPH == null && !HighLogic.LoadedSceneIsEditor) {
 				ButtonSPH = ToolbarManager.Instance.add (QuickGoTo.MOD + "SPH", QuickGoTo.MOD + "SPH");
 				ButtonSPH.TexturePath = SPH_TexturePath;
 				ButtonSPH.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.SPH);

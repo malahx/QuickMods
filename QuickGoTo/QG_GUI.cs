@@ -598,7 +598,7 @@ namespace QuickGoTo {
 			}
 
 			if (HighLogic.CurrentGame.Parameters.Flight.CanLeaveToEditor || !HighLogic.LoadedSceneIsFlight) {
-				if (QSettings.Instance.EnableGoToVAB) {
+				if (QSettings.Instance.EnableGoToVAB && !HighLogic.LoadedSceneIsEditor) {
 					if (!CanEditor (EditorFacility.VAB)) {
 						GUI.enabled = false;
 					}
@@ -610,7 +610,7 @@ namespace QuickGoTo {
 					GUILayout.EndHorizontal ();
 					GUI.enabled = !_lockHover;
 				}
-				if (QSettings.Instance.EnableGoToSPH) {
+				if (QSettings.Instance.EnableGoToSPH && !HighLogic.LoadedSceneIsEditor) {
 					if (!CanEditor (EditorFacility.SPH)) {
 						GUI.enabled = false;
 					}

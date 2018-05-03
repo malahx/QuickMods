@@ -43,13 +43,13 @@ namespace QuickMute.Object {
 
         internal static string BlizzyTexturePath {
             get {
-                var st =  QSettings.Instance.Muted ? BLIZZY_PATH_MUTE : 
+                return QSettings.Instance.Muted ? BLIZZY_PATH_MUTE : 
                         QuickMute.Instance.volume.Master > 0.75 ? BLIZZY_PATH_HIGH : 
                         QuickMute.Instance.volume.Master > 0.25 ? BLIZZY_PATH_MEDIUM : 
                         QuickMute.Instance.volume.Master > 0.01 ? BLIZZY_PATH_LOW : 
                         BLIZZY_PATH_ZERO;
-                Debug.Log("BlizzyTexturePath: " + st);
-                return st;
+
+ 
             }
         }
 
@@ -75,13 +75,11 @@ namespace QuickMute.Object {
                 if (stockMute == null) {
                     stockMute = STOCK_PATH_MUTE;
                 }
-                var st =  QSettings.Instance.Muted ? stockMute : 
+                return QSettings.Instance.Muted ? stockMute : 
                         QuickMute.Instance.volume.Master > 0.75 ? stockHigh : 
                         QuickMute.Instance.volume.Master > 0.25 ? stockMedium : 
                         QuickMute.Instance.volume.Master > 0.01 ? stockLow : 
                         stockZero;
-                Debug.Log("StockTexture: " + st);
-                return st;
             }
         }
 

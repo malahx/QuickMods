@@ -189,6 +189,7 @@ namespace QuickHide {
 			if (!QStockToolbar.isAvailable || (!First && !force)) {
 				return;
 			}
+
 			Log ("Begin PopulateAppLauncherButtons", "QHide");
 			bool _cansave = false;
 			ApplicationLauncherButton[] _appLauncherButtons = (ApplicationLauncherButton[])Resources.FindObjectsOfTypeAll (typeof (ApplicationLauncherButton));

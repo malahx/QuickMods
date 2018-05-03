@@ -171,8 +171,10 @@ namespace QuickHide {
 			if (button == null) {
 				return "None";
 			}
-			return button.onTrue.Method.Module.Assembly.GetName ().Name;
-		}
+            return button.onTrue.Method.Module.Assembly.GetName().Name +
+                button.GetInstanceID().ToString();
+
+        }
 		internal static string GetAppRef(ApplicationLauncherButton button) {
 			if (button == null) {
 				return "None";

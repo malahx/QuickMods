@@ -55,6 +55,7 @@ Delete the QuickMods/QuickGoTo folder in your KSP/GameData folder.
 1.3.4
 	Fixed error where hovering over GoTo button would lock the entire screen and not unlock it unless one of the goto buttons was selected
 	Added support for the ClickThroughBlocker
+	Removed GotoVAB and GoToSPH when in the Editor
 
 v1.33 - 2017.05.31
 * New: Added support of the stock localisation,

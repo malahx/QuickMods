@@ -49,7 +49,7 @@ namespace QuickHide {
 
 		public static string TexturePath {
 			get {
-				return (QSettings.Instance.isHidden ? TexturePathShow : TexturePathHide);
+                return (QSettings.Instance.isHidden ? TexturePathShow : TexturePathHide);
 			}
 		}
 
