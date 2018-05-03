@@ -313,8 +313,10 @@ namespace QuickGoTo {
 			return _lastVessel;
 		}
 
-		IEnumerator loadScene(GameScenes scenes, EditorFacility facility = EditorFacility.None) {
-			yield return new WaitForEndOfFrame ();
+//        IEnumerator loadScene(GameScenes scenes, EditorFacility facility = EditorFacility.None)
+        void loadScene(GameScenes scenes, EditorFacility facility = EditorFacility.None)
+        {
+            //yield return new WaitForEndOfFrame ();
 			if (scenes != GameScenes.EDITOR) {
 				HighLogic.LoadScene (scenes);
 			}
@@ -445,8 +447,9 @@ namespace QuickGoTo {
 				ClearSpaceCenter ();
 				GamePersistence.SaveGame (SaveGame, HighLogic.SaveFolder, SaveMode.OVERWRITE);
 				Log (GetText (GoTo.MainMenu));
-				StartCoroutine (loadScene (GameScenes.MAINMENU));
-				return;
+//                StartCoroutine(loadScene(GameScenes.MAINMENU));
+                loadScene(GameScenes.MAINMENU);
+                return;
 			}
 			screenMSG (GoTo.MainMenu);
 		}
@@ -457,8 +460,9 @@ namespace QuickGoTo {
 				ClearSpaceCenter ();
 				GamePersistence.SaveGame (SaveGame, HighLogic.SaveFolder, SaveMode.OVERWRITE);
 				Log (GetText (GoTo.Settings));
-				StartCoroutine (loadScene (GameScenes.SETTINGS));
-				return;
+//                StartCoroutine(loadScene(GameScenes.SETTINGS));
+                loadScene(GameScenes.SETTINGS);
+                return;
 			}
 			screenMSG (GoTo.Settings);
 		}
@@ -471,8 +475,9 @@ namespace QuickGoTo {
 				//HighLogic.LoadScene	(GameScenes.LOADINGBUFFER);
 				InputLockManager.ClearControlLocks ();
 				Log (GetText (GoTo.TrackingStation));
-				StartCoroutine (loadScene (GameScenes.TRACKSTATION));
-				return;
+//                StartCoroutine(loadScene(GameScenes.TRACKSTATION));
+                loadScene(GameScenes.TRACKSTATION);
+                return;
 			}
 			screenMSG (GoTo.TrackingStation);
 		}
@@ -484,10 +489,11 @@ namespace QuickGoTo {
 			else {
 				GamePersistence.SaveGame (gameBackup, SaveGame, HighLogic.SaveFolder, SaveMode.OVERWRITE);
 			}
-			StartCoroutine (loadScene(GameScenes.SPACECENTER));
-		}
+//            StartCoroutine(loadScene(GameScenes.SPACECENTER));
+            loadScene(GameScenes.SPACECENTER);
+        }
 
-		public void spaceCenter() {
+        public void spaceCenter() {
 			SavedGoTo = GoTo.None;
 			if (CanSpaceCenter) {
 				gotoSpaceCenter ();
@@ -610,10 +616,11 @@ namespace QuickGoTo {
 		void gotoVAB() {
 			ClearSpaceCenter ();
 			GamePersistence.SaveGame (SaveGame, HighLogic.SaveFolder, SaveMode.OVERWRITE);
-			StartCoroutine (loadScene (GameScenes.EDITOR, EditorFacility.VAB));
-		}
+//            StartCoroutine(loadScene(GameScenes.EDITOR, EditorFacility.VAB));
+            loadScene(GameScenes.EDITOR, EditorFacility.VAB);
+        }
 
-		public void VAB() {
+        public void VAB() {
 			SavedGoTo = GoTo.None;
 			if (CanEditor(EditorFacility.VAB)) {
 				gotoVAB ();
@@ -626,10 +633,11 @@ namespace QuickGoTo {
 		void gotoSPH() {
 			ClearSpaceCenter ();
 			GamePersistence.SaveGame (SaveGame, HighLogic.SaveFolder, SaveMode.OVERWRITE);
-			StartCoroutine (loadScene (GameScenes.EDITOR, EditorFacility.SPH));
-		}
+//            StartCoroutine(loadScene(GameScenes.EDITOR, EditorFacility.SPH));
+            loadScene(GameScenes.EDITOR, EditorFacility.SPH);
+        }
 
-		public void SPH() {
+        public void SPH() {
 			SavedGoTo = GoTo.None;
 			if (CanEditor (EditorFacility.SPH)) {
 				gotoSPH ();

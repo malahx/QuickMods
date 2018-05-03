@@ -92,7 +92,7 @@
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <PropertyGroup>
     <PostBuildEvent>start /D D:\Users\jbb\github\QuickMods /WAIT deployCopy.bat   $(TargetDir) $(TargetFileName) $(ProjectName) $(ProjectDir)
-
+del D:\Users\jbb\github\QuickMods\GameData\QuickMods\Plugins
 if $(ConfigurationName) == Release (
 
 	start /D D:\Users\jbb\github\QuickMods /WAIT buildRelease.bat $(TargetDir) $(TargetFileName)
