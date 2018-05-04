@@ -44,7 +44,7 @@ namespace QuickSAS
 				return;
 			}
 			Instance = this;
-			DontDestroyOnLoad (Instance);
+			//DontDestroyOnLoad (Instance);
 
             Init();
 
@@ -69,6 +69,12 @@ namespace QuickSAS
             }
             Log("Init", "QStockToolbar");
 		}
+
+        new void OnDestroy()
+        {
+            toolbarControl.OnDestroy();
+            Destroy(toolbarControl);
+        }
 
 		internal void Set(bool SetTrue, bool force = false) {
 			if (toolbarControl != null) {

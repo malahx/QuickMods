@@ -44,7 +44,7 @@ namespace QuickRevert {
 				return;
 			}
 			Instance = this;
-			DontDestroyOnLoad (Instance);
+			//DontDestroyOnLoad (Instance);
 
             Init();
 
@@ -55,6 +55,11 @@ namespace QuickRevert {
 			Log ("Start", "QStockToolbar");
 		}
 			
+        void OnDestory()
+        {
+            toolbarControl.OnDestroy();
+            Destroy(toolbarControl);
+        }
 
 
         internal const string MODID = "QuickRevert_NS";

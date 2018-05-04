@@ -26,7 +26,7 @@ namespace QuickSAS {
 	[KSPAddon(KSPAddon.Startup.Flight, false)]
 	public partial class QSAS : QuickSAS {}
 		
-	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
 	public partial class QStockToolbar : QuickSAS {}
 
 	public partial class QuickSAS : MonoBehaviour {

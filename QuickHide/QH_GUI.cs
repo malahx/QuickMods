@@ -189,9 +189,11 @@ namespace QuickHide {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quickhide_mods"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
+
 			scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.ExpandWidth(true), GUILayout.Height (300));
 			DrawAppLauncherButtons ();
             GUILayout.EndScrollView();
+
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();

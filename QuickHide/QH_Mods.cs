@@ -17,13 +17,16 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using KSP.UI.Screens;
+using ToolbarControl_NS;
 
 namespace QuickHide {
 	public class QMods {
 		public QMods (ApplicationLauncherButton button) {
 			appLauncherButton = button;
 			AppRef = GetAppRef (appLauncherButton);
-			ModName = GetModName (appLauncherButton);
+            string toolTip;
+			ModName = GetModName (appLauncherButton, out toolTip);
+            ToolTip = toolTip;
 			SaveCurrentAppScenes ();
 			if (!QSettings.Instance.ModHasFirstConfig.Contains (ModName)) {
 				CanBePin = true;
@@ -38,11 +41,17 @@ namespace QuickHide {
 		}
 		ApplicationLauncherButton appLauncherButton;
 		internal ApplicationLauncher.AppScenes AppScenesSaved = ApplicationLauncher.AppScenes.NEVER;
-		internal string ModName {
-			get;
-			private set;
-		}
-		internal string AppRef {
+        internal string ModName
+        {
+            get;
+            private set;
+        }
+        internal string ToolTip
+        {
+            get;
+            private set;
+        }
+        internal string AppRef {
 			get;
 			private set;
 		}
@@ -167,19 +176,27 @@ namespace QuickHide {
 			}
 			return appLauncherButton == button;
 		}
-		internal static string GetModName(ApplicationLauncherButton button) {
+		internal static string GetModName(ApplicationLauncherButton button, out string Tooltip) {
+            Tooltip = "";
 			if (button == null) {
 				return "None";
 			}
+            string nameSpace, id, toolTip;
+            if (ToolbarControl.IsStockButtonManaged(button, out nameSpace, out id, out toolTip))
+            {
+                Tooltip = toolTip;
+                return id +
+                button.GetInstanceID().ToString();
+            }
             return button.onTrue.Method.Module.Assembly.GetName().Name +
                 button.GetInstanceID().ToString();
-
         }
 		internal static string GetAppRef(ApplicationLauncherButton button) {
 			if (button == null) {
 				return "None";
 			}
-			return string.Format("{0} ({1}.{2})", GetModName(button), button.onTrue.Method.DeclaringType.FullName, button.onTrue.Method.Name);
+            string tooltip;
+			return string.Format("{0} ({1}.{2})", GetModName(button, out tooltip), button.onTrue.Method.DeclaringType.FullName, button.onTrue.Method.Name);
 		}
 		internal void SaveCurrentAppScenes() {
 			if (!isActive || isHidden) {

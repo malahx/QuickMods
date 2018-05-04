@@ -92,6 +92,9 @@
       <HintPath>R:\KSP_1.4.1_dev\GameData\ClickThroughBlocker\Plugins\ClickThroughBlocker.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="ToolbarControl">
+      <HintPath>R:\KSP_1.4.1_dev\GameData\001_ToolbarControl\Plugins\ToolbarControl.dll</HintPath>
+    </Reference>
     <Reference Include="UnityEngine">
       <HintPath>R:\KSP_1.4.1_dev\KSP_x64_Data\Managed\UnityEngine.dll</HintPath>
     </Reference>

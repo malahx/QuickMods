@@ -46,7 +46,7 @@ namespace QuickBrake
 				return;
 			}
 			Instance = this;
-			DontDestroyOnLoad (Instance);
+			//DontDestroyOnLoad (Instance);
             Init();
 
             Log("Awake", "QStockToolbar");
@@ -70,6 +70,12 @@ namespace QuickBrake
             }
             Log("Init", "QStockToolbar");
 		}
+
+        void OnDestroy()
+        {
+            toolbarControl.OnDestroy();
+            Destroy(toolbarControl);
+        }
 
 		internal void Set(bool SetTrue, bool force = false) {
 

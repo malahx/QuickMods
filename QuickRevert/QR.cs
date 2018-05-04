@@ -21,7 +21,7 @@ using UnityEngine;
 
 namespace QuickRevert {
 
-	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
 	public partial class QStockToolbar : QuickRevert  { }
 
 	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]

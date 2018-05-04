@@ -22,7 +22,7 @@ using UnityEngine;
 using ToolbarControl_NS;
 
 namespace QuickIVA {
-	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
 	public class QStockToolbar : QuickIVA {
 
 
@@ -46,12 +46,17 @@ namespace QuickIVA {
 				return;
 			}
 			Instance = this;
-			DontDestroyOnLoad (this);
+			//DontDestroyOnLoad (this);
 
             Init();
 			Log ("Awake", "QStockToolbar");
 		}
 
+        new void OnDestroy()
+        {
+            toolbarControl.OnDestroy();
+            Destroy(toolbarControl);
+        }
 
         internal const string MODID = "QuickIVA_NS";
         internal const string MODNAME = "QuickIVA";
