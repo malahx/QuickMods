@@ -36,6 +36,7 @@
 2:QuickRevert,QuickRevert/QuickRevert.csproj,QuickRevert/QuickRevert.version,GameData/QuickMods/QuickRevert/Plugins
 2:QuickSAS,QuickSAS/QuickSAS.csproj,QuickSAS/QuickSAS.version,GameData/QuickMods/QuickSAS/Plugins
 2:QuickStart,QuickStart/QuickStart.csproj,QuickStart/QuickStart.version,GameData/QuickMods/QuickStart/Plugins
+2:QuickSearch,QuickSearch/QuickSearch.csproj,QuickSearch/QuickSearch.version,GameData/QuickMods/QuickSearch/Plugins
 
 # 3:SOURCEFILE, DESTDIR
 3:QuickMods.version,GameData/QuickMods
