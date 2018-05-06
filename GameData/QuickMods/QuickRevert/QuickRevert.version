@@ -3,6 +3,10 @@
 	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickRevert/QuickRevert.version",
 	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickRevert/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/109/QuickRevert",
+    "GITHUB": {
+        "USERNAME": "linuxgurugamer",
+        "REPOSITORY": "QuickMods"
+    },
 	"VERSION": {
 		"MAJOR"			: 3,
 		"MINOR"			: 1,

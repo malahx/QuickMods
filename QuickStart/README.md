@@ -34,6 +34,10 @@ Delete the QuickMods/QuickStart folder in your KSP/GameData folder.
 
 #### Changelog
 
+2.1.5
+	Updated for 1.4.x
+	Added support for the ClickThroughBlocker
+
 v2.14 - 2017.05.31
 * New: Added support of the stock localisation,
 * New: Deleted support of the LanguagePatches,

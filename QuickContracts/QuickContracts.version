@@ -3,6 +3,10 @@
     "URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickContracts/QuickContracts.version",
     "CHANGE_LOG_URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickContracts/README.md",
     "DOWNLOAD": "http://spacedock.info/mod/104/QuickContracts",
+	"GITHUB": {
+        "USERNAME": "linuxgurugamer",
+        "REPOSITORY": "QuickMods"
+    },
     "VERSION": {
         "MAJOR": 1,
         "MINOR": 2,

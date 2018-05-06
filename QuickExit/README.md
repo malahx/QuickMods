@@ -43,6 +43,11 @@ Delete the QuickMods/QuickExit folder in your KSP/GameData folder.
 
 #### Changelog
 
+2.1.4
+	Updated for 1.4.x
+	Added support for the ClickThroughBlocker
+	Added support for the ToolbarController
+
 v2.13 - 2017.05.31
 * New: Added support of the stock localisation,
 * New: Deleted support of the LanguagePatches,

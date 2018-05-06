@@ -40,6 +40,10 @@ Delete the QuickMods/QuickContracts folder in your KSP/GameData folder.
 
 #### Changelog
 
+1.2.4
+	Updated for 1.4.x
+	Added support for the ClickThroughBlocker
+
 v1.23 - 2017.05.31
 * New: Added support of the stock localisation,
 * New: Deleted support of the LanguagePatches,

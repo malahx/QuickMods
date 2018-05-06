@@ -1,30 +1,31 @@
 {
-	"NAME"				: "QuickFineControl",
-	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickFineControl/QuickFineControl.version",
-	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickFineControl/README.md", 
-	"DOWNLOAD"			: "http://spacedock.info/mod/784/QuickFineControl",
-	"VERSION": {
-		"MAJOR"			: 1,
-		"MINOR"			: 0,
-		"PATCH"			: 7,
-		"BUILD"			: 0
-	},
-	"KSP_VERSION": 
-	{
-		"MAJOR": 1,
-		"MINOR": 4,
-		"PATCH": 1
-	},
-	"KSP_VERSION_MIN":
-	{
-		"MAJOR":1,
-		"MINOR":4,
-		"PATCH":1
-	},
-	"KSP_VERSION_MAX":
-	{
-		"MAJOR":1,
-		"MINOR":4,
-		"PATCH":99
-	}
+    "NAME": "QuickFineControl",
+    "URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickFineControl/QuickFineControl.version",
+    "CHANGE_LOG_URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickFineControl/README.md",
+    "DOWNLOAD": "http://spacedock.info/mod/784/QuickFineControl",
+    "GITHUB": {
+        "USERNAME": "linuxgurugamer",
+        "REPOSITORY": "QuickMods"
+    },
+    "VERSION": {
+        "MAJOR": 1,
+        "MINOR": 0,
+        "PATCH": 7,
+        "BUILD": 0
+    },
+    "KSP_VERSION": {
+        "MAJOR": 1,
+        "MINOR": 4,
+        "PATCH": 1
+    },
+    "KSP_VERSION_MIN": {
+        "MAJOR": 1,
+        "MINOR": 4,
+        "PATCH": 1
+    },
+    "KSP_VERSION_MAX": {
+        "MAJOR": 1,
+        "MINOR": 4,
+        "PATCH": 99
+    }
 }

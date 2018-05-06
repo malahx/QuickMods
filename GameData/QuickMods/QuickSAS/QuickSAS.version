@@ -3,6 +3,10 @@
 	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickSAS/QuickSAS.version",
 	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickSAS/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/999/QuickSAS",
+    "GITHUB": {
+        "USERNAME": "linuxgurugamer",
+        "REPOSITORY": "QuickMods"
+    },
 	"VERSION": {
 		"MAJOR"			: 1,
 		"MINOR"			: 1,

@@ -45,6 +45,9 @@ Delete the QuickMods/QuickMute folder in your KSP/GameData folder.
 
 1.3.1
 	Fixed nullref which happend after switching several scenes
+	Updated for 1.4.x
+	Added support for the ClickThroughBlocker
+	Added support for the ToolbarController
 
 v1.30 - 2017.05.31
 * New: Added support of the stock localisation,

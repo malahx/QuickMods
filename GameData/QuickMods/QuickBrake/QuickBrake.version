@@ -3,6 +3,10 @@
     "URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickBrake/QuickBrake.version",
     "CHANGE_LOG_URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickBrake/README.md",
     "DOWNLOAD": "http://spacedock.info/mod/103/QuickBrake",
+	    "GITHUB": {
+        "USERNAME": "linuxgurugamer",
+        "REPOSITORY": "QuickMods"
+    },
     "VERSION": {
         "MAJOR": 1,
         "MINOR": 3,

@@ -61,6 +61,7 @@ Delete the QuickMods/QuickSearch folder in your KSP/GameData folder.
 	Added secondary sort by name for when count or date are equal
 	Added support for the ToolbarControler
 	Added support for the ClickThroughBlocker
+	Updated for 1.4.x
 
 v3.20 - 2017.05.31
 * New: Added support of the stock localisation,

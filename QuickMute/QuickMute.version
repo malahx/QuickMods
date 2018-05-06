@@ -3,6 +3,10 @@
 	"URL"				: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickMute/QuickMute.version",
 	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickMute/README.md", 
 	"DOWNLOAD"			: "http://spacedock.info/mod/108/QuickMute",
+    "GITHUB": {
+        "USERNAME": "linuxgurugamer",
+        "REPOSITORY": "QuickMods"
+    },
 	"VERSION": {
 		"MAJOR"			: 1,
 		"MINOR"			: 3,
