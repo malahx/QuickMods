@@ -71,7 +71,7 @@ namespace QuickBrake
             Log("Init", "QStockToolbar");
 		}
 
-        void OnDestroy()
+        new void OnDestroy()
         {
             toolbarControl.OnDestroy();
             Destroy(toolbarControl);

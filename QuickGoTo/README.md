@@ -59,6 +59,7 @@ Delete the QuickMods/QuickGoTo folder in your KSP/GameData folder.
 	Added support for the ClickThroughBlocker
 	Removed GotoVAB and GoToSPH when in the Editor
 	Removed the CoRoutine, was causing hard crashes
+	Fixed issue where buttons were extending outside the screen, making them inaccessable (in flight scene)
 
 v1.33 - 2017.05.31
 * New: Added support of the stock localisation,

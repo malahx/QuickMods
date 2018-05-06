@@ -16,6 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using UnityEngine;
 using KSP.UI.Screens;
 using ToolbarControl_NS;
 
@@ -25,9 +26,10 @@ namespace QuickHide {
 			appLauncherButton = button;
 			AppRef = GetAppRef (appLauncherButton);
             string toolTip;
-			ModName = GetModName (appLauncherButton, out toolTip);
+			ModName = GetModName (appLauncherButton, out toolTip);           
             ToolTip = toolTip;
-			SaveCurrentAppScenes ();
+
+            SaveCurrentAppScenes ();
 			if (!QSettings.Instance.ModHasFirstConfig.Contains (ModName)) {
 				CanBePin = true;
 				CanBeHide = true;
@@ -184,11 +186,15 @@ namespace QuickHide {
             string nameSpace, id, toolTip;
             if (ToolbarControl.IsStockButtonManaged(button, out nameSpace, out id, out toolTip))
             {
-                Tooltip = toolTip;
+                if (toolTip != "")
+                    Tooltip = toolTip;
+                else
+                    Tooltip = nameSpace;
                 return id +
-                button.GetInstanceID().ToString();
+                 button.GetInstanceID().ToString();
             }
-            return button.onTrue.Method.Module.Assembly.GetName().Name +
+            Tooltip = button.onTrue.Method.Module.Assembly.GetName().Name;
+            return Tooltip +
                 button.GetInstanceID().ToString();
         }
 		internal static string GetAppRef(ApplicationLauncherButton button) {

@@ -17,5 +17,3 @@ copy /y  README.md %GAMEDATA%\%GAMEDIR%\%3
 copy /y  COPYING %GAMEDATA%\%GAMEDIR%\%3
 
 xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
-
-pause

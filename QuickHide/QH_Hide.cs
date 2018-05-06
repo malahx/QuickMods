@@ -238,7 +238,8 @@ namespace QuickHide {
 				if (_qMods.ModName == "None" || _modsName.Contains (_qMods.ModName)) {
 					continue;
 				}
-				_modsName.Add (_qMods.ModName);
+
+                _modsName.Add (_qMods.ModName);
 				GUILayout.BeginHorizontal ();
 				GUILayout.Label (string.Format ("<b>{0}</b>", _qMods.ToolTip), GUILayout.Width (200));
 				bool _CanBePin = _qMods.CanBePin;

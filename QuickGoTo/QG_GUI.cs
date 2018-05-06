@@ -114,12 +114,13 @@ namespace QuickGoTo {
 						_activeButtonPos = QStockToolbar.Instance.Position;
 						if (ApplicationLauncher.Instance.IsPositionedAtTop) {
 							rectGoTo.x = _activeButtonPos.x - rectGoTo.width;
-							if (QSettings.Instance.CenterText) {
-								rectGoTo.y = _activeButtonPos.y + _activeButtonPos.height / 2 - rectGoTo.height / 2;
-							} else {
-								rectGoTo.y = _activeButtonPos.y;
-							}
-						} else {
+							//if (QSettings.Instance.CenterText) {
+								rectGoTo.y = _activeButtonPos.y + _activeButtonPos.height / 2 - rectGoTo.height / 2 ;
+                            //rectGoTo.y = Math.Min(rectGoTo.y, Screen.height -6 * 38 - _activeButtonPos.height);
+                            //} else {
+                            //	rectGoTo.y = _activeButtonPos.y;
+                            //}
+                        } else {
 							if (QSettings.Instance.ImageOnly || QSettings.Instance.CenterText) {
 								rectGoTo.x = _activeButtonPos.x + _activeButtonPos.width / 2 - rectGoTo.width / 2;
 							} else {
