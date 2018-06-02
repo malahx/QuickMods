@@ -18,51 +18,90 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using QuickStart.QUtils;
 
-namespace QuickStart {
-	public partial class QFlight {
+using KSP.UI.Screens;
+using System;
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
+using KSP.Localization;
 
-		public static QFlight Instance {
-			get;
-			private set;
-		}
 
-		void Awake() {
-			if (QLoading.Ended) {
-				QDebug.Warning ("Reload? Destroy.", "QLoading");
-				Destroy (this);
-				return;
-			}
-			if (!QSettings.Instance.enablePauseOnFlight || !QSettings.Instance.Enabled || QSettings.Instance.gameScene != (int)GameScenes.FLIGHT) {
-				QDebug.Log ("Not need to keep it loaded.", "QFlight");
-				QLoading.Ended = true;
-				Destroy (this);
-				return;
-			}
-			if (Instance != null) {
-				QDebug.Warning ("There's already an Instance", "QFlight");
-				Destroy (this);
-				return;
-			}
-			Instance = this;
-			GameEvents.onFlightReady.Add (OnFlightReady);
-			QDebug.Log ("Awake", "QFlight");
-		}
+namespace QuickStart
+{
+    public partial class QFlight
+    {
 
-		void Start() {
-			QDebug.Log ("Start", "QFlight");
-		}
+        public static QFlight Instance
+        {
+            get;
+            private set;
+        }
 
-		void OnDestroy() {
-			GameEvents.onFlightReady.Remove (OnFlightReady);
-			QDebug.Log ("OnDestroy", "QFlight");
-		}
+        void Awake()
+        {
+            if (QLoading.Ended)
+            {
+                QDebug.Warning("Reload? Destroy.", "QLoading");
+                Destroy(this);
+                return;
+            }
+            if (!QSettings.Instance.enablePauseOnFlight || !QSettings.Instance.Enabled || QSettings.Instance.gameScene != (int)GameScenes.FLIGHT)
+            {
+                QDebug.Log("Not need to keep it loaded.", "QFlight");
+                QLoading.Ended = true;
+                Destroy(this);
+                return;
+            }
+            if (Instance != null)
+            {
+                QDebug.Warning("There's already an Instance", "QFlight");
+                Destroy(this);
+                return;
+            }
+            Instance = this;
 
-		void OnFlightReady() {
-			PauseMenu.Display ();
-			QLoading.Ended = true;
-			QDebug.Log ("Not need to keep it loaded.", "QFlight");
-			Destroy (this);
-			return;
-		}
-	}
+            GameEvents.onFlightReady.Add(OnFlightReady);
+
+            QDebug.Log("Awake", "QFlight");
+        }
+        int initted = 0;
+        bool flightReady = false;
+        void FixedUpdate()
+        {
+            if (flightReady)
+            {
+                initted++;
+                var p = Planetarium.GetUniversalTime();
+            }
+            // Game seems to requier a bit more than 2 seconds (50 tics per second) before the
+            // scene is ready
+            if (initted >= 110 && flightReady)
+            {
+                PauseMenu.Display();
+
+                QDebug.Log("FixedUpdate", "QFlight");
+                QLoading.Ended = true;
+                Destroy(this);
+            }
+        }
+
+        void Start()
+        {
+            QDebug.Log("Start", "QFlight");
+        }
+
+        void OnDestroy()
+        {
+            GameEvents.onFlightReady.Remove(OnFlightReady);
+
+            QDebug.Log("OnDestroy", "QFlight");
+            Destroy(this);
+        }
+
+        void OnFlightReady()
+        {
+            flightReady = true;
+        }
+    }
 }

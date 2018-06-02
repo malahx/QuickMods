@@ -33,6 +33,11 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickStart folder in your KSP/GameData folder.
 
 #### Changelog
+2.1.6
+	Fixed bug where setting it to pause when going to last vessel would 
+	actually display the pause menu, but it wouldn't be shown because the game
+	was paused before it was ready to display.  Added tic count to wait 2.05 seconds(110 tics)
+	before showing the pause menu
 
 2.1.5
 	Updated for 1.4.x
