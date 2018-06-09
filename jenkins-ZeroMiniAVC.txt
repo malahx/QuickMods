@@ -28,7 +28,7 @@
 
 
 # 3:SOURCEFILE, DESTDIR
-3:ZeroMiniAVC.version,GameData/ZeroMiniAVC
+3:ZeroMiniAVC/ZeroMiniAVC.version,GameData/ZeroMiniAVC
 
 #
 # End of file
