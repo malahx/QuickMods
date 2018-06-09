@@ -48,7 +48,6 @@
   <ItemGroup>
     <None Include="COPYING" />
     <None Include="README.md" />
-    <None Include="ZeroMiniAVC.version" />
     <None Include="install.sh" />
     <None Include="GameData\ZeroMiniAVC\ZeroMiniAVC.version" />
     <None Include="GameData\ZeroMiniAVC\COPYING" />

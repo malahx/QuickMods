@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		Config.cfg = Config.cfg
 		COPYING = COPYING
 		deploy.bat = deploy.bat
-		jenkins.txt = jenkins.txt
+		..\jenkins-ZeroMiniAVC.txt = ..\jenkins-ZeroMiniAVC.txt
 		README.md = README.md
 		ZeroMiniAVC.version = ZeroMiniAVC.version
 	EndProjectSection
