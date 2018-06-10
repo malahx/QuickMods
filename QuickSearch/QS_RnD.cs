@@ -143,7 +143,7 @@ namespace QuickSearch {
                     _button.Image.color = new Color(1f, 1f, 1f);   
                 }  
 			}
-			QDebug.Log ("Find: " + QSearch.Text, "QRnD");
+			//QDebug.Log ("Find: " + QSearch.Text, "QRnD");
 		}
 	}
 }
