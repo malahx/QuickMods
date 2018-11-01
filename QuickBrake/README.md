@@ -34,6 +34,9 @@ Delete the QuickMods/QuickBrake folder in your KSP/GameData folder.
 
 #### Changelog
 
+1.3.4.1
+	Version bump for 1.5 rebuild
+
 1.3.4
 	Updated for 1.4.x
 	Added support for the ClickThroughBlocker

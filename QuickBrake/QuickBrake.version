@@ -1,6 +1,6 @@
 {
     "NAME": "QuickBrake",
-    "URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickBrake/QuickBrake.version",
+    "URL": "http://ksp.spacetux.net/avc/QuickBrake",
     "CHANGE_LOG_URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickBrake/README.md",
     "DOWNLOAD": "http://spacedock.info/mod/103/QuickBrake",
 	    "GITHUB": {
@@ -11,21 +11,21 @@
         "MAJOR": 1,
         "MINOR": 3,
         "PATCH": 4,
-        "BUILD": 0
+        "BUILD": 1
     },
     "KSP_VERSION": {
         "MAJOR": 1,
-        "MINOR": 4,
+        "MINOR": 5,
         "PATCH": 1
     },
     "KSP_VERSION_MIN": {
         "MAJOR": 1,
-        "MINOR": 4,
+        "MINOR": 5,
         "PATCH": 1
     },
     "KSP_VERSION_MAX": {
         "MAJOR": 1,
-        "MINOR": 4,
+        "MINOR": 5,
         "PATCH": 99
     }
 }

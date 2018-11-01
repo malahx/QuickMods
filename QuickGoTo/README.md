@@ -52,6 +52,9 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickGoTo folder in your KSP/GameData folder.
 
 #### Changelog
+1.3.5.1
+	Version bump for 1.5 rebuild
+
 1.3.5
 	Potential fix for crash when going from flight to Editor
 

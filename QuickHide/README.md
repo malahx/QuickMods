@@ -39,6 +39,8 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickHide folder in your KSP/GameData folder.
 
 #### Changelog
+3.2.4.1
+	Version bump for 1.5 rebuild
 
 3.2.4
 	Fixed issue when one mod (ie: ToolbarController) has multiple buttons, QuickHide was getting confused

@@ -42,6 +42,8 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickMute folder in your KSP/GameData folder.
 
 #### Changelog
+1.3.1.1
+	Version bump for 1.5 rebuild
 
 1.3.1
 	Fixed nullref which happend after switching several scenes

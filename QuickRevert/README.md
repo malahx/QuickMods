@@ -46,6 +46,8 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickRevert folder in your KSP/GameData folder.
 
 #### Changelog
+3.1.4.1
+	Version bump for 1.5 rebuild
 
 3.1.4
 	Updated for 1.4.x
