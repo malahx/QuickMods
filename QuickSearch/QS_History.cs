@@ -45,8 +45,10 @@ namespace QuickSearch {
 		}
 
 		readonly string CFGNODE = "SearchHistory";
-		readonly string CONFIG_PATH = QuickSearch.PATH + "/History.cfg";
-		readonly GUIStyle btnStyle;
+        readonly string CONFIG_DIR = QuickSearch.PATH + "/PluginData";
+        readonly string CONFIG_PATH = QuickSearch.PATH + "/PluginData" + "/History.cfg";
+
+        readonly GUIStyle btnStyle;
 		readonly List<Search> history;
 		int index;
 		string lastSearch = string.Empty;
@@ -98,6 +100,8 @@ namespace QuickSearch {
 				n.AddValue ("count", s.count);
 				n.AddValue ("date", s.date.Ticks);
 			}
+            if (!Directory.Exists(CONFIG_DIR))
+                Directory.CreateDirectory(CONFIG_DIR);
 			node.Save (CONFIG_PATH);
 		}
 
