@@ -56,6 +56,9 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickSearch folder in your KSP/GameData folder.
 
 #### Changelog
+3.2.3
+	Added the feature that if you Right Click in the Search Bar, it erases the current search
+
 3.2.2
 	Updated .version file for 1.6
 	Moved the History.cfg into a PluginData directory so it won't cause MM to reload every time

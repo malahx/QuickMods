@@ -58,3 +58,6 @@ Delete the QuickMods folder in your KSP/GameData folder.
 1.3.3.1
 	Fixed quickstart issue
 	Potential fix for crash when using quickgoto to go from flight to editor
+
+1.3.3.5
+	For Quicksearch, added the feature that if you Right Click in the Search Bar, it erases the current search
