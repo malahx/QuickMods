@@ -87,39 +87,38 @@ namespace QuickSearch {
             }
 
             if (GameSettings.Editor_partSearch.GetKeyDown()) {
-                InitSearch();
-            }
-        }
+				InitSearch ();
+			}
+		}
 
-        protected override void OnDestroy() {
-            base.OnDestroy();
-            QDebug.Log("OnDestroy", "QEditor");
-        }
+		protected override void OnDestroy() {
+			base.OnDestroy ();
+			QDebug.Log ("OnDestroy", "QEditor");
+		}
 
-        void SearchField_OnClick(PointerEventData eventData) {
-            if (!Ready)
-            {
-                return;
-            }
-            else
-            {
-                if (eventData.button == PointerEventData.InputButton.Left)
-                {
-                    InitSearch();
-                    QDebug.Log("SearchField_OnClick", "QEditor");
-                }
-                else if (eventData.button == PointerEventData.InputButton.Right)
-                {
-                    string newString = "";
-                    PartCategorizer.Instance.searchField.text = newString;
-                    SearchField_OnValueChange(newString);
-                    QDebug.Log("SearchField_OnClick", "Text Deleted");
-                }
-            }
-        }
+		void SearchField_OnClick(PointerEventData eventData) {
+		    if (!Ready)
+		    {
+			return;
+		    }
+		    else
+		    {
+			if (eventData.button == PointerEventData.InputButton.Left)
+			{
+			    InitSearch();
+			    QDebug.Log("SearchField_OnClick", "QEditor");
+			}
+			else if (eventData.button == PointerEventData.InputButton.Right)
+			{
+			    string newString = "";
+			    PartCategorizer.Instance.searchField.text = newString;
+			    SearchField_OnValueChange(newString);
+			    QDebug.Log("SearchField_OnClick", "Text Deleted");
+			}
+		    }
+		}
 
-
-        void InitSearch() {
+		void InitSearch() {
 			PartCategorizer.Instance.FocusSearchField ();
 			if (searchImage != null) {
 				searchImage.color = Color.cyan;
