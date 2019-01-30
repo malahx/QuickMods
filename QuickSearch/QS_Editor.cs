@@ -26,65 +26,65 @@ using UnityEngine.EventSystems;
 using QuickSearch.QUtils;
 
 namespace QuickSearch {
-	public partial class QEditor {
+    public partial class QEditor {
 
-		public static QEditor Instance;
+        public static QEditor Instance;
 
-		bool Ready = false;
+        bool Ready = false;
 
-		public bool isReady {
-			get {
-				return Ready && searchFilterParts == EditorPartList.Instance.SearchFilterParts;
-			}
-		}
+        public bool isReady {
+            get {
+                return Ready && searchFilterParts == EditorPartList.Instance.SearchFilterParts;
+            }
+        }
 
-		public static EditorPartListFilter<AvailablePart> searchFilterParts;
+        public static EditorPartListFilter<AvailablePart> searchFilterParts;
 
-		Image searchImage = null;
+        Image searchImage = null;
 
-		protected override void Awake() {
-			if (HighLogic.LoadedScene != GameScenes.EDITOR) {
-				QDebug.Warning ("The editor search function works only on the on the Editor. Destroy.", "QEditor");
-				Destroy (this);
-				return;
-			}
-			if (Instance != null) {
-				QDebug.Warning ("There's already an Instance of " + MOD + ". Destroy.", "QEditor");
-				Destroy (this);
-				return;
-			}
-			Instance = this;
-			if (!QSettings.Instance.EditorSearch) {
-				QDebug.Warning ("The editor search function is disabled. Destroy.", "QEditor");
-				Destroy (this);
-				return;
-			}
-			base.Awake ();
-			QDebug.Log ("Awake", "QEditor");
-		}
+        protected override void Awake() {
+            if (HighLogic.LoadedScene != GameScenes.EDITOR) {
+                QDebug.Warning("The editor search function works only on the on the Editor. Destroy.", "QEditor");
+                Destroy(this);
+                return;
+            }
+            if (Instance != null) {
+                QDebug.Warning("There's already an Instance of " + MOD + ". Destroy.", "QEditor");
+                Destroy(this);
+                return;
+            }
+            Instance = this;
+            if (!QSettings.Instance.EditorSearch) {
+                QDebug.Warning("The editor search function is disabled. Destroy.", "QEditor");
+                Destroy(this);
+                return;
+            }
+            base.Awake();
+            QDebug.Log("Awake", "QEditor");
+        }
 
-		protected override void Start() {
-			base.Start ();
-			Func<AvailablePart, bool> _criteria = (_aPart) => QSearch.FindPart (_aPart);
-			searchFilterParts = new EditorPartListFilter<AvailablePart> (MOD, _criteria);
-			PartCategorizer.Instance.searchField.onValueChanged.RemoveAllListeners ();
-			PointerClickHandler _pointerClickSearch = null;
-			PartCategorizer.Instance.searchField.GetComponentCached<PointerClickHandler> (ref _pointerClickSearch);
-			if (_pointerClickSearch != null) {
-				_pointerClickSearch.onPointerClick.RemoveAllListeners ();
-				_pointerClickSearch.onPointerClick.AddListener (new UnityAction<PointerEventData> (SearchField_OnClick));
-			}
-			PartCategorizer.Instance.searchField.onEndEdit.AddListener (new UnityAction<string> (SearchField_OnEndEdit));
-			PartCategorizer.Instance.searchField.onValueChanged.AddListener (new UnityAction<string> (SearchField_OnValueChange));
-			PartCategorizer.Instance.searchField.GetComponentCached<Image> (ref searchImage);
-			setSearchFilter ();
-			QDebug.Log ("Start", "QEditor");
-		}
+        protected override void Start() {
+            base.Start();
+            Func<AvailablePart, bool> _criteria = (_aPart) => QSearch.FindPart(_aPart);
+            searchFilterParts = new EditorPartListFilter<AvailablePart>(MOD, _criteria);
+            PartCategorizer.Instance.searchField.onValueChanged.RemoveAllListeners();
+            PointerClickHandler _pointerClickSearch = null;
+            PartCategorizer.Instance.searchField.GetComponentCached<PointerClickHandler>(ref _pointerClickSearch);
+            if (_pointerClickSearch != null) {
+                _pointerClickSearch.onPointerClick.RemoveAllListeners();
+                _pointerClickSearch.onPointerClick.AddListener(new UnityAction<PointerEventData>(SearchField_OnClick));
+            }
+            PartCategorizer.Instance.searchField.onEndEdit.AddListener(new UnityAction<string>(SearchField_OnEndEdit));
+            PartCategorizer.Instance.searchField.onValueChanged.AddListener(new UnityAction<string>(SearchField_OnValueChange));
+            PartCategorizer.Instance.searchField.GetComponentCached<Image>(ref searchImage);
+            setSearchFilter();
+            QDebug.Log("Start", "QEditor");
+        }
 
-		void Update() {
-			if (!isReady) {
-				return;
-			}
+        void Update() {
+            if (!isReady) {
+                return;
+            }
 
             if (GameSettings.Editor_partSearch.GetKeyDown()) {
 				InitSearch ();
@@ -97,11 +97,25 @@ namespace QuickSearch {
 		}
 
 		void SearchField_OnClick(PointerEventData eventData) {
-			if (!Ready) {
-				return;
+		    if (!Ready)
+		    {
+			return;
+		    }
+		    else
+		    {
+			if (eventData.button == PointerEventData.InputButton.Left)
+			{
+			    InitSearch();
+			    QDebug.Log("SearchField_OnClick", "QEditor");
 			}
-			InitSearch ();
-			QDebug.Log ("SearchField_OnClick", "QEditor");
+			else if (eventData.button == PointerEventData.InputButton.Right)
+			{
+			    string newString = "";
+			    PartCategorizer.Instance.searchField.text = newString;
+			    SearchField_OnValueChange(newString);
+			    QDebug.Log("SearchField_OnClick", "Text Deleted");
+			}
+		    }
 		}
 
 		void InitSearch() {
