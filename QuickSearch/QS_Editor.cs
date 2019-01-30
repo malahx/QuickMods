@@ -97,11 +97,25 @@ namespace QuickSearch {
 		}
 
 		void SearchField_OnClick(PointerEventData eventData) {
-			if (!Ready) {
-				return;
+		    if (!Ready)
+		    {
+			return;
+		    }
+		    else
+		    {
+			if (eventData.button == PointerEventData.InputButton.Left)
+			{
+			    InitSearch();
+			    QDebug.Log("SearchField_OnClick", "QEditor");
 			}
-			InitSearch ();
-			QDebug.Log ("SearchField_OnClick", "QEditor");
+			else if (eventData.button == PointerEventData.InputButton.Right)
+			{
+			    string newString = "";
+			    PartCategorizer.Instance.searchField.text = newString;
+			    SearchField_OnValueChange(newString);
+			    QDebug.Log("SearchField_OnClick", "Text Deleted");
+			}
+		    }
 		}
 
 		void InitSearch() {
