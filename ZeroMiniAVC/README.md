@@ -33,6 +33,11 @@ Unzip all files. Merge the new ZeroMiniAVC folder with the old folder which is i
 Delete the ZeroMiniAVC folder in your KSP/GameData folder.
 
 #### Changelog
+
+1.0.6
+	Version bump for 1.7.2
+	Updated AssemblyVersion.tt
+
 1.0.5.2
 	Version bump for 1.5 rebuild
 
