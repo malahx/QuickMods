@@ -1,5 +1,9 @@
 ﻿#### Changelog
 
+1.3.4.0
+	Updated all AssemblyVersion.tt files
+	Rebuild for KSP 1.7.2
+
 1.3.3.0
 	Adopted by LGG
 	Updated all mods for 1.4.x
