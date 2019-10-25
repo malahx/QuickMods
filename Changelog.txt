@@ -1,5 +1,9 @@
 ﻿#### Changelog
 
+1.4.0
+	Added InstallChecker to all minimods
+	Rebuild for 1.8
+
 1.3.4.0
 	Updated all AssemblyVersion.tt files
 	Rebuild for KSP 1.7.2
