@@ -32,45 +32,7 @@ Unzip all files. Merge the new ZeroMiniAVC folder with the old folder which is i
 
 Delete the ZeroMiniAVC folder in your KSP/GameData folder.
 
-#### Changelog
 
-1.0.6
-	Version bump for 1.7.2
-	Updated AssemblyVersion.tt
-
-1.0.5.2
-	Version bump for 1.5 rebuild
-
-1.0.5.1
-	Update for 1.4
-
-v1.05 - 2017.05.26
-* Compiled against KSP 1.3.0.1804
-
-v1.04.9-pre - 2017.04.08
-* Compiled against KSP 1.2.9.1743
-
-v1.04 - 2016.12.07
-* Compiled against KSP 1.2.2.1622
-
-v1.03 - 2016.11.20
-* New: Added a config file,
-* New: Added an unpruned function,
-* New: Added a delete function,
-* New: Added a disable function,
-* Compiled against KSP 1.2.1.1604
-
-v1.02 - 2016.09.15
-* Fix: MiniAVC is now pruned at the start of ZeroMiniAVC,
-* Fix: Rename the dll to ZeroMiniAVC.dll,
-* Fix: Added a better way to block the first start of MiniAVC (needs some test).
-* Compiled against KSP 1.2.0.1479
-
-v1.01 - 2016.07.21
-* Fix: Added a deletion of existing MiniAVC already pruned.
-
-v1.00 - 2016.07.11
-* First release.
 
 #### Thanks!
 

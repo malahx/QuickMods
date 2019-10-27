@@ -8,6 +8,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{32ACC99B-AC26-4109-A293-0A4F9847B1FC}"
 	ProjectSection(SolutionItems) = preProject
 		buildRelease.bat = buildRelease.bat
+		ChangeLog.txt = ChangeLog.txt
 		Config.cfg = Config.cfg
 		COPYING = COPYING
 		deploy.bat = deploy.bat
