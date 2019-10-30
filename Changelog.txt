@@ -1,4 +1,6 @@
 ﻿#### Changelog
+1.4.0.3
+	Version bump to fix bad files on Spacedock
 
 1.4.0.2
 	Really did the MiniAVC update
