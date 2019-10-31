@@ -34,7 +34,7 @@
 	//
 	// Update the following with the name of the .version file which is in the root directory
 	//
-	string versionfile = RootDirectory + "QuickSearch.version";
+	string versionfile = RootDirectory + "QuickSearch/QuickSearch.version";
 
 	if (!File.Exists(versionfile))
 	{
