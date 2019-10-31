@@ -41,7 +41,7 @@ namespace QuickBrake
     internal class InstallChecker : MonoBehaviour
     {
         internal const string MODNAME = "QuickMods";
-        internal const string FOLDERNAME = "QuickMods";
+        internal const string FOLDERNAME = "QuickMods/";
         internal const string EXPECTEDPATH = FOLDERNAME + "QuickExit/Plugins";
 
         protected void Start()
