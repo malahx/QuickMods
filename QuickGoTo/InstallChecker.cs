@@ -40,7 +40,7 @@ namespace QuickBrake
     [KSPAddon(KSPAddon.Startup.MainMenu, true)]
     internal class InstallChecker : MonoBehaviour
     {
-        internal const string MODNAME = "QuickMods";
+        internal const string MODNAME = "QuickGoTo";
         internal const string FOLDERNAME = "QuickMods/";
         internal const string EXPECTEDPATH = FOLDERNAME + "QuickGoTo/Plugins";
 
