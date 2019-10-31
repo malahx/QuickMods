@@ -1,4 +1,8 @@
 ﻿#### Changelog
+
+QuickGoto 1.4.0.5
+	Fixed name in InstallChecker
+
 1.4.0.3
 	Version bump to fix bad files on Spacedock
 
