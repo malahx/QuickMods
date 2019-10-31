@@ -1,0 +1,21 @@
+{
+  "NAME": "QuickStart",
+  "URL": "http://ksp.spacetux.net/avc/QuickStart",
+  "CHANGE_LOG_URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickStart/README.md",
+  "DOWNLOAD": "http://spacedock.info/mod/110/QuickStart",
+  "GITHUB": {
+    "USERNAME": "linuxgurugamer",
+    "REPOSITORY": "QuickMods"
+  },
+  "VERSION": {
+    "MAJOR": 2,
+    "MINOR": 2,
+    "PATCH": 0,
+    "BUILD": 3
+  },
+	"KSP_VERSION_MIN": {
+		"MAJOR": 1,
+		"MINOR": 8,
+		"PATCH": 0
+	}
+}
