@@ -21,7 +21,6 @@ using QuickStart.QUtils;
 using KSP.Localization;
 
 using ClickThroughFix;
-using System.Collections.Generic;
 
 namespace QuickStart {
 
@@ -30,7 +29,7 @@ namespace QuickStart {
 		[KSPField (isPersistant = true)] public static bool Ended = false;
 
 		internal bool WindowSettings = false;
-        private string StopWatchText = "";
+		private string StopWatchText = "";
 
 		Rect rectSettings = new Rect ();
 		Rect RectSettings {
