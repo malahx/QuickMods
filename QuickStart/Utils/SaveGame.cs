@@ -46,7 +46,8 @@ namespace QuickStart.QUtils {
 
         public static string[] gameBlackList = {
             "scenarios",
-            "training"
+            "training",
+            "missions"
         };
 
         static bool isBlackList(string game) {

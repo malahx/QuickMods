@@ -60,7 +60,8 @@ namespace QuickStart {
 		[Persistent] internal bool enableEditorAutoSaveShip = true;
 		[Persistent] internal bool enableEditorLoadAutoSave = true;
 		[Persistent] internal bool enablePauseOnFlight = true;
-        [Persistent] internal bool enableBlackScreen = true;
+		[Persistent] internal bool enableBlackScreen = true;
+		[Persistent] internal bool enableStopWatch = true;
 		[Persistent] internal int gameScene = (int)GameScenes.SPACECENTER;
 		[Persistent] internal int editorFacility = (int)EditorFacility.VAB;
 
