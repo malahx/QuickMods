@@ -24,18 +24,19 @@ using ClickThroughFix;
 
 namespace QuickStart {
 
-	public partial class QLoading {
+    public partial class QLoading {
 
 		[KSPField (isPersistant = true)] public static bool Ended = false;
 
 		internal bool WindowSettings = false;
+		private string StopWatchText = "";
 
 		Rect rectSettings = new Rect ();
 		Rect RectSettings {
 			get {
                 if (rectSettings.position == Vector2.zero && rectSettings.size != Vector2.zero) {
                     rectSettings.x = Screen.width - rectSettings.width;
-                    rectSettings.y = Screen.width < 1440 ? 100 : Screen.height - rectSettings.height - 100;
+                    rectSettings.y = Screen.height - rectSettings.height - 100;
                 }
 				return rectSettings;
 			}
@@ -46,7 +47,7 @@ namespace QuickStart {
 
 		Rect RectGUI {
 			get {
-				return new Rect (0, Screen.width < 1440 ? 0 : Screen.height - 50, Screen.width, 100);
+				return new Rect (0, Screen.height - 50, Screen.width, 100);
 			}
 		}
 
@@ -86,12 +87,18 @@ namespace QuickStart {
 			}
             QKey.VerifyKey();
 			QDebug.Log ("Start", "QLoading");
-		}
+
+            InvokeRepeating("UpdateStopWatch", 0, 1.0f);
+        }
 
 		void OnDestroy() {
 			QSettings.Instance.Save ();
 			QDebug.Log ("OnDestroy", "QLoading");
 		}
+
+        void UpdateStopWatch() {
+            StopWatchText = QuickStart_Persistent.StopWatchText;
+        }
 
         void Update() {
             if (QKey.SetKey()) {
@@ -110,7 +117,16 @@ namespace QuickStart {
 			QDebug.Log ("Settings", "QGUI");
 		}
 
-		void OnGUI() {
+        static class LabelWidth {
+            public static GUILayoutOption Enabled { get; } = GUILayout.Width(200);
+            public static GUILayoutOption KSC { get; } = GUILayout.Width(100);
+            public static GUILayoutOption VAB { get; } = GUILayout.Width(100);
+            public static GUILayoutOption SPH { get; } = GUILayout.Width(100);
+            public static GUILayoutOption TrackingStation { get; } = GUILayout.Width(200);
+            public static GUILayoutOption Vessel { get; } = GUILayout.Width(250);
+        };
+
+        void OnGUI() {
 			if (HighLogic.LoadedScene != GameScenes.LOADING) {
 				return;
 			}
@@ -128,63 +144,63 @@ namespace QuickStart {
 			GUILayout.BeginArea (RectGUI);
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
-			if (QSettings.Instance.Enabled) {
+            GUILayout.Label(StopWatchText);
+
+            if (QSettings.Instance.Enabled) {
                 GUILayout.Label(!string.IsNullOrEmpty(QSaveGame.LastUsed) ?
-                                                     Localizer.Format("quickstart_lastGame", QuickStart.MOD, QSaveGame.LastUsed) :
-                                                     Localizer.Format("quickstart_noLastGame", QuickStart.MOD));
+                                                     Localizer.Format("quickstart_lastGame", QSaveGame.LastUsed) :
+                                                     Localizer.Format("quickstart_noLastGame"));
 				if (GUILayout.Button ("►", QStyle.Button, GUILayout.Width (20), GUILayout.Height (20))) {
 					QSaveGame.Next ();
 				}
 			}
 			GUILayout.FlexibleSpace ();
-            if (GUILayout.Button (Localizer.Format("quickstart_settings"), QStyle.Button, GUILayout.Height (20))) {
-				Settings ();
-			}
 			GUILayout.EndHorizontal ();
+
 			if (!string.IsNullOrEmpty (QSaveGame.LastUsed)) {
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, Localizer.Format("quickstart_enable", QuickStart.MOD), GUILayout.Width (250));
+				QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, Localizer.Format("quickstart_enable", QuickStart.MOD), LabelWidth.Enabled);
 				if (QSettings.Instance.Enabled) {
-					GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER, Localizer.Format("quickstart_sc"), GUILayout.Width (250))) {
+					//GUILayout.FlexibleSpace ();
+					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER, Localizer.Format("quickstart_sc"), LabelWidth.KSC)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.SPACECENTER) {
 							QSettings.Instance.gameScene = (int)GameScenes.SPACECENTER;
 						}
 					}
-					GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.VAB && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_vab"), GUILayout.Width (250))) {
+					//GUILayout.FlexibleSpace ();
+					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.VAB && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_vab"), LabelWidth.VAB)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.VAB) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
 							QSettings.Instance.editorFacility = (int)EditorFacility.VAB;
 						}
 					}
-					if (Screen.width < 1440) {
-						GUILayout.EndHorizontal ();
-						GUILayout.BeginHorizontal ();
-					}
-					else {
-						GUILayout.FlexibleSpace ();
-					}
-					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_sph"), GUILayout.Width (250))) {
+					//GUILayout.FlexibleSpace ();
+					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_sph"), LabelWidth.SPH)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.SPH) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
 							QSettings.Instance.editorFacility = (int)EditorFacility.SPH;
 						}
 					}
-					GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.TRACKSTATION, Localizer.Format("quickstart_ts"), GUILayout.Width (250))) {
+					//GUILayout.FlexibleSpace ();
+					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.TRACKSTATION, Localizer.Format("quickstart_ts"), LabelWidth.TrackingStation)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.TRACKSTATION) {
 							QSettings.Instance.gameScene = (int)GameScenes.TRACKSTATION;
 						}
 					}
-					GUILayout.FlexibleSpace ();
+					//GUILayout.FlexibleSpace ();
 					GUI.enabled = !string.IsNullOrEmpty (QuickStart_Persistent.vesselID);
-					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.FLIGHT, (!string.IsNullOrEmpty (QSaveGame.vesselName) ? Localizer.Format("quickstart_lastVessel", QSaveGame.vesselName, QSaveGame.vesselType) : Localizer.Format("quickstart_noVessel")), GUILayout.Width (250))) {
+					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.FLIGHT, (!string.IsNullOrEmpty (QSaveGame.vesselName) ? Localizer.Format("quickstart_lastVessel", QSaveGame.vesselName, QSaveGame.vesselType) : Localizer.Format("quickstart_noVessel")), LabelWidth.Vessel)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.FLIGHT) {
 							QSettings.Instance.gameScene = (int)GameScenes.FLIGHT;
 						}
 					}
-				}
+                    GUI.enabled = true;
+                    GUILayout.FlexibleSpace();
+                    if (GUILayout.Button(Localizer.Format("quickstart_settings"), QStyle.Button, GUILayout.Height(20)))
+                    {
+                        Settings();
+                    }
+                }
 				GUILayout.EndHorizontal ();
 			}
 			GUILayout.EndVertical ();
@@ -197,6 +213,10 @@ namespace QuickStart {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quickstart_options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
+
+            GUILayout.BeginHorizontal();
+            QSettings.Instance.enableStopWatch = GUILayout.Toggle(QSettings.Instance.enableStopWatch, Localizer.Format("quickstart_enableStopWatch"), GUILayout.Width(400));
+            GUILayout.EndHorizontal();
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.Label (Localizer.Format("quickstart_waitLoading"), GUILayout.Width (300));
@@ -234,6 +254,9 @@ namespace QuickStart {
 			GUILayout.BeginHorizontal ();
 			QSettings.Instance.enablePauseOnFlight = GUILayout.Toggle (QSettings.Instance.enablePauseOnFlight, Localizer.Format("quickstart_pauseLoad"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
+
+
+
             QKey.DrawConfigKey();
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();

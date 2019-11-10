@@ -125,12 +125,7 @@ namespace QuickStart {
 		}
 
 		void OnGUI() {
-			if (HighLogic.LoadedScene != GameScenes.MAINMENU) {
-				return;
-			}
-			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QStyle.Label);
-            GUILayout.Label(QuickStart.MOD + "..." + Environment.NewLine + Localizer.Format("quickstart_abort", QSettings.Instance.KeyEscape), QStyle.Label);
-            GUILayout.EndArea ();
+			QuickStart_Persistent.SkippingScreen(GameScenes.MAINMENU, Localizer.Format("quickstart_mainMenu"));
 		}
 	}
 }
