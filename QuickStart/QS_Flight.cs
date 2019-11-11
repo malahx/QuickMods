@@ -48,7 +48,7 @@ namespace QuickStart
             }
             if (!QSettings.Instance.enablePauseOnFlight || !QSettings.Instance.Enabled || QSettings.Instance.gameScene != (int)GameScenes.FLIGHT)
             {
-                QDebug.Log("Not need to keep it loaded.", "QFlight");
+                QDebug.Log("No need to keep it loaded.", "QFlight");
                 QLoading.Ended = true;
                 Destroy(this);
                 return;

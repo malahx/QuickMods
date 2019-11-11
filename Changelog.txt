@@ -1,5 +1,12 @@
 ﻿#### Changelog
 
+QuickStart 2.2.0.5
+	Thanks to @yalov for this:
+		Added stopwatch, lower oneliner, ignore missions
+	Translated "Add a stopwatch" to french for the french translation
+	Added a GUI.Dragwindow to the settings window so it can be moved around.
+	Fixed a couple of typoes
+
 QuickGoto 1.4.0.5
 	Fixed name in InstallChecker
 

@@ -52,7 +52,7 @@ namespace QuickStart {
 		void Start() {
 			InputLockManager.RemoveControlLock("applicationFocus");
 			if (!QSettings.Instance.Enabled || QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER) {
-				QDebug.Log ("Not need to keep it loaded.", "QSpaceCenter");
+				QDebug.Log ("No need to keep it loaded.", "QSpaceCenter");
 				QLoading.Ended = true;
 				Destroy (this);
 				return;

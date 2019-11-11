@@ -141,7 +141,7 @@ namespace QuickStart {
 				RectSettings = ClickThruBlocker.GUILayoutWindow (1545177, RectSettings, DrawSettings, QuickStart.MOD + " " + QuickStart.VERSION);
 			}
 
-			GUILayout.BeginArea (RectGUI);
+            GUILayout.BeginArea (RectGUI);
 			GUILayout.BeginVertical ();
 			GUILayout.BeginHorizontal ();
             GUILayout.Label(StopWatchText);
@@ -161,34 +161,39 @@ namespace QuickStart {
 				GUILayout.BeginHorizontal ();
 				QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, Localizer.Format("quickstart_enable", QuickStart.MOD), LabelWidth.Enabled);
 				if (QSettings.Instance.Enabled) {
-					//GUILayout.FlexibleSpace ();
+                    if (QSettings.Instance.evenlySpaceToggles)
+					    GUILayout.FlexibleSpace ();
 					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER, Localizer.Format("quickstart_sc"), LabelWidth.KSC)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.SPACECENTER) {
 							QSettings.Instance.gameScene = (int)GameScenes.SPACECENTER;
 						}
 					}
-					//GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.VAB && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_vab"), LabelWidth.VAB)) {
+                    if (QSettings.Instance.evenlySpaceToggles)
+                        GUILayout.FlexibleSpace();
+                    if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.VAB && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_vab"), LabelWidth.VAB)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.VAB) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
 							QSettings.Instance.editorFacility = (int)EditorFacility.VAB;
 						}
 					}
-					//GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_sph"), LabelWidth.SPH)) {
+                    if (QSettings.Instance.evenlySpaceToggles)
+                        GUILayout.FlexibleSpace();
+                    if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_sph"), LabelWidth.SPH)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.SPH) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
 							QSettings.Instance.editorFacility = (int)EditorFacility.SPH;
 						}
 					}
-					//GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.TRACKSTATION, Localizer.Format("quickstart_ts"), LabelWidth.TrackingStation)) {
+                    if (QSettings.Instance.evenlySpaceToggles)
+                        GUILayout.FlexibleSpace();
+                    if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.TRACKSTATION, Localizer.Format("quickstart_ts"), LabelWidth.TrackingStation)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.TRACKSTATION) {
 							QSettings.Instance.gameScene = (int)GameScenes.TRACKSTATION;
 						}
 					}
-					//GUILayout.FlexibleSpace ();
-					GUI.enabled = !string.IsNullOrEmpty (QuickStart_Persistent.vesselID);
+                    if (QSettings.Instance.evenlySpaceToggles)
+                        GUILayout.FlexibleSpace();
+                    GUI.enabled = !string.IsNullOrEmpty (QuickStart_Persistent.vesselID);
 					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.FLIGHT, (!string.IsNullOrEmpty (QSaveGame.vesselName) ? Localizer.Format("quickstart_lastVessel", QSaveGame.vesselName, QSaveGame.vesselType) : Localizer.Format("quickstart_noVessel")), LabelWidth.Vessel)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.FLIGHT) {
 							QSettings.Instance.gameScene = (int)GameScenes.FLIGHT;
@@ -255,10 +260,13 @@ namespace QuickStart {
 			QSettings.Instance.enablePauseOnFlight = GUILayout.Toggle (QSettings.Instance.enablePauseOnFlight, Localizer.Format("quickstart_pauseLoad"), GUILayout.Width (400));
 			GUILayout.EndHorizontal ();
 
-
+            GUILayout.BeginHorizontal();
+            QSettings.Instance.evenlySpaceToggles = GUILayout.Toggle(QSettings.Instance.evenlySpaceToggles, Localizer.Format("quickstart_evenlySpaceToggles"), GUILayout.Width(400));
+            GUILayout.EndHorizontal();
 
             QKey.DrawConfigKey();
-			GUILayout.FlexibleSpace ();
+
+            GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();
 			if (GUILayout.Button (Localizer.Format("quickstart_close"), GUILayout.Height (30))) {
@@ -266,6 +274,8 @@ namespace QuickStart {
 			}
 			GUILayout.EndHorizontal ();
 			GUILayout.EndVertical ();
+
+            GUI.DragWindow();
 		}
 	}
 }
