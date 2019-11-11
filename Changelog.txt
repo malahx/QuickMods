@@ -1,5 +1,10 @@
 ﻿#### Changelog
 
+QuickStart 2.2.0.6
+	Added left arrow to the save game selector
+	Restored full words to buttons
+	Added option to allow abbreviations
+
 QuickStart 2.2.0.5
 	Thanks to @yalov for this:
 		Added stopwatch, lower oneliner, ignore missions

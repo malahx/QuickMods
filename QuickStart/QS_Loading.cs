@@ -147,6 +147,10 @@ namespace QuickStart {
             GUILayout.Label(StopWatchText);
 
             if (QSettings.Instance.Enabled) {
+                if (GUILayout.Button("◄", GUILayout.Width(20), GUILayout.Height(20)))
+                {
+                    QSaveGame.Prev();
+                }
                 GUILayout.Label(!string.IsNullOrEmpty(QSaveGame.LastUsed) ?
                                                      Localizer.Format("quickstart_lastGame", QSaveGame.LastUsed) :
                                                      Localizer.Format("quickstart_noLastGame"));
@@ -163,14 +167,18 @@ namespace QuickStart {
 				if (QSettings.Instance.Enabled) {
                     if (QSettings.Instance.evenlySpaceToggles)
 					    GUILayout.FlexibleSpace ();
-					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER, Localizer.Format("quickstart_sc"), LabelWidth.KSC)) {
+					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER, Localizer.Format(
+                         QSettings.Instance.abbreviations ? "quickstart_sc_abbr" : "quickstart_sc"
+                        ), LabelWidth.KSC)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.SPACECENTER) {
 							QSettings.Instance.gameScene = (int)GameScenes.SPACECENTER;
 						}
 					}
                     if (QSettings.Instance.evenlySpaceToggles)
                         GUILayout.FlexibleSpace();
-                    if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.VAB && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_vab"), LabelWidth.VAB)) {
+                    if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.VAB && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format(
+                        QSettings.Instance.abbreviations?"quickstart_vab_abbr": "quickstart_vab"
+                        ), LabelWidth.VAB)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.VAB) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
 							QSettings.Instance.editorFacility = (int)EditorFacility.VAB;
@@ -178,7 +186,9 @@ namespace QuickStart {
 					}
                     if (QSettings.Instance.evenlySpaceToggles)
                         GUILayout.FlexibleSpace();
-                    if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format("quickstart_sph"), LabelWidth.SPH)) {
+                    if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format(
+                           QSettings.Instance.abbreviations ? "quickstart_sph_abbr" : "quickstart_sph"
+                        ), LabelWidth.SPH)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.SPH) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
 							QSettings.Instance.editorFacility = (int)EditorFacility.SPH;
@@ -263,6 +273,12 @@ namespace QuickStart {
             GUILayout.BeginHorizontal();
             QSettings.Instance.evenlySpaceToggles = GUILayout.Toggle(QSettings.Instance.evenlySpaceToggles, Localizer.Format("quickstart_evenlySpaceToggles"), GUILayout.Width(400));
             GUILayout.EndHorizontal();
+
+            GUILayout.BeginHorizontal();
+            QSettings.Instance.abbreviations = GUILayout.Toggle(QSettings.Instance.abbreviations, Localizer.Format("quickstart_abbreviations"), GUILayout.Width(400));
+            GUILayout.EndHorizontal();
+
+            
 
             QKey.DrawConfigKey();
 

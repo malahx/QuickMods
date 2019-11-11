@@ -93,6 +93,28 @@ namespace QuickStart.QUtils {
             }
         }
 
+        public static void Prev()
+        {
+            DirectoryInfo[] _directories = new DirectoryInfo(FOLDER).GetDirectories();
+            for (int _i = _directories.Length - 1; _i >= 0; --_i)
+            {
+                indexSave--;
+                if (indexSave < 0)
+                    indexSave = _directories.Length - 1;
+                if (indexSave >= _directories.Length)
+                {
+                    indexSave = 0;
+                }
+                if (!isBlackList(_directories[indexSave].Name))
+                {
+                    break;
+                }
+            }
+            lastUsed = _directories[indexSave].Name;
+            UpdateSave(true);
+            QDebug.Log("Prev savegame found: " + lastUsed, "QSaveGame");
+        }
+
         public static void Next() {
             DirectoryInfo[] _directories = new DirectoryInfo(FOLDER).GetDirectories();
             for (int _i = _directories.Length - 1; _i >= 0; --_i) {
