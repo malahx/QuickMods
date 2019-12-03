@@ -33,6 +33,8 @@
 
 	//
 	// Update the following with the name of the .version file which is in the root directory
+	// 
+	// This needs to stay this way for the Jenkins server
 	//
 	string versionfile = RootDirectory + "../ZeroMiniAVC/ZeroMiniAVC.version";
 
