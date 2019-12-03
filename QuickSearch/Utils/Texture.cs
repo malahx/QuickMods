@@ -23,8 +23,6 @@ namespace QuickSearch.QUtils {
     static class Texture {
 
         internal static readonly string SEARCH_PATH = QuickSearch.relativePath + "/Textures/search";
-        internal static readonly string STOCKTOOLBAR_PATH = QuickSearch.relativePath + "/Textures/StockToolBar";
-        internal static readonly string BLIZZY_PATH = QuickSearch.relativePath + "/Textures/BlizzyToolBar";
         internal static readonly string DELETE_PATH = QuickSearch.relativePath + "/Textures/delete";
 
         static Texture2D delete;

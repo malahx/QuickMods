@@ -38,9 +38,7 @@ namespace QuickSearch {
 		[KSPField (isPersistant = true)] bool isLoaded = false;
 
 		[Persistent] internal bool Debug = true;
-
-		[Persistent] internal bool StockToolBar = true;
-		[Persistent] internal bool BlizzyToolBar = true;
+        
 
 		[Persistent] internal bool EditorSearch = true;
 		[Persistent] internal bool RnDSearch = true;

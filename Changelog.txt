@@ -1,5 +1,8 @@
 ﻿#### Changelog
 
+QuickSearch
+	Removed old Blizzy and Stock toolbar vars
+
 QuickStart 2.2.0.6
 	Added left arrow to the save game selector
 	Restored full words to buttons

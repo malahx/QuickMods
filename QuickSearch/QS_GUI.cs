@@ -41,10 +41,13 @@ namespace QuickSearch {
 		Rect RectSettings {
 			get {
 				Rect _rect = rectSettings;
-				if (!QSettings.Instance.StockToolBar) {
+#if false
+                if (!QSettings.Instance.StockToolBar) {
 					_rect.x = (Screen.width - _rect.width) / 2;
 					_rect.y = (Screen.height - _rect.height) / 2;
-				} else {
+				} else 
+#endif
+                {
 					_rect.x = Screen.width - _rect.width - 75;
 					_rect.y = Screen.height - _rect.height - 40;
 				}

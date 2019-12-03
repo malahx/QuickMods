@@ -28,7 +28,7 @@ namespace ZeroMiniAVC {
 
 		readonly string pruneExt = ".pruned";
 		readonly string cfgNode = "ZeroMiniAVC";
-		readonly string configPath = KSPUtil.ApplicationRootPath + "GameData/ZeroMiniAVC/Config.cfg";
+        string configPath;
 
 		ConfigNode config;
 		bool disabled = false;
@@ -70,7 +70,8 @@ namespace ZeroMiniAVC {
 			}
 			Instance = this;
 			DontDestroyOnLoad (Instance);
-			config = loadConfig ();
+            configPath = KSPUtil.ApplicationRootPath + "GameData/ZeroMiniAVC/Config.cfg";
+            config = loadConfig ();
 			Debug.Log ("ZeroMiniAVC: Awake");
 		}
 
