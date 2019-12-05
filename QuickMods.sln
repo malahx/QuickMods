@@ -38,10 +38,10 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		COPYING = COPYING
 		deploy.bat = deploy.bat
 		deployCopy.bat = deployCopy.bat
+		disabledjenkins-ZeroMiniAVC.txt = disabledjenkins-ZeroMiniAVC.txt
 		install.bat = install.bat
 		install.sh = install.sh
 		jenkins-quick.txt = jenkins-quick.txt
-		jenkins-ZeroMiniAVC.txt = jenkins-ZeroMiniAVC.txt
 		QuickMods.version = QuickMods.version
 		README.md = README.md
 	EndProjectSection
