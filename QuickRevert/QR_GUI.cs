@@ -59,7 +59,6 @@ namespace QuickRevert {
 		}
 
 		protected override void Start() {
-			//BlizzyToolbar.Init ();
 			if (!QFlight.data.hasLoaded) {
 				QFlight.data.Load ();
 			}
@@ -67,7 +66,6 @@ namespace QuickRevert {
 		}
 
 		protected override void OnDestroy() {
-			//BlizzyToolbar.Destroy ();
 			Log ("OnDestroy", "QGUI");
             Instance = null;
 		}

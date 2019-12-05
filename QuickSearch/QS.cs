@@ -21,46 +21,59 @@ using QuickSearch.QUtils;
 using QuickSearch.Toolbar;
 using UnityEngine;
 
-namespace QuickSearch {
-	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
-	public partial class QRnD : QuickSearch { }
+namespace QuickSearch
+{
+    [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
+    public partial class QRnD : QuickSearch { }
 
-	[KSPAddon(KSPAddon.Startup.EditorAny, false)]
-	public partial class QEditor : QuickSearch { }
+    [KSPAddon(KSPAddon.Startup.EditorAny, false)]
+    public partial class QEditor : QuickSearch { }
 
-	public partial class QuickSearch : MonoBehaviour {
+    public partial class QuickSearch : MonoBehaviour
+    {
 
-		public readonly static string VERSION = Assembly.GetExecutingAssembly ().GetName ().Version.Major + "." + Assembly.GetExecutingAssembly ().GetName ().Version.Minor + Assembly.GetExecutingAssembly ().GetName ().Version.Build;
-		public readonly static string MOD = Assembly.GetExecutingAssembly().GetName().Name;
-		public readonly static string relativePath = "QuickMods/" + MOD;
-		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+        public static string VERSION;
+        public static string MOD;
+        public static string relativePath;
+        public static string PATH;
+        
 
-		//[KSPField(isPersistant = true)] static QBlizzy BlizzyToolbar;
+        protected virtual void Awake()
+        {
 
-		protected virtual void Awake() {
-			//if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy ();
-			TextField = new GUIStyle(HighLogic.Skin.textField);
-			TextField.stretchWidth = true;
-			TextField.stretchHeight = true;
-			TextField.alignment = TextAnchor.MiddleCenter;
-			QDebug.Log ("Awake");
-		}
-		
-		protected virtual void Start() {
-			//if (BlizzyToolbar != null) BlizzyToolbar.Init ();
-			QDebug.Log ("Start");
-		}
-		
-		protected virtual void OnDestroy() {
-			//if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
-			QDebug.Log ("OnDestroy");
-		}
-		
-		protected virtual void FixedUpdate() {
-			if (!WindowHistory) {
-				return;
-			}
-			QHistory.Instance.Keys ();
-		}
-	}
+            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
+            MOD = Assembly.GetExecutingAssembly().GetName().Name;
+            relativePath = "QuickMods/" + MOD;
+            PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+
+
+            //if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy ();
+            TextField = new GUIStyle(HighLogic.Skin.textField);
+            TextField.stretchWidth = true;
+            TextField.stretchHeight = true;
+            TextField.alignment = TextAnchor.MiddleCenter;
+            QDebug.Log("Awake");
+        }
+
+        protected virtual void Start()
+        {
+            //if (BlizzyToolbar != null) BlizzyToolbar.Init ();
+            QDebug.Log("Start");
+        }
+
+        protected virtual void OnDestroy()
+        {
+            //if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
+            QDebug.Log("OnDestroy");
+        }
+
+        protected virtual void FixedUpdate()
+        {
+            if (!WindowHistory)
+            {
+                return;
+            }
+            QHistory.Instance.Keys();
+        }
+    }
 }

@@ -19,18 +19,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using System.Collections.Generic;
 using UnityEngine;
 
-namespace QuickSearch.QUtils {
-    static class Texture {
+namespace QuickSearch.QUtils
+{
+    static class Texture
+    {
 
-        internal static readonly string STOCKTOOLBAR_PATH = QuickSearch.relativePath + "/Textures/StockToolBar";
-        internal static readonly string BLIZZY_PATH = QuickSearch.relativePath + "/Textures/BlizzyToolBar";
-        internal static readonly string SEARCH_PATH = QuickSearch.relativePath + "/Textures/search";
-        internal static readonly string DELETE_PATH = QuickSearch.relativePath + "/Textures/delete";
+        internal static string STOCKTOOLBAR_PATH { get { return QuickSearch.relativePath + "/Textures/StockToolBar"; } }
+        internal static string BLIZZY_PATH { get { return QuickSearch.relativePath + "/Textures/BlizzyToolBar"; } }
+        internal static string SEARCH_PATH { get { return QuickSearch.relativePath + "/Textures/search"; } }
+        internal static string DELETE_PATH { get { return QuickSearch.relativePath + "/Textures/delete"; } }
 
         static Texture2D delete;
-        internal static Texture2D Delete {
-            get {
-                if (delete == null) {
+        internal static Texture2D Delete
+        {
+            get
+            {
+                if (delete == null)
+                {
                     delete = GameDatabase.Instance.GetTexture(DELETE_PATH, false);
                 }
                 return delete;
@@ -38,9 +43,12 @@ namespace QuickSearch.QUtils {
         }
 
         static Texture2D search;
-        internal static Texture2D Search {
-            get {
-                if (search == null) {
+        internal static Texture2D Search
+        {
+            get
+            {
+                if (search == null)
+                {
                     search = GameDatabase.Instance.GetTexture(SEARCH_PATH, false);
                 }
                 return search;

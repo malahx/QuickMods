@@ -1,5 +1,15 @@
 ﻿#### Changelog
 
+QuickBrake 1.4.0.5
+QuickContracts 1.3.0.5
+QuickGoTo 1.4.0.6
+QuickIVA 1.3.0.5
+QuickHide 3.3.0.5
+QuickRevert 3.2.0.5
+QuickSAS 1.2.0.5
+QuickSearch 3.3.0.5
+	Fixed initialization of vars 
+
 QuickExit 2.2.0.5
 	Moved initialization of vars into Start()
 
