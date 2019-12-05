@@ -29,10 +29,10 @@ namespace QuickExit {
 
 	public partial class QuickExit : MonoBehaviour {
 
-		public readonly static string VERSION = Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Build;
-		public readonly static string MOD = Assembly.GetAssembly(typeof(QuickExit)).GetName().Name;
-		public readonly static string relativePath = "QuickMods/" + MOD;
-		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+        public  static string VERSION;
+		public  static string MOD ;
+		public  static string relativePath ;
+		public  static string PATH;
 
 		internal static void Log(string String, string Title = null, bool force = false) {
 			if (!force) {
@@ -47,6 +47,7 @@ namespace QuickExit {
 			}
 			Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
 		}
+
 		internal static void Warning(string String, string Title = null) {
 			if (Title == null) {
 				Title = MOD;
@@ -58,9 +59,15 @@ namespace QuickExit {
 
 		protected virtual void Awake() {
 			Log ("Awake");
-		}
 
-		protected virtual void Start() {
+                     VERSION = Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Build;
+         MOD = Assembly.GetAssembly(typeof(QuickExit)).GetName().Name;
+         relativePath = "QuickMods/" + MOD;
+         PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+
+    }
+
+    protected virtual void Start() {
 			Log ("Start");
 		}
 

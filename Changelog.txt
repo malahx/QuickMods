@@ -1,5 +1,8 @@
 ﻿#### Changelog
 
+QuickExit 2.2.0.5
+	Moved initialization of vars into Start()
+
 QuickSearch
 	Removed old Blizzy and Stock toolbar vars
 
