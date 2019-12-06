@@ -28,7 +28,7 @@ namespace QuickContracts
     {
 
         public static string VERSION;
-        public static string MOD;
+        public static string MOD = "";
         public static string relativePath;
         public static string PATH;
 
@@ -66,7 +66,6 @@ namespace QuickContracts
 
         protected virtual void Awake()
         {
-
             VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
             MOD = Assembly.GetExecutingAssembly().GetName().Name;
             relativePath = "QuickMods/" + MOD;

@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using System.Reflection;
+
 using QuickSearch.QUtils;
 using QuickSearch.Toolbar;
 using UnityEngine;
@@ -33,21 +33,13 @@ namespace QuickSearch
     {
 
         public static string VERSION;
-        public static string MOD;
+        public static string MOD = "";
         public static string relativePath;
         public static string PATH;
         
 
         protected virtual void Awake()
         {
-
-            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
-            MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            relativePath = "QuickMods/" + MOD;
-            PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
-
-
-            //if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy ();
             TextField = new GUIStyle(HighLogic.Skin.textField);
             TextField.stretchWidth = true;
             TextField.stretchHeight = true;

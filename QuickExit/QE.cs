@@ -16,63 +16,72 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using System.Reflection;
+
 using UnityEngine;
 
-namespace QuickExit {
+namespace QuickExit
+{
 
-	[KSPAddon(KSPAddon.Startup.EveryScene, false)]
-	public partial class QExit : QuickExit {}
+    [KSPAddon(KSPAddon.Startup.EveryScene, false)]
+    public partial class QExit : QuickExit { }
 
-	[KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
-	public partial class QStockToolbar : QuickExit {}
+    [KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
+    public partial class QStockToolbar : QuickExit { }
 
-	public partial class QuickExit : MonoBehaviour {
+    public partial class QuickExit : MonoBehaviour
+    {
 
-        public  static string VERSION;
-		public  static string MOD ;
-		public  static string relativePath ;
-		public  static string PATH;
+        public static string VERSION;
+        public static string MOD = "";
+        public static string relativePath;
+        public static string PATH;
 
-		internal static void Log(string String, string Title = null, bool force = false) {
-			if (!force) {
-				if (!QSettings.Instance.Debug) {
-					return;
-				}
-			}
-			if (Title == null) {
-				Title = MOD;
-			} else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
+        internal static void Log(string String, string Title = null, bool force = false)
+        {
+            if (!force)
+            {
+                if (!QSettings.Instance.Debug)
+                {
+                    return;
+                }
+            }
+            if (Title == null)
+            {
+                Title = MOD;
+            }
+            else
+            {
+                Title = string.Format("{0}({1})", MOD, Title);
+            }
+            Debug.Log(string.Format("{0}[{1}]: {2}", Title, VERSION, String));
+        }
 
-		internal static void Warning(string String, string Title = null) {
-			if (Title == null) {
-				Title = MOD;
-			} else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.LogWarning (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
+        internal static void Warning(string String, string Title = null)
+        {
+            if (Title == null)
+            {
+                Title = MOD;
+            }
+            else
+            {
+                Title = string.Format("{0}({1})", MOD, Title);
+            }
+            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, VERSION, String));
+        }
 
-		protected virtual void Awake() {
-			Log ("Awake");
+        protected virtual void Awake()
+        {
+            Log("Awake");
+        }
 
-                     VERSION = Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Build;
-         MOD = Assembly.GetAssembly(typeof(QuickExit)).GetName().Name;
-         relativePath = "QuickMods/" + MOD;
-         PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+        protected virtual void Start()
+        {
+            Log("Start");
+        }
 
+        protected virtual void OnDestroy()
+        {
+            Log("OnDestroy");
+        }
     }
-
-    protected virtual void Start() {
-			Log ("Start");
-		}
-
-		protected virtual void OnDestroy() {
-			Log ("OnDestroy");
-		}
-	}
 }

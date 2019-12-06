@@ -15,7 +15,7 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
-using System.Reflection;
+
 using UnityEngine;
 
 namespace QuickSAS
@@ -34,7 +34,7 @@ namespace QuickSAS
     {
 
         public static string VERSION;
-        public static string MOD;
+        public static string MOD = "";
         public static string relativePath;
         public static string PATH;
 
@@ -74,13 +74,6 @@ namespace QuickSAS
         protected virtual void Awake()
         {
             Log("Awake");
-
-            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
-            MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            relativePath = "QuickMods/" + MOD;
-            PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
-
-
         }
 
         protected virtual void Start()

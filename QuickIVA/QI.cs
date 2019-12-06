@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-using System.Reflection;
+
 using UnityEngine;
 
 namespace QuickIVA
@@ -32,7 +32,7 @@ namespace QuickIVA
     {
 
         public static string VERSION;
-        public static string MOD;
+        public static string MOD = "";
         public static string relativePath;
         public static string PATH;
 
@@ -69,12 +69,6 @@ namespace QuickIVA
         }
         protected virtual void Awake()
         {
-
-            VERSION = Assembly.GetAssembly(typeof(QuickIVA)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickIVA)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickIVA)).GetName().Version.Build;
-            MOD = Assembly.GetAssembly(typeof(QuickIVA)).GetName().Name;
-            relativePath = "QuickMods/" + MOD;
-            PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
-
             Log("Awake");
         }
         protected virtual void Start()

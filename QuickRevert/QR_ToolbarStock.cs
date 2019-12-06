@@ -24,7 +24,7 @@ namespace QuickRevert {
 	public partial class QStockToolbar  {
 
         internal ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER;
-		static string TexturePath = relativePath + "/Textures/StockToolBar";
+		internal static string TexturePath;
 
 		void OnClick() { 
 			QGUI.Instance.Settings ();
@@ -44,8 +44,9 @@ namespace QuickRevert {
 				return;
 			}
 			Instance = this;
-			//DontDestroyOnLoad (Instance);
 
+            //DontDestroyOnLoad (Instance);
+           
             Init();
 
 			Log ("Awake", "QStockToolbar");
@@ -53,7 +54,7 @@ namespace QuickRevert {
 
 		protected override void Start() {
 			Log ("Start", "QStockToolbar");
-		}
+        }
 			
         void OnDestory()
         {

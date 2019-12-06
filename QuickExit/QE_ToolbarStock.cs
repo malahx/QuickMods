@@ -26,17 +26,15 @@ namespace QuickExit {
 
 
 		ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.FLIGHT | ApplicationLauncher.AppScenes.MAPVIEW | ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.TRACKSTATION | ApplicationLauncher.AppScenes.VAB;
-		static string TexturePath = relativePath + "/Textures/StockToolBar";
+        internal static string TexturePath;
 
 		void OnClick() { 
 			QExit.Instance.Dialog ();
 			Log ("OnClick", "QStockToolbar");
 		}
-
-        //ApplicationLauncherButton appLauncherButton;
+        
         ToolbarControl toolbarControl;
-
-
+        
 		internal static QStockToolbar Instance {
 			get;
 			private set;

@@ -38,7 +38,7 @@ namespace QuickRevert
     {
 
         public static string VERSION;
-        public static string MOD;
+        public static string MOD = "";
         public static string relativePath;
         public static string PATH;
 
@@ -61,6 +61,7 @@ namespace QuickRevert
             }
             Debug.Log(string.Format("{0}[{1}]: {2}", Title, VERSION, String));
         }
+
         protected static void Warning(string String, string Title = null)
         {
             if (Title == null)
@@ -76,12 +77,6 @@ namespace QuickRevert
 
         protected virtual void Awake()
         {
-
-            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
-            MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            relativePath = "QuickMods/" + MOD;
-            PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
-
             Log("Awake");
         }
 

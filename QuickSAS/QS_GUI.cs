@@ -22,6 +22,7 @@ using UnityEngine;
 using ClickThroughFix;
 
 namespace QuickSAS {
+
 	public partial class QGUI {
 		public static QGUI Instance {
 			get;

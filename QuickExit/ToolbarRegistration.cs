@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using ToolbarControl_NS;
+using System.Reflection;
 
 namespace QuickExit
 {
@@ -9,6 +10,13 @@ namespace QuickExit
         void Start()
         {
             ToolbarControl.RegisterMod(QStockToolbar.MODID, QStockToolbar.MODNAME);
+
+            QuickExit.VERSION = Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Build;
+            QuickExit.MOD = Assembly.GetAssembly(typeof(QuickExit)).GetName().Name;
+            QuickExit.relativePath = "QuickMods/" + QuickExit.MOD;
+            QuickExit.PATH = KSPUtil.ApplicationRootPath + "GameData/" + QuickExit.relativePath;
+            QStockToolbar.TexturePath = QuickExit.relativePath + "/Textures/StockToolBar";
+
         }
     }
 }

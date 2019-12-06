@@ -26,7 +26,7 @@ namespace QuickSAS
 	public partial class QStockToolbar
 	{
 		ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER;
-		static string TexturePath = relativePath + "/Textures/StockToolBar";
+        internal static string TexturePath;
         ToolbarControl toolbarControl;
 
 		void OnClick() { 
@@ -72,8 +72,11 @@ namespace QuickSAS
 
         new void OnDestroy()
         {
-            toolbarControl.OnDestroy();
-            Destroy(toolbarControl);
+            if (toolbarControl != null)
+            {
+                toolbarControl.OnDestroy();
+                Destroy(toolbarControl);
+            }
         }
 
 		internal void Set(bool SetTrue, bool force = false) {

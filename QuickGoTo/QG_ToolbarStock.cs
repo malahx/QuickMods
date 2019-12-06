@@ -103,8 +103,8 @@ namespace QuickGoTo {
 				return HighLogic.LoadedSceneIsGame;
 			}
 		}
-		
-		static string TexturePath = relativePath + "/Textures/StockToolBar";
+
+        internal static string TexturePath;
 
 		internal static Texture2D GetTexture {
 			get {

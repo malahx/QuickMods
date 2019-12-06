@@ -47,6 +47,7 @@
     <Compile Include="QG_GUI.cs" />
     <Compile Include="QG.cs" />
     <Compile Include="QG_Settings.cs" />
+    <Compile Include="ToolbarRegistration.cs" />
     <Compile Include="ToolbarWrapper.cs" />
     <Compile Include="QG_Data.cs" />
     <Compile Include="QG_ToolbarBlizzy.cs" />

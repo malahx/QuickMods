@@ -1,5 +1,21 @@
 ﻿#### Changelog
 
+1.4.0.6 QuickMods
+QuickBrake 1.4.0.6
+QuickContracts 1.3.0.6
+QuickCursorHider 1.1.0.5
+QuickExit 2.2.0.6
+QuickFineControl 1.1.0.5
+QuickGoTo 1.4.0.7
+QuickHide 3.3.0.6
+QuickIVA 1.3.0.6
+QuickMute 1.4.0.5
+QuickRevert 3.2.0.6
+QuickSAS 1.2.0.6
+QuickSearch 3.3.0.6
+QuickStart 2.2.0.7
+	More initialization fixes due to Unity upgrade
+
 QuickBrake 1.4.0.5
 QuickContracts 1.3.0.5
 QuickGoTo 1.4.0.6

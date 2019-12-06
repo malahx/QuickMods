@@ -32,7 +32,7 @@ namespace QuickGoTo
     {
 
         internal static string VERSION;
-        internal static string MOD;
+        internal static string MOD = "";
         public static string relativePath;
         public static string PATH;
 
@@ -55,6 +55,7 @@ namespace QuickGoTo
             }
             Debug.Log(string.Format("{0}[{1}]: {2}", Title, VERSION, String));
         }
+
         protected static void Warning(string String, string Title = null)
         {
             if (Title == null)
@@ -70,12 +71,6 @@ namespace QuickGoTo
 
         protected virtual void Awake()
         {
-
-            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
-            MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            relativePath = "QuickMods/" + MOD;
-            PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
-
             Log("Awake");
         }
 
