@@ -1,5 +1,8 @@
 ﻿#### Changelog
 
+2.2.0.8 QuickStart
+	Fixed initialization of path to config file
+
 1.4.0.6 QuickMods
 QuickBrake 1.4.0.6
 QuickContracts 1.3.0.6

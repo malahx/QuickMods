@@ -37,7 +37,8 @@ namespace QuickStart
     [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.FLIGHT, GameScenes.EDITOR, GameScenes.TRACKSTATION, GameScenes.SPACECENTER)]
     public partial class QuickStart_Persistent : ScenarioModule { }
 
-    public class QuickStart
+    [KSPAddon(KSPAddon.Startup.Instantly, true)]
+    public class QuickStart:MonoBehaviour
     {
 
         public static string VERSION;
