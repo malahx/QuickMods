@@ -143,7 +143,7 @@ namespace QuickHide
 
         internal bool isThisApp(ApplicationLauncherButton AppLauncherButton)
         {
-            if (AppLauncherButton == null)
+            if (AppLauncherButton == null || appLauncherButton == null)
             {
                 return false;
             }

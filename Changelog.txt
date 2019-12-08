@@ -1,5 +1,11 @@
 ﻿#### Changelog
 
+Quickhide 3.3.0.7
+	Fixed nullref when only on Blizzy toolbar
+	Fixed typos in english cfg
+	Fixed entry of time to only allow valid numbers and not show exceptions if an error
+	Made right-click work on the Blizzy toolbar same as stock
+
 2.2.0.8 QuickStart
 	Fixed initialization of path to config file
 

@@ -182,8 +182,17 @@ namespace QuickHide {
 			if (QSettings.Instance.HideAppLauncher) {
 				GUILayout.BeginHorizontal ();
 				GUILayout.Label (Localizer.Format("quickhide_time"), GUILayout.Width (490));
-				QSettings.Instance.TimeToKeep = int.Parse(GUILayout.TextField (QSettings.Instance.TimeToKeep.ToString(), GUILayout.Width (100)));
-				GUILayout.EndHorizontal ();
+
+                string timeToKeep = GUILayout.TextField(QSettings.Instance.TimeToKeep.ToString(), GUILayout.Width(100));
+                if (timeToKeep != "")
+                {
+                    bool rc = int.TryParse(timeToKeep, out QSettings.Instance.TimeToKeep);
+                    //QSettings.Instance.TimeToKeep = int.Parse(GUILayout.TextField(QSettings.Instance.TimeToKeep.ToString(), GUILayout.Width(100)));
+                }
+                else QSettings.Instance.TimeToKeep = 0;
+
+
+                GUILayout.EndHorizontal ();
 			}
 
 			GUILayout.BeginHorizontal ();

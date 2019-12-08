@@ -36,9 +36,12 @@ namespace QuickHide
 
         public static string TexturePath { get { return (QSettings.Instance.isHidden ? TexturePathShow : TexturePathHide); } }
 
-        void OnClick()
+        void OnClick(ClickEvent e)
         {
-            QHide.Instance.HideMods();
+            if (e.MouseButton == 1)
+                QHide.Instance.Settings();
+           else
+                QHide.Instance.HideMods();
         }
 
         IButton Button;
@@ -71,7 +74,7 @@ namespace QuickHide
                 Button = ToolbarManager.Instance.add(QuickHide.MOD, QuickHide.MOD);
                 Button.TexturePath = TexturePath;
                 Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": " + Localizer.Format("quickhide_show") : QuickHide.MOD + ": " + Localizer.Format("quickhide_hide"));
-                Button.OnClick += (e) => OnClick();
+                Button.OnClick += OnClick;
             }
             if (ButtonConf == null)
             {
