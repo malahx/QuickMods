@@ -46,12 +46,16 @@ namespace QuickStart
         public static string relativePath;
         public static string PATH;
 
+        internal static string FileConfig;
+
         void Awake()
         {
             VERSION = Assembly.GetAssembly(typeof(QuickStart)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickStart)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickStart)).GetName().Version.Build;
             MOD = Assembly.GetAssembly(typeof(QuickStart)).GetName().Name;
             relativePath = "QuickMods/" + MOD;
             PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+            FileConfig = QuickStart.PATH + "/Config.txt";
+            Debug.Log("QuickStart.Awake, PATH: " + PATH);
         }
     }
 }

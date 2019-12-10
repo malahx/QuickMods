@@ -57,7 +57,10 @@ namespace QuickStart {
 		}
 
 		void Awake() {
-			if (Ended) {
+		}
+
+		void Start() {
+            if (Ended) {
 				QDebug.Warning ("Reload? Destroy.", "QLoading");
 				Destroy (this);
 				return;
@@ -74,10 +77,8 @@ namespace QuickStart {
 				return;
 			}
 			Instance = this;
-			QDebug.Log ("Awake", "QLoading");
-		}
+			//QDebug.Log ("Awake", "QLoading");
 
-		void Start() {
 			if (string.IsNullOrEmpty (QSaveGame.LastUsed)) {
 				ScreenMessages.PostScreenMessage ("[" + QuickStart.MOD + "]: No savegame found.", 10);
 				QDebug.Log ("No savegame found, destroy...", "QLoading");
