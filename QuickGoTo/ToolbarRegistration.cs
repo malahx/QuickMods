@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,8 +23,8 @@ public class RegisterToolbar : MonoBehaviour
 
             QuickGoTo.VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
             QuickGoTo.MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            QuickGoTo.relativePath = "QuickMods/" + QuickGoTo.MOD;
-            QuickGoTo.PATH = KSPUtil.ApplicationRootPath + "GameData/" + QuickGoTo.relativePath;
+            QuickGoTo.relativePath = QuickGoTo.MOD;
+            QuickGoTo.PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
 
             QStockToolbar.TexturePath = QuickGoTo.relativePath + "/Textures/StockToolBar";
         }

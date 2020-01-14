@@ -78,8 +78,8 @@ namespace QuickSearch.Toolbar {
                     AppScenes,
                     MODID,
                     "quickSearchButton",
-                    QUtils.Texture.STOCKTOOLBAR_PATH,
-                    QUtils.Texture.BLIZZY_PATH,
+				  "QuickMods/" + QUtils.Texture.STOCKTOOLBAR_PATH,
+				  "QuickMods/" + QUtils.Texture.BLIZZY_PATH,
                     MODNAME
                 );
             }

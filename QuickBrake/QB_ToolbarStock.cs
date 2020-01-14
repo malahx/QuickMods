@@ -63,8 +63,8 @@ namespace QuickBrake
                     AppScenes,
                     MODID,
                     "quickBrakeButton",
-                    TexturePath,
-                     QuickBrake.relativePath + "/Textures/BlizzyToolBar",
+					"QuickMods/" + TexturePath,
+                    "QuickMods/" + QuickBrake.relativePath + "/Textures/BlizzyToolBar",
                     MODNAME
                 );
             }

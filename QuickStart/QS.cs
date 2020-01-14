@@ -16,7 +16,7 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-
+using System.IO;
 using System.Reflection;
 using UnityEngine;
 
@@ -44,16 +44,15 @@ namespace QuickStart
         public static string VERSION;
         public static string MOD = "";
         public static string relativePath;
-        public static string PATH;
-
+        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
         internal static string FileConfig;
 
         void Awake()
         {
             VERSION = Assembly.GetAssembly(typeof(QuickStart)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickStart)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickStart)).GetName().Version.Build;
             MOD = Assembly.GetAssembly(typeof(QuickStart)).GetName().Name;
-            relativePath = "QuickMods/" + MOD;
-            PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+            relativePath = MOD;
+            PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
             FileConfig = QuickStart.PATH + "/Config.txt";
             Debug.Log("QuickStart.Awake, PATH: " + PATH);
         }

@@ -16,6 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using System.IO;
+using System.Reflection;
 using System.Collections;
 using QuickMute.Object;
 using QuickMute.Toolbar;
@@ -32,6 +34,13 @@ namespace QuickMute {
         internal QVolume volume;
         QKey qKey;
         QLevel level;
+
+
+        public static string VERSION;
+        public static string MOD = "";
+        public static string relativePath;
+        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
+        internal static string FileConfig = QVars.PATH + "/Config.txt";
 
         internal bool mouseIsHover {
             get {
@@ -58,6 +67,14 @@ namespace QuickMute {
             gui = new QGui(qKey, level);
             DontDestroyOnLoad(this);
             QDebug.Log("Awake");
+           
+
+            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
+            MOD = Assembly.GetExecutingAssembly().GetName().Name;
+            relativePath =  MOD;
+            PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
+            FileConfig = PATH + "/Config.txt";
+            Debug.Log("QM.Awake, PATH: " + PATH);
         }
 
         IEnumerator Wait(int seconds) {

@@ -15,7 +15,8 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
-
+using System.IO;
+using System.Reflection;
 using UnityEngine;
 
 namespace QuickSAS
@@ -36,7 +37,8 @@ namespace QuickSAS
         public static string VERSION;
         public static string MOD = "";
         public static string relativePath;
-        public static string PATH;
+        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
+        internal static string FileConfig;
 
         protected static void Log(string String, string Title = null, bool force = false)
         {
@@ -74,6 +76,12 @@ namespace QuickSAS
         protected virtual void Awake()
         {
             Log("Awake");
+            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
+            MOD = Assembly.GetExecutingAssembly().GetName().Name;
+            relativePath = MOD;
+            PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
+            FileConfig = PATH + "/Config.txt";
+            Debug.Log("QS.Awake, PATH: " + PATH);
         }
 
         protected virtual void Start()

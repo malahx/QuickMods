@@ -77,7 +77,7 @@ namespace QuickHide
         {
             get
             {
-                return GameDatabase.Instance.GetTexture(TexturePath, false);
+                return GameDatabase.Instance.GetTexture("QuickMods/" + TexturePath, false);
             }
         }
 

@@ -69,8 +69,8 @@ namespace QuickIVA {
                     AppScenes,
                     MODID,
                     "quickIVAButton",
-                    TexturePath,
-                    QuickIVA.relativePath + "/Textures/BlizzyToolBar",
+					"QuickMods/" + TexturePath,
+					"QuickMods/" + QuickIVA.relativePath + "/Textures/BlizzyToolBar",
                     MODNAME
                 );
                 Log("toolbarControl Init", "QStockToolbar");

@@ -134,8 +134,8 @@ namespace QuickMute.Toolbar
                     AppScenes,
                      MODID,
                     "quickMuteButton",
-                    QTexture.StockTexture,
-                    QTexture.BlizzyTexturePath,
+                   "QuickMods/" + QTexture.StockTexture,
+                   "QuickMods/" + QTexture.BlizzyTexturePath,
                     MODNAME
                 );
 

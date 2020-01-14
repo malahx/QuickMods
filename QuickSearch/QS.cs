@@ -16,7 +16,8 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
-
+using System.IO;
+using System.Reflection;
 using QuickSearch.QUtils;
 using QuickSearch.Toolbar;
 using UnityEngine;
@@ -35,8 +36,9 @@ namespace QuickSearch
         public static string VERSION;
         public static string MOD = "";
         public static string relativePath;
-        public static string PATH;
-        
+        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";        
+        internal static string FileConfig = QuickSearch.PATH + "/Config.txt";
+
 
         protected virtual void Awake()
         {
@@ -44,6 +46,13 @@ namespace QuickSearch
             TextField.stretchWidth = true;
             TextField.stretchHeight = true;
             TextField.alignment = TextAnchor.MiddleCenter;
+
+            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
+            MOD = Assembly.GetExecutingAssembly().GetName().Name;
+            relativePath =  MOD;
+            PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
+            FileConfig = PATH + "/Config.txt";
+            Debug.Log("QS.Awake, PATH: " + PATH);
             QDebug.Log("Awake");
         }
 

@@ -68,7 +68,6 @@ namespace QuickExit {
         internal const string MODID = "QuickExit_NS";
         internal const string MODNAME = "QuickExit";
         void Init() {
-
             if (toolbarControl == null)
             {
 
@@ -77,8 +76,8 @@ namespace QuickExit {
                     AppScenes,
                     MODID,
                     "quickExitButton",
-                    TexturePath,
-                    QuickExit.relativePath + "/Textures/BlizzyToolBar",
+					"QuickMods/" + TexturePath,
+				   "QuickMods/" + QuickExit.relativePath + "/Textures/BlizzyToolBar",
                     MODNAME
                 );
 

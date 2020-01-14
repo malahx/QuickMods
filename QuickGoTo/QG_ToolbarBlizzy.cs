@@ -28,23 +28,23 @@ namespace QuickGoTo {
 				return QSettings.Instance.BlizzyToolBar;
 			}
 		}
-		internal string TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyToolBar";
-		internal static string VAB_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyVAB";
-		internal static string TS_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyTS";
-		internal static string SPH_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzySPH";
-		internal static string Sett_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzySett";
-		internal static string SC_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzySC";
-		internal static string RvSC_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRvSC";
-		internal static string RvED_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRvED";
-		internal static string Rv_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRv";
-		internal static string RnD_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRnD";
-		internal static string Rc_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRc";
-		internal static string MI_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyMI";
-		internal static string Main_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyMain";
-		internal static string Lves_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyLves";
-		internal static string Astr_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyAstr";
-		internal static string Admi_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyAdmi";
-		internal static string Conf_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyConf";
+		internal string TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyToolBar";
+		internal static string VAB_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyVAB";
+		internal static string TS_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyTS";
+		internal static string SPH_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzySPH";
+		internal static string Sett_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzySett";
+		internal static string SC_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzySC";
+		internal static string RvSC_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyRvSC";
+		internal static string RvED_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyRvED";
+		internal static string Rv_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyRv";
+		internal static string RnD_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyRnD";
+		internal static string Rc_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyRc";
+		internal static string MI_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyMI";
+		internal static string Main_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyMain";
+		internal static string Lves_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyLves";
+		internal static string Astr_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyAstr";
+		internal static string Admi_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyAdmi";
+		internal static string Conf_TexturePath = "QuickMods/" +  QuickGoTo.relativePath + "/Textures/BlizzyConf";
 
 		Coroutine CoroutineEach;
 

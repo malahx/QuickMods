@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using ToolbarControl_NS;
 
 using System.Reflection;
@@ -14,8 +15,8 @@ namespace QuickRevert
 
             QuickRevert.VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
             QuickRevert.MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            QuickRevert.relativePath = "QuickMods/" + QuickRevert.MOD;
-            QuickRevert.PATH = KSPUtil.ApplicationRootPath + "GameData/" + QuickRevert.relativePath;
+            QuickRevert.relativePath =  QuickRevert.MOD;
+            QuickRevert.PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
 
             QStockToolbar.TexturePath = QuickRevert.relativePath + "/Textures/StockToolBar";
         }

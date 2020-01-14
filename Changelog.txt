@@ -1,5 +1,21 @@
 ﻿#### Changelog
 
+1.4.0.7 QuickMods
+	QuickBrake 1.4.0.7
+	QuickContracts 1.3.0.7
+	QuickCursorHider 1.1.0.6
+	QuickExit 2.2.0.7
+	QuickFineControl 1.1.0.6
+	QuickGoTo 1.4.0.8
+	QuickHide 3.3.0.8
+	QuickIVA 1.3.0.7
+	QuickMute 1.4.0.6
+	QuickRevert 3.2.0.7
+	QuickSAS 1.2.0.7
+	QuickSearch 3.3.0.7
+	QuickStart 2.2.0.10
+		Fixed location of config files
+
 QuickStart 2.2.0.9
 	Fixed initialization race condition which was causing nullrefs and errors on some systems
 

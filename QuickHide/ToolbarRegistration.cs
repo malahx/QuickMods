@@ -1,4 +1,4 @@
-﻿using System;
+﻿using System.IO;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -24,8 +24,8 @@ public class RegisterToolbar : MonoBehaviour
 
             QuickHide.VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
             QuickHide.MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            QuickHide.relativePath = "QuickMods/" + QuickHide.MOD;
-            QuickHide.PATH = KSPUtil.ApplicationRootPath + "GameData/" + QuickHide.relativePath;
+            QuickHide.relativePath =  QuickHide.MOD;
+            QuickHide.PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
         }
     }
 }

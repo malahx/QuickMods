@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using ToolbarControl_NS;
 using System.Reflection;
 
@@ -13,8 +14,8 @@ namespace QuickSearch.Toolbar
 
             QuickSearch.VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
             QuickSearch.MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            QuickSearch.relativePath = "QuickMods/" + QuickSearch.MOD;
-            QuickSearch.PATH = KSPUtil.ApplicationRootPath + "GameData/" + QuickSearch.relativePath;
+            QuickSearch.relativePath =  QuickSearch.MOD;
+            QuickSearch.PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
         }
     }
 }

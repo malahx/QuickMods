@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using ToolbarControl_NS;
 using System.Reflection;
 
@@ -13,8 +14,8 @@ namespace QuickSAS
 
             QuickSAS.VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
             QuickSAS.MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            QuickSAS.relativePath = "QuickMods/" + QuickSAS.MOD;
-            QuickSAS.PATH = KSPUtil.ApplicationRootPath + "GameData/" + QuickSAS.relativePath;
+            QuickSAS.relativePath =  QuickSAS.MOD;
+            QuickSAS.PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
 
             QStockToolbar.TexturePath = QuickSAS.relativePath + "/Textures/StockToolBar";
         }

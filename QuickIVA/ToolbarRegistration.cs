@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.IO;
+using UnityEngine;
 using ToolbarControl_NS;
 using System.Reflection;
 
@@ -13,8 +14,8 @@ namespace QuickIVA
 
             QuickIVA.VERSION = Assembly.GetAssembly(typeof(QuickIVA)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickIVA)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickIVA)).GetName().Version.Build;
             QuickIVA.MOD = Assembly.GetAssembly(typeof(QuickIVA)).GetName().Name;
-            QuickIVA.relativePath = "QuickMods/" + QuickIVA.MOD;
-            QuickIVA.PATH = KSPUtil.ApplicationRootPath + "GameData/" + QuickIVA.relativePath;
+            QuickIVA.relativePath =  QuickIVA.MOD;
+            QuickIVA.PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
 
             QStockToolbar.TexturePath = QuickIVA.relativePath + "/Textures/StockToolBar";
 

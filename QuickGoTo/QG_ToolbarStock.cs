@@ -108,7 +108,7 @@ namespace QuickGoTo {
 
 		internal static Texture2D GetTexture {
 			get {
-				return GameDatabase.Instance.GetTexture(TexturePath, false);
+				return GameDatabase.Instance.GetTexture("QuickMods/" + TexturePath, false);
 			}
 		}
 

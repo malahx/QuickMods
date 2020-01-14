@@ -75,8 +75,8 @@ namespace QuickRevert {
                     AppScenes,
                     MODID,
                     "﻿quickRevertButton",
-                    TexturePath,
-                    QuickRevert.relativePath + "/Textures/BlizzyToolBar",
+				   "QuickMods/" + TexturePath,
+				   "QuickMods/" + QuickRevert.relativePath + "/Textures/BlizzyToolBar",
                     MODNAME
                 );
                 Debug.Log("QuickRevert.Init toolbar created");

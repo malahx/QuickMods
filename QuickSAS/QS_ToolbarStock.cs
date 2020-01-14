@@ -62,8 +62,8 @@ namespace QuickSAS
                     AppScenes,
                     MODID,
                     "﻿quickSASButton",
-                    TexturePath,
-                    QuickSAS.relativePath + "/Textures/BlizzyToolBar",
+                  "QuickMods/" + TexturePath,
+                   "QuickMods/" + QuickSAS.relativePath + "/Textures/BlizzyToolBar",
                     MODNAME
                 );
             }

@@ -30,7 +30,7 @@ namespace QuickRevert {
 				return instance;
 			}
 		}
-		internal static string FileConfig = PATH + "/Config.txt";
+		new internal static string FileConfig = PATH + "/Config.txt";
 
 		[KSPField(isPersistant = true)]	bool isLoaded = false;
 
