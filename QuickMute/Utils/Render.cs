@@ -24,23 +24,23 @@ namespace QuickMute.Object {
         internal static void Lock(bool activate, ControlTypes Ctrl) {
             if (HighLogic.LoadedSceneIsEditor) {
                 if (activate) {
-                    if (InputLockManager.GetControlLock("EditorLock" + QVars.MOD) == ControlTypes.None) {
-                        EditorLogic.fetch.Lock(true, true, true, "EditorLock" + QVars.MOD);
+                    if (InputLockManager.GetControlLock("EditorLock" + RegisterToolbar.MOD) == ControlTypes.None) {
+                        EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
                     }
                 } else {
-                    if (InputLockManager.GetControlLock("EditorLock" + QVars.MOD) != ControlTypes.None) {
-                        EditorLogic.fetch.Unlock("EditorLock" + QVars.MOD);
+                    if (InputLockManager.GetControlLock("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None) {
+                        EditorLogic.fetch.Unlock("EditorLock" + RegisterToolbar.MOD);
                     }
                 }
             }
             if (activate) {
-                if (InputLockManager.GetControlLock("Lock" + QVars.MOD) == ControlTypes.None) {
-                    InputLockManager.SetControlLock(Ctrl, "Lock" + QVars.MOD);
+                if (InputLockManager.GetControlLock("Lock" + RegisterToolbar.MOD) == ControlTypes.None) {
+                    InputLockManager.SetControlLock(Ctrl, "Lock" + RegisterToolbar.MOD);
                 }
                 return;
             }
-            if (InputLockManager.GetControlLock("Lock" + QVars.MOD) != ControlTypes.None) {
-                InputLockManager.RemoveControlLock("Lock" + QVars.MOD);
+            if (InputLockManager.GetControlLock("Lock" + RegisterToolbar.MOD) != ControlTypes.None) {
+                InputLockManager.RemoveControlLock("Lock" + RegisterToolbar.MOD);
             }
         }
 
@@ -50,7 +50,7 @@ namespace QuickMute.Object {
 
         internal static bool isLock {
             get {
-                return InputLockManager.GetControlLock("Lock" + QVars.MOD) != ControlTypes.None || InputLockManager.GetControlLock("EditorLock" + QVars.MOD) != ControlTypes.None;
+                return InputLockManager.GetControlLock("Lock" + RegisterToolbar.MOD) != ControlTypes.None || InputLockManager.GetControlLock("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None;
             }
         }
 

@@ -22,7 +22,7 @@ using UnityEngine;
 
 using ToolbarControl_NS;
 
-namespace QuickSearch.Toolbar {
+namespace QuickSearch {
 	
     [KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
 	public class QStock : MonoBehaviour {

@@ -23,7 +23,7 @@ using UnityEngine;
 
 using ToolbarControl_NS;
 
-namespace QuickMute.Toolbar
+namespace QuickMute
 {
 
     [KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
@@ -134,11 +134,12 @@ namespace QuickMute.Toolbar
                     AppScenes,
                      MODID,
                     "quickMuteButton",
-                   "QuickMods/" + QTexture.StockTexture,
-                   "QuickMods/" + QTexture.BlizzyTexturePath,
+                    "QuickMods/" + QTexture.StockTexture,
+                    "QuickMods/" + QTexture.BlizzyTexturePath,
                     MODNAME
                 );
-
+                Debug.Log("StockTexture: " + "QuickMods/" + QTexture.StockTexture);
+                Debug.Log("BlizzyTexture: " + "QuickMods/" + QTexture.BlizzyTexturePath);
             }
             QDebug.Log("QStock.Init", "QStockToolbar");
         }
@@ -186,7 +187,7 @@ namespace QuickMute.Toolbar
                     toolbarControl.SetFalse(false);
                     _isTrue = false;
                 }
-                toolbarControl.SetTexture(QTexture.StockTexture, QTexture.BlizzyTexturePath);
+                toolbarControl.SetTexture("QuickMods/" + QTexture.StockTexture, "QuickMods/" + QTexture.BlizzyTexturePath);
             }
             QDebug.Log("QStock.Refresh", "QStockToolbar");
         }

@@ -20,7 +20,7 @@ using System.IO;
 using System.Reflection;
 using System.Collections;
 using QuickMute.Object;
-using QuickMute.Toolbar;
+//using QuickMute.Toolbar;
 using UnityEngine;
 
 namespace QuickMute {
@@ -35,12 +35,7 @@ namespace QuickMute {
         QKey qKey;
         QLevel level;
 
-
-        public static string VERSION;
-        public static string MOD = "";
-        public static string relativePath;
-        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
-        internal static string FileConfig = QVars.PATH + "/Config.txt";
+        internal static string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
         internal bool mouseIsHover {
             get {
@@ -67,14 +62,9 @@ namespace QuickMute {
             gui = new QGui(qKey, level);
             DontDestroyOnLoad(this);
             QDebug.Log("Awake");
-           
 
-            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
-            MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            relativePath =  MOD;
-            PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
-            FileConfig = PATH + "/Config.txt";
-            Debug.Log("QM.Awake, PATH: " + PATH);
+            FileConfig = RegisterToolbar.PATH + "/Config.txt";
+            Debug.Log("QM.Awake, PATH: " + RegisterToolbar.PATH);
         }
 
         IEnumerator Wait(int seconds) {

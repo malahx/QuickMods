@@ -31,7 +31,7 @@ namespace QuickExit {
 			}
 		}
 
-		new internal static string FileConfig = PATH + "/Config.txt";
+		new internal static string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
 		[KSPField(isPersistant = true)]	bool isLoaded = false;
 

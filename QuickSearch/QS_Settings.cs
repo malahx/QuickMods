@@ -33,7 +33,7 @@ namespace QuickSearch {
 			}
 		}
 
-		readonly string FileConfig = QuickSearch.PATH + "/Config.txt";
+		readonly string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
 		[KSPField (isPersistant = true)] bool isLoaded = false;
 

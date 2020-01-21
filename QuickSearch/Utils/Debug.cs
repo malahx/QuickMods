@@ -25,13 +25,13 @@ namespace QuickSearch.QUtils {
             if (!force && !QSettings.Instance.Debug) {
                 return;
             }
-            Title = Title == null ? QuickSearch.MOD : string.Format("{0}({1})", QuickSearch.MOD, Title);
-            Debug.Log(string.Format("{0}[{1}]: {2}", Title, QuickSearch.VERSION, String));
+            Title = Title == null ? RegisterToolbar.MOD : string.Format("{0}({1})", RegisterToolbar.MOD, Title);
+            Debug.Log(string.Format("{0}[{1}]: {2}", Title, RegisterToolbar.VERSION, String));
         }
 
         internal static void Warning(string String, string Title = null) {
-            Title = Title == null ? QuickSearch.MOD : string.Format("{0}({1})", QuickSearch.MOD, Title);
-            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, QuickSearch.VERSION, String));
+            Title = Title == null ? RegisterToolbar.MOD : string.Format("{0}({1})", RegisterToolbar.MOD, Title);
+            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, RegisterToolbar.VERSION, String));
         }
     }
 }

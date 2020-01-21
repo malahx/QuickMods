@@ -22,7 +22,7 @@ using KSP.Localization;
 using KSP.UI;
 using KSP.UI.Screens;
 using QuickSearch.QUtils;
-using QuickSearch.Toolbar;
+//using QuickSearch.Toolbar;
 using UnityEngine;
 
 using ClickThroughFix;
@@ -157,10 +157,10 @@ namespace QuickSearch {
 			GUI.skin = HighLogic.Skin;
 			QGUI.Lock (IsMouseOver ());
 			if (WindowSettings) {
-				RectSettings = ClickThruBlocker.GUILayoutWindow (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
+				RectSettings = ClickThruBlocker.GUILayoutWindow (1545146, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION);
 			}
 			if (WindowHistory) {
-				RectHistory = ClickThruBlocker.GUILayoutWindow (1545147, RectHistory, QHistory.Instance.Draw, MOD + ": " + Localizer.Format("quicksearch_history"));
+				RectHistory = ClickThruBlocker.GUILayoutWindow (1545147, RectHistory, QHistory.Instance.Draw, RegisterToolbar.MOD + ": " + Localizer.Format("quicksearch_history"));
 			}
 		}
 

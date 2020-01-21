@@ -32,7 +32,7 @@ namespace QuickContracts {
 				return instance;
 			}
 		}
-		new string FileConfig = PATH + "/Config.txt";
+		new string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
 		[KSPField (isPersistant = true)] bool isLoaded = false;
 

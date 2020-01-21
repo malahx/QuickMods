@@ -64,12 +64,12 @@ namespace QuickBrake {
 
 		void Lock (bool activate, ControlTypes Ctrl = 0)	{
 			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
+				InputLockManager.SetControlLock (Ctrl, "Lock" + RegisterToolbar.MOD);
 				return;
 			}
-			InputLockManager.RemoveControlLock ("Lock" + MOD);
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != 0) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+			InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
+			if (InputLockManager.GetControlLock ("Lock" + RegisterToolbar.MOD) != 0) {
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
 			Log ("Lock: " + activate, "QGUI");
 		}
@@ -115,7 +115,7 @@ namespace QuickBrake {
 				return;
 			}
 			GUI.skin = HighLogic.Skin;
-			RectSettings = ClickThruBlocker.GUILayoutWindow (1545165, RectSettings, DrawSettings, QuickBrake.MOD + " " + QuickBrake.VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
+			RectSettings = ClickThruBlocker.GUILayoutWindow (1545165, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
 		}
 
 		void DrawSettings (int id) {

@@ -52,8 +52,8 @@ namespace QuickHide
         }
 
         ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.FLIGHT | ApplicationLauncher.AppScenes.MAPVIEW | ApplicationLauncher.AppScenes.SPACECENTER | ApplicationLauncher.AppScenes.SPH | ApplicationLauncher.AppScenes.TRACKSTATION | ApplicationLauncher.AppScenes.VAB;
-        public static string TexturePathHide { get { return relativePath + "/Textures/StockToolBar_Hide"; } }
-        public static string TexturePathShow { get { return relativePath + "/Textures/StockToolBar_Show"; } }
+        public static string TexturePathHide { get { return RegisterToolbar.relativePath  + "/Textures/StockToolBar_Hide"; } }
+        public static string TexturePathShow { get { return  RegisterToolbar.relativePath  + "/Textures/StockToolBar_Show"; } }
 
         public static string TexturePath
         {
@@ -77,7 +77,8 @@ namespace QuickHide
         {
             get
             {
-                return GameDatabase.Instance.GetTexture("QuickMods/" + TexturePath, false);
+                Debug.Log("QH_ToolbarStock GetTexture: " + TexturePath);
+                return GameDatabase.Instance.GetTexture( TexturePath, false);
             }
         }
 

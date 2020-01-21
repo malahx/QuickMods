@@ -41,22 +41,22 @@ namespace QuickGoTo
         GUIStyle GoToButtonStyle;
         GUIStyle LabelStyle;
         GUIStyle GoToWindowStyle;
-        string VAB_TexturePath = "QuickMods/" + relativePath +"/Textures/StockVAB";
-        string TS_TexturePath = "QuickMods/" + relativePath +"/Textures/StockTS";
-        string SPH_TexturePath = "QuickMods/" + relativePath +"/Textures/StockSPH";
-        string Sett_TexturePath = "QuickMods/" + relativePath + "/Textures/StockSett";
-        string SC_TexturePath = "QuickMods/" + relativePath +"/Textures/StockSC";
-        string RvSC_TexturePath = "QuickMods/" + relativePath +"/Textures/StockRvSC";
-        string RvED_TexturePath = "QuickMods/" + relativePath +"/Textures/StockRvED";
-        string Rv_TexturePath = "QuickMods/" + relativePath +"/Textures/StockRv";
-        string RnD_TexturePath = "QuickMods/" + relativePath +"/Textures/StockRnD";
-        string Rc_TexturePath = "QuickMods/" + relativePath +"/Textures/StockRc";
-        string MI_TexturePath = "QuickMods/" + relativePath +"/Textures/StockMI";
-        string Main_TexturePath = "QuickMods/" + relativePath +"/Textures/StockMain";
-        string Lves_TexturePath = "QuickMods/" + relativePath +"/Textures/StockLves";
-        string Astr_TexturePath = "QuickMods/" + relativePath +"/Textures/StockAstr";
-        string Admi_TexturePath = "QuickMods/" + relativePath +"/Textures/StockAdmi";
-        string Conf_TexturePath = "QuickMods/" + relativePath +"/Textures/StockConf";
+        string VAB_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockVAB";
+        string TS_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockTS";
+        string SPH_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockSPH";
+        string Sett_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/StockSett";
+        string SC_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockSC";
+        string RvSC_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockRvSC";
+        string RvED_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockRvED";
+        string Rv_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockRv";
+        string RnD_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockRnD";
+        string Rc_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockRc";
+        string MI_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockMI";
+        string Main_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockMain";
+        string Lves_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockLves";
+        string Astr_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockAstr";
+        string Admi_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockAdmi";
+        string Conf_TexturePath = "QuickMods/" + RegisterToolbar.relativePath +"/Textures/StockConf";
 
         Texture2D VAB_Texture;
         Texture2D TS_Texture;
@@ -246,7 +246,7 @@ namespace QuickGoTo
             }
             if (Instance != null)
             {
-                Warning("There's already an Instance of " + MOD + ". Destroy.", "QGUI");
+                Warning("There's already an Instance of " + RegisterToolbar.MOD + ". Destroy.", "QGUI");
                 Destroy(this);
                 return;
             }
@@ -429,30 +429,30 @@ namespace QuickGoTo
             {
                 if (activate)
                 {
-                    if (InputLockManager.GetControlLock("EditorLock" + MOD) == ControlTypes.None)
+                    if (InputLockManager.GetControlLock("EditorLock" + RegisterToolbar. MOD) == ControlTypes.None)
                     {
-                        EditorLogic.fetch.Lock(true, true, true, "EditorLock" + MOD);
+                        EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
                     }
                 }
                 else
                 {
-                    if (InputLockManager.GetControlLock("EditorLock" + MOD) != ControlTypes.None)
+                    if (InputLockManager.GetControlLock("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None)
                     {
-                        EditorLogic.fetch.Unlock("EditorLock" + MOD);
+                        EditorLogic.fetch.Unlock("EditorLock" + RegisterToolbar.MOD);
                     }
                 }
             }
             if (activate)
             {
-                if (InputLockManager.GetControlLock("Lock" + MOD) == ControlTypes.None)
+                if (InputLockManager.GetControlLock("Lock" + RegisterToolbar.MOD) == ControlTypes.None)
                 {
-                    InputLockManager.SetControlLock(Ctrl, "Lock" + MOD);
+                    InputLockManager.SetControlLock(Ctrl, "Lock" + RegisterToolbar.MOD);
                 }
                 return;
             }
-            if (InputLockManager.GetControlLock("Lock" + MOD) != ControlTypes.None)
+            if (InputLockManager.GetControlLock("Lock" + RegisterToolbar.MOD) != ControlTypes.None)
             {
-                InputLockManager.RemoveControlLock("Lock" + MOD);
+                InputLockManager.RemoveControlLock("Lock" + RegisterToolbar.MOD);
             }
             Log("Lock " + activate, "QGUI");
         }
@@ -534,7 +534,7 @@ namespace QuickGoTo
             if (WindowSettings)
             {
                 Rect _rect = RectSettings;
-                RectSettings = ClickThruBlocker.GUILayoutWindow(1584654, _rect, DrawSettings, MOD + " " + VERSION, GUILayout.Width(_rect.width), GUILayout.ExpandHeight(true));
+                RectSettings = ClickThruBlocker.GUILayoutWindow(1584654, _rect, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION, GUILayout.Width(_rect.width), GUILayout.ExpandHeight(true));
             }
             if (WindowGoTo)
             {
@@ -575,7 +575,7 @@ namespace QuickGoTo
             QSettings.Instance.StockToolBar = GUILayout.Toggle(QSettings.Instance.StockToolBar, Localizer.Format("quickgoto_stockTB"), GUILayout.Width(300));
             if (QSettings.Instance.StockToolBar)
             {
-                QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle(!QSettings.Instance.StockToolBar_ModApp, Localizer.Format("quickgoto_instock", MOD), GUILayout.Width(300));
+                QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle(!QSettings.Instance.StockToolBar_ModApp, Localizer.Format("quickgoto_instock", RegisterToolbar.MOD), GUILayout.Width(300));
             }
             else
             {

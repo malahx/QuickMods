@@ -86,7 +86,7 @@ namespace QuickGoTo
                 case GoTo.Settings:
                     return Localizer.Format("quickgoto_goto") + " " + Localizer.Format("quickgoto_toSettings");
                 case GoTo.Configurations:
-                    return MOD + Localizer.Format("quickgoto_settings");
+                    return RegisterToolbar.MOD + Localizer.Format("quickgoto_settings");
             }
             return string.Empty;
         }

@@ -16,7 +16,10 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using System.IO;
+using System.Reflection;
 using KSP.Localization;
+using UnityEngine;
 
 namespace QuickHide
 {
@@ -30,9 +33,9 @@ namespace QuickHide
                 return QSettings.Instance.BlizzyToolBar;
             }
         }
-        public static string TexturePathShow { get { return QuickHide.relativePath + "/Textures/BlizzyToolBar_Show"; } }
-        public static string TexturePathHide { get { return QuickHide.relativePath + "/Textures/BlizzyToolBar_Hide"; } }
-        public static string TexturePathConf { get { return QuickHide.relativePath + "/Textures/BlizzyToolBar"; } }
+        public static string TexturePathShow { get { return RegisterToolbar.relativePath + "/Textures/BlizzyToolBar_Show"; } }
+        public static string TexturePathHide { get { return RegisterToolbar.relativePath + "/Textures/BlizzyToolBar_Hide"; } }
+        public static string TexturePathConf { get { return RegisterToolbar.relativePath + "/Textures/BlizzyToolBar"; } }
 
         public static string TexturePath { get { return (QSettings.Instance.isHidden ? TexturePathShow : TexturePathHide); } }
 
@@ -69,18 +72,20 @@ namespace QuickHide
             {
                 return;
             }
+            //RegisterToolbar.relativePath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
+
             if (Button == null)
             {
-                Button = ToolbarManager.Instance.add(QuickHide.MOD, QuickHide.MOD);
+                Button = ToolbarManager.Instance.add(RegisterToolbar.MOD, RegisterToolbar.MOD);
                 Button.TexturePath = TexturePath;
-                Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": " + Localizer.Format("quickhide_show") : QuickHide.MOD + ": " + Localizer.Format("quickhide_hide"));
+                Button.ToolTip = (QSettings.Instance.isHidden ? RegisterToolbar.MOD + ": " + Localizer.Format("quickhide_show") : RegisterToolbar.MOD + ": " + Localizer.Format("quickhide_hide"));
                 Button.OnClick += OnClick;
             }
             if (ButtonConf == null)
             {
-                ButtonConf = ToolbarManager.Instance.add(QuickHide.MOD + "Conf", QuickHide.MOD + "Conf");
+                ButtonConf = ToolbarManager.Instance.add(RegisterToolbar.MOD + "Conf", RegisterToolbar.MOD + "Conf");
                 ButtonConf.TexturePath = TexturePathConf;
-                ButtonConf.ToolTip = QuickHide.MOD + ": " + Localizer.Format("quickhide_settings");
+                ButtonConf.ToolTip = RegisterToolbar.MOD + ": " + Localizer.Format("quickhide_settings");
                 ButtonConf.OnClick += (e) => QHide.Instance.Settings();
             }
         }
@@ -121,7 +126,7 @@ namespace QuickHide
             if (isActive)
             {
                 Button.TexturePath = TexturePath;
-                Button.ToolTip = (QSettings.Instance.isHidden ? QuickHide.MOD + ": " + Localizer.Format("quickhide_show") : QuickHide.MOD + ": " + Localizer.Format("quickhide_hide"));
+                Button.ToolTip = (QSettings.Instance.isHidden ? RegisterToolbar.MOD + ": " + Localizer.Format("quickhide_show") : RegisterToolbar.MOD + ": " + Localizer.Format("quickhide_hide"));
             }
         }
     }

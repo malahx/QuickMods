@@ -66,13 +66,13 @@ namespace QuickRevert {
 			if (!data.isActiveVessel) {
 				if (FlightGlobals.ActiveVessel.situation == Vessel.Situations.PRELAUNCH) {
 					if (data.Store ()) {
-						ScreenMessages.PostScreenMessage (Localizer.Format("quickrevert_revertSaved", MOD), 10, ScreenMessageStyle.UPPER_CENTER);
+						ScreenMessages.PostScreenMessage (Localizer.Format("quickrevert_revertSaved", RegisterToolbar.MOD), 10, ScreenMessageStyle.UPPER_CENTER);
 					}
 				}
 			}
 			else {
 				if (data.Restore ()) {
-					ScreenMessages.PostScreenMessage (Localizer.Format("quickrevert_revertRestored", MOD), 10, ScreenMessageStyle.UPPER_CENTER);
+					ScreenMessages.PostScreenMessage (Localizer.Format("quickrevert_revertRestored", RegisterToolbar.MOD), 10, ScreenMessageStyle.UPPER_CENTER);
 				}
 			}
 			Log ("OnFlightReady", "QFlight");

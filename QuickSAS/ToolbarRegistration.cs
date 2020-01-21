@@ -8,16 +8,21 @@ namespace QuickSAS
     [KSPAddon(KSPAddon.Startup.Instantly, true)]
     public class RegisterToolbar : MonoBehaviour
     {
+        public static string VERSION;
+        public static string MOD = "";
+        public static string relativePath;
+        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace(@"\", "/") + "/../";
+
         void Start()
         {
             ToolbarControl.RegisterMod(QStockToolbar.MODID, QStockToolbar.MODNAME);
 
-            QuickSAS.VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
-            QuickSAS.MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            QuickSAS.relativePath =  QuickSAS.MOD;
-            QuickSAS.PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
+            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
+            MOD = Assembly.GetExecutingAssembly().GetName().Name;
+            relativePath =  MOD;
+            PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
 
-            QStockToolbar.TexturePath = QuickSAS.relativePath + "/Textures/StockToolBar";
+            QStockToolbar.TexturePath = relativePath + "/Textures/StockToolBar";
         }
     }
 }

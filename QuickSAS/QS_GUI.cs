@@ -77,33 +77,33 @@ namespace QuickSAS {
 			if (HighLogic.LoadedSceneIsFlight) {
 				FlightDriver.SetPause (activate);
 				if (activate) {
-					InputLockManager.SetControlLock (ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + MOD);
+					InputLockManager.SetControlLock (ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + RegisterToolbar.MOD);
 					return;
 				}
 			}
 			else if (HighLogic.LoadedSceneIsEditor) {
 				if (activate) {
-					EditorLogic.fetch.Lock (true, true, true, "EditorLock" + MOD);
+					EditorLogic.fetch.Lock (true, true, true, "EditorLock" + RegisterToolbar.MOD);
 					return;
 				}
 				else {
-					EditorLogic.fetch.Unlock ("EditorLock" + MOD);
+					EditorLogic.fetch.Unlock ("EditorLock" + RegisterToolbar.MOD);
 				}
 			}
 			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
+				InputLockManager.SetControlLock (Ctrl, "Lock" + RegisterToolbar.MOD);
 				return;
 			}
 			else {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+			if (InputLockManager.GetControlLock ("Lock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("EditorLock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + MOD);
+			if (InputLockManager.GetControlLock ("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("EditorLock" + RegisterToolbar.MOD);
 			}
-			Log ("Lock " + activate, "QExit");
+			Log ("Lock " + activate, "QSAS");
 		}
 
 		public void Settings () {
@@ -164,7 +164,7 @@ namespace QuickSAS {
 				RectSetKey = ClickThruBlocker.GUILayoutWindow (1545156, RectSetKey, QKey.DrawSetKey, Localizer.Format("quicksas_setKey", QKey.GetText (QKey.SetKey)), GUILayout.ExpandHeight (true));
 				return;
 			}
-			RectSettings = ClickThruBlocker.GUILayoutWindow (1545175, RectSettings, DrawSettings, MOD + " " + VERSION);
+			RectSettings = ClickThruBlocker.GUILayoutWindow (1545175, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION);
 		}
 
 		void DrawSettings (int id) {

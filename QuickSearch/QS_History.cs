@@ -45,8 +45,8 @@ namespace QuickSearch {
 		}
 
 		readonly string CFGNODE = "SearchHistory";
-        readonly string CONFIG_DIR = QuickSearch.PATH + "/PluginData";
-        readonly string CONFIG_PATH = QuickSearch.PATH + "/PluginData" + "/History.cfg";
+        readonly string CONFIG_DIR = RegisterToolbar.PATH + "/PluginData";
+        readonly string CONFIG_PATH = RegisterToolbar.PATH + "/PluginData" + "/History.cfg";
 
         readonly GUIStyle btnStyle;
 		readonly List<Search> history;

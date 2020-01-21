@@ -40,36 +40,49 @@ namespace QuickIVA {
 			Log ("OnDestroy", "QGUI");
 		}
 
-		static void Lock(bool activate, ControlTypes Ctrl = ControlTypes.None) {
-			if (HighLogic.LoadedSceneIsFlight) {
-				FlightDriver.SetPause (activate);
-				if (activate) {
-					InputLockManager.SetControlLock (ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + MOD);
+		static void Lock(bool activate, ControlTypes Ctrl = ControlTypes.None)
+		{
+			if (HighLogic.LoadedSceneIsFlight)
+			{
+				FlightDriver.SetPause(activate);
+				if (activate)
+				{
+					InputLockManager.SetControlLock(ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + RegisterToolbar.MOD);
 					return;
-				}
-			} else if (HighLogic.LoadedSceneIsEditor) {
-				if (activate) {
-					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + MOD);
-					return;
-				} else {
-					EditorLogic.fetch.Unlock ("EditorLock" + MOD);
 				}
 			}
-			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
+			else if (HighLogic.LoadedSceneIsEditor)
+			{
+				if (activate)
+				{
+					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
+					return;
+				}
+				else
+				{
+					EditorLogic.fetch.Unlock("EditorLock" + RegisterToolbar.MOD);
+				}
+			}
+			if (activate)
+			{
+				InputLockManager.SetControlLock(Ctrl, "Lock" + RegisterToolbar.MOD);
 				return;
-			} else {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
 			}
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
-			}
-			if (InputLockManager.GetControlLock ("EditorLock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + MOD);
-			}
-			Log ("Lock: " + activate, "QGUI");
-		}
+			else
+			{
+				InputLockManager.RemoveControlLock("Lock" + RegisterToolbar.MOD);
 
+				if (InputLockManager.GetControlLock("Lock" + RegisterToolbar.MOD) != ControlTypes.None)
+				{
+					InputLockManager.RemoveControlLock("Lock" + RegisterToolbar.MOD);
+				}
+				if (InputLockManager.GetControlLock("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None)
+				{
+					InputLockManager.RemoveControlLock("EditorLock" + RegisterToolbar.MOD);
+				}
+				Log("Lock: " + activate, "QGUI");
+			}
+		}
 		public static void Settings() {
 			SettingsSwitch ();
 			if (!WindowSettings) {
@@ -89,7 +102,7 @@ namespace QuickIVA {
 		internal void OnGUI() {
 			if (WindowSettings) {
 				GUI.skin = HighLogic.Skin;
-				RectSettings = ClickThruBlocker.GUILayoutWindow (1584653, RectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.ExpandHeight(true));
+				RectSettings = ClickThruBlocker.GUILayoutWindow (1584653, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION, GUILayout.ExpandHeight(true));
 			}
 		}
 

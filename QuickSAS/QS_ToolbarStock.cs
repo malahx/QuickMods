@@ -63,7 +63,7 @@ namespace QuickSAS
                     MODID,
                     "﻿quickSASButton",
                   "QuickMods/" + TexturePath,
-                   "QuickMods/" + QuickSAS.relativePath + "/Textures/BlizzyToolBar",
+                   "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyToolBar",
                     MODNAME
                 );
             }

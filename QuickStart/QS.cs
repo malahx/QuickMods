@@ -40,21 +40,12 @@ namespace QuickStart
     [KSPAddon(KSPAddon.Startup.Instantly, true)]
     public class QuickStart:MonoBehaviour
     {
-
-        public static string VERSION;
-        public static string MOD = "";
-        public static string relativePath;
-        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
         internal static string FileConfig;
 
         void Awake()
         {
-            VERSION = Assembly.GetAssembly(typeof(QuickStart)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickStart)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickStart)).GetName().Version.Build;
-            MOD = Assembly.GetAssembly(typeof(QuickStart)).GetName().Name;
-            relativePath = MOD;
-            PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
-            FileConfig = QuickStart.PATH + "/Config.txt";
-            Debug.Log("QuickStart.Awake, PATH: " + PATH);
+            FileConfig = RegisterToolbar.PATH + "/Config.txt";
+            Debug.Log("QuickStart.Awake, PATH: " + RegisterToolbar.PATH);
         }
     }
 }

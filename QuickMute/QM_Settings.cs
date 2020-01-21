@@ -33,7 +33,7 @@ namespace QuickMute {
 			}
 		}
 
-		internal static string FileConfig = QVars.PATH + "/Config.txt";
+		internal static string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
 		[KSPField(isPersistant = true)]	bool isLoaded = false;
 

@@ -80,7 +80,7 @@ namespace QuickStart {
 			//QDebug.Log ("Awake", "QLoading");
 
 			if (string.IsNullOrEmpty (QSaveGame.LastUsed)) {
-				ScreenMessages.PostScreenMessage ("[" + QuickStart.MOD + "]: No savegame found.", 10);
+				ScreenMessages.PostScreenMessage ("[" + RegisterToolbar.MOD + "]: No savegame found.", 10);
 				QDebug.Log ("No savegame found, destroy...", "QLoading");
 				Ended = true;
 				Destroy (this);
@@ -139,7 +139,7 @@ namespace QuickStart {
             QKey.DrawSetKey();
 
 			if (WindowSettings) {
-				RectSettings = ClickThruBlocker.GUILayoutWindow (1545177, RectSettings, DrawSettings, QuickStart.MOD + " " + QuickStart.VERSION);
+				RectSettings = ClickThruBlocker.GUILayoutWindow (1545177, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION);
 			}
 
             GUILayout.BeginArea (RectGUI);
@@ -164,7 +164,7 @@ namespace QuickStart {
 
 			if (!string.IsNullOrEmpty (QSaveGame.LastUsed)) {
 				GUILayout.BeginHorizontal ();
-				QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, Localizer.Format("quickstart_enable", QuickStart.MOD), LabelWidth.Enabled);
+				QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, Localizer.Format("quickstart_enable", RegisterToolbar.MOD), LabelWidth.Enabled);
 				if (QSettings.Instance.Enabled) {
                     if (QSettings.Instance.evenlySpaceToggles)
 					    GUILayout.FlexibleSpace ();

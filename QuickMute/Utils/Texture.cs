@@ -21,25 +21,25 @@ using UnityEngine;
 namespace QuickMute.Object {
     static class QTexture {
         
-        internal static readonly string BLIZZY_PATH_HIGH = QVars.relativePath + "/Textures/BlizzyToolBar_high";
-        internal static readonly string BLIZZY_PATH_MEDIUM = QVars.relativePath + "/Textures/BlizzyToolBar_medium";
-        internal static readonly string BLIZZY_PATH_LOW = QVars.relativePath + "/Textures/BlizzyToolBar_low";
-        internal static readonly string BLIZZY_PATH_ZERO = QVars.relativePath + "/Textures/BlizzyToolBar_zero";
-        internal static readonly string BLIZZY_PATH_MUTE = QVars.relativePath + "/Textures/BlizzyToolBar_mute";
-        internal static readonly string BLIZZY_PATH_CONF = QVars.relativePath + "/Textures/BlizzyConf";
-        internal static readonly string BLIZZY_PATH_VOL = QVars.relativePath + "/Textures/BlizzyVol";
+        internal static readonly string BLIZZY_PATH_HIGH = RegisterToolbar.relativePath + "/Textures/BlizzyToolBar_high";
+        internal static readonly string BLIZZY_PATH_MEDIUM = RegisterToolbar.relativePath + "/Textures/BlizzyToolBar_medium";
+        internal static readonly string BLIZZY_PATH_LOW = RegisterToolbar.relativePath + "/Textures/BlizzyToolBar_low";
+        internal static readonly string BLIZZY_PATH_ZERO = RegisterToolbar.relativePath + "/Textures/BlizzyToolBar_zero";
+        internal static readonly string BLIZZY_PATH_MUTE = RegisterToolbar.relativePath + "/Textures/BlizzyToolBar_mute";
+        internal static readonly string BLIZZY_PATH_CONF = RegisterToolbar.relativePath + "/Textures/BlizzyConf";
+        internal static readonly string BLIZZY_PATH_VOL = RegisterToolbar.relativePath + "/Textures/BlizzyVol";
 
-        internal static readonly string STOCK_PATH_HIGH = QVars.relativePath + "/Textures/StockToolBar_high";
-        internal static readonly string STOCK_PATH_MEDIUM = QVars.relativePath + "/Textures/StockToolBar_medium";
-        internal static readonly string STOCK_PATH_LOW = QVars.relativePath + "/Textures/StockToolBar_low";
-        internal static readonly string STOCK_PATH_ZERO = QVars.relativePath + "/Textures/StockToolBar_zero";
-        internal static readonly string STOCK_PATH_MUTE = QVars.relativePath + "/Textures/StockToolBar_mute";
+        internal static readonly string STOCK_PATH_HIGH = RegisterToolbar.relativePath + "/Textures/StockToolBar_high";
+        internal static readonly string STOCK_PATH_MEDIUM = RegisterToolbar.relativePath + "/Textures/StockToolBar_medium";
+        internal static readonly string STOCK_PATH_LOW = RegisterToolbar.relativePath + "/Textures/StockToolBar_low";
+        internal static readonly string STOCK_PATH_ZERO = RegisterToolbar.relativePath + "/Textures/StockToolBar_zero";
+        internal static readonly string STOCK_PATH_MUTE = RegisterToolbar.relativePath + "/Textures/StockToolBar_mute";
 
-        internal static readonly string ICON_PATH_HIGH = QVars.relativePath + "/Textures/Icon_high";
-        internal static readonly string ICON_PATH_MEDIUM = QVars.relativePath + "/Textures/Icon_medium";
-        internal static readonly string ICON_PATH_LOW = QVars.relativePath + "/Textures/Icon_low";
-        internal static readonly string ICON_PATH_ZERO = QVars.relativePath + "/Textures/Icon_zero";
-        internal static readonly string ICON_PATH_MUTE = QVars.relativePath + "/Textures/Icon_mute";
+        internal static readonly string ICON_PATH_HIGH = RegisterToolbar.relativePath + "/Textures/Icon_high";
+        internal static readonly string ICON_PATH_MEDIUM = RegisterToolbar.relativePath + "/Textures/Icon_medium";
+        internal static readonly string ICON_PATH_LOW = RegisterToolbar.relativePath + "/Textures/Icon_low";
+        internal static readonly string ICON_PATH_ZERO = RegisterToolbar.relativePath + "/Textures/Icon_zero";
+        internal static readonly string ICON_PATH_MUTE = RegisterToolbar.relativePath + "/Textures/Icon_mute";
 
         internal static string BlizzyTexturePath {
             get {

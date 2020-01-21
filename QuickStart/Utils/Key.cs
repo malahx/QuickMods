@@ -49,7 +49,7 @@ namespace QuickStart.QUtils {
         static string GetText(Key key) {
             switch (key) {
                 case Key.Escape:
-                    return Localizer.Format("quickstart_stop", QuickStart.MOD);
+                    return Localizer.Format("quickstart_stop", RegisterToolbar.MOD);
             }
             return string.Empty;
         }

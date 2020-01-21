@@ -3,19 +3,24 @@ using UnityEngine;
 using ToolbarControl_NS;
 using System.Reflection;
 
-namespace QuickSearch.Toolbar
+namespace QuickSearch
 {
     [KSPAddon(KSPAddon.Startup.Instantly, true)]
     public class RegisterToolbar : MonoBehaviour
     {
+        public static string VERSION;
+        public static string MOD = "";
+        public static string relativePath;
+        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace(@"\", "/") + "/../";
+
         void Start()
         {
             ToolbarControl.RegisterMod(QStock.MODID, QStock.MODNAME);
 
-            QuickSearch.VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
-            QuickSearch.MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            QuickSearch.relativePath =  QuickSearch.MOD;
-            QuickSearch.PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
+            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
+            MOD = Assembly.GetExecutingAssembly().GetName().Name;
+            relativePath =  MOD;
+            PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
         }
     }
 }

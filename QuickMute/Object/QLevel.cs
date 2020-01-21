@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using KSP.UI.Screens;
-using QuickMute.Toolbar;
+//using QuickMute.Toolbar;
 using UnityEngine;
 
 using ClickThroughFix;

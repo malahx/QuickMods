@@ -24,10 +24,10 @@ namespace QuickSearch.QUtils
     static class Texture
     {
 
-        internal static string STOCKTOOLBAR_PATH { get { return QuickSearch.relativePath + "/Textures/StockToolBar"; } }
-        internal static string BLIZZY_PATH { get { return QuickSearch.relativePath + "/Textures/BlizzyToolBar"; } }
-        internal static string SEARCH_PATH { get { return QuickSearch.relativePath + "/Textures/search"; } }
-        internal static string DELETE_PATH { get { return QuickSearch.relativePath + "/Textures/delete"; } }
+        internal static string STOCKTOOLBAR_PATH { get { return RegisterToolbar.relativePath + "/Textures/StockToolBar"; } }
+        internal static string BLIZZY_PATH { get { return RegisterToolbar.relativePath + "/Textures/BlizzyToolBar"; } }
+        internal static string SEARCH_PATH { get { return RegisterToolbar.relativePath + "/Textures/search"; } }
+        internal static string DELETE_PATH { get { return RegisterToolbar.relativePath + "/Textures/delete"; } }
 
         static Texture2D delete;
         internal static Texture2D Delete

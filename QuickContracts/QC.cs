@@ -27,11 +27,6 @@ namespace QuickContracts
 
     public class QuickContracts : MonoBehaviour
     {
-
-        public static string VERSION;
-        public static string MOD = "";
-        public static string relativePath;
-        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../";
         internal static string FileConfig;
         internal static void Log(string String, string Title = null, bool force = false)
         {
@@ -44,35 +39,31 @@ namespace QuickContracts
             }
             if (Title == null)
             {
-                Title = MOD;
+                Title = RegisterToolbar.MOD;
             }
             else
             {
-                Title = string.Format("{0}({1})", MOD, Title);
+                Title = string.Format("{0}({1})", RegisterToolbar.MOD, Title);
             }
-            Debug.Log(string.Format("{0}[{1}]: {2}", Title, VERSION, String));
+            Debug.Log(string.Format("{0}[{1}]: {2}", Title, RegisterToolbar.VERSION, String));
         }
         internal static void Warning(string String, string Title = null)
         {
             if (Title == null)
             {
-                Title = MOD;
+                Title = RegisterToolbar.MOD;
             }
             else
             {
-                Title = string.Format("{0}({1})", MOD, Title);
+                Title = string.Format("{0}({1})", RegisterToolbar.MOD, Title);
             }
-            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, VERSION, String));
+            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, RegisterToolbar.VERSION, String));
         }
 
         protected virtual void Awake()
         {
-            VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
-            MOD = Assembly.GetExecutingAssembly().GetName().Name;
-            relativePath =  MOD;
-            PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + "/../" ;
-            FileConfig = PATH + "/Config.txt";
-            Debug.Log("QC.Awake, PATH: " + PATH);
+            FileConfig = RegisterToolbar.PATH + "/Config.txt";
+            Debug.Log("QC.Awake, PATH: " + RegisterToolbar.PATH);
         }
 
         protected virtual void Start()

@@ -56,7 +56,7 @@ namespace QuickSearch
             }
             if (Instance != null)
             {
-                QDebug.Warning("There's already an Instance of " + MOD + ". Destroy.", "QEditor");
+                QDebug.Warning("There's already an Instance of " + RegisterToolbar.MOD + ". Destroy.", "QEditor");
                 Destroy(this);
                 return;
             }
@@ -75,7 +75,7 @@ namespace QuickSearch
         {
             base.Start();
             Func<AvailablePart, bool> _criteria = (_aPart) => QSearch.FindPart(_aPart);
-            searchFilterParts = new EditorPartListFilter<AvailablePart>(MOD, _criteria);
+            searchFilterParts = new EditorPartListFilter<AvailablePart>(RegisterToolbar.MOD, _criteria);
             PartCategorizer.Instance.searchField.onValueChanged.RemoveAllListeners();
             PointerClickHandler _pointerClickSearch = null;
             PartCategorizer.Instance.searchField.GetComponentCached<PointerClickHandler>(ref _pointerClickSearch);
@@ -146,7 +146,7 @@ namespace QuickSearch
                 EditorPartList.Instance.Refresh(EditorPartList.State.PartSearch);
             }
             ShowHistory();
-            InputLockManager.SetControlLock(ControlTypes.KEYBOARDINPUT, MOD + "-KeyBoard");
+            InputLockManager.SetControlLock(ControlTypes.KEYBOARDINPUT, RegisterToolbar.MOD + "-KeyBoard");
             QDebug.Log("InitSearch", "QEditor");
         }
 
@@ -168,7 +168,7 @@ namespace QuickSearch
                 QSearch.Text = s;
             }
             HideHistory();
-            InputLockManager.RemoveControlLock(MOD + "-KeyBoard");
+            InputLockManager.RemoveControlLock(RegisterToolbar.MOD + "-KeyBoard");
             QDebug.Log("SearchField_OnEndEdit", "QEditor");
         }
 

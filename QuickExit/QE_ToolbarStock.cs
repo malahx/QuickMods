@@ -77,7 +77,7 @@ namespace QuickExit {
                     MODID,
                     "quickExitButton",
 					"QuickMods/" + TexturePath,
-				   "QuickMods/" + QuickExit.relativePath + "/Textures/BlizzyToolBar",
+				   "QuickMods/" +RegisterToolbar.relativePath + "/Textures/BlizzyToolBar",
                     MODNAME
                 );
 

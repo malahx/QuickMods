@@ -51,6 +51,7 @@
     <Compile Include="QC_Contracts.cs" />
     <Compile Include="QC_Key.cs" />
     <Compile Include="QC_GUI.cs" />
+    <Compile Include="ToolbarRegistration.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>

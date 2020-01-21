@@ -15,6 +15,7 @@
 	QuickSearch 3.3.0.7
 	QuickStart 2.2.0.10
 		Fixed location of config files
+		Refactored all Quick mods to make the local paths consistant
 
 QuickStart 2.2.0.9
 	Fixed initialization race condition which was causing nullrefs and errors on some systems

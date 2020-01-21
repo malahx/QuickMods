@@ -49,7 +49,7 @@ namespace QuickExit {
                     _text = Localizer.Format("quickexit_exitIn", count) + Environment.NewLine + Localizer.Format("quickexit_abort", QSettings.Instance.Key);
 					if (needToSavegame) {
 						if (!saveDone) {
-							_text += Environment.NewLine + Localizer.Format("quickexit_cantSave", MOD) + " " + Localizer.Format("quickexit_sureExit");
+							_text += Environment.NewLine + Localizer.Format("quickexit_cantSave", RegisterToolbar.MOD) + " " + Localizer.Format("quickexit_sureExit");
 						}
 					}
 				} else {
@@ -63,28 +63,28 @@ namespace QuickExit {
 			if (HighLogic.LoadedSceneIsFlight) {
 				FlightDriver.SetPause (activate);
 				if (activate) {
-					InputLockManager.SetControlLock (ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + MOD);
+					InputLockManager.SetControlLock (ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + RegisterToolbar.MOD);
 					return;
 				}
 			} else if (HighLogic.LoadedSceneIsEditor) {
 				if (activate) {
-					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + MOD);
+					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
 					return;
 				} else {
-					EditorLogic.fetch.Unlock ("EditorLock" + MOD);
+					EditorLogic.fetch.Unlock ("EditorLock" + RegisterToolbar.MOD);
 				}
 			}
 			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
+				InputLockManager.SetControlLock (Ctrl, "Lock" + RegisterToolbar.MOD);
 				return;
 			} else {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+			if (InputLockManager.GetControlLock ("Lock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("EditorLock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + MOD);
+			if (InputLockManager.GetControlLock ("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("EditorLock" + RegisterToolbar.MOD);
 			}
 			Log ("Lock " + activate, "QExit");
 		}
@@ -124,7 +124,7 @@ namespace QuickExit {
 			PopupDialog.SpawnPopupDialog (
                 new Vector2 (0.5f, 0.5f), 
                 new Vector2 (0.5f, 0.5f),
-                new MultiOptionDialog(MOD, Localizer.Format("quickexit_sureExit"), MOD, HighLogic.UISkin,
+                new MultiOptionDialog(RegisterToolbar.MOD, Localizer.Format("quickexit_sureExit"), RegisterToolbar.MOD, HighLogic.UISkin,
                                        new DialogGUIBase[] {
                                         new DialogGUIButton (Localizer.Format("quickexit_ohNo"), () => HideSettings ()),
                                         new DialogGUIButton (Localizer.Format("quickexit_settings"), () => ShowSettings ()),
@@ -137,7 +137,7 @@ namespace QuickExit {
 		void OnGUI() {
 			if (WindowSettings) {
 				GUI.skin = HighLogic.Skin;
-				RectSettings = ClickThruBlocker.GUILayoutWindow (1248597845, RectSettings, DrawSettings, MOD + " " + VERSION);
+				RectSettings = ClickThruBlocker.GUILayoutWindow (1248597845, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION);
 			} 
 			if (IsTryExit) {
 				GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), labelStyle);

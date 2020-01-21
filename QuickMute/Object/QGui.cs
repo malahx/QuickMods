@@ -17,7 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using KSP.Localization;
-using QuickMute.Toolbar;
+//using QuickMute.Toolbar;
 using UnityEngine;
 
 using ClickThroughFix;
@@ -97,7 +97,7 @@ namespace QuickMute.Object {
             if (!windowSettings || qKey.Render()) {
                 return;
             }
-            RectSettings = ClickThruBlocker.GUILayoutWindow(1545175, RectSettings, DrawSettings, QVars.MOD + " " + QVars.VERSION);
+            RectSettings = ClickThruBlocker.GUILayoutWindow(1545175, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION);
         }
 
         void DrawSettings(int id) {

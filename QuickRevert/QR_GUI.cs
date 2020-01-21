@@ -73,23 +73,23 @@ namespace QuickRevert {
 		void Lock(bool activate, ControlTypes Ctrl) {
 			if (HighLogic.LoadedSceneIsEditor) {
 				if (activate) {
-					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + QuickRevert.MOD);
+					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
 					return;
 				} else {
-					EditorLogic.fetch.Unlock ("EditorLock" + QuickRevert.MOD);
+					EditorLogic.fetch.Unlock ("EditorLock" + RegisterToolbar.MOD);
 				}
 			}
 			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + QuickRevert.MOD);
+				InputLockManager.SetControlLock (Ctrl, "Lock" + RegisterToolbar.MOD);
 				return;
 			} else {
-				InputLockManager.RemoveControlLock ("Lock" + QuickRevert.MOD);
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("Lock" + QuickRevert.MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + QuickRevert.MOD);
+			if (InputLockManager.GetControlLock ("Lock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("EditorLock" + QuickRevert.MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + QuickRevert.MOD);
+			if (InputLockManager.GetControlLock ("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("EditorLock" + RegisterToolbar.MOD);
 			}
 			Log ("Lock " + activate, "QGUI");
 		}
@@ -116,7 +116,7 @@ namespace QuickRevert {
 				return;
 			}
 			GUI.skin = HighLogic.Skin;
-            RectSettings = ClickThruBlocker.GUILayoutWindow(1584652, RectSettings, DrawSettings, MOD  + " " + VERSION);
+            RectSettings = ClickThruBlocker.GUILayoutWindow(1584652, RectSettings, DrawSettings, RegisterToolbar.MOD  + " " + RegisterToolbar.VERSION);
 		}
 
 		void DrawSettings(int id) {
