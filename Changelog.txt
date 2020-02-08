@@ -1,5 +1,8 @@
 ﻿#### Changelog
 
+QuickSearch 3.3.0.8
+	Fixed missing icons
+
 1.4.0.7 QuickMods
 	QuickBrake 1.4.0.7
 	QuickContracts 1.3.0.7
