@@ -1,5 +1,8 @@
 ﻿#### Changelog
 
+QuickSearch 3.3.0.9
+	Fixed white/purple button on toolbar
+
 QuickSearch 3.3.0.8
 	Fixed missing icons
 
