@@ -140,7 +140,10 @@ namespace QuickSearch {
 			if (WindowHistory) {
 				return;
 			}
-			WindowHistory = true;
+            if (!QSettings.Instance.enableHistory)
+                return;
+
+            WindowHistory = true;
 			QDebug.Log ("ShowHistory", "QGUI");
 		}
 
