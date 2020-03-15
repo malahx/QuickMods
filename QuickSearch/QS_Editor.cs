@@ -1,4 +1,4 @@
-﻿/* 
+/* 
 QuickSearch
 Copyright 2017 Malah
 
@@ -127,7 +127,7 @@ namespace QuickSearch
                 {
                     string newString = "";
                     PartCategorizer.Instance.searchField.text = newString;
-                    SearchField_OnValueChange(newString);
+                    QSearch.Text = newString;
                     QDebug.Log("SearchField_OnClick", "Text Deleted");
                 }
             }
@@ -141,10 +141,7 @@ namespace QuickSearch
                 searchImage.color = Color.cyan;
             }
             setSearchFilter();
-            if (!QSettings.Instance.enableEnterToSearch)
-            {
-                EditorPartList.Instance.Refresh(EditorPartList.State.PartSearch);
-            }
+            EditorPartList.Instance.Refresh(EditorPartList.State.PartSearch);
             ShowHistory();
             InputLockManager.SetControlLock(ControlTypes.KEYBOARDINPUT, RegisterToolbar.MOD + "-KeyBoard");
             QDebug.Log("InitSearch", "QEditor");

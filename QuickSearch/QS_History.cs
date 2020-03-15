@@ -1,4 +1,4 @@
-﻿/* 
+/* 
 QuickSearch
 Copyright 2017 Malah
 
@@ -155,7 +155,11 @@ namespace QuickSearch {
 				if (GUILayout.Button (QUtils.Texture.Search, btnStyle, GUILayout.Width (20), GUILayout.Height (20))) {
 					if (HighLogic.LoadedSceneIsEditor) {
 						PartCategorizer.Instance.searchField.text = s.text;
-					}
+                        if(QSettings.Instance.enableEnterToSearch)
+                        { 
+                            QSearch.Text = s.text; // force search if enter to search is set.
+                        }
+                    }
 					else {
 						QRnD.Instance.Text = s.text;
 						GUIUtility.keyboardControl = 0;
