@@ -1,5 +1,11 @@
 ﻿#### Changelog
 
+QuickSearch 3.3.0.10
+	Thanks to user @dtoxic for the bug report
+	Thanks for user @tivec for the following fixes:
+		Fix Enter to search
+		Fix history window to only show if allowed
+
 QuickSearch 3.3.0.9
 	Fixed white/purple button on toolbar
 
