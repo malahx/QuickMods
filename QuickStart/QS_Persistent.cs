@@ -23,6 +23,19 @@ using QuickStart.QUtils;
 using UnityEngine;
 
 namespace QuickStart {
+
+	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
+	public class InstantStartup: MonoBehaviour
+    {
+		void Awake()
+        {
+			float RunningTime = Time.realtimeSinceStartup;
+			int min = (int)(RunningTime / 60f);
+			int sec = (int)(RunningTime) % 60;
+
+			Debug.Log("Total startup time to MainMenu: " + Localizer.Format("quickstart_stopWatch", min.ToString("00"), sec.ToString("00")));
+		}
+	}
 	public partial class QuickStart_Persistent {
 
 		public static bool Ready = false;
@@ -100,9 +113,11 @@ namespace QuickStart {
 		IEnumerator autoSaveShip() {
 			QDebug.Log ("autoSaveShip: start", "QPersistent");
 			while (HighLogic.LoadedSceneIsEditor && QSettings.Instance.enableEditorAutoSaveShip) {
+				QDebug.Log("autoSaveShip: before WaitForSeconds(" + QSettings.Instance.editorTimeToSave + "", "QPersistent");
 				yield return new WaitForSeconds (QSettings.Instance.editorTimeToSave);
+				QDebug.Log("autoSaveShip: before saveShip", "QPersistent");
 				ShipConstruction.SaveShip(shipFilename);
-				QDebug.Log ("autoSaveShip: save", "QPersistent");
+				QDebug.Log ("autoSaveShip: after saveShip", "QPersistent");
 			}
 			QDebug.Log ("autoSaveShip: end", "QPersistent");
 		}

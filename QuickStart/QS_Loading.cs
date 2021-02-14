@@ -89,8 +89,12 @@ namespace QuickStart {
             QKey.VerifyKey();
 			QDebug.Log ("Start", "QLoading");
 
-            InvokeRepeating("UpdateStopWatch", 0, 1.0f);
-        }
+			if (QSettings.Instance.enableStopWatch)
+				InvokeRepeating("UpdateStopWatch", 0, 1.0f);
+			else
+				StopWatchText = "";
+
+		}
 
 		void OnDestroy() {
 			QSettings.Instance.Save ();

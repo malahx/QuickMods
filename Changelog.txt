@@ -1,5 +1,8 @@
 ﻿#### Changelog
 
+QuickStart 2.2.1 (unreleased)
+	Added line written to log showing total time from startup to the MainMenu
+
 QuickSearch 3.3.0.10
 	Thanks to user @dtoxic for the bug report
 	Thanks for user @tivec for the following fixes:
