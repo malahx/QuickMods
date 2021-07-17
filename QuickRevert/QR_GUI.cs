@@ -19,13 +19,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.Localization;
 using UnityEngine;
 
+using ClickThroughFix;
+
 namespace QuickRevert {
 
 	public partial class QGUI {
 
 		public static QGUI Instance;
 
-		[KSPField(isPersistant = true)] private static QBlizzyToolbar BlizzyToolbar;
+		//[KSPField(isPersistant = true)] private static QBlizzyToolbar BlizzyToolbar;
 
 		bool WindowSettings = false;
 		Rect rectSettings = new Rect (0, 0, 0, 0);
@@ -52,12 +54,11 @@ namespace QuickRevert {
 				return;
 			}
 			Instance = this;
-			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
+			//if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
 			Log ("Awake", "QGUI");
 		}
 
 		protected override void Start() {
-			BlizzyToolbar.Init ();
 			if (!QFlight.data.hasLoaded) {
 				QFlight.data.Load ();
 			}
@@ -65,30 +66,30 @@ namespace QuickRevert {
 		}
 
 		protected override void OnDestroy() {
-			BlizzyToolbar.Destroy ();
 			Log ("OnDestroy", "QGUI");
+            Instance = null;
 		}
 
 		void Lock(bool activate, ControlTypes Ctrl) {
 			if (HighLogic.LoadedSceneIsEditor) {
 				if (activate) {
-					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + QuickRevert.MOD);
+					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
 					return;
 				} else {
-					EditorLogic.fetch.Unlock ("EditorLock" + QuickRevert.MOD);
+					EditorLogic.fetch.Unlock ("EditorLock" + RegisterToolbar.MOD);
 				}
 			}
 			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + QuickRevert.MOD);
+				InputLockManager.SetControlLock (Ctrl, "Lock" + RegisterToolbar.MOD);
 				return;
 			} else {
-				InputLockManager.RemoveControlLock ("Lock" + QuickRevert.MOD);
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("Lock" + QuickRevert.MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + QuickRevert.MOD);
+			if (InputLockManager.GetControlLock ("Lock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("EditorLock" + QuickRevert.MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + QuickRevert.MOD);
+			if (InputLockManager.GetControlLock ("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("EditorLock" + RegisterToolbar.MOD);
 			}
 			Log ("Lock " + activate, "QGUI");
 		}
@@ -97,7 +98,7 @@ namespace QuickRevert {
 			SettingsSwitch ();
 			if (!WindowSettings) {
 				QStockToolbar.Instance.Reset();
-				BlizzyToolbar.Reset();
+				//BlizzyToolbar.Reset();
 				QSettings.Instance.Save ();
 			}
 			Log ("Settings", "QGUI");
@@ -115,11 +116,13 @@ namespace QuickRevert {
 				return;
 			}
 			GUI.skin = HighLogic.Skin;
-			RectSettings = GUILayout.Window (1584652, RectSettings, DrawSettings, MOD + " " + VERSION);
+            RectSettings = ClickThruBlocker.GUILayoutWindow(1584652, RectSettings, DrawSettings, RegisterToolbar.MOD  + " " + RegisterToolbar.VERSION);
 		}
 
 		void DrawSettings(int id) {
-			GUILayout.BeginVertical();
+            Debug.Log("DrawSettings 1");
+
+            GUILayout.BeginVertical();
 		
 			if (QFlight.data.PostInitStateIsSaved) {
 				if (QFlight.data.VesselExists) {
@@ -128,14 +131,17 @@ namespace QuickRevert {
 					GUILayout.EndHorizontal();
 					GUILayout.BeginHorizontal();
 					GUILayout.Label (Localizer.Format("quickrevert_revertLastV", QFlight.data.pVessel.vesselType, QFlight.data.pVessel.vesselName), GUILayout.Width (400));
-					GUILayout.FlexibleSpace ();
-					if (GUILayout.Button (Localizer.Format("quickrevert_loseIt"))) {
+                    Debug.Log("DrawSettings 2");
+                    //					GUILayout.FlexibleSpace ();
+                    if (GUILayout.Button (Localizer.Format("quickrevert_loseIt"))) {
 						QFlight.data.Reset ();
 					}
 					GUILayout.EndHorizontal();
 					GUILayout.BeginHorizontal ();
-					GUILayout.FlexibleSpace ();
-					if (GUILayout.Button (Localizer.Format("quickrevert_gotoV"))) {
+                    Debug.Log("DrawSettings 3");
+
+                    //					GUILayout.FlexibleSpace ();
+                    if (GUILayout.Button (Localizer.Format("quickrevert_gotoV"))) {
 						Settings ();
 						string _saveGame = GamePersistence.SaveGame ("persistent", HighLogic.SaveFolder, SaveMode.OVERWRITE);
 						FlightDriver.StartAndFocusVessel (_saveGame, QFlight.data.currentActiveVesselIdx);
@@ -159,20 +165,20 @@ namespace QuickRevert {
             QSettings.Instance.EnableRevertLoss = GUILayout.Toggle (QSettings.Instance.EnableRevertLoss, Planetarium.fetch.Home.atmosphere ? Localizer.Format("quickrevert_revertLossAtm") : Localizer.Format("quickrevert_revertLossSOI"), GUILayout.Width (450));
 			GUILayout.EndHorizontal();
 
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickrevert_stockTB"), GUILayout.Width (350));
-			if (QBlizzyToolbar.isAvailable) {
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickrevert_blizzyTB"), GUILayout.Width (350));
-			}
-			GUILayout.EndHorizontal ();
-			GUILayout.FlexibleSpace ();
-			GUILayout.BeginHorizontal ();
-			GUILayout.FlexibleSpace ();
-			if (GUILayout.Button (Localizer.Format("quickrevert_close"), GUILayout.Height(30))) {
+            Debug.Log("DrawSettings 4");
+
+            //			GUILayout.FlexibleSpace ();
+            GUILayout.BeginHorizontal ();
+            Debug.Log("DrawSettings 5");
+
+            //			GUILayout.FlexibleSpace ();
+            if (GUILayout.Button (Localizer.Format("quickrevert_close"), GUILayout.Height(30))) {
 				Settings ();
 			}
 			GUILayout.EndHorizontal();
 			GUILayout.EndVertical();
+            Debug.Log("DrawSettings 6");
 		}
+        
 	}
 }

@@ -189,6 +189,7 @@ namespace QuickHide {
 			if (!QStockToolbar.isAvailable || (!First && !force)) {
 				return;
 			}
+
 			Log ("Begin PopulateAppLauncherButtons", "QHide");
 			bool _cansave = false;
 			ApplicationLauncherButton[] _appLauncherButtons = (ApplicationLauncherButton[])Resources.FindObjectsOfTypeAll (typeof (ApplicationLauncherButton));
@@ -197,7 +198,8 @@ namespace QuickHide {
 				if (!QStockToolbar.isModApp (_appLauncherButton) || QStockToolbar.Instance.isThisApp (_appLauncherButton)) {
 					continue;
 				}
-				Log ("Mods: " + QMods.GetModName (_appLauncherButton) + " " + _appLauncherButton.GetInstanceID (), "QHide");
+                string toolTip;
+				Log ("Mods: " + QMods.GetModName (_appLauncherButton, out toolTip) + " " + _appLauncherButton.GetInstanceID (), "QHide");
 				QMods _QData = ModsToolbar.Find (q => q.AppRef == QMods.GetAppRef (_appLauncherButton));
 				if (_QData != null) {
 					if (_QData.ModName != "None" && _QData.isActive) {
@@ -215,7 +217,7 @@ namespace QuickHide {
 				_QData = new QMods (_appLauncherButton);
 				ModsToolbar.Add (_QData);
 				_cansave = true;
-				Log ("Added the AppLauncherButton of: " + _QData.ModName, "QHide");
+				Log ("Added the AppLauncherButton of: " + _QData.ToolTip, "QHide");
 			}
 			if (_cansave) {
 				QSettings.Instance.Save ();
@@ -236,9 +238,10 @@ namespace QuickHide {
 				if (_qMods.ModName == "None" || _modsName.Contains (_qMods.ModName)) {
 					continue;
 				}
-				_modsName.Add (_qMods.ModName);
+
+                _modsName.Add (_qMods.ModName);
 				GUILayout.BeginHorizontal ();
-				GUILayout.Label (string.Format ("<b>{0}</b>", _qMods.ModName), GUILayout.Width (200));
+				GUILayout.Label (string.Format ("<b>{0}</b>", _qMods.ToolTip), GUILayout.Width (200));
 				bool _CanBePin = _qMods.CanBePin;
 				GUILayout.FlexibleSpace ();
 				_CanBePin = GUILayout.Toggle (_CanBePin, Localizer.Format("quickhide_pin"), GUILayout.Width (300));

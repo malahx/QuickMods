@@ -33,7 +33,7 @@ namespace QuickMute {
 			}
 		}
 
-		internal static string FileConfig = QVars.PATH + "/Config.txt";
+		internal static string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
 		[KSPField(isPersistant = true)]	bool isLoaded = false;
 
@@ -44,21 +44,17 @@ namespace QuickMute {
         [Persistent] internal bool Level = true;
         [Persistent] internal bool Muted = false;
         [Persistent] internal bool ScrollLevel = true;
-
-		[Persistent] internal bool StockToolBar = true;
-		[Persistent] internal bool BlizzyToolBar = true;
-
         [Persistent] internal float Master = 0;
 
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
-			_temp.Save(FileConfig);
+			_temp.Save(QuickMute.FileConfig);
 			QDebug.Log ("Settings Saved", "QSettings",  true);
 		}
 		public void Load() {
-			if (File.Exists (FileConfig)) {
+			if (File.Exists (QuickMute.FileConfig)) {
 				try {
-					ConfigNode _temp = ConfigNode.Load (FileConfig);
+					ConfigNode _temp = ConfigNode.Load (QuickMute.FileConfig);
 					ConfigNode.LoadObjectFromConfig (this, _temp);
 				} catch {
 					Save ();

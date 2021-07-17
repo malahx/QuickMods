@@ -56,6 +56,24 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickSearch folder in your KSP/GameData folder.
 
 #### Changelog
+3.2.3
+	Added the feature that if you Right Click in the Search Bar, it erases the current search
+
+3.2.2
+	Updated .version file for 1.6
+	Moved the History.cfg into a PluginData directory so it won't cause MM to reload every time
+
+3.2.1.2
+	Version bump for 1.5 rebuild
+
+3.2.1.1
+	Commented out a line which was spamming the log for one person
+
+3.2.1
+	Added secondary sort by name for when count or date are equal
+	Added support for the ToolbarControler
+	Added support for the ClickThroughBlocker
+	Updated for 1.4.x
 
 v3.20 - 2017.05.31
 * New: Added support of the stock localisation,
@@ -89,7 +107,7 @@ v3.06 - 2016.10.31
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * Fix: Corrected the stocktoolbar button,
 * Fix: Enhanced the settings functions,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v3.05 - 2016.10.14
 * Compiled against KSP 1.2.0.1586
@@ -192,7 +210,7 @@ v0.10 - 2015.01.02
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/101/QuickSearch
 * http://kerbal.curseforge.com/ksp-mods/226668-quicksearch
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Tree Toppler: http://forum.kerbalspaceprogram.com/index.php?/topic/97033-
 * PartCatalog: http://forum.kerbalspaceprogram.com/threads/35018

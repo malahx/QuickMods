@@ -19,42 +19,21 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.UI.Screens;
 using UnityEngine;
 
+using ToolbarControl_NS;
+
 namespace QuickIVA {
-	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
+	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
 	public class QStockToolbar : QuickIVA {
 
-		internal static bool Enabled {
-			get {
-				return QSettings.Instance.StockToolBar;
-			}
-		}
 
-		static bool CanUseIt {
-			get {
-				return HighLogic.LoadedScene == GameScenes.SPACECENTER;
-			}
-		}
-		
 		ApplicationLauncher.AppScenes AppScenes = ApplicationLauncher.AppScenes.SPACECENTER;
-		static string TexturePath = relativePath + "/Textures/StockToolBar";
+        internal static string TexturePath;
 
 		void OnClick() { 
 			QGUI.Settings ();
 		}
-			
-		Texture2D GetTexture {
-			get {
-				return GameDatabase.Instance.GetTexture(TexturePath, false);
-			}
-		}
 
-		ApplicationLauncherButton appLauncherButton;
-
-		internal static bool isAvailable {
-			get {
-				return ApplicationLauncher.Ready && ApplicationLauncher.Instance != null;
-			}
-		}
+        ToolbarControl toolbarControl;
 
 		internal static QStockToolbar Instance {
 			get;
@@ -67,84 +46,56 @@ namespace QuickIVA {
 				return;
 			}
 			Instance = this;
-			DontDestroyOnLoad (Instance);
-			GameEvents.onGUIApplicationLauncherReady.Add (AppLauncherReady);
-			GameEvents.onGUIApplicationLauncherDestroyed.Add (AppLauncherDestroyed);
-			GameEvents.onLevelWasLoadedGUIReady.Add (AppLauncherDestroyed);
+            //DontDestroyOnLoad (this);
+            Init();
 			Log ("Awake", "QStockToolbar");
 		}
-			
-		void AppLauncherReady() {
-			if (!Enabled) {
-				return;
-			}
-			Init ();
-		}
 
-		void AppLauncherDestroyed(GameScenes gameScene) {
-			if (CanUseIt) {
-				return;
-			}
-			Destroy ();
-		}
-		
-		void AppLauncherDestroyed() {
-			Destroy ();
-		}
+        new void OnDestroy()
+        {
+            toolbarControl.OnDestroy();
+            Destroy(toolbarControl);
+        }
 
-		protected override void OnDestroy() {
-			GameEvents.onGUIApplicationLauncherReady.Remove (AppLauncherReady);
-			GameEvents.onGUIApplicationLauncherDestroyed.Remove (AppLauncherDestroyed);
-			GameEvents.onLevelWasLoadedGUIReady.Remove (AppLauncherDestroyed);
-			Log ("OnDestroy", "QStockToolbar");
-		}
+        internal const string MODID = "QuickIVA_NS";
+        internal const string MODNAME = "QuickIVA";
 
-		void Init() {
-			if (!isAvailable || !CanUseIt) {
-				return;
-			}
-			if (appLauncherButton == null) {
-				appLauncherButton = ApplicationLauncher.Instance.AddModApplication (OnClick, OnClick, null, null, null, null, AppScenes, GetTexture);
-			}
-			Log ("Init", "QStockToolbar");
-		}
+        void Init() {
 
-		void Destroy() {
-			if (appLauncherButton != null) {
-				ApplicationLauncher.Instance.RemoveModApplication (appLauncherButton);
-				appLauncherButton = null;
-			}
-			Log ("Destroy", "QStockToolbar");
+            if (toolbarControl == null)
+            {
+                toolbarControl = gameObject.AddComponent<ToolbarControl>();
+                toolbarControl.AddToAllToolbars(OnClick, OnClick,
+                    AppScenes,
+                    MODID,
+                    "quickIVAButton",
+					"QuickMods/" + TexturePath,
+					"QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyToolBar",
+                    MODNAME
+                );
+                Log("toolbarControl Init", "QStockToolbar");
+            }
+
+            Log("Init", "QStockToolbar");
 		}
 
 		internal void Set(bool SetTrue, bool force = false) {
-			if (!isAvailable) {
-				return;
-			}
-			if (appLauncherButton != null) {
+			if (toolbarControl != null) {
 				if (SetTrue) {
-					if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.False) {
-						appLauncherButton.SetTrue (force);
-					}
+                    toolbarControl.SetTrue (force);
 				} else {
-					if (appLauncherButton.toggleButton.CurrentState == KSP.UI.UIRadioButton.State.True) {
-						appLauncherButton.SetFalse (force);
-					}
+                    toolbarControl.SetFalse (force);
 				}
 			}
 			Log ("Set " + SetTrue + " force: " + force, "QStockToolbar");
 		}
 
 		internal void Reset() {
-			if (appLauncherButton != null) {
+			if (toolbarControl != null) 
 				Set (false);
-				if (!Enabled) {
-					Destroy ();
-				}
-			}
-			if (Enabled) {
+            else
 				Init ();
-			}
+			
 			Log ("Reset", "QStockToolbar");
 		}
 	}

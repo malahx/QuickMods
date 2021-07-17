@@ -39,6 +39,12 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickContracts folder in your KSP/GameData folder.
 
 #### Changelog
+1.2.4.1
+	Version bump for 1.5 rebuild
+
+1.2.4
+	Updated for 1.4.x
+	Added support for the ClickThroughBlocker
 
 v1.23 - 2017.05.31
 * New: Added support of the stock localisation,
@@ -67,7 +73,7 @@ v1.13 - 2016.11.02
 v1.12 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickContracts
 * Fix: Corrected the set keys,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v1.11 - 2016.10.15
 * Compiled against KSP 1.2.0.1586
@@ -134,7 +140,7 @@ v0.10 - 2015.01.27
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/104/QuickContracts
 * http://kerbal.curseforge.com/ksp-mods/227337-quickcontracts
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Mission Controller 2: http://forum.kerbalspaceprogram.com/threads/43645
 * Rejector: http://forum.kerbalspaceprogram.com/threads/108316

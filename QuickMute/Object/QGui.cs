@@ -17,8 +17,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using KSP.Localization;
-using QuickMute.Toolbar;
+//using QuickMute.Toolbar;
 using UnityEngine;
+
+using ClickThroughFix;
 
 namespace QuickMute.Object {
     public class QGui {
@@ -77,7 +79,7 @@ namespace QuickMute.Object {
 
         void Save() {
             QStock.Instance.Reset();
-            QuickMute.BlizzyToolbar.Reset();
+            //QuickMute.BlizzyToolbar.Reset();
             QSettings.Instance.Save();
             QDebug.Log("Save", "QGui");
         }
@@ -95,7 +97,7 @@ namespace QuickMute.Object {
             if (!windowSettings || qKey.Render()) {
                 return;
             }
-            RectSettings = GUILayout.Window(1545175, RectSettings, DrawSettings, QVars.MOD + " " + QVars.VERSION);
+            RectSettings = ClickThruBlocker.GUILayoutWindow(1545175, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION);
         }
 
         void DrawSettings(int id) {
@@ -104,18 +106,6 @@ namespace QuickMute.Object {
             GUILayout.BeginHorizontal();
             GUILayout.Box(Localizer.Format("quickmute_toolbars"), GUILayout.Height(30));
             GUILayout.EndHorizontal();
-
-            GUILayout.BeginHorizontal();
-            QSettings.Instance.StockToolBar = GUILayout.Toggle(QSettings.Instance.StockToolBar, Localizer.Format("quickmute_stockTB"), GUILayout.Width(400));
-            GUILayout.EndHorizontal();
-
-            if (QBlizzy.isAvailable) {
-
-                GUILayout.BeginHorizontal();
-                QSettings.Instance.BlizzyToolBar = GUILayout.Toggle(QSettings.Instance.BlizzyToolBar, Localizer.Format("quickmute_blizzyTB"), GUILayout.Width(400));
-                GUILayout.EndHorizontal();
-
-            }
 
             GUILayout.BeginHorizontal();
             GUILayout.Box(Localizer.Format("quickmute_options"), GUILayout.Height(30));

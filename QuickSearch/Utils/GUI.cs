@@ -4,23 +4,23 @@
         internal static void Lock(bool activate, ControlTypes Ctrl) {
             if (HighLogic.LoadedSceneIsEditor) {
                 if (activate) {
-                    if (InputLockManager.GetControlLock("EditorLock" + QuickSearch.MOD) == ControlTypes.None) {
-                        EditorLogic.fetch.Lock(true, true, true, "EditorLock" + QuickSearch.MOD);
+                    if (InputLockManager.GetControlLock("EditorLock" + RegisterToolbar.MOD) == ControlTypes.None) {
+                        EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
                     }
                 } else {
-                    if (InputLockManager.GetControlLock("EditorLock" + QuickSearch.MOD) != ControlTypes.None) {
-                        EditorLogic.fetch.Unlock("EditorLock" + QuickSearch.MOD);
+                    if (InputLockManager.GetControlLock("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None) {
+                        EditorLogic.fetch.Unlock("EditorLock" + RegisterToolbar.MOD);
                     }
                 }
             }
             if (activate) {
-                if (InputLockManager.GetControlLock("Lock" + QuickSearch.MOD) == ControlTypes.None) {
-                    InputLockManager.SetControlLock(Ctrl, "Lock" + QuickSearch.MOD);
+                if (InputLockManager.GetControlLock("Lock" + RegisterToolbar.MOD) == ControlTypes.None) {
+                    InputLockManager.SetControlLock(Ctrl, "Lock" + RegisterToolbar.MOD);
                 }
                 return;
             }
-            if (InputLockManager.GetControlLock("Lock" + QuickSearch.MOD) != ControlTypes.None) {
-                InputLockManager.RemoveControlLock("Lock" + QuickSearch.MOD);
+            if (InputLockManager.GetControlLock("Lock" + RegisterToolbar.MOD) != ControlTypes.None) {
+                InputLockManager.RemoveControlLock("Lock" + RegisterToolbar.MOD);
             }
         }
 

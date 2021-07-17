@@ -46,7 +46,18 @@ Delete the QuickMods folder in your KSP/GameData folder.
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/profile/malah
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * KSP-AVC: http://forum.kerbalspaceprogram.com/index.php?/topic/72169-1
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143
+
+1.3.3.0
+	Adopted by LGG
+	Updated all mods for 1.4.x
+
+1.3.3.1
+	Fixed quickstart issue
+	Potential fix for crash when using quickgoto to go from flight to editor
+
+1.3.3.5
+	For Quicksearch, added the feature that if you Right Click in the Search Bar, it erases the current search

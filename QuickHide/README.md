@@ -39,6 +39,14 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickHide folder in your KSP/GameData folder.
 
 #### Changelog
+3.2.4.1
+	Version bump for 1.5 rebuild
+
+3.2.4
+	Fixed issue when one mod (ie: ToolbarController) has multiple buttons, QuickHide was getting confused
+	Updated for 1.4.x
+	Added support for the ClickThroughBlocker
+	Added support for the ToolbarController
 
 v3.23 - 2017.05.31
 * New: Added support of the stock localisation,
@@ -68,7 +76,7 @@ v3.12 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickHide
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * Fix: Deleted useless config load,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v3.11 - 2016.10.15
 * Compiled against KSP 1.2.0.1586
@@ -148,7 +156,7 @@ v1.00 - 2014.12.08
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/106/QuickHide
 * http://kerbal.curseforge.com/ksp-mods/226070-quickhide
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.Localization;
 using UnityEngine;
 
+using ClickThroughFix;
+
 namespace QuickStart.QUtils {
     static class QKey {
 
@@ -47,7 +49,7 @@ namespace QuickStart.QUtils {
         static string GetText(Key key) {
             switch (key) {
                 case Key.Escape:
-                    return Localizer.Format("quickstart_stop", QuickStart.MOD);
+                    return Localizer.Format("quickstart_stop", RegisterToolbar.MOD);
             }
             return string.Empty;
         }
@@ -113,7 +115,7 @@ namespace QuickStart.QUtils {
             if (setKey == Key.None) {
                 return;
             }
-            RectSetKey = GUILayout.Window(1545156, RectSetKey, DrawSetKey, Localizer.Format("quickstart_setKey", GetText(setKey)), GUILayout.ExpandHeight(true));
+            RectSetKey = ClickThruBlocker.GUILayoutWindow(1545156, RectSetKey, DrawSetKey, Localizer.Format("quickstart_setKey", GetText(setKey)), GUILayout.ExpandHeight(true));
         }
 
         static void DrawSetKey(int id) {

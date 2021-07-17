@@ -33,14 +33,12 @@ namespace QuickSearch {
 			}
 		}
 
-		readonly string FileConfig = QuickSearch.PATH + "/Config.txt";
+		readonly string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
 		[KSPField (isPersistant = true)] bool isLoaded = false;
 
 		[Persistent] internal bool Debug = true;
-
-		[Persistent] internal bool StockToolBar = true;
-		[Persistent] internal bool BlizzyToolBar = true;
+        
 
 		[Persistent] internal bool EditorSearch = true;
 		[Persistent] internal bool RnDSearch = true;
@@ -71,13 +69,13 @@ namespace QuickSearch {
 
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
-			_temp.Save(FileConfig);
+			_temp.Save(QuickSearch.FileConfig);
 			QDebug.Log ("Settings Saved", "QSettings", true);
 		}
 		public void Load() {
-			if (File.Exists (FileConfig)) {
+			if (File.Exists (QuickSearch.FileConfig)) {
 				try {
-					ConfigNode _temp = ConfigNode.Load (FileConfig);
+					ConfigNode _temp = ConfigNode.Load (QuickSearch.FileConfig);
 					ConfigNode.LoadObjectFromConfig (this, _temp);
 				} catch {
 					Save ();

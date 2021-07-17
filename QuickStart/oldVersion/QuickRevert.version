@@ -1,0 +1,26 @@
+{
+  "NAME": "QuickRevert",
+  "URL": "http://ksp.spacetux.net/avc/QuickRevert",
+  "CHANGE_LOG_URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickRevert/README.md",
+  "DOWNLOAD": "http://spacedock.info/mod/109/QuickRevert",
+  "GITHUB": {
+    "USERNAME": "linuxgurugamer",
+    "REPOSITORY": "QuickMods"
+  },
+  "VERSION": {
+    "MAJOR": 3,
+    "MINOR": 1,
+    "PATCH": 5,
+    "BUILD": 0
+  },
+  "KSP_VERSION": {
+    "MAJOR": 1,
+    "MINOR": 5,
+    "PATCH": 1
+  },
+  "KSP_VERSION_MIN": {
+    "MAJOR": 1,
+    "MINOR": 8,
+    "PATCH": 0
+  }
+}

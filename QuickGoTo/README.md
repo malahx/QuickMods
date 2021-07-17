@@ -52,6 +52,20 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickGoTo folder in your KSP/GameData folder.
 
 #### Changelog
+1.3.5.1
+	Version bump for 1.5 rebuild
+
+1.3.5
+	Potential fix for crash when going from flight to Editor
+
+1.3.4
+	Adoption by LGG
+	Compiled for 1.4
+	Fixed error where hovering over GoTo button would lock the entire screen and not unlock it unless one of the goto buttons was selected
+	Added support for the ClickThroughBlocker
+	Removed GotoVAB and GoToSPH when in the Editor
+	Removed the CoRoutine, was causing hard crashes
+	Fixed issue where buttons were extending outside the screen, making them inaccessable (in flight scene)
 
 v1.33 - 2017.05.31
 * New: Added support of the stock localisation,
@@ -81,7 +95,7 @@ v1.25-beta - 2016.11.02
 v1.24-beta - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickGoTo
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v1.23-beta - 2016.10.15
 * Fix: Corrected the crash to desktop with a goto from flight scene,
@@ -148,7 +162,7 @@ v0.10 - 2015.03.21
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/102/QuickGoTo
 * http://kerbal.curseforge.com/ksp-mods/230004-quickgoto
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * SceneJumper: http://forum.kerbalspaceprogram.com/threads/66116

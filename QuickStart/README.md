@@ -33,6 +33,18 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickStart folder in your KSP/GameData folder.
 
 #### Changelog
+2.1.6.1
+	Version bump for 1.5 rebuild
+
+2.1.6
+	Fixed bug where setting it to pause when going to last vessel would 
+	actually display the pause menu, but it wouldn't be shown because the game
+	was paused before it was ready to display.  Added tic count to wait 2.05 seconds(110 tics)
+	before showing the pause menu
+
+2.1.5
+	Updated for 1.4.x
+	Added support for the ClickThroughBlocker
 
 v2.14 - 2017.05.31
 * New: Added support of the stock localisation,
@@ -73,7 +85,7 @@ v2.05 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickStart
 * Fix: Corrected the SPH checkbox (thanks MK3424),
 * Fix: Corrected the contracts deletion,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v2.04 - 2016.10.14
 * Compiled against KSP 1.2.0.1586
@@ -161,6 +173,6 @@ v1.00 - 2015.05.08
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/110/QuickStart
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Magic Smoke Industries DevHelper: http://forum.kerbalspaceprogram.com/threads/60880

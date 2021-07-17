@@ -26,8 +26,6 @@ namespace QuickExit {
 
 		public static QExit Instance;
 
-		[KSPField(isPersistant = true)] internal static QBlizzyToolbar BlizzyToolbar;
-
 		public static readonly string shipFilename = "Auto-Saved Ship";
 
 		int count = 5;
@@ -109,17 +107,17 @@ namespace QuickExit {
 
 		protected override void Awake() {
 			if (Instance != null) {
-				Warning ("There's already an Instance of " + MOD + ". Destroy.", "QGUI");
+				Warning ("There's already an Instance of " + RegisterToolbar.MOD + ". Destroy.", "QGUI");
 				Destroy (this);
 				return;
 			}
 			Instance = this;
-			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
+			//if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
 			Log ("Awake", "QExit");
 		}
 
 		protected override void Start() {
-			if (BlizzyToolbar != null) BlizzyToolbar.Init ();
+			//if (BlizzyToolbar != null) BlizzyToolbar.Init ();
 			labelStyle = new GUIStyle ();
 			labelStyle.stretchWidth = true;
 			labelStyle.stretchHeight = true;
@@ -145,7 +143,7 @@ namespace QuickExit {
 		}
 			
 		protected override void OnDestroy() {
-			if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
+			//if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
 			Log ("OnDestroy", "QExit");
 		}
 
@@ -154,24 +152,24 @@ namespace QuickExit {
 				if (CanSavegame) {
 					if (GamePersistence.SaveGame ("persistent", HighLogic.SaveFolder, SaveMode.OVERWRITE) != string.Empty) {
 						saveDone = true;
-                        ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_gameSaved", MOD), 5);
+                        ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_gameSaved", RegisterToolbar.MOD), 5);
 						Log ("Game saved.", "QExit");
 					} else {
 						count = 10;
 						Log ("Can't save game.", "QExit");
-						ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_cantSave", MOD), 10);
+						ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_cantSave", RegisterToolbar.MOD), 10);
 					}
 					if (HighLogic.LoadedSceneIsEditor) {
 						ShipConstruction.SaveShip (shipFilename);
 						Log ("Ship saved.", "QExit");
-						ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_shipSaved", MOD), 5);
+						ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_shipSaved", RegisterToolbar.MOD), 5);
 					}
 				} else {
 					count = 10;
 					ClearToSaveStatus clearToSaveStatus = FlightGlobals.ClearToSave ();
 					string _status = FlightGlobals.GetNotClearToSaveStatusReason (clearToSaveStatus, string.Empty);
 					Log ("Can't game saved: " + _status, "QExit");
-					ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_cantSave", MOD) + ": " + _status, 10);
+					ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_cantSave", RegisterToolbar.MOD) + ": " + _status, 10);
 				}
 			}
 			while (count >= 0) {

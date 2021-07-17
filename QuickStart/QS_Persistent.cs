@@ -18,10 +18,24 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using System;
 using System.Collections;
+using KSP.Localization;
 using QuickStart.QUtils;
 using UnityEngine;
 
 namespace QuickStart {
+
+	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
+	public class InstantStartup: MonoBehaviour
+    {
+		void Awake()
+        {
+			float RunningTime = Time.realtimeSinceStartup;
+			int min = (int)(RunningTime / 60f);
+			int sec = (int)(RunningTime) % 60;
+
+			Debug.Log("Total startup time to MainMenu: " + Localizer.Format("quickstart_stopWatch", min.ToString("00"), sec.ToString("00")));
+		}
+	}
 	public partial class QuickStart_Persistent {
 
 		public static bool Ready = false;
@@ -38,6 +52,32 @@ namespace QuickStart {
 				return new Guid (vesselID);
 			}
 		}
+
+		public static String StopWatchText {
+			get {
+				if (QSettings.Instance.enableStopWatch) {
+					float RunningTime = Time.realtimeSinceStartup;
+					int min = (int)(RunningTime / 60f);
+					int sec = (int)(RunningTime) % 60;
+
+					return Localizer.Format("quickstart_stopWatch", min.ToString("00"), sec.ToString("00")) + " ";
+				}
+				else {
+					return "";
+				}
+			}
+		}
+
+		public static void SkippingScreen(GameScenes scene, string scene_name) {
+			if (HighLogic.LoadedScene != scene || QLoading.Ended) return;
+
+			GUILayout.BeginArea(new Rect(0, 0, Screen.width, Screen.height), QStyle.Label);
+			GUILayout.Label(RegisterToolbar.MOD + Environment.NewLine
+				+ StopWatchText + Localizer.Format("quickstart_skipping", scene_name) + Environment.NewLine
+				+ Localizer.Format("quickstart_abort", QSettings.Instance.KeyEscape), QStyle.Label);
+			GUILayout.EndArea();
+		}
+
 
 		public static readonly string shipFilename = "Auto-Saved Ship";
 
@@ -73,9 +113,11 @@ namespace QuickStart {
 		IEnumerator autoSaveShip() {
 			QDebug.Log ("autoSaveShip: start", "QPersistent");
 			while (HighLogic.LoadedSceneIsEditor && QSettings.Instance.enableEditorAutoSaveShip) {
+				QDebug.Log("autoSaveShip: before WaitForSeconds(" + QSettings.Instance.editorTimeToSave + "", "QPersistent");
 				yield return new WaitForSeconds (QSettings.Instance.editorTimeToSave);
+				QDebug.Log("autoSaveShip: before saveShip", "QPersistent");
 				ShipConstruction.SaveShip(shipFilename);
-				QDebug.Log ("autoSaveShip: save", "QPersistent");
+				QDebug.Log ("autoSaveShip: after saveShip", "QPersistent");
 			}
 			QDebug.Log ("autoSaveShip: end", "QPersistent");
 		}

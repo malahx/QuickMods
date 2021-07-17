@@ -21,6 +21,8 @@ using System;
 using UnityEngine;
 using KSP.Localization;
 
+using ClickThroughFix;
+
 namespace QuickContracts {
 	public partial class QGUI {
 		
@@ -32,7 +34,7 @@ namespace QuickContracts {
 		bool windowSettings;
 		Rect rectButton = new Rect ();
 		Rect rectSettings = new Rect ();
-		string settingsTexturePath = relativePath + "/Textures/Settings";
+		string settingsTexturePath = RegisterToolbar.relativePath + "/Textures/Settings";
 
 		Texture2D settingsTexture {
 			get {
@@ -79,21 +81,21 @@ namespace QuickContracts {
 		void Lock(bool activate, ControlTypes Ctrl) {
 			if (HighLogic.LoadedSceneIsEditor) {
 				if (activate) {
-					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + MOD);
+					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
 				} else {
-					EditorLogic.fetch.Unlock ("EditorLock" + MOD);
+					EditorLogic.fetch.Unlock ("EditorLock" + RegisterToolbar.MOD);
 				}
 			}
 			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
+				InputLockManager.SetControlLock (Ctrl, "Lock" + RegisterToolbar.MOD);
 			} else {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+			if (InputLockManager.GetControlLock ("Lock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("EditorLock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + MOD);
+			if (InputLockManager.GetControlLock ("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("EditorLock" + RegisterToolbar.MOD);
 			}
 			Log ("Lock " + activate, "QGUI");
 		}
@@ -141,11 +143,11 @@ namespace QuickContracts {
 			}
 			GUI.skin = HighLogic.Skin;
 			if (SetKey != Key.None) {
-				rectSetKey = GUILayout.Window (1545146, rectSetKey, DrawSetKey, Localizer.Format("quickcontracts_setKey", GetText (SetKey)), GUILayout.ExpandHeight (true));
+				rectSetKey = ClickThruBlocker.GUILayoutWindow (1545146, rectSetKey, DrawSetKey, Localizer.Format("quickcontracts_setKey", GetText (SetKey)), GUILayout.ExpandHeight (true));
 				return;
 			}
 			if (windowSettings) {
-				rectSettings = GUILayout.Window (1545147, rectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.ExpandHeight (true));
+				rectSettings = ClickThruBlocker.GUILayoutWindow (1545147, rectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION, GUILayout.ExpandHeight (true));
 				return;
 			}
 			GUILayout.BeginArea (rectButton);

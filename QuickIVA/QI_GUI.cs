@@ -19,64 +19,75 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.Localization;
 using UnityEngine;
 
+using ClickThroughFix;
+
 namespace QuickIVA {
 	public partial class QGUI {
 
 		internal static bool WindowSettings = false;
 		static Rect RectSettings = new Rect();
-		internal static QBlizzyToolbar BlizzyToolbar;
 
 		protected override void Awake() {
 			RectSettings = new Rect ((Screen.width - 515)/2, (Screen.height - 450)/2, 515, 450);
-			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzyToolbar ();
 			Log ("Awake", "QGUI");
 		}
 
 		protected override void Start() {
-			BlizzyToolbar.Init ();
 			Log ("Start", "QGUI");
 		}
 
 		protected override void OnDestroy() {
-			BlizzyToolbar.Destroy ();
 			Log ("OnDestroy", "QGUI");
 		}
 
-		static void Lock(bool activate, ControlTypes Ctrl = ControlTypes.None) {
-			if (HighLogic.LoadedSceneIsFlight) {
-				FlightDriver.SetPause (activate);
-				if (activate) {
-					InputLockManager.SetControlLock (ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + MOD);
+		static void Lock(bool activate, ControlTypes Ctrl = ControlTypes.None)
+		{
+			if (HighLogic.LoadedSceneIsFlight)
+			{
+				FlightDriver.SetPause(activate);
+				if (activate)
+				{
+					InputLockManager.SetControlLock(ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + RegisterToolbar.MOD);
 					return;
-				}
-			} else if (HighLogic.LoadedSceneIsEditor) {
-				if (activate) {
-					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + MOD);
-					return;
-				} else {
-					EditorLogic.fetch.Unlock ("EditorLock" + MOD);
 				}
 			}
-			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
+			else if (HighLogic.LoadedSceneIsEditor)
+			{
+				if (activate)
+				{
+					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
+					return;
+				}
+				else
+				{
+					EditorLogic.fetch.Unlock("EditorLock" + RegisterToolbar.MOD);
+				}
+			}
+			if (activate)
+			{
+				InputLockManager.SetControlLock(Ctrl, "Lock" + RegisterToolbar.MOD);
 				return;
-			} else {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
 			}
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
-			}
-			if (InputLockManager.GetControlLock ("EditorLock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + MOD);
-			}
-			Log ("Lock: " + activate, "QGUI");
-		}
+			else
+			{
+				InputLockManager.RemoveControlLock("Lock" + RegisterToolbar.MOD);
 
+				if (InputLockManager.GetControlLock("Lock" + RegisterToolbar.MOD) != ControlTypes.None)
+				{
+					InputLockManager.RemoveControlLock("Lock" + RegisterToolbar.MOD);
+				}
+				if (InputLockManager.GetControlLock("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None)
+				{
+					InputLockManager.RemoveControlLock("EditorLock" + RegisterToolbar.MOD);
+				}
+				Log("Lock: " + activate, "QGUI");
+			}
+		}
 		public static void Settings() {
 			SettingsSwitch ();
 			if (!WindowSettings) {
 				QSettings.Instance.Save ();
-				BlizzyToolbar.Reset ();
+				//BlizzyToolbar.Reset ();
 				QStockToolbar.Instance.Reset ();
 			}
 		}
@@ -91,7 +102,7 @@ namespace QuickIVA {
 		internal void OnGUI() {
 			if (WindowSettings) {
 				GUI.skin = HighLogic.Skin;
-				RectSettings = GUILayout.Window (1584653, RectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.ExpandHeight(true));
+				RectSettings = ClickThruBlocker.GUILayoutWindow (1584653, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION, GUILayout.ExpandHeight(true));
 			}
 		}
 
@@ -104,12 +115,7 @@ namespace QuickIVA {
             QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, Localizer.Format("quickiva_autoiva"), GUILayout.Width (275));
 			QSettings.Instance.KeyEnabled = GUILayout.Toggle (QSettings.Instance.KeyEnabled, Localizer.Format("quickiva_enableKeyShortcuts"), GUILayout.Width (225));
 			GUILayout.EndHorizontal ();
-			if (QBlizzyToolbar.isAvailable) {
-				GUILayout.BeginHorizontal ();
-				QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickiva_stockTB"), GUILayout.Width (275));
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickiva_blizzyTB"), GUILayout.Width (225));
-				GUILayout.EndHorizontal ();
-			}
+
 			if (QSettings.Instance.Enabled) {
 				GUILayout.BeginHorizontal();
 				GUILayout.Box(Localizer.Format("quickiva_ivaOptions"), GUILayout.Height(30));

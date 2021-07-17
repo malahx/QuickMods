@@ -16,56 +16,70 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using System.IO;
 using System.Reflection;
 using UnityEngine;
 
-namespace QuickExit {
+namespace QuickExit
+{
 
-	[KSPAddon(KSPAddon.Startup.EveryScene, false)]
-	public partial class QExit : QuickExit {}
+    [KSPAddon(KSPAddon.Startup.EveryScene, false)]
+    public partial class QExit : QuickExit { }
 
-	[KSPAddon(KSPAddon.Startup.MainMenu, true)]
-	public partial class QStockToolbar : QuickExit {}
+    [KSPAddon(KSPAddon.Startup.SpaceCentre, true)]
+    public partial class QStockToolbar : QuickExit { }
 
-	public partial class QuickExit : MonoBehaviour {
+    public partial class QuickExit : MonoBehaviour
+    {
+        internal static string FileConfig = RegisterToolbar.PATH + "/Config.txt";
+        internal static void Log(string String, string Title = null, bool force = false)
+        {
+            if (!force)
+            {
+                if (!QSettings.Instance.Debug)
+                {
+                    return;
+                }
+            }
+            if (Title == null)
+            {
+                Title = RegisterToolbar.MOD;
+            }
+            else
+            {
+                Title = string.Format("{0}({1})", RegisterToolbar.MOD, Title);
+            }
+            Debug.Log(string.Format("{0}[{1}]: {2}", Title, RegisterToolbar.VERSION, String));
+        }
 
-		public readonly static string VERSION = Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Major + "." + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Minor + Assembly.GetAssembly(typeof(QuickExit)).GetName().Version.Build;
-		public readonly static string MOD = Assembly.GetAssembly(typeof(QuickExit)).GetName().Name;
-		public readonly static string relativePath = "QuickMods/" + MOD;
-		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+        internal static void Warning(string String, string Title = null)
+        {
+            if (Title == null)
+            {
+                Title = RegisterToolbar.MOD;
+            }
+            else
+            {
+                Title = string.Format("{0}({1})", RegisterToolbar.MOD, Title);
+            }
+            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, RegisterToolbar.VERSION, String));
+        }
 
-		internal static void Log(string String, string Title = null, bool force = false) {
-			if (!force) {
-				if (!QSettings.Instance.Debug) {
-					return;
-				}
-			}
-			if (Title == null) {
-				Title = MOD;
-			} else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.Log (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
-		internal static void Warning(string String, string Title = null) {
-			if (Title == null) {
-				Title = MOD;
-			} else {
-				Title = string.Format ("{0}({1})", MOD, Title);
-			}
-			Debug.LogWarning (string.Format ("{0}[{1}]: {2}", Title, VERSION, String));
-		}
+        protected virtual void Awake()
+        {
+            Log("Awake");
+            FileConfig = RegisterToolbar.PATH + "/Config.txt";
+            Debug.Log("QE.Awake, PATH: " + RegisterToolbar.PATH);
+        }
 
-		protected virtual void Awake() {
-			Log ("Awake");
-		}
+        protected virtual void Start()
+        {
+            Log("Start");
+        }
 
-		protected virtual void Start() {
-			Log ("Start");
-		}
-
-		protected virtual void OnDestroy() {
-			Log ("OnDestroy");
-		}
-	}
+        protected virtual void OnDestroy()
+        {
+            Log("OnDestroy");
+        }
+    }
 }

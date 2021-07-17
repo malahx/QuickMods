@@ -33,6 +33,11 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickFineControl folder in your KSP/GameData folder.
 
 #### Changelog
+1.0.7.1
+	Version bump for 1.5 rebuild
+
+1.0.7
+	Updated for 1.4.x
 
 v1.06 - 2017.05.31
 * Compiled against KSP 1.3.0.1804
@@ -48,7 +53,7 @@ v1.04 - 2016.11.02
 
 v1.03 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickFineControl
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v1.02 - 2016.10.15
 * Compiled against KSP 1.2.0.1586
@@ -70,4 +75,4 @@ v1.00 - 2016.06.23
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/784/QuickFineControl
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods

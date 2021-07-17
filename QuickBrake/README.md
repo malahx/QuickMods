@@ -34,6 +34,14 @@ Delete the QuickMods/QuickBrake folder in your KSP/GameData folder.
 
 #### Changelog
 
+1.3.4.1
+	Version bump for 1.5 rebuild
+
+1.3.4
+	Updated for 1.4.x
+	Added support for the ClickThroughBlocker
+	Added support for the ToolbarController
+
 v1.33 - 2017.05.31
 * New: Added support of the stock localisation,
 * New: Deleted support of the LanguagePatches,
@@ -64,7 +72,7 @@ v1.21 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickBrake
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
 * Fix: Deleted useless config load,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v1.20 - 2016.10.15
 * New: Added a brake at control lost,
@@ -117,7 +125,7 @@ v1.00 - 2015.05.08
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/103/QuickBrake
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

@@ -22,13 +22,35 @@ namespace QuickSearch.QUtils {
     
     static class QHistoryExt {
         
+        static int CompareHistoryByCount(QHistory.Search a, QHistory.Search b)
+        {
+            if (a.count > b.count)
+                return -1;
+            if (a.count < b.count)
+                return 1;
+
+            // Counts are equal, so now sort by name
+            return string.Compare(b.text, a.text, System.StringComparison.Ordinal);
+        }
+        static int CompareHistoryByDate(QHistory.Search a, QHistory.Search b)
+        {
+            if (a.date > b.date)
+                return -1;
+            if (a.date < b.date)
+                return 1;
+
+            // Dates are equal, so now sort by name
+            return string.Compare(b.text, a.text, System.StringComparison.Ordinal);
+        }
         internal static void SortBy(this List<QHistory.Search> h, int type) {
             switch (type) {
                 case (int)QHistory.SortBy.COUNT:
-                    h.Sort((a, b) => b.count.CompareTo(a.count));
+                    h.Sort(CompareHistoryByCount);
+                    //h.Sort((a, b) => b.count.CompareTo(a.count));
                     break;
                 case (int)QHistory.SortBy.DATE:
-                    h.Sort((a, b) => b.date.CompareTo(a.date));
+                    h.Sort(CompareHistoryByDate);
+                    //h.Sort((a, b) => b.date.CompareTo(a.date));
                     break;
                 case (int)QHistory.SortBy.NAME:
                     h.Sort((a, b) => string.Compare(b.text, a.text, System.StringComparison.Ordinal));

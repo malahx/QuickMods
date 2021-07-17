@@ -52,7 +52,7 @@ namespace QuickStart {
 		void Start() {
 			InputLockManager.RemoveControlLock("applicationFocus");
 			if (!QSettings.Instance.Enabled || QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER) {
-				QDebug.Log ("Not need to keep it loaded.", "QSpaceCenter");
+				QDebug.Log ("No need to keep it loaded.", "QSpaceCenter");
 				QLoading.Ended = true;
 				Destroy (this);
 				return;
@@ -136,12 +136,7 @@ namespace QuickStart {
 		}
 
 		protected void OnGUI() {
-			if (HighLogic.LoadedScene != GameScenes.SPACECENTER || QLoading.Ended) {
-				return;
-			}
-			GUILayout.BeginArea (new Rect (0, 0, Screen.width, Screen.height), QStyle.Label);
-            GUILayout.Label (QuickStart.MOD + "..." + Environment.NewLine + Localizer.Format("quickstart_abort", QSettings.Instance.KeyEscape), QStyle.Label);
-			GUILayout.EndArea ();
+            QuickStart_Persistent.SkippingScreen(GameScenes.SPACECENTER, Localizer.Format("#autoLOC_148273").Replace(" ", ""));
 		}
 	}
 }

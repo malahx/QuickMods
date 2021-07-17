@@ -32,7 +32,7 @@ namespace QuickIVA {
 			}
 		}
 
-		internal static readonly string FileConfig = PATH + "/Config.txt";
+		new internal static readonly string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
 		[KSPField (isPersistant = true)] bool isLoaded = false;
 

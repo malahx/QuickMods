@@ -20,7 +20,7 @@ using KSP.UI.Screens;
 using System.Collections.Generic;
 using UnityEngine;
 using QuickSearch.QUtils;
-using QuickSearch.Toolbar;
+//using QuickSearch.Toolbar;
 
 namespace QuickSearch {
 	public partial class QRnD {
@@ -51,7 +51,7 @@ namespace QuickSearch {
 				return;
 			}
 			if (Instance != null) {
-				QDebug.Warning ("There's already an Instance of " + MOD +". Destroy.", "QRnD");
+				QDebug.Warning ("There's already an Instance of " + RegisterToolbar.MOD +". Destroy.", "QRnD");
 				Destroy (this);
 				return;
 			}
@@ -143,7 +143,7 @@ namespace QuickSearch {
                     _button.Image.color = new Color(1f, 1f, 1f);   
                 }  
 			}
-			QDebug.Log ("Find: " + QSearch.Text, "QRnD");
+			//QDebug.Log ("Find: " + QSearch.Text, "QRnD");
 		}
 	}
 }

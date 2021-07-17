@@ -43,16 +43,25 @@ namespace QuickMute.Object {
 
 		internal static void refreshAudioSource() {
 			AudioSource[] _audios = AudioSources;
+ 
 			for (int _i = _audios.Length - 1; _i >= 0; --_i) {
 				AudioSource _audio = _audios[_i];
-				if (QSettings.Instance.Muted) {
-					audioVolume [_audio.name] = _audio.volume;
-					_audio.volume = 0;
-				} else {
-					if (audioVolume.ContainsKey (_audio.name)) {
-						_audio.volume = audioVolume [_audio.name];
-					}
-				}
+
+                if (_audio != null)
+                {
+                    if (QSettings.Instance.Muted)
+                    {
+                        audioVolume[_audio.name] = _audio.volume;
+                        _audio.volume = 0;
+                    }
+                    else
+                    {
+                        if (audioVolume.ContainsKey(_audio.name))
+                        {
+                            _audio.volume = audioVolume[_audio.name];
+                        }
+                    }
+                }
 			}
 			QDebug.Log ("refreshAudioSource", "QMute");
 		}

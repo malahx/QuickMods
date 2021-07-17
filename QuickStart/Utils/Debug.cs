@@ -25,13 +25,13 @@ namespace QuickStart.QUtils {
             if (!force && !QSettings.Instance.Debug) {
                 return;
             }
-            Title = Title == null ? QuickStart.MOD : string.Format("{0}({1})", QuickStart.MOD, Title);
-            Debug.Log(string.Format("{0}[{1}]: {2}", Title, QuickStart.VERSION, String));
+            Title = Title == null ? RegisterToolbar.MOD : string.Format("{0}({1})", RegisterToolbar.MOD, Title);
+            Debug.Log(string.Format("{0}[{1}]: {2}", Title, RegisterToolbar.VERSION, String));
         }
 
         internal static void Warning(string String, string Title = null) {
-            Title = Title == null ? QuickStart.MOD : string.Format("{0}({1})", QuickStart.MOD, Title);
-            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, QuickStart.VERSION, String));
+            Title = Title == null ? RegisterToolbar.MOD : string.Format("{0}({1})", RegisterToolbar.MOD, Title);
+            Debug.LogWarning(string.Format("{0}[{1}]: {2}", Title, RegisterToolbar.VERSION, String));
         }
     }
 }

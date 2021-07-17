@@ -1,5 +1,5 @@
-<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
@@ -7,20 +7,22 @@
     <OutputType>Library</OutputType>
     <RootNamespace>QuickSearch</RootNamespace>
     <AssemblyName>QuickSearch</AssemblyName>
-    <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <Description>#### QuickSearch
 #### A plugin for Kerbal Space Program
 #### Copyright 2016 Malah</Description>
     <ReleaseVersion>1</ReleaseVersion>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\Debug\</OutputPath>
     <DefineConstants>DEBUG;</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
@@ -34,9 +36,10 @@
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>full</DebugType>
     <Optimize>true</Optimize>
-    <OutputPath>bin\</OutputPath>
+    <OutputPath>bin\Release\</OutputPath>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
     <ConsolePause>false</ConsolePause>
     <CustomCommands>
       <CustomCommands>
@@ -52,6 +55,12 @@
     </CustomCommands>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AssemblyVersion.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>AssemblyVersion.tt</DependentUpon>
+    </Compile>
+    <Compile Include="InstallChecker.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="QS_Settings.cs" />
     <Compile Include="QS_RnD.cs" />
@@ -59,14 +68,13 @@
     <Compile Include="QS_Editor.cs" />
     <Compile Include="QS_GUI.cs" />
     <Compile Include="QS_History.cs" />
-    <Compile Include="Wrapper\ToolbarWrapper.cs" />
+    <Compile Include="ToolbarRegistration.cs" />
     <Compile Include="Utils\Texture.cs" />
     <Compile Include="Utils\Search.cs" />
     <Compile Include="Utils\HistoryExt.cs" />
     <Compile Include="Utils\GUI.cs" />
     <Compile Include="Utils\Debug.cs" />
     <Compile Include="Toolbar\Stock.cs" />
-    <Compile Include="Toolbar\Blizzy.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
@@ -75,41 +83,62 @@
     <None Include="COPYING" />
     <None Include="icon.xcf" />
     <None Include="iconQS.xcf" />
-    <None Include="GameData\QuickMods\QuickSearch\COPYING" />
-    <None Include="GameData\QuickMods\QuickSearch\Plugins\QuickSearch.dll" />
-    <None Include="GameData\QuickMods\QuickSearch\QuickSearch.version" />
-    <None Include="GameData\QuickMods\QuickSearch\README.md" />
-    <None Include="GameData\QuickMods\QuickSearch\Textures\BlizzyToolBar.dds" />
-    <None Include="GameData\QuickMods\QuickSearch\Textures\delete.dds" />
-    <None Include="GameData\QuickMods\QuickSearch\Textures\StockToolBar.dds" />
-    <None Include="GameData\QuickMods\QuickSearch\Textures\search.dds" />
     <None Include="Lang\en-us.cfg" />
     <None Include="Lang\fr-fr.cfg" />
-    <None Include="GameData\QuickMods\QuickSearch\Lang\en-us.cfg" />
-    <None Include="GameData\QuickMods\QuickSearch\Lang\fr-fr.cfg" />
   </ItemGroup>
   <ItemGroup>
-    <Reference Include="Assembly-CSharp">
-      <HintPath>..\..\lib\Managed\Assembly-CSharp.dll</HintPath>
-    </Reference>
-    <Reference Include="Assembly-CSharp-firstpass">
-      <HintPath>..\..\lib\Managed\Assembly-CSharp-firstpass.dll</HintPath>
-    </Reference>
-    <Reference Include="System">
-      <HintPath>..\..\lib\Managed\System.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine">
-      <HintPath>..\..\lib\Managed\UnityEngine.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEngine.UI">
-      <HintPath>..\..\lib\Managed\UnityEngine.UI.dll</HintPath>
-    </Reference>
+    <Content Include="AssemblyVersion.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <LastGenOutput>AssemblyVersion.cs</LastGenOutput>
+    </Content>
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="GameData\QuickMods\" />
-    <Folder Include="GameData\QuickMods\QuickSearch\" />
-    <Folder Include="Wrapper\" />
-    <Folder Include="Utils\" />
-    <Folder Include="Toolbar\" />
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
+  <ItemGroup>
+    <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\Assembly*.dll">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="$(KSPDIR)\KSP_x64_Data\Managed\UnityEngine*.dll">
+      <Private>False</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="ClickThroughBlocker, Version=0.1.6.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>$(KSPDIR)\GameData\000_ClickThroughBlocker\Plugins\ClickThroughBlocker.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="ToolbarControl">
+      <HintPath>$(KSPDIR)\GameData\001_ToolbarControl\Plugins\ToolbarControl.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <PropertyGroup>
+    <PreBuildEvent>"$(DevEnvDir)\texttransform.exe" "$(ProjectDir)AssemblyVersion.tt"
+</PreBuildEvent>
+  </PropertyGroup>
+  <PropertyGroup>
+    <PostBuildEvent>
+set KSPDIR=$(KSPDIR)
+
+IF "%25KSPDIR%25"=="" (
+
+	ECHO Configuration error - KSPDIR not specified in project.
+
+	ECHO Either set KSPDIR environment variable or edit BetterLoadSaveGame.Common.props
+
+	PAUSE
+
+	GOTO DONE
+
+)
+
+start /D $(SolutionDir) /WAIT deploy.bat  $(TargetDir) $(TargetFileName) $(TargetName)
+
+if $(ConfigurationName) == Release (	
+
+	start /D $(SolutionDir) /WAIT buildRelease.bat $(TargetDir) $(TargetFileName) $(TargetName)
+
+)
+</PostBuildEvent>
+  </PropertyGroup>
 </Project>

@@ -25,7 +25,7 @@ namespace QuickRevert {
 
 		public bool hasLoaded = false;
 
-		static string FileFlightState = PATH + "/PluginData/{0}-flightstate.txt";
+		static string FileFlightState = RegisterToolbar.PATH + "/PluginData/{0}-flightstate.txt";
 
 		static string PathFlightState {
 			get {
@@ -306,7 +306,7 @@ namespace QuickRevert {
 			if (HighLogic.LoadedSceneIsGame && pVessel != null) {
 				string _vesselName = pVessel.vesselName;
 				Log ("You have lost the possibility to revert: " + _vesselName, "QFlightData");
-				ScreenMessages.PostScreenMessage (Localizer.Format("quickrevert_revertLost", MOD, _vesselName), 10, ScreenMessageStyle.UPPER_CENTER);
+				ScreenMessages.PostScreenMessage (Localizer.Format("quickrevert_revertLost", RegisterToolbar.MOD, _vesselName), 10, ScreenMessageStyle.UPPER_CENTER);
 			}
 			PostInitState = null;
 			PreLaunchState = null;

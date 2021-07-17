@@ -19,7 +19,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.Localization;
 using UnityEngine;
 
+using ClickThroughFix;
+
 namespace QuickSAS {
+
 	public partial class QGUI {
 		public static QGUI Instance {
 			get;
@@ -52,26 +55,21 @@ namespace QuickSAS {
 			}
 		} 
 
-		internal QBlizzyToolbar BlizzyToolbar;
 			
 		protected override void Awake () {
 			if (!HighLogic.LoadedSceneIsGame || QGUI.Instance != null) {
 				Destroy (this);
 			}
 			Instance = this;
-			if (BlizzyToolbar == null) {
-				BlizzyToolbar = new QBlizzyToolbar ();
-			}
+
 			Log ("Awake", "QGUI");
 		}
 
 		protected override void Start () {
-			BlizzyToolbar.Start ();
 			Log ("Start", "QGUI");
 		}
 
 		protected override void OnDestroy () {
-			BlizzyToolbar.OnDestroy ();
 			Log ("OnDestroy", "QGUI");
 		}
 
@@ -79,33 +77,33 @@ namespace QuickSAS {
 			if (HighLogic.LoadedSceneIsFlight) {
 				FlightDriver.SetPause (activate);
 				if (activate) {
-					InputLockManager.SetControlLock (ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + MOD);
+					InputLockManager.SetControlLock (ControlTypes.CAMERACONTROLS | ControlTypes.MAP, "Lock" + RegisterToolbar.MOD);
 					return;
 				}
 			}
 			else if (HighLogic.LoadedSceneIsEditor) {
 				if (activate) {
-					EditorLogic.fetch.Lock (true, true, true, "EditorLock" + MOD);
+					EditorLogic.fetch.Lock (true, true, true, "EditorLock" + RegisterToolbar.MOD);
 					return;
 				}
 				else {
-					EditorLogic.fetch.Unlock ("EditorLock" + MOD);
+					EditorLogic.fetch.Unlock ("EditorLock" + RegisterToolbar.MOD);
 				}
 			}
 			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
+				InputLockManager.SetControlLock (Ctrl, "Lock" + RegisterToolbar.MOD);
 				return;
 			}
 			else {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+			if (InputLockManager.GetControlLock ("Lock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("EditorLock" + MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + MOD);
+			if (InputLockManager.GetControlLock ("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("EditorLock" + RegisterToolbar.MOD);
 			}
-			Log ("Lock " + activate, "QExit");
+			Log ("Lock " + activate, "QSAS");
 		}
 
 		public void Settings () {
@@ -139,7 +137,7 @@ namespace QuickSAS {
 
 		void Save () {
 			QStockToolbar.Instance.Reset ();
-			BlizzyToolbar.Reset ();
+			//BlizzyToolbar.Reset ();
 			QSettings.Instance.Save ();
 			Log ("Save", "QGUI");
 		}
@@ -163,10 +161,10 @@ namespace QuickSAS {
 			}
 			GUI.skin = HighLogic.Skin;
 			if (QKey.SetKey != QKey.Key.None) {
-				RectSetKey = GUILayout.Window (1545156, RectSetKey, QKey.DrawSetKey, Localizer.Format("quicksas_setKey", QKey.GetText (QKey.SetKey)), GUILayout.ExpandHeight (true));
+				RectSetKey = ClickThruBlocker.GUILayoutWindow (1545156, RectSetKey, QKey.DrawSetKey, Localizer.Format("quicksas_setKey", QKey.GetText (QKey.SetKey)), GUILayout.ExpandHeight (true));
 				return;
 			}
-			RectSettings = GUILayout.Window (1545175, RectSettings, DrawSettings, MOD + " " + VERSION);
+			RectSettings = ClickThruBlocker.GUILayoutWindow (1545175, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION);
 		}
 
 		void DrawSettings (int id) {
@@ -174,14 +172,7 @@ namespace QuickSAS {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quicksas_toolbars"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quicksas_stockTB"), GUILayout.Width (400));
-			GUILayout.EndHorizontal ();
-			if (QBlizzyToolbar.isAvailable) {
-				GUILayout.BeginHorizontal ();
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quicksas_blizzyTB"), GUILayout.Width (400));
-				GUILayout.EndHorizontal ();
-			}
+
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quicksas_options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();

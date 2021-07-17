@@ -1,5 +1,5 @@
-﻿# QuickSAS
-#### A plugin for Kerbal Space Program
+﻿# QuickMods
+#### A plugin collection for Kerbal Space Program
 #### Copyright 2017 Malah
 
 This program is free software: you can redistribute it and/or modify
@@ -18,21 +18,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #### What is it?
 
-QuickSAS is a plugin which adds the possibility to have keyboard's shortcuts for the SAS functions.
-
-Keyboard's shortcuts:
-
-* Stability Assist: Keypad 5,
-* Prograde: Keypad 8,
-* Retrograde: Keypad 2,
-* Normal: Keypad 9,
-* Anti-Normal: Keypad 3,
-* Radial: Keypad 6,
-* Anti-Radial: Keypad 4,
-* Target: Keypad 7,
-* Anti-Target: Keypad 1,
-* Maneuver: Keypad 0,
-* WarpToNode: Keypad Enter.
+QuickMods are very small plugins which add a small feature.
+These mods support SpaceDock, KSP-AVC and Toolbar mod.
 
 #### How to install it?
 
@@ -44,52 +31,13 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 
 #### How to uninstall it?
 
-Delete the QuickMods/QuickSAS folder in your KSP/GameData folder.
-
-#### Changelog
-
-v1.13 - 2017.05.31
-* New: Added support of the stock localisation,
-* New: Deleted support of the LanguagePatches,
-* Compiled against KSP 1.3.0.1804
-
-v1.12.9-pre - 2017.03.18
-* Compiled against KSP 1.2.9.1727
-
-v1.12 - 2017.01.14
-* Fix: Corrected the error with LanguageAPI and unloaded plugins.
-
-v1.11 - 2016.12.09
-* Compiled against KSP 1.2.2.1622
-
-v1.10 - 2016.11.19
-* New: Added support of the LanguagePatches,
-* I've translated it to french, if you want more, you can translate and PR ;)
-
-v1.04 - 2016.11.03
-* Fix: Corrected directories for windows (thanks RealKolago).
-
-v1.03 - 2016.11.02
-* Compiled against KSP 1.2.1.1604
-
-v1.02 - 2016.10.31
-* New: Changed the directory to GameData/QuickMods/QuickSAS
-* Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
-* Fix: Deleted useless config load,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
-
-v1.01 - 2016.10.15
-* Fix: Corrected the stocktoolbar,
-* Compiled against KSP 1.2.0.1586
-
-v1.00 - 2016.09.24
-* First release
+Delete the QuickMods folder in your KSP/GameData folder.
 
 #### Thanks!
 
-* to Chuck Bibice to have requested this mod,
-* to simon56modder and Thomas P. for the Language Patches Project,
+* to all user who have made a request/support for these mods,
 * to blizzy for his Toolbar mod,
+* to cybutek for his KSP-AVC mod,
 * to Matthieu James for the Faenza icon theme,
 * to all other mod developers which make this game really huge,
 * and to Squad for this awesome game.
@@ -97,8 +45,19 @@ v1.00 - 2016.09.24
 #### Links
 
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
-* https://github.com/malahx/QuickMods
-* http://spacedock.info/mod/999/QuickSAS
+* http://spacedock.info/profile/malah
+* https://github.com/linuxgurugamer/QuickMods
+* KSP-AVC: http://forum.kerbalspaceprogram.com/index.php?/topic/72169-1
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
-* Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143
+
+1.3.3.0
+	Adopted by LGG
+	Updated all mods for 1.4.x
+
+1.3.3.1
+	Fixed quickstart issue
+	Potential fix for crash when using quickgoto to go from flight to editor
+
+1.3.3.5
+	For Quicksearch, added the feature that if you Right Click in the Search Bar, it erases the current search

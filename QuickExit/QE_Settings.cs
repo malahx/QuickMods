@@ -31,7 +31,7 @@ namespace QuickExit {
 			}
 		}
 
-		internal static string FileConfig = PATH + "/Config.txt";
+		new internal static string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
 		[KSPField(isPersistant = true)]	bool isLoaded = false;
 
@@ -42,7 +42,8 @@ namespace QuickExit {
 
 		[Persistent] internal bool StockToolBar = true;
 		[Persistent] internal bool StockToolBar_ModApp = true;
-		[Persistent] internal bool BlizzyToolBar = true;
+
+		//[Persistent] internal bool BlizzyToolBar = true;
 
 		public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());

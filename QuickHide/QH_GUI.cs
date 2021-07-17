@@ -21,6 +21,8 @@ using System;
 using UnityEngine;
 using KSP.Localization;
 
+using ClickThroughFix;
+
 namespace QuickHide {
 
 	public partial class QHide {
@@ -110,21 +112,21 @@ namespace QuickHide {
 		void Lock(bool activate, ControlTypes Ctrl) {
 			if (HighLogic.LoadedSceneIsEditor) {
 				if (activate) {
-					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + QuickHide.MOD);
+					EditorLogic.fetch.Lock(true, true, true, "EditorLock" + RegisterToolbar.MOD);
 				} else {
-					EditorLogic.fetch.Unlock ("EditorLock" + QuickHide.MOD);
+					EditorLogic.fetch.Unlock ("EditorLock" + RegisterToolbar.MOD);
 				}
 			}
 			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + QuickHide.MOD);
+				InputLockManager.SetControlLock (Ctrl, "Lock" + RegisterToolbar.MOD);
 			} else {
-				InputLockManager.RemoveControlLock ("Lock" + QuickHide.MOD);
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("Lock" + QuickHide.MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("Lock" + QuickHide.MOD);
+			if (InputLockManager.GetControlLock ("Lock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
-			if (InputLockManager.GetControlLock ("EditorLock" + QuickHide.MOD) != ControlTypes.None) {
-				InputLockManager.RemoveControlLock ("EditorLock" + QuickHide.MOD);
+			if (InputLockManager.GetControlLock ("EditorLock" + RegisterToolbar.MOD) != ControlTypes.None) {
+				InputLockManager.RemoveControlLock ("EditorLock" + RegisterToolbar.MOD);
 			}
 			Log ("Lock " + activate, "QHide");
 		}
@@ -151,7 +153,7 @@ namespace QuickHide {
 			}
 			GUI.skin = HighLogic.Skin;
 			RefreshStyle ();
-			RectSettings = GUILayout.Window (1584654, RectSettings, DrawSettings, MOD + " " + VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
+			RectSettings = ClickThruBlocker.GUILayoutWindow (1584654, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
 		}
 
 		void DrawSettings(int id) {
@@ -165,7 +167,7 @@ namespace QuickHide {
 			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickhide_stockTB"), GUILayout.Width (400));
 			GUILayout.FlexibleSpace ();
 			if (QSettings.Instance.StockToolBar) {
-				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, Localizer.Format("quickhide_instock", MOD), GUILayout.Width (400));
+				QSettings.Instance.StockToolBar_ModApp = !GUILayout.Toggle (!QSettings.Instance.StockToolBar_ModApp, Localizer.Format("quickhide_instock", RegisterToolbar.MOD), GUILayout.Width (400));
 			}
 			GUILayout.FlexibleSpace ();
 			if (QBlizzyToolbar.isAvailable) {
@@ -180,16 +182,27 @@ namespace QuickHide {
 			if (QSettings.Instance.HideAppLauncher) {
 				GUILayout.BeginHorizontal ();
 				GUILayout.Label (Localizer.Format("quickhide_time"), GUILayout.Width (490));
-				QSettings.Instance.TimeToKeep = int.Parse(GUILayout.TextField (QSettings.Instance.TimeToKeep.ToString(), GUILayout.Width (100)));
-				GUILayout.EndHorizontal ();
+
+                string timeToKeep = GUILayout.TextField(QSettings.Instance.TimeToKeep.ToString(), GUILayout.Width(100));
+                if (timeToKeep != "")
+                {
+                    bool rc = int.TryParse(timeToKeep, out QSettings.Instance.TimeToKeep);
+                    //QSettings.Instance.TimeToKeep = int.Parse(GUILayout.TextField(QSettings.Instance.TimeToKeep.ToString(), GUILayout.Width(100)));
+                }
+                else QSettings.Instance.TimeToKeep = 0;
+
+
+                GUILayout.EndHorizontal ();
 			}
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quickhide_mods"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
+
 			scrollPosition = GUILayout.BeginScrollView (scrollPosition, GUILayout.ExpandWidth(true), GUILayout.Height (300));
 			DrawAppLauncherButtons ();
             GUILayout.EndScrollView();
+
 			GUILayout.FlexibleSpace ();
 			GUILayout.BeginHorizontal ();
 			GUILayout.FlexibleSpace ();

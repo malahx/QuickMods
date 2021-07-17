@@ -1,4 +1,4 @@
-﻿/* 
+/* 
 QuickSearch
 Copyright 2017 Malah
 
@@ -45,8 +45,10 @@ namespace QuickSearch {
 		}
 
 		readonly string CFGNODE = "SearchHistory";
-		readonly string CONFIG_PATH = QuickSearch.PATH + "/History.cfg";
-		readonly GUIStyle btnStyle;
+        readonly string CONFIG_DIR = RegisterToolbar.PATH + "/PluginData";
+        readonly string CONFIG_PATH = RegisterToolbar.PATH + "/PluginData" + "/History.cfg";
+
+        readonly GUIStyle btnStyle;
 		readonly List<Search> history;
 		int index;
 		string lastSearch = string.Empty;
@@ -98,6 +100,8 @@ namespace QuickSearch {
 				n.AddValue ("count", s.count);
 				n.AddValue ("date", s.date.Ticks);
 			}
+            if (!Directory.Exists(CONFIG_DIR))
+                Directory.CreateDirectory(CONFIG_DIR);
 			node.Save (CONFIG_PATH);
 		}
 
@@ -151,7 +155,11 @@ namespace QuickSearch {
 				if (GUILayout.Button (QUtils.Texture.Search, btnStyle, GUILayout.Width (20), GUILayout.Height (20))) {
 					if (HighLogic.LoadedSceneIsEditor) {
 						PartCategorizer.Instance.searchField.text = s.text;
-					}
+                        if(QSettings.Instance.enableEnterToSearch)
+                        { 
+                            QSearch.Text = s.text; // force search if enter to search is set.
+                        }
+                    }
 					else {
 						QRnD.Instance.Text = s.text;
 						GUIUtility.keyboardControl = 0;

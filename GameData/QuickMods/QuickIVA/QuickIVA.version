@@ -1,27 +1,21 @@
 {
-	"NAME"				: "QuickIVA",
-	"URL"				: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickIVA/QuickIVA.version",
-	"CHANGE_LOG_URL"		: "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickIVA/README.md", 
-	"DOWNLOAD"			: "http://spacedock.info/mod/107/QuickIVA",
-	"VERSION": {
-		"MAJOR"			: 1,
-		"MINOR"			: 2,
-		"PATCH"			: 3,
-		"BUILD"			: 0
-	},
-	"KSP_VERSION": {
-		"MAJOR"			: 1,
-		"MINOR"			: 3,
-		"PATCH"			: 0
-	},
+  "NAME": "QuickIVA",
+  "URL": "http://ksp.spacetux.net/avc/QuickIVA",
+  "CHANGE_LOG_URL": "https://raw.githubusercontent.com/linuxgurugamer/QuickMods/master/QuickIVA/README.md",
+  "DOWNLOAD": "http://spacedock.info/mod/107/QuickIVA",
+  "GITHUB": {
+    "USERNAME": "linuxgurugamer",
+    "REPOSITORY": "QuickMods"
+  },
+  "VERSION": {
+    "MAJOR": 1,
+    "MINOR": 3,
+    "PATCH": 0,
+    "BUILD": 7
+  },
 	"KSP_VERSION_MIN": {
-		"MAJOR"			: 1,
-		"MINOR"			: 3,
-		"PATCH"			: 0
-	},
-	"KSP_VERSION_MAX": {
-		"MAJOR"			: 1,
-		"MINOR"			: 3,
-		"PATCH"			: 99
+		"MAJOR": 1,
+		"MINOR": 8,
+		"PATCH": 0
 	}
 }

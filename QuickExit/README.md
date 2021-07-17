@@ -42,6 +42,13 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 Delete the QuickMods/QuickExit folder in your KSP/GameData folder.
 
 #### Changelog
+2.1.4.1
+	Version bump for 1.5 rebuild
+
+2.1.4
+	Updated for 1.4.x
+	Added support for the ClickThroughBlocker
+	Added support for the ToolbarController
 
 v2.13 - 2017.05.31
 * New: Added support of the stock localisation,
@@ -68,7 +75,7 @@ v2.05 - 2016.11.02
 v2.04 - 2016.10.31
 * New: Changed the directory to GameData/QuickMods/QuickExit
 * Fix: Updated ToolbarWrapper to Toolbar 1.7.13,
-* The default QuickMods repository is now: https://github.com/malahx/QuickMods
+* The default QuickMods repository is now: https://github.com/linuxgurugamer/QuickMods
 
 v2.03 - 2016.10.15
 * Compiled against KSP 1.2.0.1586
@@ -137,7 +144,7 @@ v1.00 - 2014.11.16
 * http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
 * http://spacedock.info/mod/105/QuickExit
 * http://kerbal.curseforge.com/ksp-mods/225624-quickexit
-* https://github.com/malahx/QuickMods
+* https://github.com/linuxgurugamer/QuickMods
 * Language Patches Project: http://forum.kerbalspaceprogram.com/index.php?/topic/85611-l
 * Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
 * Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143

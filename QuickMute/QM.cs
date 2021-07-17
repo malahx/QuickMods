@@ -16,22 +16,26 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using System.IO;
+using System.Reflection;
 using System.Collections;
 using QuickMute.Object;
-using QuickMute.Toolbar;
+//using QuickMute.Toolbar;
 using UnityEngine;
 
 namespace QuickMute {
 	
-	[KSPAddon (KSPAddon.Startup.EveryScene, false)]
+	[KSPAddon (KSPAddon.Startup.EveryScene, true)]
 	public class QuickMute : MonoBehaviour {
 
         internal static QuickMute Instance;
-        [KSPField(isPersistant = true)] internal static QBlizzy BlizzyToolbar;
+        //[KSPField(isPersistant = true)] internal static QBlizzy BlizzyToolbar;
         internal QGui gui;
         internal QVolume volume;
         QKey qKey;
         QLevel level;
+
+        internal static string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
         internal bool mouseIsHover {
             get {
@@ -46,7 +50,7 @@ namespace QuickMute {
                 return;
             }
             Instance = this;
-            if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy();
+
             GameEvents.onVesselGoOffRails.Add(OnVesselGoOffRails);
             if (System.Math.Abs(GameSettings.MASTER_VOLUME) < float.Epsilon) {
                 GameSettings.MASTER_VOLUME = QSettings.Instance.Master;
@@ -56,7 +60,11 @@ namespace QuickMute {
             level = new QLevel(volume);
             qKey = new QKey();
             gui = new QGui(qKey, level);
+            DontDestroyOnLoad(this);
             QDebug.Log("Awake");
+
+            FileConfig = RegisterToolbar.PATH + "/Config.txt";
+            Debug.Log("QM.Awake, PATH: " + RegisterToolbar.PATH);
         }
 
         IEnumerator Wait(int seconds) {
@@ -70,17 +78,7 @@ namespace QuickMute {
         }
 
         void Start() {
-            if (BlizzyToolbar != null) BlizzyToolbar.Init();
             QDebug.Log("Start");
-        }
-
-        void OnDestroy() {
-            if (BlizzyToolbar != null) BlizzyToolbar.Destroy();
-            GameEvents.onVesselGoOffRails.Remove(OnVesselGoOffRails);
-            volume.Restore();
-            gui.draw = false;
-            gui.level.Hide(true);
-            QDebug.Log("OnDestroy");
         }
 
         void OnVesselGoOffRails(Vessel vessel) {
@@ -126,9 +124,9 @@ namespace QuickMute {
         }
 
         public void Refresh() {
-            if (BlizzyToolbar != null) {
-                BlizzyToolbar.Refresh();
-            }
+            //if (BlizzyToolbar != null) {
+            //    BlizzyToolbar.Refresh();
+           // }
             if (QStock.Instance != null) {
                 QStock.Instance.Refresh();
             }

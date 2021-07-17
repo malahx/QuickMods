@@ -77,7 +77,7 @@ namespace QuickSAS {
 				}
 				if (QKey.isKeyDown (_getKey)) {
 					StartCoroutine (startSAS (QKey.GetAutoPilot (_getKey)));
-					ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}", MOD, QKey.GetText (_getKey)), 5, ScreenMessageStyle.UPPER_CENTER);
+					ScreenMessages.PostScreenMessage (string.Format ("[{0}] {1}", RegisterToolbar.MOD, QKey.GetText (_getKey)), 5, ScreenMessageStyle.UPPER_CENTER);
 					Log (QKey.GetText (_getKey), "QSAS");
 				}
 			}
@@ -93,7 +93,7 @@ namespace QuickSAS {
 						_UT = _manNode.UT - (_estimatedBurnTime / 2) - 15;
 					}
 					if (Planetarium.GetUniversalTime () > _UT) {
-						ScreenMessages.PostScreenMessage (Localizer.Format("quicksas_noNeed", MOD), 5, ScreenMessageStyle.UPPER_CENTER);
+						ScreenMessages.PostScreenMessage (Localizer.Format("quicksas_noNeed", RegisterToolbar.MOD), 5, ScreenMessageStyle.UPPER_CENTER);
 						Log ("No need to time warp!", "QSAS");
 						return;
 					}
@@ -101,7 +101,7 @@ namespace QuickSAS {
 					Log (QKey.GetText (QKey.Key.WarpToNode), "QSAS");
 				}
 				else {
-					ScreenMessages.PostScreenMessage (Localizer.Format("quicksas_noManeuver", MOD), 5, ScreenMessageStyle.UPPER_CENTER);
+					ScreenMessages.PostScreenMessage (Localizer.Format("quicksas_noManeuver", RegisterToolbar.MOD), 5, ScreenMessageStyle.UPPER_CENTER);
 					Log ("No maneuver node!", "QSAS");
 				}
 			}

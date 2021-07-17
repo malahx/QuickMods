@@ -15,14 +15,17 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
-
+using System.IO;
 using System.Reflection;
-
+#if false
 namespace QuickMute.Object {
+
     static class QVars {
         public readonly static string VERSION = Assembly.GetExecutingAssembly().GetName().Version.Major + "." + Assembly.GetExecutingAssembly().GetName().Version.Minor + Assembly.GetExecutingAssembly().GetName().Version.Build;
         public readonly static string MOD = Assembly.GetExecutingAssembly().GetName().Name;
-        public readonly static string relativePath = "QuickMods/" + MOD;
-        public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
+        public readonly static string relativePath =  MOD;
+        public static string PATH = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location).Replace(@"\", "/") + "/../";
     }
+
 }
+#endif

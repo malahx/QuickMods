@@ -10,7 +10,7 @@ the Free Software Foundation, either version 3 of the License, or
 This program is distributed in the hope that it will be useful,
 but WITHOUT ANY WARRANTY; without even the implied warranty of
 MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
+GNU General Public Licence for more details.
 
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
@@ -22,8 +22,11 @@ using KSP.Localization;
 using KSP.UI;
 using KSP.UI.Screens;
 using QuickSearch.QUtils;
-using QuickSearch.Toolbar;
+//using QuickSearch.Toolbar;
 using UnityEngine;
+
+using ClickThroughFix;
+
 
 namespace QuickSearch {
 
@@ -38,10 +41,13 @@ namespace QuickSearch {
 		Rect RectSettings {
 			get {
 				Rect _rect = rectSettings;
-				if (!QSettings.Instance.StockToolBar) {
+#if false
+                if (!QSettings.Instance.StockToolBar) {
 					_rect.x = (Screen.width - _rect.width) / 2;
 					_rect.y = (Screen.height - _rect.height) / 2;
-				} else {
+				} else 
+#endif
+                {
 					_rect.x = Screen.width - _rect.width - 75;
 					_rect.y = Screen.height - _rect.height - 40;
 				}
@@ -134,13 +140,16 @@ namespace QuickSearch {
 			if (WindowHistory) {
 				return;
 			}
-			WindowHistory = true;
+            if (!QSettings.Instance.enableHistory)
+                return;
+
+            WindowHistory = true;
 			QDebug.Log ("ShowHistory", "QGUI");
 		}
 
 		void Save() {
 			QStock.Instance.Reset ();
-			BlizzyToolbar.Reset ();
+			//BlizzyToolbar.Reset ();
 			if (QEditor.Instance != null) {
 				QEditor.Instance.Refresh ();
 			}
@@ -151,10 +160,10 @@ namespace QuickSearch {
 			GUI.skin = HighLogic.Skin;
 			QGUI.Lock (IsMouseOver ());
 			if (WindowSettings) {
-				RectSettings = GUILayout.Window (1545146, RectSettings, DrawSettings, MOD + " " + VERSION);
+				RectSettings = ClickThruBlocker.GUILayoutWindow (1545146, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION);
 			}
 			if (WindowHistory) {
-				RectHistory = GUILayout.Window (1545147, RectHistory, QHistory.Instance.Draw, MOD + ": " + Localizer.Format("quicksearch_history"));
+				RectHistory = ClickThruBlocker.GUILayoutWindow (1545147, RectHistory, QHistory.Instance.Draw, RegisterToolbar.MOD + ": " + Localizer.Format("quicksearch_history"));
 			}
 		}
 
@@ -164,14 +173,6 @@ namespace QuickSearch {
 
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quicksearch_options"), GUILayout.Height (30));
-			GUILayout.EndHorizontal ();
-
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quicksearch_stockTB"), GUILayout.Width (400));
-			GUILayout.FlexibleSpace ();
-			if (QBlizzy.isAvailable) {
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quicksearch_blizzyTB"), GUILayout.Width (400));
-			}
 			GUILayout.EndHorizontal ();
 
 			GUILayout.BeginHorizontal ();

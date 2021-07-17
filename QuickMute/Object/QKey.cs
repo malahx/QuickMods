@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.Localization;
 using UnityEngine;
 
+using ClickThroughFix;
+
 namespace QuickMute.Object {
 	public class QKey {
 
@@ -135,7 +137,7 @@ namespace QuickMute.Object {
             if (SetKey == Key.None) {
                 return false;
             }
-            RectSetKey = GUILayout.Window(1545156, RectSetKey, DrawSetKey, Localizer.Format("quickmute_setKey", GetText(SetKey)), GUILayout.ExpandHeight(true));
+            RectSetKey = ClickThruBlocker.GUILayoutWindow(1545156, RectSetKey, DrawSetKey, Localizer.Format("quickmute_setKey", GetText(SetKey)), GUILayout.ExpandHeight(true));
             return true;
         }
 	}

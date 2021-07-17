@@ -16,51 +16,56 @@ You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 */
 
+using System.IO;
 using System.Reflection;
 using QuickSearch.QUtils;
-using QuickSearch.Toolbar;
+//using QuickSearch.Toolbar;
 using UnityEngine;
 
-namespace QuickSearch {
-	[KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
-	public partial class QRnD : QuickSearch { }
+namespace QuickSearch
+{
+    [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
+    public partial class QRnD : QuickSearch { }
 
-	[KSPAddon(KSPAddon.Startup.EditorAny, false)]
-	public partial class QEditor : QuickSearch { }
+    [KSPAddon(KSPAddon.Startup.EditorAny, false)]
+    public partial class QEditor : QuickSearch { }
 
-	public partial class QuickSearch : MonoBehaviour {
+    public partial class QuickSearch : MonoBehaviour
+    {        
+        internal static string FileConfig = RegisterToolbar.PATH + "/Config.txt";
 
-		public readonly static string VERSION = Assembly.GetExecutingAssembly ().GetName ().Version.Major + "." + Assembly.GetExecutingAssembly ().GetName ().Version.Minor + Assembly.GetExecutingAssembly ().GetName ().Version.Build;
-		public readonly static string MOD = Assembly.GetExecutingAssembly().GetName().Name;
-		public readonly static string relativePath = "QuickMods/" + MOD;
-		public readonly static string PATH = KSPUtil.ApplicationRootPath + "GameData/" + relativePath;
 
-		[KSPField(isPersistant = true)] static QBlizzy BlizzyToolbar;
+        protected virtual void Awake()
+        {
+            TextField = new GUIStyle(HighLogic.Skin.textField);
+            TextField.stretchWidth = true;
+            TextField.stretchHeight = true;
+            TextField.alignment = TextAnchor.MiddleCenter;
 
-		protected virtual void Awake() {
-			if (BlizzyToolbar == null) BlizzyToolbar = new QBlizzy ();
-			TextField = new GUIStyle(HighLogic.Skin.textField);
-			TextField.stretchWidth = true;
-			TextField.stretchHeight = true;
-			TextField.alignment = TextAnchor.MiddleCenter;
-			QDebug.Log ("Awake");
-		}
-		
-		protected virtual void Start() {
-			if (BlizzyToolbar != null) BlizzyToolbar.Init ();
-			QDebug.Log ("Start");
-		}
-		
-		protected virtual void OnDestroy() {
-			if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
-			QDebug.Log ("OnDestroy");
-		}
-		
-		protected virtual void FixedUpdate() {
-			if (!WindowHistory) {
-				return;
-			}
-			QHistory.Instance.Keys ();
-		}
-	}
+            FileConfig = RegisterToolbar.PATH + "/Config.txt";
+            Debug.Log("QS.Awake, PATH: " + RegisterToolbar.PATH);
+            QDebug.Log("Awake");
+        }
+
+        protected virtual void Start()
+        {
+            //if (BlizzyToolbar != null) BlizzyToolbar.Init ();
+            QDebug.Log("Start");
+        }
+
+        protected virtual void OnDestroy()
+        {
+            //if (BlizzyToolbar != null) BlizzyToolbar.Destroy ();
+            QDebug.Log("OnDestroy");
+        }
+
+        protected virtual void FixedUpdate()
+        {
+            if (!WindowHistory)
+            {
+                return;
+            }
+            QHistory.Instance.Keys();
+        }
+    }
 }

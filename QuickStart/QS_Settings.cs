@@ -37,8 +37,7 @@ namespace QuickStart {
 				return instance;
 			}
 		}
-
-		internal static readonly string FileConfig = QuickStart.PATH + "/Config.txt";
+        
 
 		public static bool needLongWait() {
 			AssemblyLoader.LoadedAssembyList _assemblies = AssemblyLoader.loadedAssemblies;
@@ -60,7 +59,10 @@ namespace QuickStart {
 		[Persistent] internal bool enableEditorAutoSaveShip = true;
 		[Persistent] internal bool enableEditorLoadAutoSave = true;
 		[Persistent] internal bool enablePauseOnFlight = true;
+        [Persistent] internal bool evenlySpaceToggles = true;
+        [Persistent] internal bool abbreviations = false;
         [Persistent] internal bool enableBlackScreen = true;
+		[Persistent] internal bool enableStopWatch = true;
 		[Persistent] internal int gameScene = (int)GameScenes.SPACECENTER;
 		[Persistent] internal int editorFacility = (int)EditorFacility.VAB;
 
@@ -70,13 +72,14 @@ namespace QuickStart {
 
         public void Save() {
 			ConfigNode _temp = ConfigNode.CreateConfigFromObject(this, new ConfigNode());
-			_temp.Save(FileConfig);
+			_temp.Save(QuickStart.FileConfig);
 			QDebug.Log ("Settings Saved", "QSettings", true);
 		}
+
 		public void Load() {
-			if (File.Exists (FileConfig)) {
+			if (File.Exists (QuickStart.FileConfig)) {
 				try {
-					ConfigNode _temp = ConfigNode.Load (FileConfig);
+					ConfigNode _temp = ConfigNode.Load (QuickStart.FileConfig);
 					ConfigNode.LoadObjectFromConfig (this, _temp);
 				} catch {
 					Save ();

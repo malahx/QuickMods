@@ -1,4 +1,5 @@
-﻿/* 
+﻿
+/* 
 QuickGoTo
 Copyright 2017 Malah
 
@@ -27,23 +28,23 @@ namespace QuickGoTo {
 				return QSettings.Instance.BlizzyToolBar;
 			}
 		}
-		internal string TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyToolBar";
-		internal static string VAB_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyVAB";
-		internal static string TS_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyTS";
-		internal static string SPH_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzySPH";
-		internal static string Sett_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzySett";
-		internal static string SC_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzySC";
-		internal static string RvSC_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRvSC";
-		internal static string RvED_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRvED";
-		internal static string Rv_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRv";
-		internal static string RnD_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRnD";
-		internal static string Rc_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyRc";
-		internal static string MI_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyMI";
-		internal static string Main_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyMain";
-		internal static string Lves_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyLves";
-		internal static string Astr_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyAstr";
-		internal static string Admi_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyAdmi";
-		internal static string Conf_TexturePath = QuickGoTo.relativePath + "/Textures/BlizzyConf";
+		internal string TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyToolBar";
+		internal static string VAB_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyVAB";
+		internal static string TS_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyTS";
+		internal static string SPH_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzySPH";
+		internal static string Sett_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzySett";
+		internal static string SC_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzySC";
+		internal static string RvSC_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyRvSC";
+		internal static string RvED_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyRvED";
+		internal static string Rv_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyRv";
+		internal static string RnD_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyRnD";
+		internal static string Rc_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyRc";
+		internal static string MI_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyMI";
+		internal static string Main_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyMain";
+		internal static string Lves_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyLves";
+		internal static string Astr_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyAstr";
+		internal static string Admi_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyAdmi";
+		internal static string Conf_TexturePath = "QuickMods/" + RegisterToolbar.relativePath + "/Textures/BlizzyConf";
 
 		Coroutine CoroutineEach;
 
@@ -119,112 +120,112 @@ namespace QuickGoTo {
 				return;
 			}
 			if (Button != null) {
-				Button = ToolbarManager.Instance.add (QuickGoTo.MOD, QuickGoTo.MOD);
+				Button = ToolbarManager.Instance.add (RegisterToolbar.MOD, RegisterToolbar.MOD);
 				Button.TexturePath = TexturePath;
-				Button.ToolTip = QuickGoTo.MOD;
+				Button.ToolTip = RegisterToolbar.MOD;
 				Button.OnClick += (e) => OnClick ();
 			}
 			if ((QSettings.Instance.EnableSettings || HighLogic.LoadedScene == GameScenes.SPACECENTER) && ButtonConf == null) {
-				ButtonConf = ToolbarManager.Instance.add (QuickGoTo.MOD + "Conf", QuickGoTo.MOD + "Conf");
+				ButtonConf = ToolbarManager.Instance.add (RegisterToolbar.MOD + "Conf", RegisterToolbar.MOD + "Conf");
 				ButtonConf.TexturePath = Conf_TexturePath;
 				ButtonConf.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.Configurations);
 				ButtonConf.OnClick += (e) => QGoTo.Instance.Settings ();
 			}
 			if (QSettings.Instance.EnableGoToMainMenu && ButtonMain == null) {
-				ButtonMain = ToolbarManager.Instance.add (QuickGoTo.MOD + "Main", QuickGoTo.MOD + "Main");
+				ButtonMain = ToolbarManager.Instance.add (RegisterToolbar.MOD + "Main", RegisterToolbar.MOD + "Main");
 				ButtonMain.TexturePath = Main_TexturePath;
 				ButtonMain.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.MainMenu);
 				ButtonMain.OnClick += (e) => QGoTo.Instance.mainMenu ();
 			}
 			if (QSettings.Instance.EnableGoToSettings && ButtonSett == null) {
-				ButtonSett = ToolbarManager.Instance.add (QuickGoTo.MOD + "Sett", QuickGoTo.MOD + "Sett");
+				ButtonSett = ToolbarManager.Instance.add (RegisterToolbar.MOD + "Sett", RegisterToolbar.MOD + "Sett");
 				ButtonSett.TexturePath = Sett_TexturePath;
 				ButtonSett.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.Settings);
 				ButtonSett.OnClick += (e) => QGoTo.Instance.settings ();
 			}
 			if (QSettings.Instance.EnableGoToSpaceCenter && ButtonSC == null) {
-				ButtonSC = ToolbarManager.Instance.add (QuickGoTo.MOD + "SC", QuickGoTo.MOD + "SC");
+				ButtonSC = ToolbarManager.Instance.add (RegisterToolbar.MOD + "SC", RegisterToolbar.MOD + "SC");
 				ButtonSC.TexturePath = SC_TexturePath;
 				ButtonSC.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.SpaceCenter);
 				ButtonSC.Enabled = HighLogic.LoadedScene != GameScenes.SPACECENTER;
 				ButtonSC.OnClick += (e) => QGoTo.Instance.spaceCenter ();
 			}
-			if (QSettings.Instance.EnableGoToVAB && ButtonVAB == null) {
-				ButtonVAB = ToolbarManager.Instance.add (QuickGoTo.MOD + "VAB", QuickGoTo.MOD + "VAB");
+			if (QSettings.Instance.EnableGoToVAB && ButtonVAB == null && !HighLogic.LoadedSceneIsEditor) {
+				ButtonVAB = ToolbarManager.Instance.add (RegisterToolbar.MOD + "VAB", RegisterToolbar.MOD + "VAB");
 				ButtonVAB.TexturePath = VAB_TexturePath;
 				ButtonVAB.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.VAB);
 				ButtonVAB.OnClick += (e) => QGoTo.Instance.VAB ();
 			}
-			if (QSettings.Instance.EnableGoToSPH && ButtonSPH == null) {
-				ButtonSPH = ToolbarManager.Instance.add (QuickGoTo.MOD + "SPH", QuickGoTo.MOD + "SPH");
+			if (QSettings.Instance.EnableGoToSPH && ButtonSPH == null && !HighLogic.LoadedSceneIsEditor) {
+				ButtonSPH = ToolbarManager.Instance.add (RegisterToolbar.MOD + "SPH", RegisterToolbar.MOD + "SPH");
 				ButtonSPH.TexturePath = SPH_TexturePath;
 				ButtonSPH.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.SPH);
 				ButtonSPH.OnClick += (e) => QGoTo.Instance.SPH ();
 			}
 			if (QSettings.Instance.EnableGoToTrackingStation && ButtonTS == null) {
-				ButtonTS = ToolbarManager.Instance.add (QuickGoTo.MOD + "TS", QuickGoTo.MOD + "TS");
+				ButtonTS = ToolbarManager.Instance.add (RegisterToolbar.MOD + "TS", RegisterToolbar.MOD + "TS");
 				ButtonTS.TexturePath = TS_TexturePath;
 				ButtonTS.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.TrackingStation);
 				ButtonTS.Enabled = HighLogic.LoadedScene != GameScenes.TRACKSTATION;
 				ButtonTS.OnClick += (e) => QGoTo.Instance.trackingStation ();
 			}
 			if (QSettings.Instance.EnableGoToRevert && ButtonRv == null) {
-				ButtonRv = ToolbarManager.Instance.add (QuickGoTo.MOD + "Rv", QuickGoTo.MOD + "Rv");
+				ButtonRv = ToolbarManager.Instance.add (RegisterToolbar.MOD + "Rv", RegisterToolbar.MOD + "Rv");
 				ButtonRv.TexturePath = Rv_TexturePath;
 				ButtonRv.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.Revert);
 				ButtonRv.Visibility = new GameScenesVisibility (GameScenes.FLIGHT);
 				ButtonRv.OnClick += (e) => QGoTo.Instance.Revert ();
 			}
 			if (QSettings.Instance.EnableGoToRevertToEditor && ButtonRvED == null) {
-				ButtonRvED = ToolbarManager.Instance.add (QuickGoTo.MOD + "RvED", QuickGoTo.MOD + "RvED");
+				ButtonRvED = ToolbarManager.Instance.add (RegisterToolbar.MOD + "RvED", RegisterToolbar.MOD + "RvED");
 				ButtonRvED.TexturePath = RvED_TexturePath;
 				ButtonRvED.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.RevertToEditor);
 				ButtonRvED.Visibility = new GameScenesVisibility (GameScenes.FLIGHT);
 				ButtonRvED.OnClick += (e) => QGoTo.Instance.RevertToEditor ();
 			}
 			if (QSettings.Instance.EnableGoToRevertToSpaceCenter && ButtonRvSC == null) {
-				ButtonRvSC = ToolbarManager.Instance.add (QuickGoTo.MOD + "RvSC", QuickGoTo.MOD + "RvSC");
+				ButtonRvSC = ToolbarManager.Instance.add (RegisterToolbar.MOD + "RvSC", RegisterToolbar.MOD + "RvSC");
 				ButtonRvSC.TexturePath = RvSC_TexturePath;
 				ButtonRvSC.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.RevertToSpaceCenter);
 				ButtonRvSC.Visibility = new GameScenesVisibility (GameScenes.FLIGHT);
 				ButtonRvSC.OnClick += (e) => QGoTo.Instance.RevertToSpaceCenter ();
 			}
 			if (QSettings.Instance.EnableGoToRevert && ButtonRc == null) {
-				ButtonRc = ToolbarManager.Instance.add (QuickGoTo.MOD + "Rc", QuickGoTo.MOD + "Rc");
+				ButtonRc = ToolbarManager.Instance.add (RegisterToolbar.MOD + "Rc", RegisterToolbar.MOD + "Rc");
 				ButtonRc.TexturePath = Rc_TexturePath;
 				ButtonRc.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.Recover);
 				ButtonRc.Visibility = new GameScenesVisibility (GameScenes.FLIGHT);
 				ButtonRc.OnClick += (e) => QGoTo.Instance.Recover ();
 			}
 			if (QSettings.Instance.EnableGoToRnD && ButtonRnD == null) {
-				ButtonRnD = ToolbarManager.Instance.add (QuickGoTo.MOD + "RnD", QuickGoTo.MOD + "RnD");
+				ButtonRnD = ToolbarManager.Instance.add (RegisterToolbar.MOD + "RnD", RegisterToolbar.MOD + "RnD");
 				ButtonRnD.TexturePath = RnD_TexturePath;
 				ButtonRnD.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.RnD);
 				ButtonRnD.Visible = QGoTo.Instance.CanScienceBuilding;
 				ButtonRnD.OnClick += (e) => QGoTo.Instance.RnD ();
 			}
 			if (QSettings.Instance.EnableGoToMissionControl && ButtonMI == null) {
-				ButtonMI = ToolbarManager.Instance.add (QuickGoTo.MOD + "MI", QuickGoTo.MOD + "MI");
+				ButtonMI = ToolbarManager.Instance.add (RegisterToolbar.MOD + "MI", RegisterToolbar.MOD + "MI");
 				ButtonMI.TexturePath = MI_TexturePath;
 				ButtonMI.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.MissionControl);
 				ButtonMI.Visible = QGoTo.Instance.CanFundBuilding;
 				ButtonMI.OnClick += (e) => QGoTo.Instance.missionControl ();
 			}
 			if (QSettings.Instance.EnableGoToAstronautComplex && ButtonAstr == null) {
-				ButtonAstr = ToolbarManager.Instance.add (QuickGoTo.MOD + "Astr", QuickGoTo.MOD + "Astr");
+				ButtonAstr = ToolbarManager.Instance.add (RegisterToolbar.MOD + "Astr", RegisterToolbar.MOD + "Astr");
 				ButtonAstr.TexturePath = Astr_TexturePath;
 				ButtonAstr.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.AstronautComplex);
 				ButtonAstr.OnClick += (e) => QGoTo.Instance.astronautComplex ();
 			}
 			if (QSettings.Instance.EnableGoToAdministration && ButtonAdmi == null) {
-				ButtonAdmi = ToolbarManager.Instance.add (QuickGoTo.MOD + "Admi", QuickGoTo.MOD + "Admi");
+				ButtonAdmi = ToolbarManager.Instance.add (RegisterToolbar.MOD + "Admi", RegisterToolbar.MOD + "Admi");
 				ButtonAdmi.TexturePath = Admi_TexturePath;
 				ButtonAdmi.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.Administration);
 				ButtonAdmi.Visible = QGoTo.Instance.CanFundBuilding;
 				ButtonAdmi.OnClick += (e) => QGoTo.Instance.administration ();
 			}
 			if (QSettings.Instance.EnableGoToLastVessel && ButtonLves == null) {
-				ButtonLves = ToolbarManager.Instance.add (QuickGoTo.MOD + "Lves", QuickGoTo.MOD + "Lves");
+				ButtonLves = ToolbarManager.Instance.add (RegisterToolbar.MOD + "Lves", RegisterToolbar.MOD + "Lves");
 				ButtonLves.TexturePath = Lves_TexturePath;
 				ButtonLves.ToolTip = QGoTo.Instance.GetText (QGoTo.GoTo.LastVessel);
 				ButtonLves.OnClick += (e) => QGoTo.Instance.LastVessel ();

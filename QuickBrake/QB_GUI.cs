@@ -19,6 +19,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 using KSP.Localization;
 using UnityEngine;
 
+using ClickThroughFix;
+
 namespace QuickBrake {
 	public partial class QGUI {
 		public static QGUI Instance {
@@ -39,37 +41,35 @@ namespace QuickBrake {
 				rectSettings = value;
 			}
 		}
-		internal QBlizzyToolbar BlizzyToolbar;
+		//internal QBlizzyToolbar BlizzyToolbar;
 			
 		protected override void Awake () {
 			if (!HighLogic.LoadedSceneIsGame || QGUI.Instance != null) {
 				Destroy (this);
 			}
 			Instance = this;
-			if (BlizzyToolbar == null) {
-				BlizzyToolbar = new QBlizzyToolbar ();
-			}
+
 			Log ("Awake", "QGUI");
 		}
 
 		protected override void Start () {
-			BlizzyToolbar.Start ();
+			//BlizzyToolbar.Start ();
 			Log ("Start", "QGUI");
 		}
 
 		protected override void OnDestroy () {
-			BlizzyToolbar.OnDestroy ();
+			//BlizzyToolbar.OnDestroy ();
 			Log ("OnDestroy", "QGUI");
 		}
 
 		void Lock (bool activate, ControlTypes Ctrl = 0)	{
 			if (activate) {
-				InputLockManager.SetControlLock (Ctrl, "Lock" + MOD);
+				InputLockManager.SetControlLock (Ctrl, "Lock" + RegisterToolbar.MOD);
 				return;
 			}
-			InputLockManager.RemoveControlLock ("Lock" + MOD);
-			if (InputLockManager.GetControlLock ("Lock" + MOD) != 0) {
-				InputLockManager.RemoveControlLock ("Lock" + MOD);
+			InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
+			if (InputLockManager.GetControlLock ("Lock" + RegisterToolbar.MOD) != 0) {
+				InputLockManager.RemoveControlLock ("Lock" + RegisterToolbar.MOD);
 			}
 			Log ("Lock: " + activate, "QGUI");
 		}
@@ -105,7 +105,7 @@ namespace QuickBrake {
 
 		void Save () {
 			QStockToolbar.Instance.Reset ();
-			BlizzyToolbar.Reset ();
+			//BlizzyToolbar.Reset ();
 			QSettings.Instance.Save ();
 			Log ("Save", "QGUI");
 		}
@@ -115,7 +115,7 @@ namespace QuickBrake {
 				return;
 			}
 			GUI.skin = HighLogic.Skin;
-			RectSettings = GUILayout.Window (1545165, RectSettings, DrawSettings, QuickBrake.MOD + " " + QuickBrake.VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
+			RectSettings = ClickThruBlocker.GUILayoutWindow (1545165, RectSettings, DrawSettings, RegisterToolbar.MOD + " " + RegisterToolbar.VERSION, GUILayout.Width (RectSettings.width), GUILayout.ExpandHeight (true));
 		}
 
 		void DrawSettings (int id) {
@@ -123,14 +123,7 @@ namespace QuickBrake {
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quickbrake_toolbars"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
-			GUILayout.BeginHorizontal ();
-			QSettings.Instance.StockToolBar = GUILayout.Toggle (QSettings.Instance.StockToolBar, Localizer.Format("quickbrake_stockTB"), GUILayout.Width (400));
-			GUILayout.EndHorizontal ();
-			if (QBlizzyToolbar.isAvailable) {
-				GUILayout.BeginHorizontal ();
-				QSettings.Instance.BlizzyToolBar = GUILayout.Toggle (QSettings.Instance.BlizzyToolBar, Localizer.Format("quickbrake_blizzyTB"), GUILayout.Width (400));
-				GUILayout.EndHorizontal ();
-			}
+
 			GUILayout.BeginHorizontal ();
 			GUILayout.Box (Localizer.Format("quickbrake_options"), GUILayout.Height (30));
 			GUILayout.EndHorizontal ();
