@@ -1,5 +1,10 @@
 #### Changelog
 
+1.1.0.2
+	Added AssemblyFileVersion
+	Updated version file for 1.8+
+	Fixed bug where the MiniAVC.dll file was not in the correct case
+
 1.1.0.1
 	Moved initialization of variable in Monobehaviour class to Awake()
 
