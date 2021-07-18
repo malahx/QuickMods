@@ -1,0 +1,42 @@
+QPI 
+{  
+    Message
+    {
+        stock = <b><color=green>From [modName].</color></b>
+        expansion = <b><color=green>From [modName] Expansion.</color></b>
+        mod = <b><color=green>From [modName] mod.</color></b>
+        submod = <b><color=green>From [modName] mod.</color></b>
+    }
+    
+    Mod
+    {
+        name = Squad
+        stock = true
+    }    
+        
+    Mod
+    {
+        name = SquadExpansion
+        expansion = true
+    }
+    
+    Mod
+    {
+        name = Serenity
+        displayName = Breaking Ground
+    }
+    
+    Mod
+    {
+        name = UmbraSpaceIndustries
+        hasSubMods = true
+        useAcronym = true
+        subModsUseThisName = true
+    }
+    
+    Mod
+    {
+        name = MKS
+        displayName = Kolonization Systems (MKS/OKS)
+    }
+}
