@@ -17,6 +17,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.Collections;
+using System.Collections.Generic;
+
 using System.IO;
 using KSP.Localization;
 using UnityEngine;
@@ -160,9 +162,14 @@ namespace QuickExit {
 						ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_cantSave", RegisterToolbar.MOD), 10);
 					}
 					if (HighLogic.LoadedSceneIsEditor) {
-						ShipConstruction.SaveShip (shipFilename);
-						Log ("Ship saved.", "QExit");
-						ScreenMessages.PostScreenMessage (Localizer.Format("quickexit_shipSaved", RegisterToolbar.MOD), 5);
+						List<Part> parts = EditorLogic.fetch.ship != null ? EditorLogic.fetch.ship.Parts : new List<Part>();
+
+						if (parts.Count > 0)
+						{
+							ShipConstruction.SaveShip(shipFilename);
+							Log("Ship saved.", "QExit");
+							ScreenMessages.PostScreenMessage(Localizer.Format("quickexit_shipSaved", RegisterToolbar.MOD), 5);
+						}
 					}
 				} else {
 					count = 10;
