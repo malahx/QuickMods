@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{CDE705D1-64F4-4761-B2A9-C29BA62F723D}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>QuickPartInfo</RootNamespace>
-    <AssemblyName>QuickPartInfo</AssemblyName>
+    <RootNamespace>QuickModsInfo</RootNamespace>
+    <AssemblyName>QuickModsInfo</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <ReleaseVersion>1</ReleaseVersion>
   </PropertyGroup>
@@ -28,12 +28,16 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="QPI.cs" />
+    <Compile Include="ModDefinition.cs" />
+    <Compile Include="ModNameCalculation.cs" />
+    <Compile Include="ModsInfoConfig.cs" />
+    <Compile Include="ModsInfoService.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="COPYING" />
-    <None Include="QuickPartInfo.version" />
+    <None Include="QuickModsInfo.version" />
     <None Include="README.md" />
   </ItemGroup>
   <ItemGroup>

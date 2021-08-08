@@ -1,6 +1,6 @@
 using System.Text.RegularExpressions;
 
-namespace QuickPartInfo
+namespace QuickModsInfo
 {
     public static class ModNameCalculation
     {

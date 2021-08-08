@@ -1,4 +1,4 @@
-﻿# QuickPartInfo
+﻿# QuickModsInfo
 #### A plugin for Kerbal Space Program
 #### Copyright 2021 Malah
 
@@ -30,7 +30,7 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 
 #### How to uninstall it?
 
-Delete the QuickMods/QuickPartInfo folder in your KSP/GameData folder.
+Delete the QuickMods/QuickModsInfo folder in your KSP/GameData folder.
 
 #### Changelog
 1.0.0
@@ -39,7 +39,6 @@ Delete the QuickMods/QuickPartInfo folder in your KSP/GameData folder.
 #### Thanks!
 
 * to all mods developers which make this game really huge,
-* to my friend Neimad who corrects my bad english ...
 * to Squad for this awesome game.
 
 #### Links

@@ -1,10 +1,10 @@
-namespace QuickPartInfo
+namespace QuickModsInfo
 {
-    public class PartInfoService
+    public class ModsInfoService
     {
-        private readonly PartInfoConfig cfg;
+        private readonly ModsInfoConfig cfg;
 
-        public PartInfoService(PartInfoConfig cfg)
+        public ModsInfoService(ModsInfoConfig cfg)
         {
             this.cfg = cfg;
         }

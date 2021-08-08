@@ -1,4 +1,4 @@
-namespace QuickPartInfo
+namespace QuickModsInfo
 {
     public class ModDefinition
     {

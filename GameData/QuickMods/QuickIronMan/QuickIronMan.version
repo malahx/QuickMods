@@ -1,7 +1,7 @@
- {
-  "NAME": "QuickPartInfo",
+{
+  "NAME": "QuickIronMan",
   "URL": "https://github.com/malahx/QuickMods",
-  "CHANGE_LOG_URL": "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickPartInfo/README.md",
+  "CHANGE_LOG_URL": "https://raw.githubusercontent.com/malahx/QuickMods/master/QuickIronMan/README.md",
   "DOWNLOAD": "https://github.com/malahx/QuickMods",
   "GITHUB": {
     "USERNAME": "malahx",
@@ -16,6 +16,6 @@
 	"KSP_VERSION_MIN": {
 		"MAJOR": 1,
 		"MINOR": 12,
-		"PATCH": 1
+		"PATCH": 2
 	}
 }

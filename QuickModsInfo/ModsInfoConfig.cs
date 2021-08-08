@@ -4,11 +4,11 @@ using System.IO;
 using System.Reflection;
 using UnityEngine;
 
-namespace QuickPartInfo
+namespace QuickModsInfo
 {
-    public class PartInfoConfig
+    public class ModsInfoConfig
     {
-        public PartInfoConfig()
+        public ModsInfoConfig()
         {
             Version = Assembly.GetExecutingAssembly().GetName().Version.Major + "." +
                       Assembly.GetExecutingAssembly().GetName().Version.Minor +
@@ -28,16 +28,16 @@ namespace QuickPartInfo
 
         private void Load()
         {
-            Debug.Log($"QuickPartInfo[{Version}] Load configuration: {File}");
+            Debug.Log($"QuickModsInfo[{Version}] Load configuration: {File}");
             try
             {
                 InitConfigs(ConfigNode.Load(File).GetNode("QPI"));
 
-                Debug.Log($"QuickPartInfo[{Version}] Configuration loaded.");
+                Debug.Log($"QuickModsInfo[{Version}] Configuration loaded.");
             }
             catch (Exception e)
             {
-                Debug.LogError($"QuickPartInfo[{Version}] Configuration could not be load: {e.Message}");
+                Debug.LogError($"QuickModsInfo[{Version}] Configuration could not be load: {e.Message}");
                 Debug.LogException(e);
             }
         }
