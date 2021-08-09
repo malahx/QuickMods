@@ -111,6 +111,33 @@ namespace ZeroMiniAVC
             Destroy(this);
         }
 
+        void DoCleanup(string path)
+        {
+            string _mod = mod(path);
+            string _prunePath = path + pruneExt;
+            if (File.Exists(_prunePath))
+            {
+                File.Delete(_prunePath);
+            }
+            if (prune)
+            {
+                File.Move(path, _prunePath);
+                ConfigNode _cfgMod = config.AddNode("mod");
+                _cfgMod.AddValue("name", _mod);
+                _cfgMod.AddValue("pruned", _prunePath);
+                screenMsg("MiniAVC pruned for " + _mod);
+            }
+            else if (delete)
+            {
+                File.Delete(path);
+                screenMsg("MiniAVC deleted for " + _mod);
+            }
+            else
+            {
+                screenMsg("MiniAVC disabled for " + _mod);
+            }
+
+        }
         void cleanMiniAVC()
         {
             AssemblyLoader.LoadedAssembyList _assemblies = AssemblyLoader.loadedAssemblies;
@@ -121,29 +148,21 @@ namespace ZeroMiniAVC
                 {
                     _assembly.Unload();
                     AssemblyLoader.loadedAssemblies.RemoveAt(_i);
-                    string _mod = mod(_assembly.path);
-                    string _prunePath = _assembly.path + pruneExt;
-                    if (File.Exists(_prunePath))
-                    {
-                        File.Delete(_prunePath);
-                    }
-                    if (prune)
-                    {
-                        File.Move(_assembly.path, _prunePath);
-                        ConfigNode _cfgMod = config.AddNode("mod");
-                        _cfgMod.AddValue("name", _mod);
-                        _cfgMod.AddValue("pruned", _prunePath);
-                        screenMsg("MiniAVC pruned for " + _mod);
-                    }
-                    else if (delete)
-                    {
-                        File.Delete(_assembly.path);
-                        screenMsg("MiniAVC deleted for " + _mod);
-                    }
-                    else
-                    {
-                        screenMsg("MiniAVC disabled for " + _mod);
-                    }
+                   DoCleanup(_assembly.path);
+                }
+            }
+           FindMiniAvcDLLs();
+        }
+
+        void FindMiniAvcDLLs()
+        {
+            var dir = KSPUtil.ApplicationRootPath + "GameData/";
+            var files = Directory.GetFiles(dir, "*.dll", SearchOption.AllDirectories);
+            foreach (var f in files)
+            {
+                if (f.ToLower().Contains("miniavc.dll") && !f.ToLower().Contains("zerominiavc.dll"))
+                {
+                        DoCleanup(f);
                 }
             }
         }
@@ -189,6 +208,7 @@ namespace ZeroMiniAVC
         }
     }
 }
+
 
 // From MiniAVC GPLv3 Copyright (C) 2014 CYBUTEK
 namespace MiniAVC

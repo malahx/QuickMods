@@ -1,5 +1,10 @@
 #### Changelog
 
+1.1.1
+	Fixed issue on 1.12.2 where KSP now checks for duplicate DLLs, and only runs the latest, which was run even after ZeroMiniAVC unloaded and pruned it
+	Added a dummy KSP-AVC dll which prevents the MiniAVC.dll assemblies from loading
+	Added search for all files named MiniAVC.dll and pruned them
+
 1.1.0.2
 	Added AssemblyFileVersion
 	Updated version file for 1.8+
