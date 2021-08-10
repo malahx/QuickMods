@@ -1,5 +1,8 @@
 #### Changelog
 
+1.1.1.1
+	Changed internal version of dummy KSP-AVC to avoid conflicts with older versions of KSP-AVC
+
 1.1.1
 	Fixed issue on 1.12.2 where KSP now checks for duplicate DLLs, and only runs the latest, which was run even after ZeroMiniAVC unloaded and pruned it
 	Added a dummy KSP-AVC dll which prevents the MiniAVC.dll assemblies from loading
