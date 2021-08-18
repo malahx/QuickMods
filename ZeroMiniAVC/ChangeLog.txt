@@ -1,5 +1,8 @@
 #### Changelog
 
+1.1.2
+	Added check for duplicated DLLs in general, shows a window if dups are detected.
+
 1.1.1.1
 	Changed internal version of dummy KSP-AVC to avoid conflicts with older versions of KSP-AVC
 

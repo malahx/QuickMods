@@ -167,13 +167,16 @@ namespace QuickStart {
 			GUILayout.EndHorizontal ();
 
 			if (!string.IsNullOrEmpty (QSaveGame.LastUsed)) {
+				bool abbr = QSettings.Instance.abbreviations;
+				if (Screen.width <= 1280)
+					abbr = true;
 				GUILayout.BeginHorizontal ();
 				QSettings.Instance.Enabled = GUILayout.Toggle (QSettings.Instance.Enabled, Localizer.Format("quickstart_enable", RegisterToolbar.MOD), LabelWidth.Enabled);
 				if (QSettings.Instance.Enabled) {
                     if (QSettings.Instance.evenlySpaceToggles)
 					    GUILayout.FlexibleSpace ();
 					if (GUILayout.Toggle (QSettings.Instance.gameScene == (int)GameScenes.SPACECENTER, Localizer.Format(
-                         QSettings.Instance.abbreviations ? "quickstart_sc_abbr" : "quickstart_sc"
+						 abbr ? "quickstart_sc_abbr" : "quickstart_sc"
                         ), LabelWidth.KSC)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.SPACECENTER) {
 							QSettings.Instance.gameScene = (int)GameScenes.SPACECENTER;
@@ -182,7 +185,7 @@ namespace QuickStart {
                     if (QSettings.Instance.evenlySpaceToggles)
                         GUILayout.FlexibleSpace();
                     if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.VAB && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format(
-                        QSettings.Instance.abbreviations?"quickstart_vab_abbr": "quickstart_vab"
+						abbr ? "quickstart_vab_abbr": "quickstart_vab"
                         ), LabelWidth.VAB)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.VAB) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;
@@ -192,7 +195,7 @@ namespace QuickStart {
                     if (QSettings.Instance.evenlySpaceToggles)
                         GUILayout.FlexibleSpace();
                     if (GUILayout.Toggle (QSettings.Instance.editorFacility == (int)EditorFacility.SPH && QSettings.Instance.gameScene == (int)GameScenes.EDITOR, Localizer.Format(
-                           QSettings.Instance.abbreviations ? "quickstart_sph_abbr" : "quickstart_sph"
+						   abbr ? "quickstart_sph_abbr" : "quickstart_sph"
                         ), LabelWidth.SPH)) {
 						if (QSettings.Instance.gameScene != (int)GameScenes.EDITOR || QSettings.Instance.editorFacility != (int)EditorFacility.SPH) {
 							QSettings.Instance.gameScene = (int)GameScenes.EDITOR;

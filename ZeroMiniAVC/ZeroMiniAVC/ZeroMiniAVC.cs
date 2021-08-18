@@ -17,6 +17,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 */
 
 using System.IO;
+using System.Collections.Generic;
 using UnityEngine;
 
 namespace ZeroMiniAVC
@@ -144,17 +145,23 @@ namespace ZeroMiniAVC
             for (int _i = _assemblies.Count - 1; _i >= 0; --_i)
             {
                 AssemblyLoader.LoadedAssembly _assembly = _assemblies[_i];
+
                 if (_assembly.name.ToLower() == "miniavc")
                 {
                     _assembly.Unload();
                     AssemblyLoader.loadedAssemblies.RemoveAt(_i);
-                   DoCleanup(_assembly.path);
+                    DoCleanup(_assembly.path);
                 }
             }
-           FindMiniAvcDLLs();
+            FindAllDLLs();
+            if (duplicateDlls.Count > 0)
+                this.gameObject.AddComponent<IssueGui>();
         }
 
-        void FindMiniAvcDLLs()
+
+        Dictionary<string, string> installedDlls = new Dictionary<string, string>();
+        internal static List<string> duplicateDlls = new List<string>();
+        void FindAllDLLs()
         {
             var dir = KSPUtil.ApplicationRootPath + "GameData/";
             var files = Directory.GetFiles(dir, "*.dll", SearchOption.AllDirectories);
@@ -162,7 +169,19 @@ namespace ZeroMiniAVC
             {
                 if (f.ToLower().Contains("miniavc.dll") && !f.ToLower().Contains("zerominiavc.dll"))
                 {
-                        DoCleanup(f);
+                    DoCleanup(f);
+                }
+                else
+                {
+                    if (installedDlls.ContainsKey(Path.GetFileName(f)))
+                    {
+                        Debug.Log("Duplicate DLLs found: " + installedDlls[Path.GetFileName(f)] + " : " + f);
+                        duplicateDlls.Add(f);
+                        if (!duplicateDlls.Contains(installedDlls[Path.GetFileName(f)]))
+                            duplicateDlls.Add(installedDlls[Path.GetFileName(f)]);
+                    }
+                    else
+                        installedDlls.Add(Path.GetFileName(f), f);
                 }
             }
         }

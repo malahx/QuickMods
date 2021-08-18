@@ -115,14 +115,17 @@ namespace QuickStart {
 		IEnumerator autoSaveShip() {
 			QDebug.Log ("autoSaveShip: start", "QPersistent");
 			while (HighLogic.LoadedSceneIsEditor && QSettings.Instance.enableEditorAutoSaveShip) {
-				QDebug.Log("autoSaveShip: before WaitForSeconds(" + QSettings.Instance.editorTimeToSave + "", "QPersistent");
+				QDebug.Log("autoSaveShip: before WaitForSeconds(" + QSettings.Instance.editorTimeToSave + ")", "QPersistent");
 				yield return new WaitForSeconds (QSettings.Instance.editorTimeToSave);
 				List<Part> parts = EditorLogic.fetch.ship != null ? EditorLogic.fetch.ship.Parts : new List<Part>();
 
 				if (parts.Count > 0)
 				{
 					QDebug.Log("autoSaveShip: before saveShip", "QPersistent");
-					ShipConstruction.SaveShip(shipFilename);
+
+					//ShipConstruction.SaveShip(shipFilename);
+					yield return new WaitForEndOfFrame();
+					ShipConstruction.SaveShip(shipFilename); 
 					QDebug.Log("autoSaveShip: after saveShip", "QPersistent");
 				}
 			}

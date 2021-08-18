@@ -1,5 +1,11 @@
 ﻿#### Changelog
 
+QuickStart 2.2.1.1
+	Per @gotmachine's suggestion, added:
+					yield return new WaitForEndOfFrame();
+		before saving a vessel
+	Made the abbreviations automatic if the screen width is less than 1281
+
 QuickMods 1.4.0.8
 	Updated version file
 

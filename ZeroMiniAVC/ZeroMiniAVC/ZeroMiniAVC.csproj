@@ -45,6 +45,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AssemblyVersion.tt</DependentUpon>
     </Compile>
+    <Compile Include="issue.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ZeroMiniAVC.cs" />
   </ItemGroup>
