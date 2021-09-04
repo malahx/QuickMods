@@ -19,7 +19,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #### What is it?
 
 QuickIronMan is a plugin which turn each savegame to an IronMan mod (like in Europa Universalis).
-(It's an easier revive of my old mod Simulate, Revert and Launch)
+(It's an easier revive of my old mod SRL - Simulate, Revert and Launch)
 
 #### How does it work?
 
@@ -44,8 +44,7 @@ The background, your savegame will be edited, with in default:
     HighLogic.CurrentGame.Parameters.Flight.CanAutoSave = true;
     HighLogic.CurrentGame.Parameters.Flight.CanLeaveToSpaceCenter = true;
 
-    FlightDriver.CanRevertToPostInit = false;
-    FlightDriver.CanRevertToPrelaunch = false;
+These variable will be toggle each time the simulation is toggle.  
 
 #### How to install it?
 
@@ -57,9 +56,17 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 
 #### How to uninstall it?
 
+In game, toggle simulation off, start a new vessel, and save.
+
 Delete the QuickMods/QuickIronMan folder in your KSP/GameData folder.
 
 #### Changelog
+1.1.0 - 2021.09.04
+* Enhanced stock launch/simulate button,
+* Switched toggle but by default to space,
+* Disabled recover / go to space center in simulation from the altimeter,
+* Added configuration file.
+
 1.0.0 - 2021.08.08
 * First release.
 
