@@ -1,8 +1,38 @@
 ﻿#### Changelog
 
-QuickStart 2.2.1 (unreleased)
-	Added line written to log showing total time from startup to the MainMenu
+QuickStart 2.2.1.1
+	Per @gotmachine's suggestion, added:
+					yield return new WaitForEndOfFrame();
+		before saving a vessel
+	Made the abbreviations automatic if the screen width is less than 1281
 
+QuickMods 1.4.0.8
+	Updated version file
+
+QuickStart 2.2.1
+	Added line written to log showing total time from startup to the MainMenu
+	Fixed edge case in editor causing a CTD:
+		Create new ship and add root part
+		Delete root part
+		Wait for next save
+	Added AssemblyFileVersion
+
+QuickBrake 1.4.0.8
+QuickContracts 1.3.0.8
+QuickCursorHider 1.1.0.7
+QuickExit 2.2.0.8
+QuickFineControl 1.1.0.7
+QuickGoTo 1.4.0.9
+QuickHide 3.3.0.9
+QuickIVA 1.3.0.8
+QuickMute 1.4.0.7
+QuickRevert 3.2.0.8
+QuickSAS 1.2.0.8
+QuickSearch 3.3.0.11
+
+	Added AssemblyFileVersion
+
+=================
 QuickSearch 3.3.0.10
 	Thanks to user @dtoxic for the bug report
 	Thanks for user @tivec for the following fixes:
