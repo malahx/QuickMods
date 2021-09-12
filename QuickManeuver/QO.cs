@@ -24,7 +24,7 @@ namespace QuickManeuver {
 	[KSPAddon(KSPAddon.Startup.Flight, false)]
 	public class QuickManeuver : MonoBehaviour {
 		private void Awake() {
-			GameEvents.OnFlightGlobalsReady.Add (OnFlightGlobalsReady);
+			GameEvents.OnFlightGlobalsReady.Add(OnFlightGlobalsReady);
 			Debug.Log ("[QuickManeuver] Awake");
 		}
 
@@ -34,13 +34,13 @@ namespace QuickManeuver {
 			}
 			FlightUIModeController.Instance.SetMode(FlightUIMode.MANEUVER_INFO);
 			FlightUIModeController.Instance.maneuverButton.ButtonCtrl.onClick.Invoke();
-			Debug.LogFormat("[QuickManeuver] Activate maneuver info");
+			Debug.Log("[QuickManeuver] Activate maneuver info");
 			Destroy(this);
 		}
 
 		private void OnDestroy() {
-			GameEvents.OnFlightGlobalsReady.Remove (OnFlightGlobalsReady);
-			Debug.Log ("[QuickManeuver] OnDestroy");
+			GameEvents.OnFlightGlobalsReady.Remove(OnFlightGlobalsReady);
+			Debug.Log("[QuickManeuver] OnDestroy");
 		}
 	}
 }
