@@ -7,7 +7,7 @@ namespace QuickIronMan
 {
     public class SimConfig
     {
-        [KSPField(isPersistant = true)] internal static readonly SimConfig INSTANCE = new SimConfig();
+        [KSPField(isPersistant = true)] public static readonly SimConfig INSTANCE = new SimConfig();
 
         public const string SimulationTexturePath = "QuickMods/QuickIronMan/Textures/sim";
 

@@ -1,4 +1,4 @@
-﻿# QuickModsInfo
+﻿# QuickConstruct
 #### A plugin for Kerbal Space Program
 #### Copyright 2021 Malah
 
@@ -18,7 +18,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #### What is it?
 
-QuickVesselName is a small plugin which adds the information of which mod has installed a part
+QuickConstruct is a plugin which add a stockalike construction time.
+
+#### How does it work?
+
+No new UI, the time pass in editor will needs you to warp at flight to can launch.
+
+If you want better mods with more feature, I can suggest you to use one of these mods:
+* KCT: https://forum.kerbalspaceprogram.com/index.php?/topic/182877-1
+* KVASS: https://forum.kerbalspaceprogram.com/index.php?/topic/183393-1
 
 #### How to install it?
 
@@ -30,16 +38,16 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 
 #### How to uninstall it?
 
-Delete the QuickMods/QuickModsInfo folder in your KSP/GameData folder.
+Delete the QuickMods/QuickConstruct folder in your KSP/GameData folder.
 
 #### Changelog
-1.0.0
-	Initial version
+1.0.0 - 2021.09.XX
+* First release.
 
 #### Thanks!
 
-* to all mods developers which make this game really huge,
-* to Squad for this awesome game.
+* to all mod developers which make this game really huge,
+* and to Squad for this awesome game.
 
 #### Links
 

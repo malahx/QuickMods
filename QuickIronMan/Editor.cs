@@ -1,5 +1,4 @@
-﻿using System;
-using KSP.Localization;
+﻿using KSP.Localization;
 using KSP.UI.TooltipTypes;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,7 +27,7 @@ namespace QuickIronMan
             
             // Retrieve launch button components 
             launchTooltipController = EditorLogic.fetch.launchBtn.GetComponent<TooltipController_Text>();
-            launchImage = EditorLogic.fetch.launchBtn.GetComponent<Image>();
+            launchImage = EditorLogic.fetch.launchBtn.image;
             
             // Init icon
             var texture = Resources.FindObjectsOfTypeAll<Texture2D>().FirstOrDefault(t => t.name == SimConfig.SimulationTexturePath);

@@ -1,4 +1,4 @@
-﻿# QuickModsInfo
+﻿# QuickVesselName
 #### A plugin for Kerbal Space Program
 #### Copyright 2021 Malah
 
@@ -18,7 +18,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #### What is it?
 
-QuickVesselName is a small plugin which adds the information of which mod has installed a part
+QuickVesselName is a small plugin which change vessel name for each pod / probe / rover created in editor
 
 #### How to install it?
 
