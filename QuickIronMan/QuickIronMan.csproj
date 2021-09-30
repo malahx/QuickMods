@@ -73,10 +73,10 @@
       </Reference>
     </ItemGroup>
     <ItemGroup>
-      <Compile Include="Editor.cs" />
-      <Compile Include="Flight.cs" />
-      <Compile Include="SimConfig.cs" />
-      <Compile Include="SpaceCenter.cs" />
+      <Compile Include="src\Editor.cs" />
+      <Compile Include="src\Flight.cs" />
+      <Compile Include="src\SimConfig.cs" />
+      <Compile Include="src\SpaceCenter.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="Lang\en-us.cfg" />

@@ -28,12 +28,12 @@
     <ConsolePause>false</ConsolePause>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="ModDefinition.cs" />
-    <Compile Include="ModNameCalculation.cs" />
-    <Compile Include="ModsInfoConfig.cs" />
-    <Compile Include="ModsInfoService.cs" />
-    <Compile Include="Main.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="src\Main.cs" />
+    <Compile Include="src\ModDefinition.cs" />
+    <Compile Include="src\ModNameCalculation.cs" />
+    <Compile Include="src\ModsInfoConfig.cs" />
+    <Compile Include="src\ModsInfoService.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="COPYING" />
