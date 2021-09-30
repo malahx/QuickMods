@@ -9,7 +9,7 @@ namespace QuickConstruct
     [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
     public class SpaceCenter : MonoBehaviour
     {
-        private const string WarpTexturePath = "QuickMods/QuickConstruct/Textures/sim";
+        private const string WarpTexturePath = "QuickMods/QuickConstruct/Textures/launch";
         
         private Button launchBtn;
         private Sprite launchSprite;
@@ -40,13 +40,12 @@ namespace QuickConstruct
             });
             
             var texture = Resources.FindObjectsOfTypeAll<Texture2D>().FirstOrDefault(t => t.name == WarpTexturePath);
-            warpSprite = Sprite.Create(texture, new Rect(128, 128, 128, 128), Vector2.zero);
+            warpSprite = Sprite.Create(texture, new Rect(0, 0, 128, 128), Vector2.zero);
             warpSpriteState =  new SpriteState
             {
-                selectedSprite = Sprite.Create(texture, new Rect(0, 128, 128, 128), Vector2.zero),
-                highlightedSprite = Sprite.Create(texture, new Rect(0, 128, 128, 128), Vector2.zero),
-                pressedSprite = Sprite.Create(texture, new Rect(128, 0, 128, 128), Vector2.zero),
-                disabledSprite = Sprite.Create(texture, new Rect(128, 0, 128, 128), Vector2.zero)
+                selectedSprite = Sprite.Create(texture, new Rect(128, 0, 128, 128), Vector2.zero),
+                highlightedSprite = Sprite.Create(texture, new Rect(128, 0, 128, 128), Vector2.zero),
+                pressedSprite = Sprite.Create(texture, new Rect(128, 0, 128, 128), Vector2.zero)
             };
             
             // Add a listener for when the time passed is passed
