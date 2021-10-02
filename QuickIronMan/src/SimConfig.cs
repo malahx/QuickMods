@@ -52,6 +52,8 @@ namespace QuickIronMan
                 OnEnterSimulation.Fire();
             else
                 OnExitSimulation.Fire();
+            
+            Debug.Log($"[QuickIronMan](Simulation) Set simulation: {IsInSimulation()}");
         }
 
         public void RefreshSimulationVariables()
