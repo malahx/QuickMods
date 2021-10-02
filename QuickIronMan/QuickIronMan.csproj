@@ -50,6 +50,9 @@
       <Reference Include="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
         <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\System.Xml.dll</HintPath>
       </Reference>
+      <Reference Include="ToolbarControl, Version=0.1.9.6, Culture=neutral, PublicKeyToken=null">
+        <HintPath>..\..\KSP\GameData\001_ToolbarControl\Plugins\ToolbarControl.dll</HintPath>
+      </Reference>
       <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
         <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\UnityEngine.dll</HintPath>
       </Reference>
@@ -84,6 +87,12 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="README.md" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\QuickLibrary\QuickLibrary.csproj">
+        <Project>{868d16ed-97b5-4783-82aa-e27df6af028c}</Project>
+        <Name>QuickLibrary</Name>
+      </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

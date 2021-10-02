@@ -86,6 +86,12 @@
       <None Include="Lang\en-us.cfg" />
       <None Include="Lang\fr-fr.cfg" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\QuickLibrary\QuickLibrary.csproj">
+        <Project>{868d16ed-97b5-4783-82aa-e27df6af028c}</Project>
+        <Name>QuickLibrary</Name>
+      </ProjectReference>
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
          Other similar extension points exist, see Microsoft.Common.targets.

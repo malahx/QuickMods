@@ -1,5 +1,6 @@
 using System.Linq;
 using System.Reflection;
+using QuickLibrary;
 using UnityEngine;
 
 namespace QuickConstruct
@@ -9,9 +10,6 @@ namespace QuickConstruct
     {
         
         internal static SimulationModsCompatibility Instance;
-        private FieldInfo inSimulation;
-        private object simConfig;
-        private Assembly quickIronMan;
 
         private void Start()
         {
@@ -26,45 +24,16 @@ namespace QuickConstruct
             DontDestroyOnLoad(this);
 
             Instance = this;
-
-            quickIronMan = loadedQuickIronMan.assembly;
-
             Debug.Log($"[QuickConstruct]({name}): Start");
         }
 
         public bool IsInSimulation()
         {
+            var simulation = Simulation.Instance; 
+            var inSimulation = simulation != null && simulation.IsInSimulation();
 
-            if (simConfig == null || inSimulation == null)
-            {
-                InitializeSimulationData();
-            }
-
-            if (simConfig == null || inSimulation == null)
-            {
-                Debug.Log($"[QuickConstruct]({name}): no simulation found ?");
-                return false;   
-            }
-
-            var value = (bool) inSimulation.GetValue(simConfig);
-            
-            Debug.Log($"[QuickConstruct]({name}): Simulation detected ? {value}");
-            return value;
-        }
-
-        private void InitializeSimulationData()
-        {
-            var type = quickIronMan.GetType("QuickIronMan.SimConfig");
-            var instance = type.GetField("INSTANCE", BindingFlags.Public | BindingFlags.Static);
-            
-            if (instance == null)
-            {
-                Debug.Log($"[QuickConstruct]({name}): no QuickIronMan configuration");
-                return;
-            }
-
-            simConfig = instance.GetValue(null);
-            inSimulation = type.GetField("InSimulation");
+            Debug.Log($"[QuickConstruct]({name}): Simulation detected ? {inSimulation}");
+            return inSimulation;
         }
 
         private void OnDestroy()

@@ -1,5 +1,6 @@
 using KSP.Localization;
 using KSP.UI.Screens;
+using QuickLibrary;
 using UnityEngine;
 
 namespace QuickIronMan
@@ -7,28 +8,42 @@ namespace QuickIronMan
     [KSPAddon(KSPAddon.Startup.Flight, false)]
     public class Flight : MonoBehaviour
     {
-        
-        private readonly SimConfig cfg = SimConfig.INSTANCE;
+        private readonly SimConfig sim = SimConfig.INSTANCE;
         private AltimeterSliderButtons altimeterSliderButtons = null;
         
         private GUIStyle textStyle;
+        private bool launched;
+        private Toolbar toolbar;
+
         private void Start()
         {
-            
-            Debug.Log($"QuickIronMan[{cfg.Version}] Start...");
-            
-            textStyle = CreateSimulationText();
-            RefreshSimulationVariables();
+            textStyle = PrepareSimulationText();
+            sim.RefreshSimulationVariables();
 
             altimeterSliderButtons = (AltimeterSliderButtons)FindObjectOfType(typeof(AltimeterSliderButtons));
             
-            Debug.Log($"QuickIronMan[{cfg.Version}] Started, simulation: {cfg.InSimulation}");
+            toolbar = new Toolbar(this, SimConfig.ToolbarInSimulationTexturePath, SimConfig.ToolbarSimulationTexturePath, SimConfig.ToolbarInSimulationTexturePath, SimConfig.ToolbarSimulationTexturePath);
             
-            if (!cfg.InSimulation) 
-                Destroy(this);
+            toolbar.Create(
+                () => sim.SetSimulation(true),
+                () =>
+                {
+                    sim.SetSimulation(false);
+                    if (launched)
+                    {
+                        FlightDriver.RevertToLaunch();
+                    }
+                });
+            
+            if (sim.IsInSimulation())
+                toolbar.SetTrue();
+            
+            GameEvents.onLaunch.Add(OnLaunch);
+            
+            Debug.Log($"[QuickIronMan]({name}) Start, simulation: {sim.IsInSimulation()}");
         }
 
-        private static GUIStyle CreateSimulationText()
+        private static GUIStyle PrepareSimulationText()
         {
             return new GUIStyle
             {
@@ -41,31 +56,23 @@ namespace QuickIronMan
             };
         }
 
-        private void RefreshSimulationVariables()
+        private void OnLaunch(EventReport data)
         {
-            HighLogic.CurrentGame.Parameters.Flight.CanRestart = cfg.InSimulation;
-            HighLogic.CurrentGame.Parameters.Flight.CanLeaveToEditor = cfg.InSimulation;
+            if (!sim.IsInSimulation())
+            {
+                Debug.Log($"[QuickIronMan]({name}) Launch, not in simulation");
+                Destroy(this);
+                return;
+            }
 
-            HighLogic.CurrentGame.Parameters.Flight.CanQuickLoad = !cfg.InSimulation;
-            HighLogic.CurrentGame.Parameters.Flight.CanQuickSave = !cfg.InSimulation;
-            HighLogic.CurrentGame.Parameters.Flight.CanLeaveToTrackingStation = !cfg.InSimulation;
-            HighLogic.CurrentGame.Parameters.Flight.CanSwitchVesselsNear = !cfg.InSimulation;
-            HighLogic.CurrentGame.Parameters.Flight.CanSwitchVesselsFar = !cfg.InSimulation;
-            HighLogic.CurrentGame.Parameters.Flight.CanEVA = !cfg.InSimulation;
-            HighLogic.CurrentGame.Parameters.Flight.CanBoard = !cfg.InSimulation;
-            HighLogic.CurrentGame.Parameters.Flight.CanAutoSave = !cfg.InSimulation;
-            HighLogic.CurrentGame.Parameters.Flight.CanLeaveToSpaceCenter = !cfg.InSimulation;
-
-            FlightGlobals.ActiveVessel.isPersistent = !cfg.InSimulation;
-            FlightDriver.fetch.bypassPersistence = cfg.InSimulation;
-
-            FlightDriver.CanRevertToPostInit = cfg.InSimulation;
-            FlightDriver.CanRevertToPrelaunch = cfg.InSimulation;
+            launched = true;
+            
+            Debug.Log($"[QuickIronMan]({name}) Launch, in simulation");
         }
 
         private void Update()
         {
-            if (!cfg.InSimulation || !altimeterSliderButtons.hoverArea.enabled)
+            if (!sim.IsInSimulation() || !altimeterSliderButtons.hoverArea.enabled)
                 return;
 
             // Lock recover & return to space center button
@@ -77,7 +84,7 @@ namespace QuickIronMan
 
         private void OnGUI()
         {
-            if (!cfg.InSimulation) 
+            if (!sim.IsInSimulation()) 
                 return;
             
             GUILayout.BeginArea (new Rect (0, Screen.height / 10f, Screen.width - 0, 160), textStyle);
@@ -87,7 +94,12 @@ namespace QuickIronMan
 
         private void OnDestroy()
         {
-            Debug.Log($"QuickIronMan[{cfg.Version}] Destroyed.");
+            
+            GameEvents.onLaunch.Remove(OnLaunch);
+
+            toolbar?.Destroy();
+
+            Debug.Log($"[QuickIronMan]({name}) Destroy");
         }
     }
 }

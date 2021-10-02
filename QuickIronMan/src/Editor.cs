@@ -10,7 +10,7 @@ namespace QuickIronMan
     public class Editor : MonoBehaviour
     {
         private TooltipController_Text launchTooltipController;
-        private string intialTooltip = "";
+        private string initialTooltip = "";
         private string simulateMessage = "";
         private string launchMessage = "";
         
@@ -22,9 +22,6 @@ namespace QuickIronMan
 
         private void Start()
         {
-            
-            Debug.Log($"QuickIronMan[{SimConfig.INSTANCE.Version}] Start...");
-            
             // Retrieve launch button components 
             launchTooltipController = EditorLogic.fetch.launchBtn.GetComponent<TooltipController_Text>();
             launchImage = EditorLogic.fetch.launchBtn.image;
@@ -37,20 +34,20 @@ namespace QuickIronMan
             launchSpriteState = EditorLogic.fetch.launchBtn.spriteState;
             
             // Init tooltip
-            intialTooltip = launchTooltipController.textString;
+            initialTooltip = launchTooltipController.textString;
             var launchInfo = Localizer.Format("quickironman_launch_info_tooltip", SimConfig.INSTANCE.Key);
             simulateMessage = $"{Localizer.Format("quickironman_simulate_tooltip")}\n{launchInfo}";
-            launchMessage = $"{Localizer.Format(intialTooltip)}\n{Localizer.Format("quickironman_launch_info_tooltip", SimConfig.INSTANCE.Key)}";
+            launchMessage = $"{Localizer.Format(initialTooltip)}\n{Localizer.Format("quickironman_launch_info_tooltip", SimConfig.INSTANCE.Key)}";
             
             // Init Simulation
             SetSimulation(SimConfig.INSTANCE.DefaultIsSimulation);
             
-            Debug.Log($"QuickIronMan[{SimConfig.INSTANCE.Version}] Started.");
+            Debug.Log($"[QuickIronMan]({name}) Start");
         }
 
         private void SetSimulation(bool value)
         {
-            SimConfig.INSTANCE.InSimulation = value;
+            SimConfig.INSTANCE.SetSimulation(value);
             launchTooltipController.SetText(value ? simulateMessage : launchMessage);
             launchImage.sprite = value ? simulateSprite : launchSprite;
             EditorLogic.fetch.launchBtn.spriteState = value ? simulateSpriteState : launchSpriteState;
@@ -60,13 +57,13 @@ namespace QuickIronMan
         {
             if (Input.GetKeyDown(SimConfig.INSTANCE.Key))
             {
-                SetSimulation(!SimConfig.INSTANCE.InSimulation);
+                SetSimulation(!SimConfig.INSTANCE.IsInSimulation());
             }
         }
 
         private void OnDestroy()
         {
-            Debug.Log($"QuickIronMan[{SimConfig.INSTANCE.Version}] Destroyed.");
+            Debug.Log($"[QuickIronMan]({name}) Destroyed.");
         }
 
         private static SpriteState CreateSpriteState(Texture2D texture)
