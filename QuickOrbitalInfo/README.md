@@ -1,4 +1,9 @@
-﻿# QuickManeuver
+﻿rename quickOrbital info
+
+orbital info -> click pe apo to point the manoever
+
+
+# QuickOrbitalInfo
 #### A plugin for Kerbal Space Program
 #### Copyright 2021 Malah
 
@@ -18,7 +23,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #### What is it?
 
-QuickManeuver is a plugin which adds the possibility to activate orbit information at the load of a vessel.
+QuickOrbitalInfo is a plugin which adds the possibility to activate orbit information at the load of a vessel.
 
 #### How to install it?
 
@@ -30,7 +35,7 @@ Unzip all files. Merge the new QuickMods folder with the old folder which is in 
 
 #### How to uninstall it?
 
-Delete the QuickMods/QuickManeuver folder in your KSP/GameData folder.
+Delete the QuickMods/QuickOrbitalInfo folder in your KSP/GameData folder.
 
 #### Changelog
 v1.0.0 - 2021.09.12

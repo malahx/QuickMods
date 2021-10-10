@@ -18,13 +18,13 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 using UnityEngine;
 
-namespace QuickManeuver {
+namespace QuickOrbitalInfo {
 
 	[KSPAddon(KSPAddon.Startup.Flight, false)]
-	public class QuickManeuver : MonoBehaviour {
+	public class Flight : MonoBehaviour {
 		private void Awake() {
 			GameEvents.OnFlightGlobalsReady.Add(OnFlightGlobalsReady);
-			Debug.Log ("[QuickManeuver] Awake");
+			Debug.Log ($"[QuickOrbitalInfo]({name}) Awake");
 		}
 
 		private void OnFlightGlobalsReady(bool ready) {
@@ -33,13 +33,13 @@ namespace QuickManeuver {
 			}
 			FlightUIModeController.Instance.SetMode(FlightUIMode.MANEUVER_INFO);
 			FlightUIModeController.Instance.maneuverButton.ButtonCtrl.onClick.Invoke();
-			Debug.Log("[QuickManeuver] Activate maneuver info");
+			Debug.Log($"[QuickOrbitalInfo]({name}) Activate maneuver info");
 			Destroy(this);
 		}
 
 		private void OnDestroy() {
 			GameEvents.OnFlightGlobalsReady.Remove(OnFlightGlobalsReady);
-			Debug.Log("[QuickManeuver] OnDestroy");
+			Debug.Log($"[QuickOrbitalInfo]({name}) OnDestroy");
 		}
 	}
 }

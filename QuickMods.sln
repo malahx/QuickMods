@@ -27,7 +27,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickFineControl", "QuickFi
 		{F73EFB9A-5CBA-456F-93E9-B20C099FC3B2} = {F73EFB9A-5CBA-456F-93E9-B20C099FC3B2}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickManeuver", "QuickManeuver\QuickManeuver.csproj", "{F73EFB9A-5CBA-456F-93E9-B20C099FC3B2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickOrbitalInfo", "QuickOrbitalInfo\QuickOrbitalInfo.csproj", "{F73EFB9A-5CBA-456F-93E9-B20C099FC3B2}"
 	ProjectSection(ProjectDependencies) = postProject
 		{0FDC1965-81EB-42C5-9123-BDFFF6D54D53} = {0FDC1965-81EB-42C5-9123-BDFFF6D54D53}
 	EndProjectSection

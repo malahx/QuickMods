@@ -5,8 +5,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{F73EFB9A-5CBA-456F-93E9-B20C099FC3B2}</ProjectGuid>
     <OutputType>Library</OutputType>
-    <RootNamespace>QuickManeuver</RootNamespace>
-    <AssemblyName>QuickManeuver</AssemblyName>
+    <RootNamespace>QuickOrbitalInfo</RootNamespace>
+    <AssemblyName>QuickOrbitalInfo</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <ReleaseVersion>1</ReleaseVersion>
     <TargetFrameworkProfile />
@@ -44,11 +44,10 @@
   </PropertyGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="src\QO.cs" />
+    <Compile Include="src\Flight.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <ItemGroup>
-    <None Include="QuickManeuver.version" />
     <None Include="README.md" />
     <None Include="COPYING" />
   </ItemGroup>
@@ -305,6 +304,9 @@
     <Reference Include="UnityEngine.XRModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
       <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\UnityEngine.XRModule.dll</HintPath>
     </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="QuickOrbitalInfo.version" />
   </ItemGroup>
   <PropertyGroup>
   </PropertyGroup>
