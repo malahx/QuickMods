@@ -9,46 +9,33 @@ namespace QuickLibrary
 
         private ToolbarControl toolbarControl;
 
-        private readonly MonoBehaviour linkedToolbar;
-        private static string _modName;
-        private readonly string largeToolbarIconActive;
-        private readonly string largeToolbarIconInactive;
-        private readonly string smallToolbarIconActive;
-        private readonly string smallToolbarIconInactive;
+        private readonly IToolbarConfig toolbarConfig;
 
-        public static void Register(string modName)
+        public Toolbar(IToolbarConfig toolbarConfig)
         {
-            _modName = modName;
+            this.toolbarConfig = toolbarConfig;
         }
 
-        public Toolbar(MonoBehaviour linkedToolbar,
-            string largeToolbarIconActive,
-            string largeToolbarIconInactive,
-            string smallToolbarIconActive,
-            string smallToolbarIconInactive)
+        public void SetComponent(Component component)
         {
-            this.largeToolbarIconActive = largeToolbarIconActive;
-            this.largeToolbarIconInactive = largeToolbarIconInactive;
-            this.smallToolbarIconActive = smallToolbarIconActive;
-            this.smallToolbarIconInactive = smallToolbarIconInactive;
-            this.linkedToolbar = linkedToolbar;
+            toolbarControl = component.gameObject.AddComponent<ToolbarControl>();
         }
 
         public void Create(ToolbarControl.TC_ClickHandler onTrue, ToolbarControl.TC_ClickHandler onFalse)
         {
-            toolbarControl = linkedToolbar.gameObject.AddComponent<ToolbarControl>();
             toolbarControl.AddToAllToolbars(
                 onTrue, 
                 onFalse,
                 ApplicationLauncher.AppScenes.FLIGHT,
-                $"{_modName}_NS",
-                $"{_modName}_ID",
-                largeToolbarIconActive,
-                largeToolbarIconInactive,
-                smallToolbarIconActive,
-                smallToolbarIconInactive,
-                _modName
+                $"{toolbarConfig.ModName()}_NS",
+                $"{toolbarConfig.ModName()}_ID",
+                toolbarConfig.LargeToolbarIconActive(),
+                toolbarConfig.LargeToolbarIconInactive(),
+                toolbarConfig.SmallToolbarIconActive(),
+                toolbarConfig.SmallToolbarIconInactive(),
+                toolbarConfig.ModName()
             );
+            Debug.Log($"[QuickLibrary](Toolbar): Create toolbar for {toolbarConfig.ModName()}");
         }
         
         public void SetTrue()
@@ -61,6 +48,24 @@ namespace QuickLibrary
             toolbarControl.OnDestroy();
             Object.Destroy(toolbarControl);
             toolbarControl = null;
+            Debug.Log($"[QuickLibrary](Toolbar): Destroy toolbar for {toolbarConfig.ModName()}");
+        }
+        
+        public abstract class Register : MonoBehaviour
+        {
+            private void Start()
+            {
+                ToolbarControl.RegisterMod(toolbarConfig.ModName());
+            }
+        }
+        
+        public interface IToolbarConfig
+        {
+            string ModName();
+            string LargeToolbarIconActive();
+            string LargeToolbarIconInactive();
+            string SmallToolbarIconActive();
+            string SmallToolbarIconInactive();
         }
     }
 }

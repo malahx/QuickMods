@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using KSP.Localization;
+using QuickLibrary;
 using UnityEngine;
 
 namespace QuickConstruct
@@ -17,15 +18,7 @@ namespace QuickConstruct
         private void Start()
         {
             // Prepare UI
-            textStyle = new GUIStyle
-            {
-                stretchWidth = true,
-                stretchHeight = true,
-                alignment = TextAnchor.UpperCenter,
-                fontSize = Screen.height / 20,
-                fontStyle = FontStyle.Bold,
-                normal = {textColor = Color.red}
-            };
+            textStyle = GuiUtils.PrepareBigText(Color.red);
 
             // Prepare event listeners
             GameEvents.onFlightReady.Add(OnFlightReady);
@@ -125,9 +118,9 @@ namespace QuickConstruct
             
             var printTime = KSPUtil.PrintTime(ConstructScenario.Instance.EditorTimePassed, 2, false);
             var message = constructionStarted ? Localizer.Format("quickconstruct_flight_construct_message", printTime) : 
-                Localizer.Format("quickconstruct_flight_prepare_construct_message", printTime, GameSettings.LAUNCH_STAGES.primary.name);
+                Localizer.Format("quickconstruct_flight_prepare_construct_message", printTime, GameSettings.LAUNCH_STAGES.primary);
 
-            GUILayout.BeginArea(new Rect (0, Screen.height / 10f, Screen.width - 0, 200), textStyle);
+            GUILayout.BeginArea(new Rect (0, Screen.height / 10f, Screen.width - 0, 300), textStyle);
             GUILayout.Label(message, textStyle);
             GUILayout.EndArea();
         }

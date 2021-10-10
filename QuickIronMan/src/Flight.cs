@@ -1,3 +1,4 @@
+using System;
 using KSP.Localization;
 using KSP.UI.Screens;
 using QuickLibrary;
@@ -15,59 +16,49 @@ namespace QuickIronMan
         private bool launched;
         private Toolbar toolbar;
 
-        private void Start()
+        private void Awake()
         {
-            textStyle = PrepareSimulationText();
-            sim.RefreshSimulationVariables();
+            toolbar = new Toolbar(this, sim);
 
-            altimeterSliderButtons = (AltimeterSliderButtons)FindObjectOfType(typeof(AltimeterSliderButtons));
-            
-            toolbar = new Toolbar(this, SimConfig.ToolbarInSimulationTexturePath, SimConfig.ToolbarSimulationTexturePath, SimConfig.ToolbarInSimulationTexturePath, SimConfig.ToolbarSimulationTexturePath);
-            
-            toolbar.Create(
-                () => sim.SetSimulation(true),
-                () =>
-                {
-                    sim.SetSimulation(false);
-                    if (launched)
-                    {
-                        FlightDriver.RevertToLaunch();
-                    }
-                });
+            toolbar.Create(() => sim.SetSimulation(true), StopSimulationAndRevert);
             
             if (sim.IsInSimulation())
                 toolbar.SetTrue();
-            
+        }
+
+        private void StopSimulationAndRevert()
+        {
+            sim.SetSimulation(false);
+            if (launched)
+            {
+                FlightDriver.RevertToLaunch();
+            }
+        }
+
+        private void Start()
+        {
+            textStyle = GuiUtils.PrepareBigText(Color.grey);
+            sim.RefreshSimulationVariables();
+
+            altimeterSliderButtons = (AltimeterSliderButtons)FindObjectOfType(typeof(AltimeterSliderButtons));
+
             GameEvents.onLaunch.Add(OnLaunch);
             
             Debug.Log($"[QuickIronMan]({name}) Start, simulation: {sim.IsInSimulation()}");
-        }
-
-        private static GUIStyle PrepareSimulationText()
-        {
-            return new GUIStyle
-            {
-                stretchWidth = true,
-                stretchHeight = true,
-                alignment = TextAnchor.UpperCenter,
-                fontSize = Screen.height / 20,
-                fontStyle = FontStyle.Bold,
-                normal = {textColor = Color.grey}
-            };
         }
 
         private void OnLaunch(EventReport data)
         {
             if (!sim.IsInSimulation())
             {
-                Debug.Log($"[QuickIronMan]({name}) Launch, not in simulation");
+                Debug.Log($"[QuickIronMan]({name}) Launch, is not a simulation");
                 Destroy(this);
                 return;
             }
 
             launched = true;
             
-            Debug.Log($"[QuickIronMan]({name}) Launch, in simulation");
+            Debug.Log($"[QuickIronMan]({name}) Launch, is a simulation");
         }
 
         private void Update()

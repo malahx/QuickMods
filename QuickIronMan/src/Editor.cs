@@ -40,7 +40,7 @@ namespace QuickIronMan
             launchMessage = $"{Localizer.Format(initialTooltip)}\n{Localizer.Format("quickironman_launch_info_tooltip", SimConfig.INSTANCE.Key)}";
             
             // Init Simulation
-            SetSimulation(SimConfig.INSTANCE.DefaultIsSimulation);
+            SimConfig.INSTANCE.ResetSimulation();
             
             Debug.Log($"[QuickIronMan]({name}) Start");
         }

@@ -257,6 +257,7 @@
         </Reference>
     </ItemGroup>
     <ItemGroup>
+        <Compile Include="GuiUtils.cs" />
         <Compile Include="Simulation.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
         <Compile Include="Toolbar.cs" />

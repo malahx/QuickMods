@@ -7,7 +7,7 @@ namespace QuickIronMan
     {
         private void Start()
         {
-            SimConfig.INSTANCE.SetSimulation(false);
+            SimConfig.INSTANCE.ResetSimulation();
             
             Debug.Log($"[QuickIronMan]({name}) Ironman save enabled.");
             Destroy(this);

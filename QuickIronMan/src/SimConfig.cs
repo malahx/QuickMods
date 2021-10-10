@@ -6,22 +6,17 @@ using UnityEngine;
 
 namespace QuickIronMan
 {
-    [KSPAddon(KSPAddon.Startup.MainMenu, true)]
-    public class RegisterToolbar : MonoBehaviour
-    {
-        private void Start()
-        {
-            Toolbar.Register("QuickIronMan");
-        }
-    }
-
-    public class SimConfig : Simulation
+    public class SimConfig : Simulation, Toolbar.IToolbarConfig
     {
         [KSPField(isPersistant = true)] public static readonly SimConfig INSTANCE = new SimConfig();
 
         public const string SimulationTexturePath = "QuickMods/QuickIronMan/Textures/sim";
-        public const string ToolbarInSimulationTexturePath = "QuickMods/QuickIronMan/Textures/toolbar_insim.png";
-        public const string ToolbarSimulationTexturePath = "QuickMods/QuickIronMan/Textures/toolbar_sim.png";
+
+        public string ModName() => "QuickIronMan";
+        public string LargeToolbarIconActive() => "QuickMods/QuickIronMan/Textures/toolbar_insim";
+        public string LargeToolbarIconInactive() => "QuickMods/QuickIronMan/Textures/toolbar_sim";
+        public string SmallToolbarIconActive() => "QuickMods/QuickIronMan/Textures/toolbar_insim";
+        public string SmallToolbarIconInactive()=> "QuickMods/QuickIronMan/Textures/toolbar_sim";
 
         private SimConfig()
         {
@@ -54,6 +49,11 @@ namespace QuickIronMan
                 OnExitSimulation.Fire();
             
             Debug.Log($"[QuickIronMan](Simulation) Set simulation: {IsInSimulation()}");
+        }
+
+        public void ResetSimulation()
+        {
+            SetSimulation(DefaultIsSimulation);
         }
 
         public void RefreshSimulationVariables()

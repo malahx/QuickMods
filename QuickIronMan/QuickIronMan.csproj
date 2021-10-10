@@ -78,6 +78,7 @@
     <ItemGroup>
       <Compile Include="src\Editor.cs" />
       <Compile Include="src\Flight.cs" />
+      <Compile Include="src\RegisterToolbar.cs" />
       <Compile Include="src\SimConfig.cs" />
       <Compile Include="src\SpaceCenter.cs" />
     </ItemGroup>
