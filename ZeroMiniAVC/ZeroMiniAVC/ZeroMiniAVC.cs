@@ -167,7 +167,8 @@ namespace ZeroMiniAVC
             var files = Directory.GetFiles(dir, "*.dll", SearchOption.AllDirectories);
             foreach (var f in files)
             {
-                if (f.ToLower().Contains("miniavc.dll") && !f.ToLower().Contains("zerominiavc.dll"))
+                if ((f.ToLower().Contains("miniavc.dll") || f.ToLower().Contains("miniavc-v2.dll"))&&
+                    !f.ToLower().Contains("zerominiavc.dll"))
                 {
                     DoCleanup(f);
                 }
