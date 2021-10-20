@@ -185,6 +185,7 @@ namespace ZeroMiniAVC
                         installedDlls.Add(Path.GetFileName(f), f);
                 }
             }
+            duplicateDlls = duplicateDlls.OrderByAlphaNumeric(o => Path.GetFileName(o) + o);
         }
 
         void cleanData()

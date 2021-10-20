@@ -112,13 +112,32 @@ namespace ZeroMiniAVC
         private void DrawUpdateHeadings()
         {
             GUILayout.BeginHorizontal();
+            GUILayout.Label(" ", GUILayout.Width(90));
             GUILayout.Label("DLL", this.nameTitleStyle, GUILayout.Width(250.0f));
             GUILayout.Label("DLL Path", this.titleStyle, GUILayout.Width(100.0f));
             GUILayout.EndHorizontal();
         }
 
+        string lastFileName = "";
         private void DrawUpdateInformation(string path)
         {
+            if (Path.GetFileName(path) == "KatLib.dll")
+            {
+                if (path.Contains("KXAPI"))
+                    GUILayout.Label("Keep: ", GUILayout.Width(90));
+                else
+                    GUILayout.Label(" ", GUILayout.Width(90));
+            }
+            else
+            {
+                if (lastFileName != Path.GetFileName(path))
+                {
+                    GUILayout.Label("Keep: ", GUILayout.Width(90));
+                    lastFileName = Path.GetFileName(path);
+                }
+                else
+                    GUILayout.Label(" ", GUILayout.Width(90));
+            }
             GUILayout.Label(Path.GetFileName(path), this.nameLabelStyle, GUILayout.Width(250.0f));
             GUILayout.Label(path, this.labelStyle);
         }
@@ -126,18 +145,23 @@ namespace ZeroMiniAVC
         Vector2 scroll;
         private void DrawUpdateIssues()
         {
+            lastFileName = "";
             GUILayout.BeginVertical();
             GUILayout.Label("This is a  list of duplicate DLLs in the game.  The game will not work properly until the duplicates have been removed.");
             GUILayout.Label("This mod cannot determine which ones should be removed!!!");
+            GUILayout.Label("It is suggested that you keep the first of each and delete the rest");
             GUILayout.EndVertical();
             GUILayout.BeginVertical(this.boxStyle);
             this.DrawUpdateHeadings();
             scroll = GUILayout.BeginScrollView(scroll);
             foreach (var addon in ZeroMiniAVC.duplicateDlls)
             {
-                GUILayout.BeginHorizontal();
-                this.DrawUpdateInformation( addon);
-                GUILayout.EndHorizontal();
+                if (Path.GetFileName(addon) != "KSP-AVC.dll")
+                {
+                    GUILayout.BeginHorizontal();
+                    this.DrawUpdateInformation(addon);
+                    GUILayout.EndHorizontal();
+                }
             }
             GUILayout.EndScrollView();
             GUILayout.EndVertical();

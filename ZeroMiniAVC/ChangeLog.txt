@@ -1,5 +1,12 @@
 #### Changelog
 
+1.1.2.3
+	Added special code for KSP-AVC
+
+1.1.2.2 - Beta
+	Added suggested DLL to keep
+	Added special code for KatLib.dll, since it gets loaded out-of-order
+
 1.1.2.1
 	Added purging for MiniAVC-V2.dll
 
