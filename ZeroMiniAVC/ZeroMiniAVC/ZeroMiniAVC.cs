@@ -176,10 +176,13 @@ namespace ZeroMiniAVC
                 {
                     if (installedDlls.ContainsKey(Path.GetFileName(f)))
                     {
-                        Debug.Log("Duplicate DLLs found: " + installedDlls[Path.GetFileName(f)] + " : " + f);
-                        duplicateDlls.Add(f);
-                        if (!duplicateDlls.Contains(installedDlls[Path.GetFileName(f)]))
-                            duplicateDlls.Add(installedDlls[Path.GetFileName(f)]);
+                        if (Path.GetFileName(f) != "KSP-AVC.dll")
+                        {
+                            Debug.Log("Duplicate DLLs found: " + installedDlls[Path.GetFileName(f)] + " : " + f);
+                            duplicateDlls.Add(f);
+                            if (!duplicateDlls.Contains(installedDlls[Path.GetFileName(f)]))
+                                duplicateDlls.Add(installedDlls[Path.GetFileName(f)]);
+                        }
                     }
                     else
                         installedDlls.Add(Path.GetFileName(f), f);

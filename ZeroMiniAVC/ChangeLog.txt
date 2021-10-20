@@ -1,5 +1,8 @@
 #### Changelog
 
+1.1.2.4
+	Moved special code for KSP-AVC outside display look to prevent an empty window from showing
+
 1.1.2.3
 	Added special code for KSP-AVC
 

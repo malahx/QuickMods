@@ -40,7 +40,7 @@ namespace ZeroMiniAVC
         private GUIStyle messageStyle;
         private GUIStyle nameLabelStyle;
         private GUIStyle nameTitleStyle;
-        private Rect position = new Rect(Screen.width, Screen.height,Screen.width / 2, Screen.height / 2);
+        private Rect position = new Rect(Screen.width, Screen.height, Screen.width / 2, Screen.height / 2);
         private GUIStyle titleStyle;
         //private bool isInitialised = false;
 
@@ -156,12 +156,9 @@ namespace ZeroMiniAVC
             scroll = GUILayout.BeginScrollView(scroll);
             foreach (var addon in ZeroMiniAVC.duplicateDlls)
             {
-                if (Path.GetFileName(addon) != "KSP-AVC.dll")
-                {
-                    GUILayout.BeginHorizontal();
-                    this.DrawUpdateInformation(addon);
-                    GUILayout.EndHorizontal();
-                }
+                GUILayout.BeginHorizontal();
+                this.DrawUpdateInformation(addon);
+                GUILayout.EndHorizontal();
             }
             GUILayout.EndScrollView();
             GUILayout.EndVertical();
@@ -232,7 +229,7 @@ namespace ZeroMiniAVC
         {
             try
             {
-                if (ZeroMiniAVC.duplicateDlls.Count>0)
+                if (ZeroMiniAVC.duplicateDlls.Count > 0)
                 {
                     this.DrawUpdateIssues();
                 }
