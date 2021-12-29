@@ -45,6 +45,7 @@ namespace QuickSearch {
 		[Persistent] internal bool enableSearchExtension = true;
 
 		[Persistent] internal bool enableEnterToSearch = false;
+		[Persistent] internal float timeToWaitBeforeSearch = 0.5f;
 		[Persistent] internal bool enableHistory = true;
 		[Persistent] internal int historyIndex = 10;
 		[Persistent] internal int historySortby = (int)QHistory.SortBy.COUNT;

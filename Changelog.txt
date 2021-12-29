@@ -1,5 +1,11 @@
 ﻿#### Changelog
 
+
+Quicksearch 3.3.1
+	To fix extreme lag in both the Editor and R&D screen:
+		Fixed PressEnterToSearch for the RnD screen
+		Added timed delay for when immediate search requested, to delay before doing search to be sure typing is done, 
+
 QuickStart 2.2.1.1
 	Per @gotmachine's suggestion, added:
 					yield return new WaitForEndOfFrame();
