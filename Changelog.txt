@@ -1,10 +1,10 @@
 ﻿#### Changelog
 
-QuickSAS 1.2.0.9 (unreleased)
+QuickSAS 1.2.0.9 
 	Thanks to github user @frankieorabona for this:
 		Added italian localization for QuickSAS
 
-QuickHide 3.3.0.10 (unreleased)
+QuickHide 3.3.0.10
 	Fixed  settings page when the CanBeHidden is toggled
 
 Quicksearch 3.3.1
