@@ -1,5 +1,11 @@
 ﻿#### Changelog
 
+QuickSAS 1.2.0.9 (unreleased)
+	Thanks to github user @frankieorabona for this:
+		Added italian localization for QuickSAS
+
+QuickHide 3.3.0.10 (unreleased)
+	Fixed  settings page when the CanBeHidden is toggled
 
 Quicksearch 3.3.1
 	To fix extreme lag in both the Editor and R&D screen:
