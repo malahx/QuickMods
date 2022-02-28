@@ -1,5 +1,3 @@
-using UnityEngine;
-
 namespace QuickLibrary
 {
     public abstract class Simulation
@@ -11,5 +9,6 @@ namespace QuickLibrary
         
         public abstract bool IsInSimulation();
         public abstract void SetSimulation(bool simulation);
+        public abstract void LockSimulation(bool lockSimulation);
     }
 }

@@ -1,22 +1,24 @@
 using System;
 using System.IO;
 using System.Reflection;
+using KSP.UI.Screens;
+using QuickIronMan;
 using QuickLibrary;
+using QuickMods.utils.Toolbar;
 using UnityEngine;
 
 namespace QuickIronMan
 {
-    public class SimConfig : Simulation, Toolbar.IToolbarConfig
+    public class SimConfig : Simulation, IToolbarConfig
     {
         [KSPField(isPersistant = true)] public static readonly SimConfig INSTANCE = new SimConfig();
-
-        public const string SimulationTexturePath = "QuickMods/QuickIronMan/Textures/sim";
 
         public string ModName() => "QuickIronMan";
         public string LargeToolbarIconActive() => "QuickMods/QuickIronMan/Textures/toolbar_insim";
         public string LargeToolbarIconInactive() => "QuickMods/QuickIronMan/Textures/toolbar_sim";
         public string SmallToolbarIconActive() => "QuickMods/QuickIronMan/Textures/toolbar_insim";
-        public string SmallToolbarIconInactive()=> "QuickMods/QuickIronMan/Textures/toolbar_sim";
+        public string SmallToolbarIconInactive() => "QuickMods/QuickIronMan/Textures/toolbar_sim";
+        public ApplicationLauncher.AppScenes AppScenes() => ApplicationLauncher.AppScenes.FLIGHT;
 
         private SimConfig()
         {
@@ -27,19 +29,23 @@ namespace QuickIronMan
         }
 
         public bool DefaultIsSimulation { get; private set; }
-        public KeyCode Key { get; private set; }
         private string File { get; }
         
         private bool inSimulation = false;
+        private bool locked = false;
 
         public override bool IsInSimulation()
         {
-            return inSimulation;
+            return inSimulation || locked;
+        }
+        public bool IsLockSimulation()
+        {
+            return locked;
         }
 
         public override void SetSimulation(bool simulation)
         {
-            inSimulation = simulation;
+            inSimulation = simulation || locked;
             
             RefreshSimulationVariables();
                 
@@ -49,6 +55,15 @@ namespace QuickIronMan
                 OnExitSimulation.Fire();
             
             Debug.Log($"[QuickIronMan](Simulation) Set simulation: {IsInSimulation()}");
+        }
+
+        public override void LockSimulation(bool lockSimulation)
+        {
+            locked = lockSimulation;
+            
+            SetSimulation(inSimulation);
+            
+            Debug.Log($"[QuickIronMan](Simulation) Lock Simulation: {locked}");
         }
 
         public void ResetSimulation()
@@ -102,9 +117,6 @@ namespace QuickIronMan
         private void InitConfigs(ConfigNode cfg)
         {
             DefaultIsSimulation = bool.Parse(cfg.GetValue("defaultIsSimulation"));
-            Key = Enum.TryParse(cfg.GetValue("key"), out KeyCode value)
-                ? value
-                : KeyCode.Space;
         }
     }
 }

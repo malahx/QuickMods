@@ -47,6 +47,9 @@
         <Reference Include="KSPTrackIR, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
           <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\KSPTrackIR.dll</HintPath>
         </Reference>
+        <Reference Include="mscorlib">
+          <HintPath>..\..\lib\1.12.3\mscorlib.dll</HintPath>
+        </Reference>
         <Reference Include="System" />
         <Reference Include="System.Core" />
         <Reference Include="System.Data" />
@@ -260,7 +263,6 @@
         <Compile Include="GuiUtils.cs" />
         <Compile Include="Simulation.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />
-        <Compile Include="Toolbar.cs" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
