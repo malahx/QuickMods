@@ -62,5 +62,14 @@ namespace QuickConstruct
             Simulation.OnExitSimulation.Remove(OnExitSimulation);
             Debug.Log($"[QuickConstruct]({name}): Destroy");
         }
+
+        public void LockSimulation(bool lockSimulation)
+        {
+            Simulation.Instance.LockSimulation(lockSimulation);
+        }
+        public void SetSimulation(bool lockSimulation)
+        {
+            Simulation.Instance.SetSimulation(lockSimulation);
+        }
     }
 }

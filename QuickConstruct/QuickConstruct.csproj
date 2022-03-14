@@ -11,6 +11,7 @@
         <AssemblyName>QuickConstruct</AssemblyName>
         <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
+        <ReleaseVersion>1</ReleaseVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -31,53 +32,19 @@
         <ErrorReport>prompt</ErrorReport>
         <WarningLevel>4</WarningLevel>
     </PropertyGroup>
+    <PropertyGroup>
+      <PostBuildEvent>'/home/malah/.steam/steam/steamapps/common/Kerbal Space ProgramDEV/KSP.x86_64'
+</PostBuildEvent>
+    </PropertyGroup>
+
     <ItemGroup>
-      <Reference Include="Assembly-CSharp, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\Assembly-CSharp.dll</HintPath>
-      </Reference>
-      <Reference Include="Assembly-CSharp-firstpass, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\Assembly-CSharp-firstpass.dll</HintPath>
-      </Reference>
-      <Reference Include="System, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\System.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Configuration, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\System.Configuration.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Security, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\System.Security.dll</HintPath>
-      </Reference>
-      <Reference Include="System.Xml, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\System.Xml.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\UnityEngine.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.CoreModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\UnityEngine.CoreModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.IMGUIModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\UnityEngine.IMGUIModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.InputLegacyModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\UnityEngine.InputLegacyModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.InputModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\UnityEngine.InputModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.TextRenderingModule, Version=0.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\UnityEngine.TextRenderingModule.dll</HintPath>
-      </Reference>
-      <Reference Include="UnityEngine.UI, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null">
-        <HintPath>..\..\..\..\..\..\mnt\hdd\Code\ksp\lib\1.12.1\UnityEngine.UI.dll</HintPath>
-      </Reference>
-    </ItemGroup>
-    <ItemGroup>
-      <Compile Include="src\Editor.cs" />
-      <Compile Include="src\Flight.cs" />
       <Compile Include="src\ConstructScenario.cs" />
+      <Compile Include="src\model\VesselConstruction.cs" />
       <Compile Include="src\SimulationModsCompatibility.cs" />
       <Compile Include="src\SpaceCenter.cs" />
+      <Compile Include="src\utils\ButtonUtils.cs" />
+      <Compile Include="src\utils\MessageUtils.cs" />
+      <Compile Include="src\utils\VesselUtils.cs" />
     </ItemGroup>
     <ItemGroup>
       <Content Include="README.md" />
@@ -85,6 +52,32 @@
     <ItemGroup>
       <None Include="Lang\en-us.cfg" />
       <None Include="Lang\fr-fr.cfg" />
+    </ItemGroup>
+    <ItemGroup>
+      <Reference Include="Assembly-CSharp">
+        <HintPath>..\..\lib\1.12.3\Assembly-CSharp.dll</HintPath>
+      </Reference>
+      <Reference Include="mscorlib">
+        <HintPath>..\..\lib\1.12.3\mscorlib.dll</HintPath>
+      </Reference>
+      <Reference Include="System.Core">
+        <HintPath>..\..\lib\1.12.3\System.Core.dll</HintPath>
+      </Reference>
+      <Reference Include="System">
+        <HintPath>..\..\lib\1.12.3\System.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.CoreModule">
+        <HintPath>..\..\lib\1.12.3\UnityEngine.CoreModule.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine">
+        <HintPath>..\..\lib\1.12.3\UnityEngine.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UI">
+        <HintPath>..\..\lib\1.12.3\UnityEngine.UI.dll</HintPath>
+      </Reference>
+      <Reference Include="UnityEngine.UIModule">
+        <HintPath>..\..\lib\1.12.3\UnityEngine.UIModule.dll</HintPath>
+      </Reference>
     </ItemGroup>
     <ItemGroup>
       <ProjectReference Include="..\QuickLibrary\QuickLibrary.csproj">

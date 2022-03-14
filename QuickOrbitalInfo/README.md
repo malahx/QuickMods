@@ -1,9 +1,4 @@
-﻿rename quickOrbital info
-
-orbital info -> click pe apo to point the manoever
-
-
-# QuickOrbitalInfo
+﻿# QuickOrbitalInfo
 #### A plugin for Kerbal Space Program
 #### Copyright 2021 Malah
 

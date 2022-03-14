@@ -1,6 +1,8 @@
 using System.Collections;
-using System.Linq;
-using KSP.UI.Screens;
+using System.Collections.Generic;
+using KSP.UI;
+using QuickConstruct.utils;
+using Smooth.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -9,15 +11,10 @@ namespace QuickConstruct
     [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
     public class SpaceCenter : MonoBehaviour
     {
-        private const string WarpTexturePath = "QuickMods/QuickConstruct/Textures/launch";
-        
         private Button launchBtn;
-        private Sprite launchSprite;
-        private Sprite warpSprite;
-        private SpriteState launchSpriteState;
-        private SpriteState warpSpriteState;
-        private Button.ButtonClickedEvent launchOnClick;
-        private Button.ButtonClickedEvent warpOnClick;
+        private Button constructBtn;
+        private ShipTemplate selectedShip;
+        private Dictionary<ShipTemplate,VesselListItem> vesselListItems;
 
         private void Start()
         {
@@ -25,88 +22,85 @@ namespace QuickConstruct
             if (ConstructScenario.Instance == null)
                 Destroy(this);
             
-            // Prepare warp button clicks / sprites
-            warpOnClick = new Button.ButtonClickedEvent();
-            warpOnClick.AddListener(() => 
-            {
-                // Close the vessel spawn dialog to can cancel warp and to have access to UI
-                if (VesselSpawnDialog.Instance != null)
-                    VesselSpawnDialog.Instance.ButtonClose();
-            
-                // Warp
-                TimeWarp.fetch.WarpTo(Planetarium.GetUniversalTime() + ConstructScenario.Instance.EditorTimePassed);
-            
-                Debug.Log($"[QuickConstruct]({name}): Warp");
-            });
-            
-            var texture = Resources.FindObjectsOfTypeAll<Texture2D>().FirstOrDefault(t => t.name == WarpTexturePath);
-            warpSprite = Sprite.Create(texture, new Rect(0, 0, 128, 128), Vector2.zero);
-            warpSpriteState =  new SpriteState
-            {
-                selectedSprite = Sprite.Create(texture, new Rect(128, 0, 128, 128), Vector2.zero),
-                highlightedSprite = Sprite.Create(texture, new Rect(128, 0, 128, 128), Vector2.zero),
-                pressedSprite = Sprite.Create(texture, new Rect(128, 0, 128, 128), Vector2.zero)
-            };
-            
-            // Add a listener for when the time passed is passed
-            ConstructScenario.OnEndsConstruction.Add(ResetLaunchButton);
-            
             // Retrieve the launch button
             GameEvents.onGUILaunchScreenSpawn.Add(OnGUILaunchScreenSpawn);
+            GameEvents.onGUILaunchScreenVesselSelected.Add(OnGUILaunchScreenVesselSelected);
+            
             Debug.Log($"[QuickConstruct]({name}): Start");
         }
 
-        private void ResetLaunchButton()
+        private void OnGUILaunchScreenVesselSelected(ShipTemplate data)
         {
-            if (launchBtn == null)
-                return;
+            selectedShip = data;
 
-            launchBtn.onClick = launchOnClick;
-            launchBtn.image.sprite = launchSprite;
-            launchBtn.spriteState = launchSpriteState;
+            ButtonUtils.RefreshButton(data, launchBtn, constructBtn);
+            
+            ConstructScenario.Instance.spaceCenterSelectedShipName = VesselUtils.ShipName(data);
+            
+            Debug.Log($"[QuickConstruct]({name}): Vessel selected");
         }
+
 
         // Search of the launch button
         private void OnGUILaunchScreenSpawn(GameEvents.VesselSpawnInfo data)
         {
-            StartCoroutine(nameof(RetrieveLaunchButton));
+            StartCoroutine(Initialize());
         }
 
-        // Is it better in Update() ? I don't like expensive methods in Update() ...
-        private IEnumerator RetrieveLaunchButton() 
+        private IEnumerator Initialize()
         {
-            Debug.Log($"[QuickConstruct]({name}): Search LaunchButton");
+            Debug.Log($"[QuickConstruct]({name}): Initialize Launch Screen");
             
-            // Search of the launch button
-            while (launchBtn == null)
+            // Search of the buttons to move / use them
+            Button editBtn = null;
+            Button deleteBtn = null;
+            launchBtn = null;
+            vesselListItems = null;
+
+            while (editBtn == null || deleteBtn == null || launchBtn == null)
             {
-                if (VesselSpawnDialog.Instance != null && VesselSpawnDialog.Instance.Visible)
-                {
-                    launchBtn = (Button) FindObjectsOfType(typeof(Button))
-                        .FirstOrDefault(c => c.name == "Button_launch");
-                }
+                editBtn = editBtn ? editBtn : ButtonUtils.FindButtons("Button_edit");
+                deleteBtn = deleteBtn ? deleteBtn : ButtonUtils.FindButtons("Button_delete");
+                launchBtn = launchBtn ? launchBtn : ButtonUtils.FindButtons("Button_launch");
                 yield return new WaitForFixedUpdate();
             }
 
-            // Save launch sprite & onClick for a latter reuse
-            launchSprite = launchBtn.image.sprite;
-            launchSpriteState = launchBtn.spriteState;
-            launchOnClick = launchBtn.onClick;
+            constructBtn = ButtonUtils.CreateConstructionButton(editBtn, OnClickOnConstruct);
+            
+            // Move other buttons
+            deleteBtn.transform.Translate(-(editBtn.transform.position - deleteBtn.transform.position));
+            editBtn.transform.Translate(-(launchBtn.transform.position - editBtn.transform.position));
 
-            // Switch launch sprite & onClick if there is editor time passed
-            if (ConstructScenario.Instance.HasTimeToPass)
+            while (vesselListItems == null)
             {
-                launchBtn.onClick = warpOnClick;
-                launchBtn.image.sprite = warpSprite;
-                launchBtn.spriteState = warpSpriteState;
+                vesselListItems = VesselUtils.InitializeVessels();
+                yield return new WaitForFixedUpdate();
             }
-            Debug.Log($"[QuickConstruct]({name}): LaunchButton found");
+
+            Debug.Log($"[QuickConstruct]({name}): Launch Screen initialized");        
+        }
+        
+        private void OnClickOnConstruct()
+        {
+            if (selectedShip != null)
+            {
+                ConstructScenario.Instance.AddToConstruction(selectedShip);
+                var vesselListItem = vesselListItems.TryGet(selectedShip);
+                if (vesselListItem.isSome)
+                {
+                    vesselListItem.value.vesselWarnings.text = MessageUtils.PrepareMessage(selectedShip);
+                }
+            }
+                
+            ButtonUtils.RefreshButton(selectedShip, launchBtn, constructBtn);
+
+            Debug.Log($"[QuickConstruct]({name}): Construct");
         }
 
         private void OnDestroy()
         {
             GameEvents.onGUILaunchScreenSpawn.Remove(OnGUILaunchScreenSpawn);
-            ConstructScenario.OnEndsConstruction.Remove(ResetLaunchButton);
+            GameEvents.onGUILaunchScreenVesselSelected.Remove(OnGUILaunchScreenVesselSelected);
             Debug.Log($"[QuickConstruct]({name}): Destroy");
         }
     }
