@@ -1,5 +1,10 @@
 #### Changelog
 
+1.1.2.5
+	Thanks to @Hebarusan for this:
+		Limit duplicate DLL warning to affected game versions.
+		The duplicate DLL bug was fixed in KSP 1.12.3
+
 1.1.2.4
 	Moved special code for KSP-AVC outside display look to prevent an empty window from showing
 
