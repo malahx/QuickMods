@@ -1,4 +1,4 @@
-﻿/* 
+/* 
 ZeroMiniAVC
 Copyright 2017 Malah
 
@@ -99,6 +99,11 @@ namespace ZeroMiniAVC
 
             cleanMiniAVC();
 
+            if (affectedByDuplicateDLLBug())
+            {
+                duplicateDLLWarning();
+            }
+
             if (!prune && !delete)
             {
                 cleanData();
@@ -153,6 +158,19 @@ namespace ZeroMiniAVC
                     DoCleanup(_assembly.path);
                 }
             }
+        }
+
+        private bool affectedByDuplicateDLLBug()
+        {
+            // The duplicate DLL bug first appeared in KSP 1.12.0 and was fixed in 1.12.3
+            return Versioning.version_major == 1
+                && Versioning.version_minor == 12
+                && Versioning.Revision >= 0
+                && Versioning.Revision <= 2;
+        }
+
+        private void duplicateDLLWarning()
+        {
             FindAllDLLs();
             if (duplicateDlls.Count > 0)
                 this.gameObject.AddComponent<IssueGui>();
