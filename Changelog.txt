@@ -1,5 +1,11 @@
 ﻿#### Changelog
 
+QuickExit 2.2.0.9
+	Version bump to fix embedded version file
+
+	Overall
+		Fixed local build script to properly copy version file
+
 QuickSAS 1.2.0.9 
 	Thanks to github user @frankieorabona for this:
 		Added italian localization for QuickSAS
