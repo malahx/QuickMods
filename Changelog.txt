@@ -1,5 +1,8 @@
 ﻿#### Changelog
 
+QuickHide 3.3.0.11
+	Fixed duplicate buttons showing up in quickhide screen
+
 QuickExit 2.2.0.9
 	Version bump to fix embedded version file
 
