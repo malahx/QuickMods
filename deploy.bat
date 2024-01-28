@@ -14,8 +14,11 @@ set VERSIONFILE=%GAMEDIR%.version
 
 copy /Y "%1%2" "%GAMEDATA%\%GAMEDIR%\%3\Plugins"
 IF EXIST "%4Lang" xcopy /y /s /I "%4Lang" "%GAMEDATA%\%GAMEDIR%\%3\Lang"
-copy /y  %4%3.version  %GAMEDATA%\%GAMEDIR%\%3
+rem copy /y  %4%3.version  %GAMEDATA%\%GAMEDIR%\%3
+
+copy /y  %3\%3.version  %GAMEDATA%\%GAMEDIR%\%3
 copy /y  README.md %GAMEDATA%\%GAMEDIR%\%3
 copy /y  COPYING %GAMEDATA%\%GAMEDIR%\%3
 
 xcopy /y /s /I %GAMEDATA%\%GAMEDIR% "%H%\GameData\%GAMEDIR%"
+rem pause

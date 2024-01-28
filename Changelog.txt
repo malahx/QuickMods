@@ -1,5 +1,26 @@
 ﻿#### Changelog
 
+QuickHide 3.3.0.11
+	Fixed duplicate buttons showing up in quickhide screen
+
+QuickExit 2.2.0.9
+	Version bump to fix embedded version file
+
+	Overall
+		Fixed local build script to properly copy version file
+
+QuickSAS 1.2.0.9 
+	Thanks to github user @frankieorabona for this:
+		Added italian localization for QuickSAS
+
+QuickHide 3.3.0.10
+	Fixed  settings page when the CanBeHidden is toggled
+
+Quicksearch 3.3.1
+	To fix extreme lag in both the Editor and R&D screen:
+		Fixed PressEnterToSearch for the RnD screen
+		Added timed delay for when immediate search requested, to delay before doing search to be sure typing is done, 
+
 QuickStart 2.2.1.1
 	Per @gotmachine's suggestion, added:
 					yield return new WaitForEndOfFrame();

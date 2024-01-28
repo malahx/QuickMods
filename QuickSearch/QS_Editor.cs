@@ -91,7 +91,7 @@ namespace QuickSearch
             QDebug.Log("Start", "QEditor");
         }
 
-        void Update()
+        void LateUpdate()
         {
             if (!isReady)
             {
@@ -102,6 +102,15 @@ namespace QuickSearch
             {
                 InitSearch();
             }
+
+            if (isReady && !QSettings.Instance.enableEnterToSearch && !searched && Time.realtimeSinceStartup - lastTimeValueChanged >QSettings.Instance.timeToWaitBeforeSearch)
+            {
+                searched = true;
+                ShowHistory();
+                QSearch.Text = lastSearchString;
+                QDebug.Log("LateUpdate: " + lastSearchString, "QEditor");
+            }
+
         }
 
         protected override void OnDestroy()
@@ -147,19 +156,29 @@ namespace QuickSearch
             QDebug.Log("InitSearch", "QEditor");
         }
 
+        double lastTimeValueChanged = Double.MaxValue;
+        string lastSearchString = "";
+        bool searched = false;
         void SearchField_OnValueChange(string s)
         {
+            QDebug.Log("SearchField_OnValueChange, s: " + s, "QEditor");
+            lastTimeValueChanged = Time.realtimeSinceStartup;
+            lastSearchString = s;
+            searched = false;
             if (!isReady || QSettings.Instance.enableEnterToSearch)
             {
                 return;
             }
-            ShowHistory();
-            QSearch.Text = s;
-            QDebug.Log("SearchField_OnValueChange: " + s, "QEditor");
+            return;
+
+            //ShowHistory();
+            //QSearch.Text = s;
+            //QDebug.Log("SearchField_OnValueChange: " + s, "QEditor");
         }
 
         void SearchField_OnEndEdit(string s)
         {
+            QDebug.Log("SearchField_OnEndEdit, s: " + s, "QEditor");
             if (QSettings.Instance.enableEnterToSearch)
             {
                 QSearch.Text = s;
@@ -171,6 +190,7 @@ namespace QuickSearch
 
         public void Refresh()
         {
+            if (Ready) return;
             setSearchFilter();
             QSearch.Text = PartCategorizer.Instance.searchField.text;
         }
