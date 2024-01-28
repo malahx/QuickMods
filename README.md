@@ -1,7 +1,34 @@
 ﻿# QuickMods
-#### A plugin collection for Kerbal Space Program
-#### Copyright 2017 Malah
+## A plugin collection for Kerbal Space Program
+### Copyright 2024 Malah
 
+#### QuickMods 2 (for KSP 2)
+This is free and unencumbered software released into the public domain.
+
+Anyone is free to copy, modify, publish, use, compile, sell, or
+distribute this software, either in source code form or as a compiled
+binary, for any purpose, commercial or non-commercial, and by any
+means.
+
+In jurisdictions that recognize copyright laws, the author or authors
+of this software dedicate any and all copyright interest in the
+software to the public domain. We make this dedication for the benefit
+of the public at large and to the detriment of our heirs and
+successors. We intend this dedication to be an overt act of
+relinquishment in perpetuity of all present and future rights to this
+software under copyright law.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND,
+EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT.
+IN NO EVENT SHALL THE AUTHORS BE LIABLE FOR ANY CLAIM, DAMAGES OR
+OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE,
+ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR
+OTHER DEALINGS IN THE SOFTWARE.
+
+For more information, please refer to <http://unlicense.org/>
+
+#### QuickMods 1 (for KSP 1)
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
 the Free Software Foundation, either version 3 of the License, or
@@ -15,49 +42,25 @@ GNU General Public License for more details.
 You should have received a copy of the GNU General Public License
 along with this program.  If not, see <http://www.gnu.org/licenses/>. 
 
-
 #### What is it?
 
 QuickMods are very small plugins which add a small feature.
-These mods support SpaceDock, KSP-AVC and Toolbar mod.
 
 #### How to install it?
 
-Unzip all files. Put the QuickMods folder in your KSP/GameData folder.
+TODO
 
 #### How to update it?
 
-Unzip all files. Merge the new QuickMods folder with the old folder which is in your KSP/GameData folder.
+TODO
 
 #### How to uninstall it?
 
-Delete the QuickMods folder in your KSP/GameData folder.
+TODO
 
 #### Thanks!
 
-* to all user who have made a request/support for these mods,
-* to blizzy for his Toolbar mod,
-* to cybutek for his KSP-AVC mod,
-* to Matthieu James for the Faenza icon theme,
-* to all other mod developers which make this game really huge,
-* and to Squad for this awesome game.
-
-#### Links
-
-* http://forum.kerbalspaceprogram.com/index.php?/topic/85834-1
-* http://spacedock.info/profile/malah
-* https://github.com/linuxgurugamer/QuickMods
-* KSP-AVC: http://forum.kerbalspaceprogram.com/index.php?/topic/72169-1
-* Toolbar: http://forum.kerbalspaceprogram.com/index.php?/topic/55420-1
-* Faenza icon theme: http://gnome-look.org/content/show.php/Faenza?content=128143
-
-1.3.3.0
-	Adopted by LGG
-	Updated all mods for 1.4.x
-
-1.3.3.1
-	Fixed quickstart issue
-	Potential fix for crash when using quickgoto to go from flight to editor
-
-1.3.3.5
-	For Quicksearch, added the feature that if you Right Click in the Search Bar, it erases the current search
+* to all users who have requested/supported these mods,
+* to Linuxgurugamer for his incredible work,
+* to all the other mod developers who made these games really huge,
+* and to Squad & Intercept Games for these awesome games.
