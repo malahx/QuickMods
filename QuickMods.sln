@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{0861EA56-AF28-43DC-80EB-64123E3DA976}") = "QuickMods", "src/QuickMods/QuickMods.csproj", "{D870A97D-A84F-49F1-ABC5-0F6B1D38FB79}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+		Deploy|Any CPU = Deploy|Any CPU
+		DeployAndRun|Any CPU = DeployAndRun|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{D870A97D-A84F-49F1-ABC5-0F6B1D38FB79}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D870A97D-A84F-49F1-ABC5-0F6B1D38FB79}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D870A97D-A84F-49F1-ABC5-0F6B1D38FB79}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D870A97D-A84F-49F1-ABC5-0F6B1D38FB79}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D870A97D-A84F-49F1-ABC5-0F6B1D38FB79}.Deploy|Any CPU.ActiveCfg = Deploy|Any CPU
+		{D870A97D-A84F-49F1-ABC5-0F6B1D38FB79}.Deploy|Any CPU.Build.0 = Deploy|Any CPU
+		{D870A97D-A84F-49F1-ABC5-0F6B1D38FB79}.DeployAndRun|Any CPU.ActiveCfg = DeployAndRun|Any CPU
+		{D870A97D-A84F-49F1-ABC5-0F6B1D38FB79}.DeployAndRun|Any CPU.Build.0 = DeployAndRun|Any CPU
+	EndGlobalSection
+EndGlobal
+
