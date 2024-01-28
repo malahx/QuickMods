@@ -112,6 +112,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickVesselName", "QuickVes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickConstruct", "QuickConstruct\QuickConstruct.csproj", "{8FC3FB7F-71D5-4EE2-82AF-233B7AAD2C2F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickScience", "QuickScience\QuickScience.csproj", "{5F236E96-6741-4586-BA1D-66F13C8D9DA8}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -231,6 +233,18 @@ Global
 		{8FC3FB7F-71D5-4EE2-82AF-233B7AAD2C2F}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{8FC3FB7F-71D5-4EE2-82AF-233B7AAD2C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FC3FB7F-71D5-4EE2-82AF-233B7AAD2C2F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Debug|Any CPU.ActiveCfg = Default|Any CPU
+		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Debug|Any CPU.Build.0 = Default|Any CPU
+		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Release|Any CPU.ActiveCfg = Default|Any CPU
+		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Release|Any CPU.Build.0 = Default|Any CPU
+		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Default|Any CPU.ActiveCfg = Default|Any CPU
+		{732E642A-6428-4A48-BCE8-A65E3BA8181C}.Default|Any CPU.Build.0 = Default|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Default|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F236E96-6741-4586-BA1D-66F13C8D9DA8}.Default|Any CPU.Build.0 = Debug|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -246,7 +260,7 @@ Global
 		$2.FileSeparator = ", "
 		$2.IncludeDirectoryPaths = True
 		$2.Wrap = False
-		$1.inheritsSet = Mono
+		$2.LineAlign = 0
 		$0.DotNetNamingPolicy = $3
 		$0.TextStylePolicy = $4
 		$4.FileWidth = 120
