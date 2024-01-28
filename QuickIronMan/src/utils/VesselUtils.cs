@@ -6,10 +6,11 @@ using System.Security.Cryptography;
 using System.Text;
 using KSP.UI;
 using KSP.UI.Screens;
+using QuickIronMan.construction;
 using UnityEngine;
 using UnityEngine.EventSystems;
 
-namespace QuickConstruct.utils
+namespace QuickIronMan.utils
 {
     public static class VesselUtils
     {
@@ -39,7 +40,7 @@ namespace QuickConstruct.utils
 
             if (list == null || list.Count == 0)
             {
-                Debug.Log("[QuickConstruct](VesselUtils): No Vessel data item list :'(");
+                Debug.Log("[QuickIronMan](VesselUtils): No Vessel data item list :'(");
                 return null;   
             }
 
@@ -64,7 +65,7 @@ namespace QuickConstruct.utils
 
                 vesselListItems.Add(shipTemplate, component);
             }
-            Debug.Log($"[QuickConstruct](VesselUtils): Vessel found: {vesselListItems.Count}");
+            Debug.Log($"[QuickIronMan](VesselUtils): Vessel found: {vesselListItems.Count}");
             return vesselListItems;
         }
 

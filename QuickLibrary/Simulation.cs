@@ -6,7 +6,12 @@ namespace QuickLibrary
 
         public static EventVoid OnEnterSimulation = new EventVoid(nameof (OnEnterSimulation));
         public static EventVoid OnExitSimulation = new EventVoid(nameof (OnExitSimulation));
-        
+
+        protected Simulation()
+        {
+            Instance = this;
+        }
+
         public abstract bool IsInSimulation();
         public abstract void SetSimulation(bool simulation);
         public abstract void LockSimulation(bool lockSimulation);

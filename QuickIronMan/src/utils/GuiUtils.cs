@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace QuickMods.utils
+namespace QuickIronMan.utils
 {
     public static class GuiUtils
     {

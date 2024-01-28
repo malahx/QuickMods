@@ -3,6 +3,7 @@
     <PropertyGroup>
         <TargetFramework>net472</TargetFramework>
         <LangVersion>7.2</LangVersion>
+        <ReleaseVersion>1</ReleaseVersion>
     </PropertyGroup>
 
     <ItemGroup>

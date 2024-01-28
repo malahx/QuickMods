@@ -42,9 +42,6 @@
       <Reference Include="mscorlib">
         <HintPath>..\..\lib\1.12.3\mscorlib.dll</HintPath>
       </Reference>
-      <Reference Include="QuickLibrary">
-        <HintPath>..\QuickLibrary\bin\Debug\QuickLibrary.dll</HintPath>
-      </Reference>
       <Reference Include="System.Core">
         <HintPath>..\..\lib\1.12.3\System.Core.dll</HintPath>
       </Reference>
@@ -305,15 +302,26 @@
       </Reference>
     </ItemGroup>
     <ItemGroup>
-      <Compile Include="src\Flight.cs" />
-      <Compile Include="src\RegisterToolbar.cs" />
-      <Compile Include="src\SimConfig.cs" />
-      <Compile Include="src\SpaceCenter.cs" />
       <Compile Include="src\utils\GuiUtils.cs" />
-      <Compile Include="src\utils\Toolbar\Builder.cs" />
-      <Compile Include="src\utils\Toolbar\IToolbarConfig.cs" />
-      <Compile Include="src\utils\Toolbar\Register.cs" />
-      <Compile Include="src\utils\Toolbar\Toolbar.cs" />
+      <Compile Include="src\utils\ButtonUtils.cs" />
+      <Compile Include="src\utils\MessageUtils.cs" />
+      <Compile Include="src\utils\VesselUtils.cs" />
+      <Compile Include="src\construction\ConstructScenario.cs" />
+      <Compile Include="src\construction\ConstructionService.cs" />
+      <Compile Include="src\construction\model\VesselConstruction.cs" />
+      <Compile Include="src\construction\model\VesselStatus.cs" />
+      <Compile Include="src\simulation\FlightSim.cs" />
+      <Compile Include="src\simulation\FlightUI.cs" />
+      <Compile Include="src\simulation\Simulation.cs" />
+      <Compile Include="src\toolbar\ToolbarConfig.cs" />
+      <Compile Include="src\toolbar\RegisterToolbar.cs" />
+      <Compile Include="src\toolbar\lib\Register.cs" />
+      <Compile Include="src\toolbar\lib\IToolbarConfig.cs" />
+      <Compile Include="src\toolbar\lib\ToolbarManager.cs" />
+      <Compile Include="src\construction\SpaceCenterConstruct.cs" />
+      <Compile Include="src\construction\EditorConstruct.cs" />
+      <Compile Include="src\simulation\model\VesselStatus.cs" />
+      <Compile Include="src\simulation\SpaceCenterSimulation.cs" />
     </ItemGroup>
     <ItemGroup>
       <None Include="Lang\en-us.cfg" />
@@ -321,6 +329,14 @@
     </ItemGroup>
     <ItemGroup>
       <Content Include="README.md" />
+    </ItemGroup>
+    <ItemGroup>
+      <Folder Include="src\construction\" />
+      <Folder Include="src\construction\model\" />
+      <Folder Include="src\simulation\" />
+      <Folder Include="src\toolbar\" />
+      <Folder Include="src\toolbar\lib\" />
+      <Folder Include="src\simulation\model\" />
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
     <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

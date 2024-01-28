@@ -38,10 +38,11 @@
     </PropertyGroup>
 
     <ItemGroup>
+      <Compile Include="src\ConstructionService.cs" />
       <Compile Include="src\ConstructScenario.cs" />
       <Compile Include="src\model\VesselConstruction.cs" />
-      <Compile Include="src\SimulationModsCompatibility.cs" />
-      <Compile Include="src\SpaceCenter.cs" />
+      <Compile Include="src\model\VesselStatus.cs" />
+      <Compile Include="src\SpaceCenterVesselConstruction.cs" />
       <Compile Include="src\utils\ButtonUtils.cs" />
       <Compile Include="src\utils\MessageUtils.cs" />
       <Compile Include="src\utils\VesselUtils.cs" />
@@ -80,9 +81,9 @@
       </Reference>
     </ItemGroup>
     <ItemGroup>
-      <ProjectReference Include="..\QuickLibrary\QuickLibrary.csproj">
-        <Project>{868d16ed-97b5-4783-82aa-e27df6af028c}</Project>
-        <Name>QuickLibrary</Name>
+      <ProjectReference Include="..\QuickIronMan\QuickIronMan.csproj">
+        <Project>{8fc3fb7f-71d5-4ee2-82af-233b7aad2c2e}</Project>
+        <Name>QuickIronMan</Name>
       </ProjectReference>
     </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

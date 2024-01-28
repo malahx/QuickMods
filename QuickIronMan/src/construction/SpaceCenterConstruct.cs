@@ -1,32 +1,35 @@
 using System.Collections;
 using System.Collections.Generic;
 using KSP.UI;
-using QuickConstruct.utils;
+using QuickIronMan.simulation;
+using QuickIronMan.utils;
 using Smooth.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace QuickConstruct
+namespace QuickIronMan.construction
 {
     [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
-    public class SpaceCenter : MonoBehaviour
+    public class SpaceCenterConstruct : MonoBehaviour
     {
         private Button launchBtn;
         private Button constructBtn;
         private ShipTemplate selectedShip;
-        private Dictionary<ShipTemplate,VesselListItem> vesselListItems;
+        private Dictionary<ShipTemplate, VesselListItem> vesselListItems;
+
+
+        private void Awake() {
+            Simulation.INSTANCE.LockSimulation(false);
+            Debug.Log($"[QuickIronMan]({name}): Awake");
+        }
 
         private void Start()
         {
-            // No scenario no needs
-            if (ConstructScenario.Instance == null)
-                Destroy(this);
-            
             // Retrieve the launch button
             GameEvents.onGUILaunchScreenSpawn.Add(OnGUILaunchScreenSpawn);
             GameEvents.onGUILaunchScreenVesselSelected.Add(OnGUILaunchScreenVesselSelected);
             
-            Debug.Log($"[QuickConstruct]({name}): Start");
+            Debug.Log($"[QuickIronMan]({name}): Start");
         }
 
         private void OnGUILaunchScreenVesselSelected(ShipTemplate data)
@@ -34,10 +37,10 @@ namespace QuickConstruct
             selectedShip = data;
 
             ButtonUtils.RefreshButton(data, launchBtn, constructBtn);
+            if (vesselListItems.ContainsKey(data))
+                vesselListItems[data].vesselWarnings.text = MessageUtils.PrepareMessage(selectedShip);
             
-            ConstructScenario.Instance.spaceCenterSelectedShipName = VesselUtils.ShipName(data);
-            
-            Debug.Log($"[QuickConstruct]({name}): Vessel selected");
+            Debug.Log($"[QuickIronMan]({name}): Vessel selected");
         }
 
 
@@ -49,7 +52,7 @@ namespace QuickConstruct
 
         private IEnumerator Initialize()
         {
-            Debug.Log($"[QuickConstruct]({name}): Initialize Launch Screen");
+            Debug.Log($"[QuickIronMan]({name}): Initialize Launch Screen");
             
             // Search of the buttons to move / use them
             Button editBtn = null;
@@ -66,10 +69,24 @@ namespace QuickConstruct
             }
 
             constructBtn = ButtonUtils.CreateConstructionButton(editBtn, OnClickOnConstruct);
-            
+
             // Move other buttons
             deleteBtn.transform.Translate(-(editBtn.transform.position - deleteBtn.transform.position));
             editBtn.transform.Translate(-(launchBtn.transform.position - editBtn.transform.position));
+            
+            deleteBtn.onClick.AddListener(() =>
+            {
+                vesselListItems = VesselUtils.InitializeVessels();
+                ConstructionService.Instance.CleanedConstruction(vesselListItems.Keys);
+            });
+
+            var launchOnClick = launchBtn.onClick;
+            launchBtn.onClick = new Button.ButtonClickedEvent();
+            launchBtn.onClick.AddListener(() =>
+            {
+                ConstructionService.Instance.LaunchShip(selectedShip);
+                launchOnClick.Invoke();
+            });
 
             while (vesselListItems == null)
             {
@@ -77,31 +94,31 @@ namespace QuickConstruct
                 yield return new WaitForFixedUpdate();
             }
 
-            Debug.Log($"[QuickConstruct]({name}): Launch Screen initialized");        
+            ConstructionService.Instance.CleanedConstruction(vesselListItems.Keys);
+
+            Debug.Log($"[QuickIronMan]({name}): Launch Screen initialized");
         }
-        
+
         private void OnClickOnConstruct()
         {
             if (selectedShip != null)
             {
-                ConstructScenario.Instance.AddToConstruction(selectedShip);
+                ConstructionService.Instance.AddToConstruction(selectedShip);
                 var vesselListItem = vesselListItems.TryGet(selectedShip);
                 if (vesselListItem.isSome)
-                {
                     vesselListItem.value.vesselWarnings.text = MessageUtils.PrepareMessage(selectedShip);
-                }
             }
-                
+
             ButtonUtils.RefreshButton(selectedShip, launchBtn, constructBtn);
 
-            Debug.Log($"[QuickConstruct]({name}): Construct");
+            Debug.Log($"[QuickIronMan]({name}): Construct");
         }
 
         private void OnDestroy()
         {
             GameEvents.onGUILaunchScreenSpawn.Remove(OnGUILaunchScreenSpawn);
             GameEvents.onGUILaunchScreenVesselSelected.Remove(OnGUILaunchScreenVesselSelected);
-            Debug.Log($"[QuickConstruct]({name}): Destroy");
+            Debug.Log($"[QuickIronMan]({name}): Destroy");
         }
     }
 }

@@ -1,4 +1,4 @@
-namespace QuickConstruct.model
+namespace QuickIronMan.construction.model
 {
     public class VesselConstruction
     {

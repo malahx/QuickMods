@@ -35,8 +35,7 @@
       <CustomCommands>
         <Command>
           <type>BeforeExecute</type>
-          <command>
-          </command>
+          <command></command>
         </Command>
         <Command>
           <type>AfterBuild</type>

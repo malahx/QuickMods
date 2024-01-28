@@ -1,13 +1,12 @@
 using UnityEngine;
 
-namespace QuickIronMan
-{
+namespace QuickIronMan.simulation {
     [KSPAddon(KSPAddon.Startup.SpaceCentre, false)]
-    public class SpaceCenter : MonoBehaviour
+    public class SpaceCenterSimulation : MonoBehaviour
     {
         private void Start()
         {
-            SimConfig.INSTANCE.ResetSimulation();
+            Simulation.INSTANCE.ResetSimulation();
             
             Debug.Log($"[QuickIronMan]({name}) Ironman save enabled.");
             Destroy(this);

@@ -5,7 +5,7 @@ namespace QuickMods.utils.Toolbar
 {
     public class Toolbar
     {
-        private string modName;
+        private readonly string modName;
         private ToolbarControl toolbarControl;
 
         public Toolbar(string modName, ToolbarControl toolbarControl)

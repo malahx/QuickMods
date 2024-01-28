@@ -1,17 +1,17 @@
-using System;
 using System.Linq;
 using KSP.UI;
 using KSP.UI.TooltipTypes;
+using QuickIronMan.construction;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 using Object = UnityEngine.Object;
 
-namespace QuickConstruct.utils
+namespace QuickIronMan.utils
 {
     public static class ButtonUtils
     {
-        private const string TexturePath = "QuickMods/QuickConstruct/Textures/construct";
+        private const string TexturePath = "QuickMods/QuickIronMan/Textures/construct";
 
         private static Texture2D _texture;
         

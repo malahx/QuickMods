@@ -112,8 +112,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickVesselName", "QuickVes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickConstruct", "QuickConstruct\QuickConstruct.csproj", "{8FC3FB7F-71D5-4EE2-82AF-233B7AAD2C2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "QuickLibrary", "QuickLibrary\QuickLibrary.csproj", "{868D16ED-97B5-4783-82AA-E27DF6AF028C}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -233,12 +231,6 @@ Global
 		{8FC3FB7F-71D5-4EE2-82AF-233B7AAD2C2F}.Default|Any CPU.Build.0 = Debug|Any CPU
 		{8FC3FB7F-71D5-4EE2-82AF-233B7AAD2C2F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8FC3FB7F-71D5-4EE2-82AF-233B7AAD2C2F}.Release|Any CPU.Build.0 = Release|Any CPU
-		{868D16ED-97B5-4783-82AA-E27DF6AF028C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{868D16ED-97B5-4783-82AA-E27DF6AF028C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{868D16ED-97B5-4783-82AA-E27DF6AF028C}.Default|Any CPU.ActiveCfg = Debug|Any CPU
-		{868D16ED-97B5-4783-82AA-E27DF6AF028C}.Default|Any CPU.Build.0 = Debug|Any CPU
-		{868D16ED-97B5-4783-82AA-E27DF6AF028C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{868D16ED-97B5-4783-82AA-E27DF6AF028C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

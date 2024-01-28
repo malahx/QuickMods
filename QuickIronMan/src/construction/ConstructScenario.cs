@@ -1,11 +1,10 @@
 using System;
 using System.Linq;
-using QuickConstruct.model;
-using QuickIronMan;
+using QuickIronMan.construction.model;
+using QuickIronMan.simulation;
 using UnityEngine;
 
-namespace QuickConstruct
-{
+namespace QuickIronMan.construction {
     [KSPScenario(ScenarioCreationOptions.AddToAllGames, GameScenes.SPACECENTER, GameScenes.EDITOR, GameScenes.FLIGHT,
         GameScenes.TRACKSTATION)]
     public class ConstructScenario : ScenarioModule
@@ -13,22 +12,11 @@ namespace QuickConstruct
 
         public override void OnAwake() 
         {
-            if (HighLogic.LoadedSceneIsEditor)
-            {
-                Simulation.INSTANCE.LockSimulation(true);
-                Debug.Log($"[QuickConstruct]({name}): Lock simulation, launch from the editor will be a simulation");
-            }
-            else if (!HighLogic.LoadedSceneIsFlight)
-            {
-                Simulation.INSTANCE.LockSimulation(false);
-                Debug.Log(
-                    $"[QuickConstruct]({name}): Unlock simulation, launch outside from the editor will authorize simulation");
-            }
 
             GameEvents.onAlarmRemoving.Add(OnAlarmRemoving);
             GameEvents.onFlightReady.Add(OnFlightReady);
 
-            Debug.Log($"[QuickConstruct]({name}): OnAwake");
+            Debug.Log($"[QuickIronMan]({name}): OnAwake");
         }
 
         private void OnFlightReady()
@@ -39,7 +27,7 @@ namespace QuickConstruct
             {
                 ConstructionService.Instance.Remove(vessel);
                 toLaunch = true;
-                Debug.Log($"[QuickConstruct]({name}) Vessel constructed & ready to start: {vessel.Name}");
+                Debug.Log($"[QuickIronMan]({name}) Vessel constructed & ready to start: {vessel.Name}");
                 break;
             }
 
@@ -50,10 +38,10 @@ namespace QuickConstruct
                 Simulation.INSTANCE.SetSimulation(false);
                 Simulation.INSTANCE.LockSimulation(false);
 
-                Debug.Log($"[QuickConstruct]({name}): Vessel not in prelaunch, lost simulation");
+                Debug.Log($"[QuickIronMan]({name}): Vessel not in prelaunch, lost simulation");
             }
 
-            Debug.Log($"[QuickConstruct]({name}): OnFlightReady");
+            Debug.Log($"[QuickIronMan]({name}): OnFlightReady");
         }
 
         private void OnAlarmRemoving(AlarmTypeBase data)
@@ -61,7 +49,7 @@ namespace QuickConstruct
             ConstructionService.Instance.RemoveShipConstructionFromAlarm(data.Id, data.Actioned);
         }
 
-        // Save the QuickConstruct data
+        // Save the QuickIronMan data
         public override void OnSave(ConfigNode node)
         {
             base.OnSave(node);
@@ -80,10 +68,10 @@ namespace QuickConstruct
             }
 
             Debug.Log(
-                $"[QuickConstruct]({name}): Saved - {ConstructionService.Instance.ConstructionNumber()} vessels to construct");
+                $"[QuickIronMan]({name}): Saved - {ConstructionService.Instance.ConstructionNumber()} vessels to construct");
         }
 
-        // Retrieve QuickConstruct data
+        // Retrieve QuickIronMan data
         public override void OnLoad(ConfigNode node)
         {
             base.OnLoad(node);
@@ -126,14 +114,14 @@ namespace QuickConstruct
             }
 
             Debug.Log(
-                $"[QuickConstruct]({name}): Loaded - {ConstructionService.Instance.ConstructionNumber()} vessels to construct");
+                $"[QuickIronMan]({name}): Loaded - {ConstructionService.Instance.ConstructionNumber()} vessels to construct");
         }
 
         private void OnDestroy()
         {
             GameEvents.onAlarmRemoving.Remove(OnAlarmRemoving);
             GameEvents.onFlightReady.Remove(OnFlightReady);
-            Debug.Log($"[QuickConstruct]({name}) OnDestroy");
+            Debug.Log($"[QuickIronMan]({name}) OnDestroy");
         }
     }
 }

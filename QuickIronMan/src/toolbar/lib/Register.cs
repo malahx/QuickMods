@@ -7,10 +7,11 @@ namespace QuickMods.utils.Toolbar
     {
             
         protected abstract string ModName();
-            
+        protected abstract string ModId();
+
         private void Start()
         {
-            ToolbarControl.RegisterMod(ModName());
+            ToolbarControl.RegisterMod(ModId(), ModName());
         }
     }
 }
