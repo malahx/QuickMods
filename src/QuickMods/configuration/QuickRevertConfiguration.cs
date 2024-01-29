@@ -14,7 +14,7 @@ public class QuickRevertConfiguration : IConfigurationBase
 
     public void Init(ConfigFile config)
     {
-        _canLoseRevert = config.Bind("QuickRevert", "canLoseRevert", false, "Enable or disable the revert lost when reach space");
+        _canLoseRevert = config.Bind("QuickMods/Revert", "CanLoseRevert", false, "Enable or disable the revert lost when reach space");
 
         Debug.Log($"QuickRevert[{MyPluginInfo.PLUGIN_VERSION}] Configuration initialized.");
     }
