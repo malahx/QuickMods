@@ -13,7 +13,11 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
 {
     private static readonly Configuration Configuration = new();
 
-    private readonly List<ModsBase> _mods = [new Revert("QuickRevert", Configuration)];
+    private readonly List<ModsBase> _mods =
+    [
+        new Revert("QuickRevert", Configuration.QuickRevert),
+        new VesselNames("QuickVesselNames", Configuration.QuickVesselNames)
+    ];
 
     public override void OnInitialized()
     {
