@@ -16,7 +16,8 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
     private readonly List<ModsBase> _mods =
     [
         new Revert("QuickRevert", Configuration.QuickRevert),
-        new VesselNames("QuickVesselNames", Configuration.QuickVesselNames)
+        new VesselNames("QuickVesselNames", Configuration.QuickVesselNames),
+        new Scroll("QuickScroll", Configuration.QuickScrollConfiguration)
     ];
 
     public override void OnInitialized()
@@ -33,5 +34,11 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
     {
         foreach (var m in _mods)
             m.OnDestroy();
+    }
+
+    private void Update()
+    {
+        foreach (var m in _mods)
+            m.Update();
     }
 }

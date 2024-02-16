@@ -9,9 +9,11 @@ public abstract class ModsBase(string name)
     protected GameInstance Game => GameManager.Instance.Game;
     protected MessageCenter MessageCenter => Game.Messages;
 
-    public abstract void Start();
+    public virtual void Start() {}
 
-    public abstract void OnDestroy();
+    public virtual void OnDestroy() {}
+    
+    public virtual void Update() {}
 
     protected readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource(name + $"[{MyPluginInfo.PLUGIN_VERSION}]");
 }
