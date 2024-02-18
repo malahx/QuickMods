@@ -15,9 +15,10 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
 
     private readonly List<ModsBase> _mods =
     [
-        new Revert("QuickRevert", Configuration.QuickRevert),
-        new VesselNames("QuickVesselNames", Configuration.QuickVesselNames),
-        new Scroll("QuickScroll", Configuration.QuickScrollConfiguration)
+        new StopWarp("QuickStopWarp", Configuration.StopWarp),
+        new Revert("QuickRevert", Configuration.Revert),
+        new VesselNames("QuickVesselNames", Configuration.VesselNames),
+        new Scroll("QuickScroll", Configuration.Scroll)
     ];
 
     public override void OnInitialized()

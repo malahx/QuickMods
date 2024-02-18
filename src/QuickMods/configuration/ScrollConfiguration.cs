@@ -1,8 +1,9 @@
 using BepInEx.Configuration;
+using UnityEngine;
 
 namespace QuickMods.configuration;
 
-public class QuickScrollConfiguration
+public class ScrollConfiguration
 {
     private ConfigEntry<bool> _enable;
     private ConfigEntry<bool> _inverseRnD;
@@ -20,5 +21,7 @@ public class QuickScrollConfiguration
     {
         _enable = config.Bind("QuickMods/Scroll", "Enable", false, "Enable or disable Scroll");
         _inverseRnD = config.Bind("QuickMods/Scroll", "InverseRnD", false, "Inverse Research & Development Scroll");
+
+        Debug.Log($"{GetType()}[{MyPluginInfo.PLUGIN_VERSION}] Configuration initialized.");
     }
 }

@@ -4,14 +4,16 @@ namespace QuickMods.configuration;
 
 public class Configuration
 {
-    public readonly QuickRevertConfiguration QuickRevert = new();
-    public readonly QuickVesselNamesConfiguration QuickVesselNames = new();
-    public readonly QuickScrollConfiguration QuickScrollConfiguration = new();
+    public readonly RevertConfiguration Revert = new();
+    public readonly VesselNamesConfiguration VesselNames = new();
+    public readonly ScrollConfiguration Scroll = new();
+    public readonly StopWarpConfiguration StopWarp = new();
 
     public void Init(ConfigFile config)
     {
-        QuickRevert.Init(config);
-        QuickVesselNames.Init(config);
-        QuickScrollConfiguration.Init(config);
+        Revert.Init(config);
+        VesselNames.Init(config);
+        Scroll.Init(config);
+        StopWarp.Init(config);
     }
 }

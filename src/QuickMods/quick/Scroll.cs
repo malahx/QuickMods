@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace QuickMods.quick;
 
-public class Scroll(string name, QuickScrollConfiguration configuration) : ModsBase(name)
+public class Scroll(string name, ScrollConfiguration configuration) : ModsBase(name)
 {
     private float? _lastMouseX;
 

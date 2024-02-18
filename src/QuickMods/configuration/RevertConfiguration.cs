@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace QuickMods.configuration;
 
-public class QuickRevertConfiguration : IConfigurationBase
+public class RevertConfiguration : IConfigurationBase
 {
     private ConfigEntry<bool> _canLoseRevert;
 
@@ -16,6 +16,6 @@ public class QuickRevertConfiguration : IConfigurationBase
     {
         _canLoseRevert = config.Bind("QuickMods/Revert", "CanLoseRevert", false, "Enable or disable the revert lost when reach space");
 
-        Debug.Log($"QuickRevert[{MyPluginInfo.PLUGIN_VERSION}] Configuration initialized.");
+        Debug.Log($"{GetType()}[{MyPluginInfo.PLUGIN_VERSION}] Configuration initialized.");
     }
 }
