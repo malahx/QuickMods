@@ -27,13 +27,13 @@ public class VesselNamesConfiguration : IConfigurationBase
     public string[] SpacePlaneNames { get; private set; }
     public string[] CustomNames { get; private set; }
 
-    private const string CrewedNamesFile = "/QuickVesselNames/CrewedNames.txt";
-    private const string LauncherNamesFile = "/QuickVesselNames/LauncherNames.txt";
-    private const string ProbeNamesFile = "/QuickVesselNames/ProbeNames.txt";
-    private const string RoverNamesFile = "/QuickVesselNames/RoverNames.txt";
-    private const string AirPlaneFile = "/QuickVesselNames/AirPlaneNames.txt";
-    private const string SpacePlaneFile = "/QuickVesselNames/SpacePlaneNames.txt";
-    private const string CustomFile = "/QuickVesselNames/CustomNames.txt";
+    private const string CrewedNamesFile = "/VesselNames/CrewedNames.txt";
+    private const string LauncherNamesFile = "/VesselNames/LauncherNames.txt";
+    private const string ProbeNamesFile = "/VesselNames/ProbeNames.txt";
+    private const string RoverNamesFile = "/VesselNames/RoverNames.txt";
+    private const string AirPlaneFile = "/VesselNames/AirPlaneNames.txt";
+    private const string SpacePlaneFile = "/VesselNames/SpacePlaneNames.txt";
+    private const string CustomFile = "/VesselNames/CustomNames.txt";
 
     public void Init(ConfigFile config)
     {

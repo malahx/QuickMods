@@ -2,7 +2,6 @@
 ## A plugin collection for Kerbal Space Program
 ### Copyright 2024 Malah
 
-#### QuickMods 2 (for KSP 2)
 This is free and unencumbered software released into the public domain.
 
 Anyone is free to copy, modify, publish, use, compile, sell, or
@@ -28,39 +27,39 @@ OTHER DEALINGS IN THE SOFTWARE.
 
 For more information, please refer to <http://unlicense.org/>
 
-#### QuickMods 1 (for KSP 1)
-This program is free software: you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation, either version 3 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program.  If not, see <http://www.gnu.org/licenses/>. 
-
-#### What is it?
+### What is it?
 
 QuickMods are very small plugins which add a small feature.
 
-#### How to install it?
+Features: 
+* Revert: disable revert when you pass the atmosphere
+* Scroll: scroll the R&D view when click mouse
+* StopWarp: stop warp when vessel change SOI
+* VesselNames: add a new vessel name when you create a new vessel in the VAB
 
-TODO
+All the features are disabled by default.
+To enable them, go to Settings -> Mods -> QuickMods -> Choose what you want.
 
-#### How to update it?
+#### VesselNames
 
-TODO
+All the vessel names are located in the folder <your installation path>\Kerbal Space Program 2\BepInEx\plugins\QuickMods\VesselNames
 
-#### How to uninstall it?
+**ATTENTION: if you update QuickMods you will overwrite any changes made the txt files.**
 
-TODO
+By default, vessel names differ by vessel type. However, with the CustomVesselNames option, the vessel type is ignored.
+To use this feature, you must enable it AND add a new file named CustomVesselNames.txt in the VesselNames folder. This file will not be overwritten when updating QuickMods.
 
-#### Thanks!
+### How to install/update it?
 
-* to all users who have requested/supported these mods,
+* Install BepInEx + SpaceWarp
+* Extract the contents of the downloaded zip file into your KSP2 installation folder
+
+### How to uninstall it?
+
+* Delete the folder <your installation path>\Kerbal Space Program 2\BepInEx\plugins\QuickMods
+
+### Thanks!
+
 * to Linuxgurugamer for his incredible work,
-* to all the other mod developers who made these games really huge,
-* and to Squad & Intercept Games for these awesome games.
+* to all mod developers who made these games really huge,
+* and to Squad & Intercept Games for creating these awesome games.
