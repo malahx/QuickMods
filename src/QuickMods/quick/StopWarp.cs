@@ -3,7 +3,7 @@ using QuickMods.configuration;
 
 namespace QuickMods.quick;
 
-public class StopWarp(string name, StopWarpConfiguration configuration) : ModsBase(name)
+public class StopWarp(string name, StopWarpConfiguration configuration) : ModsBase(name, configuration)
 {
     public override void Start()
     {

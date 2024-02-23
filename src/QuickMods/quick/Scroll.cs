@@ -4,23 +4,23 @@ using UnityEngine;
 
 namespace QuickMods.quick;
 
-public class Scroll(string name, ScrollConfiguration configuration) : ModsBase(name)
+public class Scroll(string name, ScrollConfiguration configuration) : ModsBase(name, configuration)
 {
     private float? _lastMouseX;
 
     public override void Update()
     {
-        if (!configuration.Enabled() || Game.GlobalGameState.GetState() != GameState.ResearchAndDevelopment) return;
+        if (!configuration.Enabled() || Game.GlobalGameState?.GetState() != GameState.ResearchAndDevelopment) return;
 
         _lastMouseX ??= -1;
 
-        if (Input.GetMouseButtonUp(0))
+        if (!configuration.RightClickRnD() && Input.GetMouseButtonUp(0) || (configuration.RightClickRnD() && Input.GetMouseButtonUp(1)))
         {
             _lastMouseX = 0;
             Logger.LogDebug("Release scroll");
         }
 
-        if (!Input.GetMouseButton(0)) return;
+        if ((!configuration.RightClickRnD() && !Input.GetMouseButton(0)) || (configuration.RightClickRnD() && !Input.GetMouseButton(1))) return;
 
         if (_lastMouseX <= 0) _lastMouseX = Input.mousePosition.x;
 

@@ -5,7 +5,7 @@ using QuickMods.configuration;
 
 namespace QuickMods.quick;
 
-public class VesselNames(string name, VesselNamesConfiguration configuration) : ModsBase(name)
+public class VesselNames(string name, VesselNamesConfiguration configuration) : ModsBase(name, configuration)
 {
     public override void Start()
     {

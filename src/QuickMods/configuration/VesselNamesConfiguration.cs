@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace QuickMods.configuration;
 
-public class VesselNamesConfiguration : IConfigurationBase
+public class VesselNamesConfiguration : ConfigurationBase
 {
     private ConfigEntry<bool> _automaticVesselName;
     private ConfigEntry<bool> _customVesselName;
@@ -35,8 +35,10 @@ public class VesselNamesConfiguration : IConfigurationBase
     private const string SpacePlaneFile = "/VesselNames/SpacePlaneNames.txt";
     private const string CustomFile = "/VesselNames/CustomNames.txt";
 
-    public void Init(ConfigFile config)
+    public new void Init(ConfigFile config)
     {
+        base.Init(config);
+        
         _automaticVesselName = config.Bind("QuickMods/VesselNames", "AutomaticVesselName", false, "Enable or disable the automatic vessel name");
         _customVesselName = config.Bind("QuickMods/VesselNames", "CustomVesselName", false, $"Enable or disable the custom vessel name, you need to create the file in {CustomFile}");
 

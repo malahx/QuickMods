@@ -15,7 +15,7 @@
 
         <!-- Copying general files to build directory -->
         <ItemGroup Label="Plugin template folder to be copied">
-            <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*" Exclude="$(SolutionDir)/plugin_template/VesselNames/CustomNames.txt"/>
+            <PluginTemplate Include="$(SolutionDir)/plugin_template/**/*.*" Exclude="$(SolutionDir)/**/.gitkeep"/>
         </ItemGroup>
         <Message Text="Copying plugin folder to build directory"/>
         <Copy SourceFiles="@(PluginTemplate)"
@@ -51,7 +51,7 @@
         <Delete Condition="$(ConfigurationName) == Release"
                 Files="$(SolutionDir)/dist/$(SolutionName)-$(Version).zip"/>
         <Exec Condition="$(ConfigurationName) == Release"
-              Command="$(PowerShellExecutable) -Command &quot;&amp; {Push-Location '$(SolutionDir)/dist/$(ConfigurationName)'; Compress-Archive -Path './*' -DestinationPath '$(SolutionDir)/dist/$(SolutionName)-$(Version).zip'; Pop-Location}&quot;"/>
+              Command="$(PowerShellExecutable) -Command &quot;&amp; {Push-Location '$(SolutionDir)/dist/$(ConfigurationName)';Remove-Item -Path '$(SolutionDir)/dist/$(ConfigurationName)/BepInEx/plugins/QuickMods/VesselNames/CustomNames.txt'; Compress-Archive -Path './*' -DestinationPath '$(SolutionDir)/dist/$(SolutionName)-$(Version).zip'; Pop-Location}&quot;"/>
 
         <!-- Deploying plugin to game folder -->
         <Message Text="Clean up the game's plugin folder" Condition="$(ConfigurationName) == Deploy Or $(ConfigurationName) == DeployAndRun"/>

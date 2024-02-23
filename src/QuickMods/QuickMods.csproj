@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <Project Sdk="Microsoft.NET.Sdk">
     <!-- Project references -->
+    <PropertyGroup>
+      <Version>2.0.0</Version>
+      <Authors>Malah</Authors>
+      <Description>QuickMods are very small plugins which add a small feature.</Description>
+      <Copyright>unlicense</Copyright>
+      <PackageProjectUrl>https://github.com/malahx/QuickMods</PackageProjectUrl>
+      <PackageLicenseUrl>http://unlicense.org/</PackageLicenseUrl>
+      <RepositoryUrl>https://github.com/malahx/QuickMods.git</RepositoryUrl>
+      <RepositoryType>git</RepositoryType>
+    </PropertyGroup>
     <ItemGroup Label="NuGet package references">
         <!-- Add references to any NuGet packages you want to use in your mod here -->
         <PackageReference Include="BepInEx.Analyzers" Version="1.*" PrivateAssets="all"/>

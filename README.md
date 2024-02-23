@@ -34,7 +34,7 @@ QuickMods are very small plugins which add a small feature.
 Features: 
 * Revert: disable revert when you pass the atmosphere
 * Scroll: scroll the R&D view when click mouse
-* StopWarp: stop warp when vessel change SOI
+* StopWarp: stop warp when vessel situation change
 * VesselNames: add a new vessel name when you create a new vessel in the VAB
 
 All the features are disabled by default.

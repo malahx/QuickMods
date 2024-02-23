@@ -4,7 +4,7 @@ using static KSP.Sim.impl.VesselSituations;
 
 namespace QuickMods.quick;
 
-public class Revert(string name, RevertConfiguration configuration) : ModsBase(name)
+public class Revert(string name, RevertConfiguration configuration) : ModsBase(name, configuration)
 {
     public override void Start()
     {

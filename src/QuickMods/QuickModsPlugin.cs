@@ -23,7 +23,6 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
 
     public override void OnInitialized()
     {
-        base.OnInitialized();
         Harmony.CreateAndPatchAll(typeof(QuickModsPlugin).Assembly);
 
         Configuration.Init(Config);
@@ -39,7 +38,7 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
 
     private void Update()
     {
-        foreach (var m in _mods)
+        foreach (var m in _mods.Where(m => m.Initialized()))
             m.Update();
     }
 }
