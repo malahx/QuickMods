@@ -6,7 +6,7 @@
   "description": "It's a QoL mod. Small features with small fixes.",
   "source": "https://github.com/malahx/QuickMods",
   "version": "2.0.0",
-  "version_check": "https://raw.githubusercontent.com/malahx/QuickMods/plugin_template/swinfo.json",
+  "version_check": "https://raw.githubusercontent.com/malahx/QuickMods/master/plugin_template/swinfo.json",
   "ksp2_version": {
     "min": "0.2.0",
     "max": "*"
