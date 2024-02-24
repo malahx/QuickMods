@@ -1,0 +1,5 @@
+Key,Type,Description,English,French
+QuickMods/StopWarp/Notifications/VesselSituationChange/Primary,Text,,[QuickStopWarp] Stop Warp,[QuickStopWarp] Stop Warp
+QuickMods/StopWarp/Notifications/VesselSituationChange/FirstLine,Text,,The vessel's situation has changed from {0} to {1}.,La situation du vaisseau à changer de {0} à {1}.
+QuickMods/QuickRevert/Notifications/LostRevert/Primary,Text,,[QuickRevert] Lost Revert,[QuickRevert] Lost Revert
+QuickMods/QuickRevert/Notifications/LostRevert/FirstLine,Text,,Revert will no longer be possible.,Il ne sera plus possible de faire un Revert.
