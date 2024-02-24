@@ -21,6 +21,7 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
         _mods.Add(new VesselNames(new VesselNamesConfiguration(Config)));
         _mods.Add(new Scroll(new ScrollConfiguration(Config)));
         _mods.Add(new PrecisionControl(new PrecisionControlConfiguration(Config)));
+        _mods.Add(new Pause(new PauseConfiguration(Config)));
     }
 
     public override void OnInitialized()
