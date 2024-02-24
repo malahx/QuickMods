@@ -5,21 +5,23 @@ using QuickMods.configuration;
 
 namespace QuickMods.quick;
 
-public class VesselNames(string name, VesselNamesConfiguration configuration) : ModsBase(name, configuration)
+public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
 {
     public override void Start()
     {
+        base.Start();
         MessageCenter.Subscribe<FirstPartPlacedMessage>(OnFirstPartPlacedMessage);
     }
 
     public override void OnDestroy()
     {
+        base.OnDestroy();
         MessageCenter.Unsubscribe<FirstPartPlacedMessage>(OnFirstPartPlacedMessage);
     }
 
     private void OnFirstPartPlacedMessage(MessageCenterMessage msg)
     {
-        if (!configuration.AutomaticVesselName() || msg is not FirstPartPlacedMessage partPlacedMessage)
+        if (!config.AutomaticVesselName() || msg is not FirstPartPlacedMessage partPlacedMessage)
             return;
 
         var names = FindNames(partPlacedMessage.partType);
@@ -29,8 +31,8 @@ public class VesselNames(string name, VesselNamesConfiguration configuration) : 
 
     private (string, string[]) FindNames(AssemblyPartTypeFilter partType)
     {
-        if (configuration.CustomVesselName())
-            return ("CustomName", configuration.CustomNames);
+        if (config.CustomVesselName())
+            return ("CustomName", config.CustomNames);
 
         return FindNamesFromType(partType) ?? FindNamesFromParts(Game.OAB.Current.Stats.mainAssembly.Parts);
     }
@@ -39,9 +41,9 @@ public class VesselNames(string name, VesselNamesConfiguration configuration) : 
     {
         return partType switch
         {
-            AssemblyPartTypeFilter.Rover => ("Rover", configuration.RoverNames),
-            AssemblyPartTypeFilter.Airplane => ("AirPlane", configuration.AirPlaneNames),
-            AssemblyPartTypeFilter.Spaceplane => ("SpacePlane", configuration.SpacePlaneNames),
+            AssemblyPartTypeFilter.Rover => ("Rover", config.RoverNames),
+            AssemblyPartTypeFilter.Airplane => ("AirPlane", config.AirPlaneNames),
+            AssemblyPartTypeFilter.Spaceplane => ("SpacePlane", config.SpacePlaneNames),
             _ => null
         };
     }
@@ -63,7 +65,7 @@ public class VesselNames(string name, VesselNamesConfiguration configuration) : 
 
     private (string, string[]) FindNamesFromPart(IObjectAssemblyPart part)
     {
-        return part.Category == PartCategories.Pods ? part.AvailablePart.CrewCapacity > 0 ? ("Crewed", configuration.CrewedNames) : ("Probe", configuration.ProbeNames) : ("Launcher", configuration.LauncherNames);
+        return part.Category == PartCategories.Pods ? part.AvailablePart.CrewCapacity > 0 ? ("Crewed", config.CrewedNames) : ("Probe", config.ProbeNames) : ("Launcher", config.LauncherNames);
     }
 
     private static string RetrieveRandomName(IReadOnlyList<string> names)

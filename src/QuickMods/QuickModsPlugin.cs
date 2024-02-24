@@ -11,21 +11,20 @@ namespace QuickMods;
 [BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
 public class QuickModsPlugin : BaseSpaceWarpPlugin
 {
-    private static readonly Configuration Configuration = new();
 
-    private readonly List<ModsBase> _mods =
-    [
-        new StopWarp("QuickStopWarp", Configuration.StopWarp),
-        new Revert("QuickRevert", Configuration.Revert),
-        new VesselNames("QuickVesselNames", Configuration.VesselNames),
-        new Scroll("QuickScroll", Configuration.Scroll)
-    ];
+    private readonly List<IModsBase> _mods = [];
+    public QuickModsPlugin()
+    {
+        _mods.Add(new StopWarp(new StopWarpConfiguration(Config)));
+        _mods.Add(new Revert(new RevertConfiguration(Config)));
+        _mods.Add(new VesselNames(new VesselNamesConfiguration(Config)));
+        _mods.Add(new Scroll(new ScrollConfiguration(Config)));
+    }
 
     public override void OnInitialized()
     {
         Harmony.CreateAndPatchAll(typeof(QuickModsPlugin).Assembly);
 
-        Configuration.Init(Config);
         foreach (var m in _mods)
             m.Start();
     }

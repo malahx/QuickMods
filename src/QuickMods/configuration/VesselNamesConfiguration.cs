@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace QuickMods.configuration;
 
-public class VesselNamesConfiguration : ConfigurationBase
+public class VesselNamesConfiguration(ConfigFile config) : ConfigurationBase("QuickVesselNames")
 {
     private ConfigEntry<bool> _automaticVesselName;
     private ConfigEntry<bool> _customVesselName;
@@ -35,10 +35,10 @@ public class VesselNamesConfiguration : ConfigurationBase
     private const string SpacePlaneFile = "/VesselNames/SpacePlaneNames.txt";
     private const string CustomFile = "/VesselNames/CustomNames.txt";
 
-    public new void Init(ConfigFile config)
+    public override void Init()
     {
-        base.Init(config);
-        
+        base.Init();
+
         _automaticVesselName = config.Bind("QuickMods/VesselNames", "AutomaticVesselName", false, "Enable or disable the automatic vessel name");
         _customVesselName = config.Bind("QuickMods/VesselNames", "CustomVesselName", false, $"Enable or disable the custom vessel name, you need to create the file in {CustomFile}");
 
@@ -54,12 +54,10 @@ public class VesselNamesConfiguration : ConfigurationBase
             AirPlaneNames = File.Exists($"{completePath}{AirPlaneFile}") ? File.ReadAllLines($"{completePath}{AirPlaneFile}") : [];
             SpacePlaneNames = File.Exists($"{completePath}{SpacePlaneFile}") ? File.ReadAllLines($"{completePath}{SpacePlaneFile}") : [];
             CustomNames = File.Exists($"{completePath}{CustomFile}") ? File.ReadAllLines($"{completePath}{CustomFile}") : [];
-
-            Debug.Log($"{GetType()}[{MyPluginInfo.PLUGIN_VERSION}] Configuration initialized.");
         }
         catch (Exception e)
         {
-            Debug.LogError($"{GetType()}[{MyPluginInfo.PLUGIN_VERSION}] Vessel names could not be load: {e.Message}");
+            Logger.LogError($"Vessel names could not be load: {e.Message}");
             Debug.LogException(e);
         }
     }

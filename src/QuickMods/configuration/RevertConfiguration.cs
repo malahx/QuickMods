@@ -1,20 +1,17 @@
 using BepInEx.Configuration;
-using UnityEngine;
 
 namespace QuickMods.configuration;
 
-public class RevertConfiguration : ConfigurationBase
+public class RevertConfiguration(ConfigFile config) : ConfigurationBase("QuickRevert")
 {
     private ConfigEntry<bool> _canLoseRevert;
 
     public bool CanLoseRevert() => _canLoseRevert.Value;
 
-    public new void Init(ConfigFile config)
+    public override void Init()
     {
-        base.Init(config);
-        
-        _canLoseRevert = config.Bind("QuickMods/Revert", "CanLoseRevert", false, "Enable or disable the revert lost when reach space");
+        base.Init();
 
-        Debug.Log($"{GetType()}[{MyPluginInfo.PLUGIN_VERSION}] Configuration initialized.");
+        _canLoseRevert = config.Bind("QuickMods/Revert", "CanLoseRevert", false, "Enable or disable the revert lost when reach space");
     }
 }

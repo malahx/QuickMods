@@ -4,21 +4,23 @@ using static KSP.Sim.impl.VesselSituations;
 
 namespace QuickMods.quick;
 
-public class Revert(string name, RevertConfiguration configuration) : ModsBase(name, configuration)
+public class Revert(RevertConfiguration config) : ModsBase(config)
 {
     public override void Start()
     {
+        base.Start();
         MessageCenter.Subscribe<VesselSituationChangedMessage>(OnVesselSituationChange);
     }
 
     public override void OnDestroy()
     {
+        base.OnDestroy();
         MessageCenter.Unsubscribe<VesselSituationChangedMessage>(OnVesselSituationChange);
     }
 
     private void OnVesselSituationChange(MessageCenterMessage msg)
     {
-        if (!configuration.CanLoseRevert() || !CanRevert() ||
+        if (!config.CanLoseRevert() || !CanRevert() ||
             msg is not (VesselSituationChangedMessage { OldSituation: Flying, NewSituation: SubOrbital }
                 or VesselSituationChangedMessage { NewSituation: Escaping }))
             return;

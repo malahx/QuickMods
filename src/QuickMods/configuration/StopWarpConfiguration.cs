@@ -1,20 +1,17 @@
 using BepInEx.Configuration;
-using UnityEngine;
 
 namespace QuickMods.configuration;
 
-public class StopWarpConfiguration : ConfigurationBase
+public class StopWarpConfiguration(ConfigFile config) : ConfigurationBase("QuickStopWarp")
 {
     private ConfigEntry<bool> _vesselSituationChange;
 
     public bool VesselSituationChange() => _vesselSituationChange.Value;
 
-    public new void Init(ConfigFile config)
+    public override void Init()
     {
-        base.Init(config);
+        base.Init();
 
         _vesselSituationChange = config.Bind("QuickMods/StopWarp", "VesselSituationChange", false, "Enable or disable the warp stopping when vessel change situation");
-
-        Debug.Log($"{GetType()}[{MyPluginInfo.PLUGIN_VERSION}] Configuration initialized.");
     }
 }

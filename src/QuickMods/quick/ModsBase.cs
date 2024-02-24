@@ -5,18 +5,27 @@ using QuickMods.configuration;
 
 namespace QuickMods.quick;
 
-public abstract class ModsBase(string name, ConfigurationBase configuration)
+public abstract class ModsBase(ConfigurationBase configuration) : IModsBase
 {
     protected GameInstance Game => GameManager.Instance.Game;
     protected MessageCenter MessageCenter => Game.Messages;
 
     public bool Initialized() => configuration.Initialized();
 
-    public virtual void Start() {}
+    public virtual void Start()
+    {
+        configuration.Init();
+        Logger.LogDebug("Start");
+    }
 
-    public virtual void OnDestroy() {}
-    
-    public virtual void Update() {}
+    public virtual void OnDestroy()
+    {
+        Logger.LogDebug("Destroy");
+    }
 
-    protected readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource(name + $"[{MyPluginInfo.PLUGIN_VERSION}]");
+    public virtual void Update()
+    {
+    }
+
+    protected readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource(configuration.Name() + $"[{MyPluginInfo.PLUGIN_VERSION}]");
 }
