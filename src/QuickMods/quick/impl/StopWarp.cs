@@ -1,8 +1,9 @@
 using KSP.Game;
 using KSP.Messages;
 using QuickMods.configuration;
+using QuickMods.configuration.impl;
 
-namespace QuickMods.quick;
+namespace QuickMods.quick.impl;
 
 public class StopWarp(StopWarpConfiguration config) : ModsBase(config)
 {

@@ -1,8 +1,9 @@
 using KSP.Game;
 using QuickMods.configuration;
+using QuickMods.configuration.impl;
 using UnityEngine;
 
-namespace QuickMods.quick;
+namespace QuickMods.quick.impl;
 
 public class Scroll(ScrollConfiguration config) : ModsBase(config)
 {

@@ -2,7 +2,7 @@ using System.Reflection;
 using BepInEx.Configuration;
 using UnityEngine;
 
-namespace QuickMods.configuration;
+namespace QuickMods.configuration.impl;
 
 public class VesselNamesConfiguration(ConfigFile config) : ConfigurationBase("QuickVesselNames")
 {

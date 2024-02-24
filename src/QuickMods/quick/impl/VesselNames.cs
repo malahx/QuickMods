@@ -2,8 +2,9 @@ using HoudiniEngineUnity;
 using KSP.Messages;
 using KSP.OAB;
 using QuickMods.configuration;
+using QuickMods.configuration.impl;
 
-namespace QuickMods.quick;
+namespace QuickMods.quick.impl;
 
 public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
 {

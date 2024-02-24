@@ -1,6 +1,6 @@
 using BepInEx.Configuration;
 
-namespace QuickMods.configuration;
+namespace QuickMods.configuration.impl;
 
 public class ScrollConfiguration(ConfigFile config) : ConfigurationBase("QuickScroll")
 {

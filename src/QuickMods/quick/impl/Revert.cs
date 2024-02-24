@@ -1,9 +1,10 @@
 using KSP.Game;
 using KSP.Messages;
 using QuickMods.configuration;
+using QuickMods.configuration.impl;
 using static KSP.Sim.impl.VesselSituations;
 
-namespace QuickMods.quick;
+namespace QuickMods.quick.impl;
 
 public class Revert(RevertConfiguration config) : ModsBase(config)
 {

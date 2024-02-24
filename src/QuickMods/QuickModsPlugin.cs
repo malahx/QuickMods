@@ -1,7 +1,9 @@
 using BepInEx;
 using HarmonyLib;
 using QuickMods.configuration;
+using QuickMods.configuration.impl;
 using QuickMods.quick;
+using QuickMods.quick.impl;
 using SpaceWarp;
 using SpaceWarp.API.Mods;
 
