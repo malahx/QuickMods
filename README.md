@@ -32,6 +32,7 @@ For more information, please refer to <http://unlicense.org/>
 QuickMods are very small plugins which add a small feature.
 
 Features: 
+* PrecisionControl: force precision control at flight loading
 * Revert: disable revert when you pass the atmosphere
 * Scroll: scroll the R&D view when click mouse
 * StopWarp: stop warp when vessel situation change

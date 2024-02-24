@@ -1,6 +1,5 @@
 using BepInEx;
 using HarmonyLib;
-using QuickMods.configuration;
 using QuickMods.configuration.impl;
 using QuickMods.quick;
 using QuickMods.quick.impl;
@@ -13,14 +12,15 @@ namespace QuickMods;
 [BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
 public class QuickModsPlugin : BaseSpaceWarpPlugin
 {
-
     private readonly List<IModsBase> _mods = [];
+
     public QuickModsPlugin()
     {
         _mods.Add(new StopWarp(new StopWarpConfiguration(Config)));
         _mods.Add(new Revert(new RevertConfiguration(Config)));
         _mods.Add(new VesselNames(new VesselNamesConfiguration(Config)));
         _mods.Add(new Scroll(new ScrollConfiguration(Config)));
+        _mods.Add(new PrecisionControl(new PrecisionControlConfiguration(Config)));
     }
 
     public override void OnInitialized()
