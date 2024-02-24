@@ -36,7 +36,6 @@ public class Revert(RevertConfiguration config) : ModsBase(config)
         {
             Tier = NotificationTier.Passive,
             Primary = new NotificationLineItemData { LocKey = "QuickMods/QuickRevert/Notifications/LostRevert/Primary" },
-            FirstLine = new NotificationLineItemData { LocKey = "QuickMods/QuickRevert/Notifications/LostRevert/FirstLine" },
             Importance = NotificationImportance.Low
         };
         Game.Notifications.ProcessNotification(notificationData);

@@ -32,11 +32,12 @@ For more information, please refer to <http://unlicense.org/>
 QuickMods are very small plugins which add a small feature.
 
 Features: 
-* PrecisionControl: force precision control at flight loading
-* Revert: disable revert when you pass the atmosphere
-* Scroll: scroll the R&D view when click mouse
-* StopWarp: stop warp when vessel situation change
-* VesselNames: add a new vessel name when you create a new vessel in the VAB
+* Pause: pause the game when you escape it.
+* PrecisionControl: force precision control at flight loading, it also adds notification when you toggle precision control mode.
+* Revert: disable revert when you pass the atmosphere.
+* Scroll: scroll the R&D view when click mouse.
+* StopWarp: stop warp when vessel situation change.
+* VesselNames: add a new vessel name when you create a new vessel in the VAB.
 
 All the features are disabled by default.
 To enable them, go to Settings -> Mods -> QuickMods -> Choose what you want.

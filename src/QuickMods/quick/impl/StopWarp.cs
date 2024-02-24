@@ -29,7 +29,6 @@ public class StopWarp(StopWarpConfiguration config) : ModsBase(config)
         {
             Tier = NotificationTier.Passive,
             Primary = new NotificationLineItemData { LocKey = "QuickMods/StopWarp/Notifications/VesselSituationChange/Primary" },
-            FirstLine = new NotificationLineItemData { LocKey = "QuickMods/StopWarp/Notifications/VesselSituationChange/FirstLine", ObjectParams = [message.OldSituation, message.NewSituation] },
             Importance = NotificationImportance.Low
         };
         Game.Notifications.ProcessNotification(notificationData);
