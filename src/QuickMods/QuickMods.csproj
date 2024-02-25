@@ -2,11 +2,11 @@
 <Project Sdk="Microsoft.NET.Sdk">
     <!-- Project references -->
     <PropertyGroup>
-      <Version>2.0.0</Version>
+      <Version>2.1.0</Version>
       <Authors>Malah</Authors>
-      <Description>QuickMods are very small plugins which add a small feature.</Description>
+      <Description>It is a tiny plugin that adds a few small features.</Description>
       <Copyright>unlicense</Copyright>
-      <PackageProjectUrl>https://github.com/malahx/QuickMods</PackageProjectUrl>
+      <PackageProjectUrl>https://forum.kerbalspaceprogram.com/topic/223837-q</PackageProjectUrl>
       <PackageLicenseUrl>http://unlicense.org/</PackageLicenseUrl>
       <RepositoryUrl>https://github.com/malahx/QuickMods.git</RepositoryUrl>
       <RepositoryType>git</RepositoryType>

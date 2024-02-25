@@ -3,7 +3,7 @@
   "mod_id": "QuickMods",
   "author": "Malah",
   "name": "QuickMods",
-  "description": "It's a QoL mod. Small features with small fixes.",
+  "description": "It is a tiny plugin that adds a few small features.",
   "source": "https://github.com/malahx/QuickMods",
   "version": "2.0.0",
   "version_check": "https://raw.githubusercontent.com/malahx/QuickMods/master/plugin_template/swinfo.json",
