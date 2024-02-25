@@ -22,6 +22,7 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
         _mods.Add(new Scroll(new ScrollConfiguration(Config)));
         _mods.Add(new PrecisionControl(new PrecisionControlConfiguration(Config)));
         _mods.Add(new Pause(new PauseConfiguration(Config)));
+        _mods.Add(new Brake(new BrakeConfiguration(Config)));
     }
 
     public override void OnInitialized()

@@ -29,12 +29,13 @@ For more information, please refer to <http://unlicense.org/>
 
 ### What is it?
 
-QuickMods are very small plugins which add a small feature.
+QuickMods is a tiny plugin that adds a few small features.
 
 Features: 
+* Brake: automatic brake vessel at load.
 * Pause: pause the game when you escape it.
 * PrecisionControl: force precision control at flight loading, it also adds notification when you toggle precision control mode.
-* Revert: disable revert when you pass the atmosphere.
+* Revert: lost revert when you pass the atmosphere.
 * Scroll: scroll the R&D view when click mouse.
 * StopWarp: stop warp when vessel situation change.
 * VesselNames: add a new vessel name when you create a new vessel in the VAB.
