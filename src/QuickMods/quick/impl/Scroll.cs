@@ -1,5 +1,4 @@
 using KSP.Game;
-using QuickMods.configuration;
 using QuickMods.configuration.impl;
 using UnityEngine;
 

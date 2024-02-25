@@ -1,6 +1,5 @@
 using KSP.Game;
 using KSP.Messages;
-using QuickMods.configuration;
 using QuickMods.configuration.impl;
 using static KSP.Sim.impl.VesselSituations;
 
@@ -31,7 +30,7 @@ public class Revert(RevertConfiguration config) : ModsBase(config)
         Game.stateRevTracker._saveGameData = null;
         Game.stateRevTracker._lastLaunchedAssemblyName = null;
         Game.stateRevTracker._lastVesselCreatedName = null;
-        
+
         var notificationData = new NotificationData
         {
             Tier = NotificationTier.Passive,
