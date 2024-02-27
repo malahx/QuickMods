@@ -1,6 +1,7 @@
 Key,Type,Description,English,French
 QuickMods/StopWarp/Notifications/VesselSituationChange/Primary,Text,,Stop Warp: vessel's situation changed,Stop Warp : La situation du vaisseau à changé
-QuickMods/QuickRevert/Notifications/LostRevert/Primary,Text,,Lost Revert,Revert perdu
+QuickMods/Revert/Notifications/LostRevert/Primary,Text,,Lost Revert,Revert perdu
 QuickMods/PrecisionControl/Notifications/Primary,Text,,Precision control mode: {0},Mode précis des contrôles : {0}
-QuickMods/PrecisionControl/Notifications/Primary/Activated,Text,,ACTIVATED,ACTIVÉ
-QuickMods/PrecisionControl/Notifications/Primary/Deactivated,Text,,DEACTIVATED,DÉSACTIVÉ
+QuickMods/Common/Activated,Text,,ACTIVATED,ACTIVÉ
+QuickMods/Common/Deactivated,Text,,DEACTIVATED,DÉSACTIVÉ
+QuickMods/Brake/Notifications/Primary,Text,,Brakes: {0},Freins : {0}

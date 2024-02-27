@@ -4,32 +4,39 @@ namespace QuickMods.configuration.impl;
 
 public class BrakeConfiguration(ConfigFile config) : ConfigurationBase("QuickBrake")
 {
-    private ConfigEntry<bool> _enableBrakeAtLaunchPad;
-    private ConfigEntry<bool> _enableBrakeAtRunway;
-    private ConfigEntry<bool> _enableBrakeWhenControlLost;
-    private ConfigEntry<bool> _enableUnBrakeAtLaunch;
-    private ConfigEntry<bool> _alwaysBrakeLandedRover;
-    private ConfigEntry<bool> _alwaysBrakeLandedPlane;
-    private ConfigEntry<bool> _alwaysBrakeLandedVessel;
+    private ConfigEntry<ToggleBrakeEnum> _toggleBrake;
+    private ConfigEntry<bool> _unBrakeAtLaunch;
+    private ConfigEntry<bool> _brakeWhenControlLost;
+    private ConfigEntry<bool> _brakePreLaunchAtLoad;
+    private ConfigEntry<bool> _brakeLandedRoverAtLoad;
+    private ConfigEntry<bool> _brakeLandedPlaneAtLoad;
+    private ConfigEntry<bool> _brakeLandedVesselAtLoad;
 
-    public bool EnableBrakeAtLaunchPad() => _enableBrakeAtLaunchPad.Value;
-    public bool EnableBrakeAtRunway() => _enableBrakeAtRunway.Value;
-    public bool EnableBrakeWhenControlLost() => _enableBrakeWhenControlLost.Value;
-    public bool EnableUnBrakeAtLaunch() => _enableUnBrakeAtLaunch.Value;
-    public bool AlwaysBrakeLandedRover() => _alwaysBrakeLandedRover.Value;
-    public bool AlwaysBrakeLandedPlane() => _alwaysBrakeLandedPlane.Value;
-    public bool AlwaysBrakeLandedVessel() => _alwaysBrakeLandedVessel.Value;
+    public ToggleBrakeEnum ToggleBrake() => _toggleBrake.Value;
+    public bool UnBrakeAtLaunch() => _unBrakeAtLaunch.Value;
+    public bool BrakeWhenControlLost() => _brakeWhenControlLost.Value;
+    public bool BrakePreLaunchAtLoad() => _brakePreLaunchAtLoad.Value;
+    public bool BrakeLandedRoverAtLoad() => _brakeLandedRoverAtLoad.Value;
+    public bool BrakeLandedPlaneAtLoad() => _brakeLandedPlaneAtLoad.Value;
+    public bool BrakeLandedVesselAtLoad() => _brakeLandedVesselAtLoad.Value;
 
     public override void Init()
     {
         base.Init();
 
-        _enableBrakeAtLaunchPad = config.Bind("QuickMods/Brake", "EnableBrakeAtLaunchPad", false, "Enable or disable brake at launchpad at load");
-        _enableBrakeAtRunway = config.Bind("QuickMods/Brake", "EnableBrakeAtRunway", false, "Enable or disable brake at runway at load");
-        _enableBrakeWhenControlLost = config.Bind("QuickMods/Brake", "EnableBrakeWhenControlLost", false, "Enable or disable brake when control is lost");
-        _enableUnBrakeAtLaunch = config.Bind("QuickMods/Brake", "EnableUnBrakeAtLaunch", false, "Enable or disable un brake at launch");
-        _alwaysBrakeLandedRover = config.Bind("QuickMods/Brake", "AlwaysBrakeLandedRover", false, "Enable or disable brake landed rover at load");
-        _alwaysBrakeLandedPlane = config.Bind("QuickMods/Brake", "AlwaysBrakeLandedPlane", false, "Enable or disable brake landed plane at load");
-        _alwaysBrakeLandedVessel = config.Bind("QuickMods/Brake", "AlwaysBrakeLandedVessel", false, "Enable or disable brake landed vessel at load");
+        _toggleBrake = config.Bind("QuickMods/Brake", "ToggleBrake", ToggleBrakeEnum.StockBrake, "StockBrake is no toggle feature like in Stock KSP, Modifier enable toggle only when press modifier+brake key");
+        _unBrakeAtLaunch = config.Bind("QuickMods/Brake", "UnBrakeAtLaunch", false, "Enable or disable un brake after launch");
+        _brakeWhenControlLost = config.Bind("QuickMods/Brake", "BrakeWhenControlLost", false, "Enable or disable brake when control is lost");
+        _brakePreLaunchAtLoad = config.Bind("QuickMods/Brake", "BrakePreLaunchAtLoad", false, "Enable or disable brake before launch");
+        _brakeLandedRoverAtLoad = config.Bind("QuickMods/Brake", "BrakeLandedRoverAtLoad", false, "Enable or disable brake landed rover at load");
+        _brakeLandedPlaneAtLoad = config.Bind("QuickMods/Brake", "BrakeLandedPlaneAtLoad", false, "Enable or disable brake landed plane at load");
+        _brakeLandedVesselAtLoad = config.Bind("QuickMods/Brake", "BrakeLandedVesselAtLoad", false, "Enable or disable brake landed vessel at load");
+    }
+
+    public enum ToggleBrakeEnum
+    {
+        Modifier,
+        Toggle,
+        StockBrake
     }
 }

@@ -32,7 +32,7 @@ For more information, please refer to <http://unlicense.org/>
 QuickMods is a tiny plugin that adds a few small features.
 
 Features: 
-* Brake: automatic brake vessel at load.
+* Brake: automatic brake vessel at load/control lost and toggle brake with key.
 * Pause: pause the game when you escape it.
 * PrecisionControl: force precision control at flight loading, it also adds notification when you toggle precision control mode.
 * Revert: lost revert when you pass the atmosphere.

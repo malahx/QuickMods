@@ -40,7 +40,7 @@ public class PrecisionControl(PrecisionControlConfiguration config) : ModsBase(c
     private void SendNotification()
     {
         var isPrecisionMode = Game.ViewController.flightInputHandler.IsPrecisionMode;
-        var isPrecisionModeText = LocalizationManager.GetTranslation(isPrecisionMode ? "QuickMods/PrecisionControl/Notifications/Primary/Activated" : "QuickMods/PrecisionControl/Notifications/Primary/Deactivated");
+        var isPrecisionModeText = LocalizationManager.GetTranslation(isPrecisionMode ? "QuickMods/Common/Activated" : "QuickMods/Common/Deactivated");
         var notificationData = new NotificationData
         {
             Tier = NotificationTier.Passive,
