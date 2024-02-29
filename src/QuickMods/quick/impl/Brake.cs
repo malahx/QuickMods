@@ -1,6 +1,7 @@
 using System.Collections;
 using I2.Loc;
 using KSP.Game;
+using KSP.Input;
 using KSP.Messages;
 using KSP.OAB;
 using KSP.Sim;
@@ -45,10 +46,13 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
     private void OnFlightViewEnteredMessage(MessageCenterMessage msg)
     {
         // Override default brakes
-        Game.Input.m_Flight_WheelBrakes.started -= Game.ViewController.flightInputHandler._inputDefinition.OnWheelBrakes;
-        Game.Input.m_Flight_WheelBrakes.performed -= Game.ViewController.flightInputHandler._inputDefinition.OnWheelBrakes;
-        Game.Input.m_Flight_WheelBrakes.canceled -= Game.ViewController.flightInputHandler._inputDefinition.OnWheelBrakes;
-        Game.Input.m_Flight_WheelBrakes.performed += OnBrakes;
+        if (Game.InputManager.TryGetInputDefinition<FlightInputDefinition>(out var definition))
+        {
+            Game.Input.Flight.WheelBrakes.started -= definition.OnWheelBrakes;
+            Game.Input.Flight.WheelBrakes.performed -= definition.OnWheelBrakes;
+            Game.Input.Flight.WheelBrakes.canceled -= definition.OnWheelBrakes;
+            Game.Input.Flight.WheelBrakes.performed += OnBrakes;
+        }
 
         // Activate brake at load
         if (HasBrakeEnabled())
@@ -63,8 +67,8 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
         {
             // Toggle brake with modifier
             case BrakeConfiguration.ToggleBrakeEnum.Modifier:
-                if (context.performed && Game.Input.m_Flight_TrimModifier.IsPressed()) vessel.SetActionGroup(KSPActionGroup.Brakes, vessel.GetActionGroupState(KSPActionGroup.Brakes) != KSPActionGroupState.True);
-                if (!Game.Input.m_Flight_TrimModifier.IsPressed()) vessel.SetActionGroup(KSPActionGroup.Brakes, context.performed);
+                if (context.performed && Game.Input.Flight.TrimModifier.IsPressed()) vessel.SetActionGroup(KSPActionGroup.Brakes, vessel.GetActionGroupState(KSPActionGroup.Brakes) != KSPActionGroupState.True);
+                if (!Game.Input.Flight.TrimModifier.IsPressed()) vessel.SetActionGroup(KSPActionGroup.Brakes, context.performed);
                 break;
 
             // Toggle brake without modifier
@@ -91,7 +95,6 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
 
         while (!Game.ViewController.TryGetActiveSimVessel(out vessel))
         {
-            Logger.LogDebug(i);
             i++;
             if (i == 10) yield break;
             yield return new WaitForSecondsRealtime(1);
