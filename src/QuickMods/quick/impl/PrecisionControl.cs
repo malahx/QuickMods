@@ -1,5 +1,3 @@
-using I2.Loc;
-using KSP.Game;
 using KSP.Messages;
 using QuickMods.configuration.impl;
 using UnityEngine.InputSystem;
@@ -27,26 +25,13 @@ public class PrecisionControl(PrecisionControlConfiguration config) : ModsBase(c
         if (!config.Enabled()) return;
 
         Game.ViewController.flightInputHandler._isPrecisionMode = true;
-        SendNotification();
+        SendNotification("QuickMods/PrecisionControl/Notifications/Primary", Game.ViewController.flightInputHandler.IsPrecisionMode);
 
         Logger.LogDebug("Set PrecisionControl to true");
     }
 
     private void OnActivatePrecisionMode(InputAction.CallbackContext context)
     {
-        SendNotification();
-    }
-
-    private void SendNotification()
-    {
-        var isPrecisionMode = Game.ViewController.flightInputHandler.IsPrecisionMode;
-        var isPrecisionModeText = LocalizationManager.GetTranslation(isPrecisionMode ? "QuickMods/Common/Activated" : "QuickMods/Common/Deactivated");
-        var notificationData = new NotificationData
-        {
-            Tier = NotificationTier.Passive,
-            Primary = new NotificationLineItemData { LocKey = "QuickMods/PrecisionControl/Notifications/Primary", ObjectParams = [isPrecisionModeText] },
-            Importance = NotificationImportance.Low
-        };
-        Game.Notifications.ProcessNotification(notificationData);
+        SendNotification("QuickMods/PrecisionControl/Notifications/Primary", Game.ViewController.flightInputHandler.IsPrecisionMode);
     }
 }

@@ -51,8 +51,12 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
             Game.Input.Flight.WheelBrakes.started -= definition.OnWheelBrakes;
             Game.Input.Flight.WheelBrakes.performed -= definition.OnWheelBrakes;
             Game.Input.Flight.WheelBrakes.canceled -= definition.OnWheelBrakes;
+            Game.Input.Flight.WheelBrakes.started += OnBrakes;
             Game.Input.Flight.WheelBrakes.performed += OnBrakes;
+            Game.Input.Flight.WheelBrakes.canceled += OnBrakes;
         }
+        else
+            Logger.LogWarning("Can't override wheel brakes button.");
 
         // Activate brake at load
         if (HasBrakeEnabled())
@@ -79,7 +83,10 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
 
             // Stock brake
             case BrakeConfiguration.ToggleBrakeEnum.StockBrake:
-                vessel.SetActionGroup(KSPActionGroup.Brakes, context.performed);
+                if (Game.InputManager.TryGetInputDefinition<FlightInputDefinition>(out var definition))
+                    definition.OnWheelBrakes(context);
+                else
+                    vessel.SetActionGroup(KSPActionGroup.Brakes, context.performed);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
@@ -122,19 +129,8 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
     private void SetBrake(VesselComponent vessel, bool state)
     {
         vessel.SetActionGroup(KSPActionGroup.Brakes, state);
-        SendNotification(state);
+        SendNotification("QuickMods/Brake/Notifications/Primary", state);
+        
         Logger.LogDebug(state ? "Brake" : "UnBrake");
-    }
-
-    private void SendNotification(bool brake)
-    {
-        var isBrakeText = LocalizationManager.GetTranslation(brake ? "QuickMods/Common/Activated" : "QuickMods/Common/Deactivated");
-        var notificationData = new NotificationData
-        {
-            Tier = NotificationTier.Passive,
-            Primary = new NotificationLineItemData { LocKey = "QuickMods/Brake/Notifications/Primary", ObjectParams = [isBrakeText] },
-            Importance = NotificationImportance.Low
-        };
-        Game.Notifications.ProcessNotification(notificationData);
     }
 }
