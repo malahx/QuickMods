@@ -1,4 +1,3 @@
-using KSP.Game;
 using KSP.Messages;
 using QuickMods.configuration.impl;
 using static KSP.Sim.impl.VesselSituations;
@@ -31,13 +30,7 @@ public class Revert(RevertConfiguration config) : ModsBase(config)
         Game.stateRevTracker._lastLaunchedAssemblyName = null;
         Game.stateRevTracker._lastVesselCreatedName = null;
 
-        var notificationData = new NotificationData
-        {
-            Tier = NotificationTier.Passive,
-            Primary = new NotificationLineItemData { LocKey = "QuickMods/Revert/Notifications/LostRevert/Primary" },
-            Importance = NotificationImportance.Low
-        };
-        Game.Notifications.ProcessNotification(notificationData);
+        SendNotification("QuickMods/Revert/Notifications/LostRevert/Primary", true);
 
         Logger.LogDebug("Lost.");
     }

@@ -1,4 +1,3 @@
-using KSP.Game;
 using KSP.Input;
 using KSP.Messages;
 using KSP.Sim.impl;
@@ -36,13 +35,7 @@ public class StopWarp(StopWarpConfiguration config) : ModsBase(config)
 
         Game.ViewController.TimeWarp.StopTimeWarp(true);
 
-        var notificationData = new NotificationData
-        {
-            Tier = NotificationTier.Passive,
-            Primary = new NotificationLineItemData { LocKey = "QuickMods/StopWarp/Notifications/VesselSituationChange/Primary" },
-            Importance = NotificationImportance.Low
-        };
-        Game.Notifications.ProcessNotification(notificationData);
+        SendNotification("QuickMods/StopWarp/Notifications/VesselSituationChange/Primary", true);
 
         Logger.LogDebug($"Stop wrap, VesselName: {message.Vessel.Name}, isActiveVessel: {Game.ViewController.IsActiveVessel(message.Vessel)}, Old Situation: {message.OldSituation}, New Situation; {message.NewSituation}");
     }
