@@ -1,6 +1,7 @@
 using KSP.Game;
 using KSP.Input;
 using KSP.Messages;
+using KSP.Sim.impl;
 using QuickMods.configuration.impl;
 using UnityEngine.InputSystem;
 
@@ -31,7 +32,7 @@ public class StopWarp(StopWarpConfiguration config) : ModsBase(config)
 
     private void OnVesselSituationChange(MessageCenterMessage msg)
     {
-        if (!config.VesselSituationChange() || msg is not VesselSituationChangedMessage message || !Game.ViewController.TimeWarp.IsWarping) return;
+        if (!config.VesselSituationChange() || msg is not VesselSituationChangedMessage message || message.NewSituation == VesselSituations.Landed || message.OldSituation == VesselSituations.Landed || !Game.ViewController.TimeWarp.IsWarping) return;
 
         Game.ViewController.TimeWarp.StopTimeWarp(true);
 
@@ -48,7 +49,7 @@ public class StopWarp(StopWarpConfiguration config) : ModsBase(config)
 
     private void OnTimeWarpDecrease(InputAction.CallbackContext context)
     {
-        if (!config.DontPauseWhenDecreaseWarp() && Game.InputManager.TryGetInputDefinition<GlobalInputDefinition>(out var definition)) 
+        if (!config.DontPauseWhenDecreaseWarp() && Game.InputManager.TryGetInputDefinition<GlobalInputDefinition>(out var definition))
             definition.OnTimeWarpDecrease(context);
 
         var num = Game.ViewController.TimeWarp.SetRateIndex(Game.ViewController.TimeWarp.CurrentRateIndex - 1, false) ? 1 : 0;
