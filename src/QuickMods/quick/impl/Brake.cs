@@ -83,10 +83,7 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
 
             // Stock brake
             case BrakeConfiguration.ToggleBrakeEnum.StockBrake:
-                if (Game.InputManager.TryGetInputDefinition<FlightInputDefinition>(out var definition))
-                    definition.OnWheelBrakes(context);
-                else
-                    vessel.SetActionGroup(KSPActionGroup.Brakes, context.performed);
+                vessel.SetActionGroup(KSPActionGroup.Brakes, context.performed);
                 break;
             default:
                 throw new ArgumentOutOfRangeException();
