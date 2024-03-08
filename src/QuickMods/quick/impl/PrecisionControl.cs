@@ -26,7 +26,7 @@ public class PrecisionControl(PrecisionControlConfiguration config) : ModsBase(c
     {
         base.Start();
 
-        MessageCenter.Subscribe<GameStateChangedMessage>(OnGameStateLeftMessage);
+        MessageCenter.Subscribe<GameStateChangedMessage>(OnGameStateChangedMessage);
         Game.Input.Flight.TogglePrecisionMode.performed += OnActivatePrecisionMode;
     }
 
@@ -34,11 +34,11 @@ public class PrecisionControl(PrecisionControlConfiguration config) : ModsBase(c
     {
         base.OnDestroy();
 
-        MessageCenter.Unsubscribe<GameStateChangedMessage>(OnGameStateLeftMessage);
+        MessageCenter.Unsubscribe<GameStateChangedMessage>(OnGameStateChangedMessage);
         Game.Input.Flight.TogglePrecisionMode.performed -= OnActivatePrecisionMode;
     }
 
-    private void OnGameStateLeftMessage(MessageCenterMessage msg)
+    private void OnGameStateChangedMessage(MessageCenterMessage msg)
     {
         if (!config.Enabled() || !PrecisionControlHasChanged || msg is not GameStateChangedMessage { CurrentState: GameState.FlightView }) return;
 
