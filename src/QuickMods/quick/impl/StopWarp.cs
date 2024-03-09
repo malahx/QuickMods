@@ -1,8 +1,6 @@
-using KSP.Input;
 using KSP.Messages;
 using KSP.Sim.impl;
 using QuickMods.configuration.impl;
-using UnityEngine.InputSystem;
 
 namespace QuickMods.quick.impl;
 
@@ -11,21 +9,14 @@ public class StopWarp(StopWarpConfiguration config) : ModsBase(config)
     public override void Start()
     {
         base.Start();
-        MessageCenter.Subscribe<VesselSituationChangedMessage>(OnVesselSituationChange);
 
-        // Reset default TimeWarp key
-        if (Game.InputManager.TryGetInputDefinition<GlobalInputDefinition>(out var definition))
-        {
-            Game.Input.Global.TimeWarpDecrease.started -= definition.OnTimeWarpDecrease;
-            Game.Input.Global.TimeWarpDecrease.performed -= definition.OnTimeWarpDecrease;
-            Game.Input.Global.TimeWarpDecrease.canceled -= definition.OnTimeWarpDecrease;
-            Game.Input.Global.TimeWarpDecrease.performed += OnTimeWarpDecrease;
-        }
+        MessageCenter.Subscribe<VesselSituationChangedMessage>(OnVesselSituationChange);
     }
 
     public override void OnDestroy()
     {
         base.OnDestroy();
+
         MessageCenter.Unsubscribe<VesselSituationChangedMessage>(OnVesselSituationChange);
     }
 
@@ -38,16 +29,5 @@ public class StopWarp(StopWarpConfiguration config) : ModsBase(config)
         SendNotification("QuickMods/StopWarp/Notifications/VesselSituationChange/Primary", true);
 
         Logger.LogDebug($"Stop wrap, VesselName: {message.Vessel.Name}, isActiveVessel: {Game.ViewController.IsActiveVessel(message.Vessel)}, Old Situation: {message.OldSituation}, New Situation; {message.NewSituation}");
-    }
-
-    private void OnTimeWarpDecrease(InputAction.CallbackContext context)
-    {
-        if (!config.DontPauseWhenDecreaseWarp() && Game.InputManager.TryGetInputDefinition<GlobalInputDefinition>(out var definition))
-            definition.OnTimeWarpDecrease(context);
-
-        var num = Game.ViewController.TimeWarp.SetRateIndex(Game.ViewController.TimeWarp.CurrentRateIndex - 1, false) ? 1 : 0;
-        if (num != 0)
-            Game.ViewController.TimeWarp.CancelAutoWarp();
-        Logger.LogDebug("OnTimeWarpDecrease");
     }
 }
