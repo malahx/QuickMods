@@ -1,10 +1,14 @@
 using System.Collections;
+using I2.Loc;
+using KSP.Game;
+using KSP.Input;
 using KSP.Messages;
 using KSP.OAB;
 using KSP.Sim;
 using KSP.Sim.impl;
 using QuickMods.configuration.impl;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 namespace QuickMods.quick.impl;
 
@@ -26,7 +30,6 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
     public override void Start()
     {
         base.Start();
-
         MessageCenter.Subscribe<FlightViewEnteredMessage>(OnFlightViewEnteredMessage);
         MessageCenter.Subscribe<VesselLaunchedMessage>(OnVesselLaunchedMessage);
         MessageCenter.Subscribe<VesselLostControlMessage>(OnVesselLostControlMessage);
@@ -35,23 +38,58 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
     public override void OnDestroy()
     {
         base.OnDestroy();
-
         MessageCenter.Unsubscribe<FlightViewEnteredMessage>(OnFlightViewEnteredMessage);
         MessageCenter.Unsubscribe<VesselLaunchedMessage>(OnVesselLaunchedMessage);
         MessageCenter.Unsubscribe<VesselLostControlMessage>(OnVesselLostControlMessage);
     }
 
-    public override void Update()
-    {
-        if (config.ToggleBrakeKey().IsPressed() && Game.ViewController.TryGetActiveSimVessel(out var vessel))
-            vessel.SetActionGroup(KSPActionGroup.Brakes, vessel.GetActionGroupState(KSPActionGroup.Brakes) != KSPActionGroupState.True);
-    }
-
     private void OnFlightViewEnteredMessage(MessageCenterMessage msg)
     {
+        // Override default brakes
+        if (Game.InputManager.TryGetInputDefinition<FlightInputDefinition>(out var definition))
+        {
+            Game.Input.Flight.WheelBrakes.started -= definition.OnWheelBrakes;
+            Game.Input.Flight.WheelBrakes.performed -= definition.OnWheelBrakes;
+            Game.Input.Flight.WheelBrakes.canceled -= definition.OnWheelBrakes;
+            Game.Input.Flight.WheelBrakes.started += OnBrakes;
+            Game.Input.Flight.WheelBrakes.performed += OnBrakes;
+            Game.Input.Flight.WheelBrakes.canceled += OnBrakes;
+        }
+        else
+            Logger.LogWarning("Can't override wheel brakes button.");
+
         // Activate brake at load
         if (HasBrakeEnabled())
             CoroutineUtil.Instance.StartCoroutine(ActivateBrakeWhenVesselIsLoaded());
+    }
+
+    private void OnBrakes(InputAction.CallbackContext context)
+    {
+        if (Game.GlobalGameState.GetState() != GameState.FlightView || !Game.ViewController.TryGetActiveSimVessel(out var vessel)) return;
+
+        switch (config.ToggleBrake())
+        {
+            // Toggle brake with modifier
+            case BrakeConfiguration.ToggleBrakeEnum.Modifier:
+                if (context.performed && Game.Input.Flight.TrimModifier.IsPressed()) vessel.SetActionGroup(KSPActionGroup.Brakes, vessel.GetActionGroupState(KSPActionGroup.Brakes) != KSPActionGroupState.True);
+                if (!Game.Input.Flight.TrimModifier.IsPressed()) vessel.SetActionGroup(KSPActionGroup.Brakes, context.performed);
+                break;
+
+            // Toggle brake without modifier
+            case BrakeConfiguration.ToggleBrakeEnum.Toggle:
+                if (context.performed)
+                    vessel.SetActionGroup(KSPActionGroup.Brakes, vessel.GetActionGroupState(KSPActionGroup.Brakes) != KSPActionGroupState.True);
+                break;
+
+            // Stock brake
+            case BrakeConfiguration.ToggleBrakeEnum.StockBrake:
+                vessel.SetActionGroup(KSPActionGroup.Brakes, context.performed);
+                break;
+            default:
+                throw new ArgumentOutOfRangeException();
+        }
+
+        Logger.LogDebug($"OnBrakes: {vessel.GetActionGroupState(KSPActionGroup.Brakes)}");
     }
 
     private IEnumerator ActivateBrakeWhenVesselIsLoaded()
@@ -89,7 +127,7 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
     {
         vessel.SetActionGroup(KSPActionGroup.Brakes, state);
         SendNotification("QuickMods/Brake/Notifications/Primary", state);
-
+        
         Logger.LogDebug(state ? "Brake" : "UnBrake");
     }
 }
