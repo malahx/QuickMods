@@ -11,10 +11,10 @@ public class PrecisionControl(PrecisionControlConfiguration config) : ModsBase(c
 
     private bool CurrentPrecisionMode
     {
-        get => Game.ViewController.flightInputHandler.IsPrecisionMode;
+        get => Game != null && Game.ViewController != null && Game.ViewController.flightInputHandler.IsPrecisionMode;
         set
         {
-            if (Game.ViewController.flightInputHandler.IsPrecisionMode != value)
+            if (Game != null && Game.ViewController != null && Game.ViewController.flightInputHandler.IsPrecisionMode != value)
                 Game.ViewController.flightInputHandler.TogglePrecisionMode();
         }
     }
