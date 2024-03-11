@@ -1,6 +1,7 @@
 using KSP.Input;
 using KSP.Messages;
 using QuickMods.configuration.impl;
+using UnityEngine;
 using UnityEngine.InputSystem;
 
 namespace QuickMods.quick.impl;
@@ -34,7 +35,7 @@ public class Pause(PauseConfiguration config) : ModsBase(config)
 
     public override void Update()
     {
-        if (config.PauseKey().IsPressed())
+        if (Input.GetKeyDown(config.PauseKey()))
             ForcePause(!Game.ViewController.IsPaused);
     }
 
