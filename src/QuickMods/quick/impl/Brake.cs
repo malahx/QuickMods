@@ -1,5 +1,4 @@
 using System.Collections;
-using I2.Loc;
 using KSP.Game;
 using KSP.Input;
 using KSP.Messages;
@@ -30,6 +29,7 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
     public override void Start()
     {
         base.Start();
+
         MessageCenter.Subscribe<FlightViewEnteredMessage>(OnFlightViewEnteredMessage);
         MessageCenter.Subscribe<VesselLaunchedMessage>(OnVesselLaunchedMessage);
         MessageCenter.Subscribe<VesselLostControlMessage>(OnVesselLostControlMessage);
@@ -38,6 +38,7 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
     public override void OnDestroy()
     {
         base.OnDestroy();
+
         MessageCenter.Unsubscribe<FlightViewEnteredMessage>(OnFlightViewEnteredMessage);
         MessageCenter.Unsubscribe<VesselLaunchedMessage>(OnVesselLaunchedMessage);
         MessageCenter.Unsubscribe<VesselLostControlMessage>(OnVesselLostControlMessage);
@@ -71,7 +72,7 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
         {
             // Toggle brake with modifier
             case BrakeConfiguration.ToggleBrakeEnum.Modifier:
-                if (context.performed && Game.Input.Flight.TrimModifier.IsPressed()) vessel.SetActionGroup(KSPActionGroup.Brakes, vessel.GetActionGroupState(KSPActionGroup.Brakes) != KSPActionGroupState.True);
+                if (context.performed && Input.GetKey(config.ModifierBrakeKey())) vessel.SetActionGroup(KSPActionGroup.Brakes, vessel.GetActionGroupState(KSPActionGroup.Brakes) != KSPActionGroupState.True);
                 if (!Game.Input.Flight.TrimModifier.IsPressed()) vessel.SetActionGroup(KSPActionGroup.Brakes, context.performed);
                 break;
 
@@ -127,7 +128,7 @@ public class Brake(BrakeConfiguration config) : ModsBase(config)
     {
         vessel.SetActionGroup(KSPActionGroup.Brakes, state);
         SendNotification("QuickMods/Brake/Notifications/Primary", state);
-        
+
         Logger.LogDebug(state ? "Brake" : "UnBrake");
     }
 }
