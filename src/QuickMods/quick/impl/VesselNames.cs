@@ -1,7 +1,6 @@
 using HoudiniEngineUnity;
 using KSP.Messages;
 using KSP.OAB;
-using QuickMods.configuration;
 using QuickMods.configuration.impl;
 
 namespace QuickMods.quick.impl;
@@ -30,7 +29,7 @@ public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
         Rename(names.Item1, RetrieveRandomName(names.Item2));
     }
 
-    private (string, string[]) FindNames(AssemblyPartTypeFilter partType)
+    private (string, List<string>) FindNames(AssemblyPartTypeFilter partType)
     {
         if (config.CustomVesselName())
             return ("CustomName", config.CustomNames);
@@ -38,7 +37,7 @@ public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
         return FindNamesFromType(partType) ?? FindNamesFromParts(Game.OAB.Current.Stats.mainAssembly.Parts);
     }
 
-    private (string, string[])? FindNamesFromType(AssemblyPartTypeFilter partType)
+    private (string, List<string>)? FindNamesFromType(AssemblyPartTypeFilter partType)
     {
         return partType switch
         {
@@ -49,7 +48,7 @@ public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
         };
     }
 
-    private (string, string[]) FindNamesFromParts(IReadOnlyCollection<IObjectAssemblyPart> parts)
+    private (string, List<string>) FindNamesFromParts(IReadOnlyCollection<IObjectAssemblyPart> parts)
     {
         var part = RetrieverParent(parts);
 
@@ -64,14 +63,16 @@ public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
                parts.First();
     }
 
-    private (string, string[]) FindNamesFromPart(IObjectAssemblyPart part)
+    private (string, List<string>) FindNamesFromPart(IObjectAssemblyPart part)
     {
         return part.Category == PartCategories.Pods ? part.AvailablePart.CrewCapacity > 0 ? ("Crewed", config.CrewedNames) : ("Probe", config.ProbeNames) : ("Launcher", config.LauncherNames);
     }
 
-    private static string RetrieveRandomName(IReadOnlyList<string> names)
+    private string RetrieveRandomName(IReadOnlyList<string> names)
     {
-        return names.Count == 0 ? null : names[new Random().Next(0, names.Count - 1)];
+        return names.Count == 0 ? null
+            : config.SortNamePicker() == VesselNamesConfiguration.EnumSortNamePicker.Random ? names[new Random().Next(0, names.Count - 1)]
+            : names[0];
     }
 
     private void Rename(string vesselType, string name)

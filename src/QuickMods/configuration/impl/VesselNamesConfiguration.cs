@@ -8,6 +8,7 @@ public class VesselNamesConfiguration(ConfigFile config) : ConfigurationBase("Qu
 {
     private ConfigEntry<bool> _automaticVesselName;
     private ConfigEntry<bool> _customVesselName;
+    private ConfigEntry<EnumSortNamePicker> _sortNamePicker;
 
     public bool AutomaticVesselName()
     {
@@ -19,46 +20,69 @@ public class VesselNamesConfiguration(ConfigFile config) : ConfigurationBase("Qu
         return _customVesselName.Value;
     }
 
-    public string[] CrewedNames { get; private set; }
-    public string[] LauncherNames { get; private set; }
-    public string[] ProbeNames { get; private set; }
-    public string[] RoverNames { get; private set; }
-    public string[] AirPlaneNames { get; private set; }
-    public string[] SpacePlaneNames { get; private set; }
-    public string[] CustomNames { get; private set; }
+    public EnumSortNamePicker SortNamePicker()
+    {
+        return _sortNamePicker.Value;
+    }
 
-    private const string CrewedNamesFile = "/VesselNames/CrewedNames.txt";
-    private const string LauncherNamesFile = "/VesselNames/LauncherNames.txt";
-    private const string ProbeNamesFile = "/VesselNames/ProbeNames.txt";
-    private const string RoverNamesFile = "/VesselNames/RoverNames.txt";
-    private const string AirPlaneFile = "/VesselNames/AirPlaneNames.txt";
-    private const string SpacePlaneFile = "/VesselNames/SpacePlaneNames.txt";
-    private const string CustomFile = "/VesselNames/CustomNames.txt";
+    public readonly List<string> CrewedNames = [];
+    public readonly List<string> LauncherNames = [];
+    public readonly List<string> ProbeNames = [];
+    public readonly List<string> RoverNames = [];
+    public readonly List<string> AirPlaneNames = [];
+    public readonly List<string> SpacePlaneNames = [];
+    public readonly List<string> CustomNames = [];
+
+    private const string FolderVesselNames = "VesselNames";
+    private const string DefaultFileName = "default_";
+
+    private const string CrewedNamesFile = "CrewedNames.txt";
+    private const string LauncherNamesFile = "LauncherNames.txt";
+    private const string ProbeNamesFile = "ProbeNames.txt";
+    private const string RoverNamesFile = "RoverNames.txt";
+    private const string AirPlaneFile = "AirPlaneNames.txt";
+    private const string SpacePlaneFile = "SpacePlaneNames.txt";
+    private const string CustomFile = "CustomNames.txt";
 
     public override void Init()
     {
         base.Init();
 
         _automaticVesselName = config.Bind("QuickMods/VesselNames", "AutomaticVesselName", false, "Enable or disable the automatic vessel name");
+        _sortNamePicker = config.Bind("QuickMods/VesselNames", "SortNamePicker", EnumSortNamePicker.Random, "Chose the method to pick the name");
         _customVesselName = config.Bind("QuickMods/VesselNames", "CustomVesselName", false, $"Enable or disable the custom vessel name, you need to create the file in {CustomFile}");
+
+        var files = new Dictionary<string, List<string>> { { CustomFile, CustomNames }, { CrewedNamesFile, CrewedNames }, { LauncherNamesFile, LauncherNames }, { ProbeNamesFile, ProbeNames }, { RoverNamesFile, RoverNames }, { AirPlaneFile, AirPlaneNames }, { SpacePlaneFile, SpacePlaneNames } };
 
         try
         {
             var path = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
             var completePath = $"{path?.Replace(@"\", "/")}";
+            foreach (var file in files)
+            {
+                var filePath = $"{completePath}/{FolderVesselNames}/{CrewedNamesFile}";
+                var defaultFilePath = $"{completePath}/{FolderVesselNames}/{DefaultFileName}{CrewedNamesFile}";
 
-            CrewedNames = File.Exists($"{completePath}{CrewedNamesFile}") ? File.ReadAllLines($"{completePath}{CrewedNamesFile}") : [];
-            LauncherNames = File.Exists($"{completePath}{LauncherNamesFile}") ? File.ReadAllLines($"{completePath}{LauncherNamesFile}") : [];
-            ProbeNames = File.Exists($"{completePath}{ProbeNamesFile}") ? File.ReadAllLines($"{completePath}{ProbeNamesFile}") : [];
-            RoverNames = File.Exists($"{completePath}{RoverNamesFile}") ? File.ReadAllLines($"{completePath}{RoverNamesFile}") : [];
-            AirPlaneNames = File.Exists($"{completePath}{AirPlaneFile}") ? File.ReadAllLines($"{completePath}{AirPlaneFile}") : [];
-            SpacePlaneNames = File.Exists($"{completePath}{SpacePlaneFile}") ? File.ReadAllLines($"{completePath}{SpacePlaneFile}") : [];
-            CustomNames = File.Exists($"{completePath}{CustomFile}") ? File.ReadAllLines($"{completePath}{CustomFile}") : [];
+                if (!File.Exists(filePath))
+                    if (File.Exists(defaultFilePath))
+                        File.Copy(defaultFilePath, filePath);
+                    else
+                        File.Create(filePath).Close();
+
+                if (File.Exists(filePath))
+                    file.Value.AddRange(File.ReadAllLines(filePath));
+            }
         }
         catch (Exception e)
         {
             Logger.LogError($"Vessel names could not be load: {e.Message}");
             Debug.LogException(e);
         }
+    }
+
+    public enum EnumSortNamePicker
+    {
+        Line,
+        Random
     }
 }
