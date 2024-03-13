@@ -15,5 +15,5 @@ public abstract class ConfigurationBase(string name)
         Logger.LogDebug("Configuration initialized");
     }
 
-    protected readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource(name + $"[{MyPluginInfo.PLUGIN_VERSION}]");
+    protected readonly ManualLogSource Logger = BepInEx.Logging.Logger.CreateLogSource(name + $"Configuration[{MyPluginInfo.PLUGIN_VERSION}]");
 }

@@ -11,12 +11,14 @@ public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
     {
         base.Start();
         MessageCenter.Subscribe<FirstPartPlacedMessage>(OnFirstPartPlacedMessage);
+        MessageCenter.Subscribe<VesselSavedMessage>(OnVesselSavedMessage);
     }
 
     public override void OnDestroy()
     {
         base.OnDestroy();
         MessageCenter.Unsubscribe<FirstPartPlacedMessage>(OnFirstPartPlacedMessage);
+        MessageCenter.Unsubscribe<VesselSavedMessage>(OnVesselSavedMessage);
     }
 
     private void OnFirstPartPlacedMessage(MessageCenterMessage msg)
@@ -70,9 +72,16 @@ public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
 
     private string RetrieveRandomName(IReadOnlyList<string> names)
     {
-        return names.Count == 0 ? null
-            : config.SortNamePicker() == VesselNamesConfiguration.EnumSortNamePicker.Random ? names[new Random().Next(0, names.Count - 1)]
-            : names[0];
+        if (names.Count == 0) return null;
+        if (config.SortNamePicker() == VesselNamesConfiguration.EnumSortNamePicker.Random) return names[new Random().Next(0, names.Count - 1)];
+
+        if (config.SortNamePickerCurrentLine() > names.Count)
+        {
+            config.SortNamePickerCurrentLineReset();
+            Logger.LogDebug("Reset SortNamePickerCurrentLine");
+        }
+
+        return names[config.SortNamePickerCurrentLine() - 1];
     }
 
     private void Rename(string vesselType, string name)
@@ -84,5 +93,16 @@ public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
         Game.OAB.Current.Stats.CurrentWorkspaceDescription.SetValue("");
 
         Logger.LogDebug($"Set vessel name from {vesselType} list.");
+    }
+
+    private void OnVesselSavedMessage(MessageCenterMessage msg)
+    {
+        if (config.SortNamePicker() == VesselNamesConfiguration.EnumSortNamePicker.Random || !Game.OAB.IsLoaded) return;
+
+        //TODO detect if vessel is already saved 
+        
+        config.SortNamePickerCurrentLineNext();
+
+        Logger.LogDebug("Increase SortNamePickerCurrentLine");
     }
 }
