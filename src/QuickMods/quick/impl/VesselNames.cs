@@ -1,4 +1,5 @@
 using HoudiniEngineUnity;
+using KSP.IO;
 using KSP.Messages;
 using KSP.OAB;
 using QuickMods.configuration.impl;
@@ -10,15 +11,19 @@ public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
     public override void Start()
     {
         base.Start();
+
         MessageCenter.Subscribe<FirstPartPlacedMessage>(OnFirstPartPlacedMessage);
-        MessageCenter.Subscribe<VesselSavedMessage>(OnVesselSavedMessage);
+        MessageCenter.Subscribe<OABLoadedMessage>(OnOABLoadedMessage);
+        MessageCenter.Subscribe<OABUnloadedMessage>(OnOABUnloadedMessage);
     }
 
     public override void OnDestroy()
     {
         base.OnDestroy();
+
         MessageCenter.Unsubscribe<FirstPartPlacedMessage>(OnFirstPartPlacedMessage);
-        MessageCenter.Unsubscribe<VesselSavedMessage>(OnVesselSavedMessage);
+        MessageCenter.Unsubscribe<OABLoadedMessage>(OnOABLoadedMessage);
+        MessageCenter.Unsubscribe<OABUnloadedMessage>(OnOABUnloadedMessage);
     }
 
     private void OnFirstPartPlacedMessage(MessageCenterMessage msg)
@@ -95,14 +100,19 @@ public class VesselNames(VesselNamesConfiguration config) : ModsBase(config)
         Logger.LogDebug($"Set vessel name from {vesselType} list.");
     }
 
-    private void OnVesselSavedMessage(MessageCenterMessage msg)
-    {
-        if (config.SortNamePicker() == VesselNamesConfiguration.EnumSortNamePicker.Random || !Game.OAB.IsLoaded) return;
+    private void OnOABLoadedMessage(MessageCenterMessage msg) =>
+        Game.OAB.Current.Stats.eventsUI.OnSaveWorkspace = PrepareNextVesselName() + Game.OAB.Current.Stats.eventsUI.OnSaveWorkspace;
 
-        //TODO detect if vessel is already saved 
-        
+    private void OnOABUnloadedMessage(MessageCenterMessage msg) =>
+        Game.OAB.Current.Stats.eventsUI.OnSaveWorkspace -= PrepareNextVesselName();
+
+    private Action<string, string, string, string, bool, IOProvider.DataLocation> PrepareNextVesselName() => (filename, s1, arg3, arg4, arg5, dataLocation) =>
+    {
+        var filePath = IOProvider.JoinPath(IOProvider.PathOfDataType(dataLocation), IOProvider.CleanFilename(filename)) + ".json";
+        if (config.SortNamePicker() != VesselNamesConfiguration.EnumSortNamePicker.Line || IOProvider.FileExists(filePath)) return;
+
         config.SortNamePickerCurrentLineNext();
 
         Logger.LogDebug("Increase SortNamePickerCurrentLine");
-    }
+    };
 }
