@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace QuickMods.configuration.impl;
 
-public class PauseConfiguration(ConfigFile config) : ConfigurationBase("QuickPause")
+public class PauseConfiguration(ConfigFile config) : ConfigurationBase("QuickPause", config)
 {
     private ConfigEntry<bool> _enableEscapePause;
     private ConfigEntry<bool> _enableEditorPause;
@@ -19,9 +19,9 @@ public class PauseConfiguration(ConfigFile config) : ConfigurationBase("QuickPau
     {
         base.Init();
 
-        _enableEscapePause = config.Bind("QuickMods/Pause", "EnableEscapePause", false, "Enable or disable pause when escape");
-        _enableEditorPause = config.Bind("QuickMods/Pause", "EnableEditorPause", false, "Enable or disable pause in the VAB/OAB/Editor");
-        _pauseKey = config.Bind("QuickMods/Pause", "PauseKey", KeyCode.P, "Add a new key to toggle pause without using timewarp keys"); // new KeyboardShortcut(KeyCode.P) it seems to doesn't work with KSP!
-        _dontPauseWhenDecreaseWarp = config.Bind("QuickMods/StopWarp", "DontPauseWhenDecreaseWarp", false, "Enable or disable the default pause when decrease warp");
+        _enableEscapePause = Config.Bind("QuickMods/Pause", "EnableEscapePause", false, "Enable or disable pause when escape");
+        _enableEditorPause = Config.Bind("QuickMods/Pause", "EnableEditorPause", false, "Enable or disable pause in the VAB/OAB/Editor");
+        _pauseKey = Config.Bind("QuickMods/Pause", "PauseKey", KeyCode.P, "Add a new key to toggle pause without using timewarp keys"); // new KeyboardShortcut(KeyCode.P) it seems to doesn't work with KSP!
+        _dontPauseWhenDecreaseWarp = Config.Bind("QuickMods/StopWarp", "DontPauseWhenDecreaseWarp", false, "Enable or disable the default pause when decrease warp");
     }
 }

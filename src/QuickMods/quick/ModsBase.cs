@@ -8,27 +8,41 @@ namespace QuickMods.quick;
 
 public abstract class ModsBase(ConfigurationBase configuration) : IModsBase
 {
-    protected GameInstance Game => GameManager.Instance.Game;
-    protected MessageCenter MessageCenter => Game.Messages;
+    protected static GameInstance Game => GameManager.Instance.Game;
+    protected static MessageCenter MessageCenter => Game.Messages;
 
     public bool Initialized() => configuration.Initialized();
+    public bool Enabled() => configuration.Enabled();
+    public bool Active() => Enabled() && Initialized();
+    public string Name() => configuration.Name();
 
     public virtual void Start()
     {
+        if (!Enabled() || Initialized())
+        {
+            Logger.LogDebug("Start or restart is forbidden.");
+            throw new Exception("Start or restart is forbidden.");
+        }
+        
         configuration.Init();
         Logger.LogDebug("Start");
     }
 
     public virtual void OnDestroy()
     {
+        configuration.Destroy();
         Logger.LogDebug("Destroy");
     }
 
     public virtual void Update()
     {
+        if (Active()) return;
+        
+        Logger.LogDebug("Is not active.");
+        throw new Exception("Is not active.");
     }
 
-    protected void SendNotification(string text, bool activated)
+    protected static void SendNotification(string text, bool activated)
     {
         var activatedText = LocalizationManager.GetTranslation(activated ? "QuickMods/Common/Activated" : "QuickMods/Common/Deactivated");
         var notificationData = new NotificationData

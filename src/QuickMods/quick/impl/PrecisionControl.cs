@@ -9,7 +9,7 @@ public class PrecisionControl(PrecisionControlConfiguration config) : ModsBase(c
 {
     private bool _lastValue = true;
 
-    private bool CurrentPrecisionMode
+    private static bool CurrentPrecisionMode
     {
         get => Game != null && Game.ViewController != null && Game.ViewController.flightInputHandler.IsPrecisionMode;
         set
@@ -40,7 +40,7 @@ public class PrecisionControl(PrecisionControlConfiguration config) : ModsBase(c
 
     private void OnGameStateChangedMessage(MessageCenterMessage msg)
     {
-        if (!config.Enabled() || !PrecisionControlHasChanged || msg is not GameStateChangedMessage { CurrentState: GameState.FlightView }) return;
+        if (!config.PrecisionControlEnabled() || !PrecisionControlHasChanged || msg is not GameStateChangedMessage { CurrentState: GameState.FlightView }) return;
 
         CurrentPrecisionMode = !config.KeepLastPrecisionControlValue() || _lastValue;
         _lastValue = CurrentPrecisionMode;

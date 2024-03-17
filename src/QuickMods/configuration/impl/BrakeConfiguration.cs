@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace QuickMods.configuration.impl;
 
-public class BrakeConfiguration(ConfigFile config) : ConfigurationBase("QuickBrake")
+public class BrakeConfiguration(ConfigFile config) : ConfigurationBase("QuickBrake", config)
 {
     private ConfigEntry<ToggleBrakeEnum> _toggleBrake;
     private ConfigEntry<KeyCode> _modifierBrakeKey;
@@ -27,14 +27,20 @@ public class BrakeConfiguration(ConfigFile config) : ConfigurationBase("QuickBra
     {
         base.Init();
 
-        _toggleBrake = config.Bind("QuickMods/Brake", "ToggleBrake", ToggleBrakeEnum.StockBrake, "StockBrake: the default brake key is like in Stock KSP.\n\nModifier: the default brake key is like in Stock KSP, but with a modifier you can toggle the brake.\n\nToggle: the default brake key is toggle brake.");
-        _modifierBrakeKey = config.Bind("QuickMods/Brake", "ModifierBrakeKey", KeyCode.LeftAlt, "The modifier key for brake Modifier option.");
-        _unBrakeAtLaunch = config.Bind("QuickMods/Brake", "UnBrakeAtLaunch", false, "Enable or disable un brake after launch");
-        _brakeWhenControlLost = config.Bind("QuickMods/Brake", "BrakeWhenControlLost", false, "Enable or disable brake when control is lost");
-        _brakePreLaunchAtLoad = config.Bind("QuickMods/Brake", "BrakePreLaunchAtLoad", false, "Enable or disable brake before launch");
-        _brakeLandedRoverAtLoad = config.Bind("QuickMods/Brake", "BrakeLandedRoverAtLoad", false, "Enable or disable brake landed rover at load");
-        _brakeLandedPlaneAtLoad = config.Bind("QuickMods/Brake", "BrakeLandedPlaneAtLoad", false, "Enable or disable brake landed plane at load");
-        _brakeLandedVesselAtLoad = config.Bind("QuickMods/Brake", "BrakeLandedVesselAtLoad", false, "Enable or disable brake landed vessel at load");
+        _toggleBrake = Config.Bind("QuickMods/Brake", "ToggleBrake", ToggleBrakeEnum.StockBrake, "StockBrake: the default brake key is like in Stock KSP.\n\nModifier: the default brake key is like in Stock KSP, but with a modifier you can toggle the brake.\n\nToggle: the default brake key is toggle brake.");
+        _modifierBrakeKey = Config.Bind("QuickMods/Brake", "ModifierBrakeKey", KeyCode.LeftAlt, "The modifier key for brake Modifier option.");
+        _unBrakeAtLaunch = Config.Bind("QuickMods/Brake", "UnBrakeAtLaunch", false, "Enable or disable un brake after launch");
+        _brakeWhenControlLost = Config.Bind("QuickMods/Brake", "BrakeWhenControlLost", false, "Enable or disable brake when control is lost");
+        _brakePreLaunchAtLoad = Config.Bind("QuickMods/Brake", "BrakePreLaunchAtLoad", false, "Enable or disable brake before launch");
+        _brakeLandedRoverAtLoad = Config.Bind("QuickMods/Brake", "BrakeLandedRoverAtLoad", false, "Enable or disable brake landed rover at load");
+        _brakeLandedPlaneAtLoad = Config.Bind("QuickMods/Brake", "BrakeLandedPlaneAtLoad", false, "Enable or disable brake landed plane at load");
+        _brakeLandedVesselAtLoad = Config.Bind("QuickMods/Brake", "BrakeLandedVesselAtLoad", false, "Enable or disable brake landed vessel at load");
+    }
+
+    public override void Destroy()
+    {
+        base.Destroy();
+        Config.Remove(_toggleBrake.Definition);
     }
 
     public enum ToggleBrakeEnum

@@ -2,7 +2,7 @@ using BepInEx.Configuration;
 
 namespace QuickMods.configuration.impl;
 
-public class StopWarpConfiguration(ConfigFile config) : ConfigurationBase("QuickStopWarp")
+public class StopWarpConfiguration(ConfigFile config) : ConfigurationBase("QuickStopWarp", config)
 {
     private ConfigEntry<bool> _vesselSituationChange;
 
@@ -12,6 +12,6 @@ public class StopWarpConfiguration(ConfigFile config) : ConfigurationBase("Quick
     {
         base.Init();
 
-        _vesselSituationChange = config.Bind("QuickMods/StopWarp", "VesselSituationChange", false, "Enable or disable the warp stopping when vessel change situation");
+        _vesselSituationChange = Config.Bind("QuickMods/StopWarp", "VesselSituationChange", false, "Enable or disable the warp stopping when vessel change situation");
     }
 }

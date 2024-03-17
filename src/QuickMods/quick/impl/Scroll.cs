@@ -10,7 +10,7 @@ public class Scroll(ScrollConfiguration config) : ModsBase(config)
 
     public override void Update()
     {
-        if (!config.Enabled() || Game.GlobalGameState?.GetState() != GameState.ResearchAndDevelopment) return;
+        if (!config.ScrollEnabled() || Game.GlobalGameState?.GetState() != GameState.ResearchAndDevelopment) return;
 
         _lastMouseX ??= -1;
 

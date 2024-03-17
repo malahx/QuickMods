@@ -4,42 +4,19 @@ using UnityEngine;
 
 namespace QuickMods.configuration.impl;
 
-public class VABVesselNamesConfiguration(ConfigFile config) : ConfigurationBase("QuickVABVesselNames")
+public class VABVesselNamesConfiguration(ConfigFile config) : ConfigurationBase("QuickVABVesselNames", config)
 {
     private ConfigEntry<bool> _automaticVesselName;
     private ConfigEntry<bool> _customVesselName;
     private ConfigEntry<EnumSortNamePicker> _sortNamePicker;
     private ConfigEntry<int> _sortNamePickerCurrentLine;
 
-    public bool AutomaticVesselName()
-    {
-        return _automaticVesselName.Value;
-    }
-
-    public bool CustomVesselName()
-    {
-        return _customVesselName.Value;
-    }
-
-    public EnumSortNamePicker SortNamePicker()
-    {
-        return _sortNamePicker.Value;
-    }
-
-    public int SortNamePickerCurrentLine()
-    {
-        return _sortNamePickerCurrentLine.Value;
-    }
-
-    public void SortNamePickerCurrentLineNext()
-    {
-        _sortNamePickerCurrentLine.Value++;
-    }
-
-    public void SortNamePickerCurrentLineReset()
-    {
-        _sortNamePickerCurrentLine.Value = 1;
-    }
+    public bool AutomaticVesselName() => _automaticVesselName.Value;
+    public bool CustomVesselName() => _customVesselName.Value;
+    public EnumSortNamePicker SortNamePicker() => _sortNamePicker.Value;
+    public int SortNamePickerCurrentLine() => _sortNamePickerCurrentLine.Value;
+    public void SortNamePickerCurrentLineNext() => _sortNamePickerCurrentLine.Value++;
+    public void SortNamePickerCurrentLineReset() => _sortNamePickerCurrentLine.Value = 1;
 
     public readonly List<string> CrewedNames = [];
     public readonly List<string> LauncherNames = [];
@@ -64,10 +41,10 @@ public class VABVesselNamesConfiguration(ConfigFile config) : ConfigurationBase(
     {
         base.Init();
 
-        _automaticVesselName = config.Bind("QuickMods/VesselNames", "AutomaticVesselName", false, "Enable or disable the automatic vessel name");
-        _sortNamePicker = config.Bind("QuickMods/VesselNames", "SortNamePicker", EnumSortNamePicker.Random, "Chose the method to pick the name");
-        _sortNamePickerCurrentLine = config.Bind("QuickMods/VesselNames", "SortNamePickerCurrentLine", 1, "The current line of the file to pick the next vessel name (if you selected SortNamePicker by Line)\n\nThe value will increase each time you save a new vessel.");
-        _customVesselName = config.Bind("QuickMods/VesselNames", "CustomVesselName", false, $"Enable or disable the custom vessel name, you need to create the file in {CustomFile}");
+        _automaticVesselName = Config.Bind("QuickMods/VesselNames", "AutomaticVesselName", false, "Enable or disable the automatic vessel name");
+        _sortNamePicker = Config.Bind("QuickMods/VesselNames", "SortNamePicker", EnumSortNamePicker.Random, "Chose the method to pick the name");
+        _sortNamePickerCurrentLine = Config.Bind("QuickMods/VesselNames", "SortNamePickerCurrentLine", 1, "The current line of the file to pick the next vessel name (if you selected SortNamePicker by Line)\n\nThe value will increase each time you save a new vessel.");
+        _customVesselName = Config.Bind("QuickMods/VesselNames", "CustomVesselName", false, $"Enable or disable the custom vessel name, you need to create the file in {CustomFile}");
 
         var files = new Dictionary<string, List<string>> { { CustomFile, CustomNames }, { CrewedNamesFile, CrewedNames }, { LauncherNamesFile, LauncherNames }, { ProbeNamesFile, ProbeNames }, { RoverNamesFile, RoverNames }, { AirPlaneFile, AirPlaneNames }, { SpacePlaneFile, SpacePlaneNames } };
 

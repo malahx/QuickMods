@@ -37,6 +37,15 @@ public class Pause(PauseConfiguration config) : ModsBase(config)
         MessageCenter.Unsubscribe<EscapeMenuClosedMessage>(OnEscapeMenuClosedMessage);
         MessageCenter.Unsubscribe<OABLoadedMessage>(OnOABLoadedMessage);
         MessageCenter.Unsubscribe<OABUnloadedMessage>(OnOABUnloadedMessage);
+
+        // Reset default TimeWarp key
+        if (Game.InputManager.TryGetInputDefinition<GlobalInputDefinition>(out var definition))
+        {
+            Game.Input.Global.TimeWarpDecrease.started += definition.OnTimeWarpDecrease;
+            Game.Input.Global.TimeWarpDecrease.performed += definition.OnTimeWarpDecrease;
+            Game.Input.Global.TimeWarpDecrease.canceled += definition.OnTimeWarpDecrease;
+            Game.Input.Global.TimeWarpDecrease.performed -= OnTimeWarpDecrease;
+        }
     }
 
     public override void Update()

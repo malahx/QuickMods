@@ -1,5 +1,6 @@
 using BepInEx;
 using HarmonyLib;
+using KSP.Messages;
 using QuickMods.configuration.impl;
 using QuickMods.quick;
 using QuickMods.quick.impl;
@@ -12,7 +13,7 @@ namespace QuickMods;
 [BepInDependency(SpaceWarpPlugin.ModGuid, SpaceWarpPlugin.ModVer)]
 public class QuickModsPlugin : BaseSpaceWarpPlugin
 {
-    private readonly List<IModsBase> _mods = [];
+    private List<IModsBase> _mods = [];
 
     public QuickModsPlugin()
     {
@@ -29,19 +30,44 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
     {
         Harmony.CreateAndPatchAll(typeof(QuickModsPlugin).Assembly);
 
+        Messages.Subscribe<EscapeMenuClosedMessage>(OnEscapeMenuClosedMessage);
+
+        InitializeMods();
+    }
+
+    private void OnEscapeMenuClosedMessage(MessageCenterMessage msg) => InitializeMods();
+
+    private void InitializeMods()
+    {
+        List<IModsBase> mods = [];
         foreach (var m in _mods)
-            m.Start();
+        {
+            if (m.Enabled() && !m.Initialized())
+                m.Start();
+
+            if (!m.Enabled())
+            {
+                m.OnDestroy();
+                continue;
+            }
+            
+            mods.Add(m);
+        }
+
+        _mods = mods;
     }
 
     private void OnDestroy()
     {
-        foreach (var m in _mods)
+        Messages.Unsubscribe<EscapeMenuClosedMessage>(OnEscapeMenuClosedMessage);
+        
+        foreach (var m in _mods.Where(m => m.Initialized()))
             m.OnDestroy();
     }
 
     private void Update()
     {
-        foreach (var m in _mods.Where(m => m.Initialized()))
+        foreach (var m in _mods.Where(m => m.Active()))
             m.Update();
     }
 }

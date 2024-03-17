@@ -35,7 +35,7 @@ public class Revert(RevertConfiguration config) : ModsBase(config)
         Logger.LogDebug("Lost.");
     }
 
-    private bool CanRevert()
+    private static bool CanRevert()
     {
         var gameStateRevTracker = Game.stateRevTracker;
         return gameStateRevTracker.HasValidReversionState && gameStateRevTracker.IsLastLaunchedVesselTheActiveVessel() ||
