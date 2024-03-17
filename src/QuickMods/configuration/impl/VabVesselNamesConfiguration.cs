@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace QuickMods.configuration.impl;
 
-public class VABVesselNamesConfiguration(ConfigFile config) : ConfigurationBase("QuickVABVesselNames")
+public class VabVesselNamesConfiguration(ConfigFile config) : ConfigurationBase("QuickVabVesselNames")
 {
     private ConfigEntry<bool> _automaticVesselName;
     private ConfigEntry<bool> _customVesselName;

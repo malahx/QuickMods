@@ -6,7 +6,7 @@ using QuickMods.configuration.impl;
 
 namespace QuickMods.quick.impl;
 
-public class VABVesselNames(VABVesselNamesConfiguration config) : ModsBase(config)
+public class VabVesselNames(VabVesselNamesConfiguration config) : ModsBase(config)
 {
     public override void Start()
     {
@@ -78,7 +78,7 @@ public class VABVesselNames(VABVesselNamesConfiguration config) : ModsBase(confi
     private string RetrieveRandomName(IReadOnlyList<string> names)
     {
         if (names.Count == 0) return null;
-        if (config.SortNamePicker() == VABVesselNamesConfiguration.EnumSortNamePicker.Random) return names[new Random().Next(0, names.Count - 1)];
+        if (config.SortNamePicker() == VabVesselNamesConfiguration.EnumSortNamePicker.Random) return names[new Random().Next(0, names.Count - 1)];
 
         if (config.SortNamePickerCurrentLine() > names.Count)
         {
@@ -109,7 +109,7 @@ public class VABVesselNames(VABVesselNamesConfiguration config) : ModsBase(confi
     private Action<string, string, string, string, bool, IOProvider.DataLocation> PrepareNextVesselName() => (filename, s1, arg3, arg4, arg5, dataLocation) =>
     {
         var filePath = IOProvider.JoinPath(IOProvider.PathOfDataType(dataLocation), IOProvider.CleanFilename(filename)) + ".json";
-        if (config.SortNamePicker() != VABVesselNamesConfiguration.EnumSortNamePicker.Line || IOProvider.FileExists(filePath)) return;
+        if (config.SortNamePicker() != VabVesselNamesConfiguration.EnumSortNamePicker.Line || IOProvider.FileExists(filePath)) return;
 
         config.SortNamePickerCurrentLineNext();
 
