@@ -4,7 +4,7 @@ using QuickMods.configuration.impl;
 
 namespace QuickMods.quick.impl;
 
-public class StopWarp(StopWarpConfiguration config) : ModsBase(config)
+public class Warp(WarpConfiguration config) : ModsBase(config)
 {
     public override void Start()
     {

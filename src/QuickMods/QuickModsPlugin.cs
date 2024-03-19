@@ -16,7 +16,7 @@ public class QuickModsPlugin : BaseSpaceWarpPlugin
 
     public QuickModsPlugin()
     {
-        _mods.Add(new StopWarp(new StopWarpConfiguration(Config)));
+        _mods.Add(new Warp(new WarpConfiguration(Config)));
         _mods.Add(new Revert(new RevertConfiguration(Config)));
         _mods.Add(new VabVesselNames(new VabVesselNamesConfiguration(Config)));
         _mods.Add(new Scroll(new ScrollConfiguration(Config)));
