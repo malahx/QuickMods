@@ -26,7 +26,7 @@ public class Warp(WarpConfiguration config) : ModsBase(config)
 
         Game.ViewController.TimeWarp.StopTimeWarp(true);
 
-        SendNotification("QuickMods/StopWarp/Notifications/VesselSituationChange/Primary", true);
+        SendNotification("QuickMods/Warp/Notifications/VesselSituationChange/Primary", true);
 
         Logger.LogDebug($"Stop wrap, VesselName: {message.Vessel.Name}, isActiveVessel: {Game.ViewController.IsActiveVessel(message.Vessel)}, Old Situation: {message.OldSituation}, New Situation; {message.NewSituation}");
     }

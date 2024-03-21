@@ -2,7 +2,7 @@ using BepInEx.Configuration;
 
 namespace QuickMods.configuration.impl;
 
-public class WarpConfiguration(ConfigFile config) : ConfigurationBase("QuickStopWarp")
+public class WarpConfiguration(ConfigFile config) : ConfigurationBase("QuickWarp")
 {
     private ConfigEntry<bool> _vesselSituationChange;
 
