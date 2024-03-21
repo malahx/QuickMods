@@ -5,7 +5,7 @@
   "name": "QuickMods",
   "description": "It is a tiny plugin that adds a few small features.",
   "source": "https://github.com/malahx/QuickMods",
-  "version": "2.0.0",
+  "version": "2.1.0",
   "version_check": "https://raw.githubusercontent.com/malahx/QuickMods/master/plugin_template/swinfo.json",
   "ksp2_version": {
     "min": "0.2.0",
