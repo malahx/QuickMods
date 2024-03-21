@@ -33,12 +33,12 @@ QuickMods is a tiny plugin that adds a few small features.
 
 Features: 
 * Brake: automatic brake vessel at load/control lost and toggle brake with key.
-* Pause: pause the game when you escape it.
+* Pause: pause the game when you open the escape menu, in the editor, add a pause key, and disable pause when decrease warp.
 * PrecisionControl: force precision control at flight loading, it also adds notification when you toggle precision control mode.
 * Revert: lost revert when you pass the atmosphere.
 * Scroll: scroll the R&D view when click mouse.
-* StopWarp: stop warp when vessel situation change.
-* VesselNames: add a new vessel name when you create a new vessel in the VAB.
+* Warp: stop warp when vessel situation change.
+* VabVesselNames: add a new vessel name when you create a new vessel in the VAB.
 
 All the features are disabled by default.
 To enable them, go to Settings -> Mods -> QuickMods -> Choose what you want.
@@ -46,11 +46,6 @@ To enable them, go to Settings -> Mods -> QuickMods -> Choose what you want.
 #### VesselNames
 
 All the vessel names are located in the folder <your installation path>\Kerbal Space Program 2\BepInEx\plugins\QuickMods\VesselNames
-
-**ATTENTION: if you update QuickMods you will overwrite any changes made the txt files.**
-
-By default, vessel names differ by vessel type. However, with the CustomVesselNames option, the vessel type is ignored.
-To use this feature, you must enable it AND add a new file named CustomVesselNames.txt in the VesselNames folder. This file will not be overwritten when updating QuickMods.
 
 ### How to install/update it?
 
